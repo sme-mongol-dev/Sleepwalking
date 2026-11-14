@@ -37,6 +37,8 @@ namespace Sleepwalking.Tests.PlayMode
             Assert.That((bool)inDream.GetValue(game), Is.True);
             Assert.That((bool)transitioning.GetValue(game), Is.False);
             Assert.That(GameObject.Find("Dream L01"), Is.Not.Null);
+            Camera camera = (Camera)gameType.GetField("GameCamera").GetValue(game);
+            Assert.That(camera.targetTexture, Is.Not.Null);
 
             GameObject dreamer = GameObject.Find("Dreamer");
             Assert.That(dreamer, Is.Not.Null);
@@ -76,6 +78,16 @@ namespace Sleepwalking.Tests.PlayMode
                 Assert.That(body.position.x - initialX, Is.GreaterThan(.15f),
                     "Horizontal command did not move the live body.");
 
+                float initialCameraX = camera.transform.position.x;
+                float unitsPerPixel = 2f * camera.orthographicSize / camera.targetTexture.height;
+                for (int q = 0; q < 8; q++)
+                {
+                    yield return new WaitForFixedUpdate();
+                    AssertPixelAligned(camera.transform.position.x, unitsPerPixel);
+                    AssertPixelAligned(camera.transform.position.y, unitsPerPixel);
+                }
+                Assert.That(camera.transform.position.x, Is.GreaterThan(initialCameraX));
+
                 yield return ResetAndSettle(resetAt, player, start);
                 initialX = body.position.x;
                 setInput.Invoke(player, new object[] { 1f, false, true });
@@ -92,6 +104,12 @@ namespace Sleepwalking.Tests.PlayMode
                 clearInput.Invoke(player, null);
             }
             LogAssert.NoUnexpectedReceived();
+        }
+
+        static void AssertPixelAligned(float position, float unitsPerPixel)
+        {
+            float pixel = position / unitsPerPixel;
+            Assert.That(pixel, Is.EqualTo(Mathf.Round(pixel)).Within(.001f));
         }
 
         static IEnumerator ResetAndSettle(MethodInfo resetAt, MonoBehaviour player, Vector2 start)

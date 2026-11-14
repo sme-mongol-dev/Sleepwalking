@@ -84,6 +84,13 @@ namespace Sleepwalking.Tests.Editor
                 if (definition.BedExit == null || !definition.BedExit.IsChildOf(prefab.transform))
                     errors.Add(path + ": BedExit is missing or outside prefab");
 
+                Transform geometry = prefab.transform.Find("Geometry");
+                if (geometry == null || geometry.childCount == 0)
+                    errors.Add(path + ": platform geometry is missing");
+                else
+                    foreach (Transform platform in geometry)
+                        ValidatePlatform(path, platform, errors);
+
                 SleepwalkingLevelFeature[] features = prefab.GetComponentsInChildren<SleepwalkingLevelFeature>(true);
                 bool hasExit = false;
                 foreach (SleepwalkingLevelFeature feature in features)
@@ -97,6 +104,8 @@ namespace Sleepwalking.Tests.Editor
                     }
                     if (IsHazard(feature.Kind) && (collider == null || !collider.isTrigger))
                         errors.Add(path + ": hazard " + feature.name + " has no 2D trigger");
+                    if (feature.Kind == LevelFeatureKind.MovingPlatform || feature.Kind == LevelFeatureKind.TimedPlatform)
+                        ValidatePlatform(path, feature.transform, errors);
                     if (feature.Kind == LevelFeatureKind.Button)
                         ValidateButton(path, feature, features, collider, errors);
                     if (feature.Kind == LevelFeatureKind.LaserBase || feature.Kind == LevelFeatureKind.LaserBeam)
@@ -116,6 +125,14 @@ namespace Sleepwalking.Tests.Editor
             if (indices.Count != 7)
                 errors.Add("Only " + indices.Count + " unique level indices found; expected 7");
             return errors;
+        }
+
+        private static void ValidatePlatform(string path, Transform platform, List<string> errors)
+        {
+            SleepwalkingTileSurface surface = platform.GetComponent<SleepwalkingTileSurface>();
+            BoxCollider2D shape = surface != null ? surface.Solid : null;
+            if (shape == null || !shape.enabled || shape.isTrigger || shape.size.x <= 0 || shape.size.y <= 0)
+                errors.Add(path + ": platform " + platform.name + " needs an enabled solid BoxCollider2D and a tile surface");
         }
 
         private static void ValidateButton(string path, SleepwalkingLevelFeature button,

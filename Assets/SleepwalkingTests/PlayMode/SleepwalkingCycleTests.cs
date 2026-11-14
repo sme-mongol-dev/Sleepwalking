@@ -3,13 +3,51 @@ using System.Collections;
 using System.Reflection;
 using NUnit.Framework;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 using UnityEngine.TestTools;
+using UnityEngine.UI;
 
 namespace Sleepwalking.Tests.PlayMode
 {
     public sealed class SleepwalkingCycleTests
     {
+        [UnityTest]
+        public IEnumerator VolumeFillsStayAlignedWithTracksWhenHovered()
+        {
+            yield return SceneManager.LoadSceneAsync("Assets/Scenes/Sleepwalking.unity");
+            yield return null;
+
+            GameObject ui = GameObject.Find("Sleepwalking UI");
+            Assert.That(ui, Is.Not.Null);
+            Transform settings = ui.transform.Find("Sleepwalking Canvas/Settings");
+            Assert.That(settings, Is.Not.Null);
+            settings.gameObject.SetActive(true);
+            Transform panel = settings.Find("Settings Panel");
+            Assert.That(panel, Is.Not.Null);
+            var pointer = new PointerEventData(EventSystem.current);
+            var corners = new Vector3[4];
+
+            foreach (string channel in new[] { "Master", "Music", "SFX" })
+            {
+                Slider slider = panel.Find(channel + " Slider").GetComponent<Slider>();
+                var track = (RectTransform)slider.transform.Find("Track");
+                slider.OnPointerEnter(pointer);
+                foreach (float fraction in new[] { 1f, .8f, .5f, .25f, 0f })
+                {
+                    slider.SetValueWithoutNotify(Mathf.Lerp(slider.minValue, slider.maxValue, fraction));
+                    Canvas.ForceUpdateCanvases();
+                    slider.fillRect.GetWorldCorners(corners);
+                    Assert.That(track.InverseTransformPoint(corners[0]).x,
+                        Is.EqualTo(track.rect.xMin).Within(.01f), channel + " fill must start at the left edge.");
+                    Assert.That(track.InverseTransformPoint(corners[3]).x,
+                        Is.EqualTo(Mathf.Lerp(track.rect.xMin, track.rect.xMax, fraction)).Within(.01f),
+                        channel + " fill must end at the current volume.");
+                }
+                slider.OnPointerExit(pointer);
+            }
+        }
+
         [UnityTest]
         public IEnumerator EightDreamsReuseSevenAuthoredLevels()
         {
@@ -98,8 +136,10 @@ namespace Sleepwalking.Tests.PlayMode
                 Assert.That((bool)transitioning.GetValue(game), Is.False, "Dream " + (q + 1) + " transition did not finish.");
                 Assert.That((int)completedDreams.GetValue(game), Is.EqualTo(q));
                 Assert.That(room.activeSelf, Is.False, "The waking room must be hidden during a dream.");
-                Assert.That(GameObject.Find("Dream L" + (q % 7 + 1).ToString("00")), Is.Not.Null,
+                GameObject level = GameObject.Find("Dream L" + (q % 7 + 1).ToString("00"));
+                Assert.That(level, Is.Not.Null,
                     "Dream " + (q + 1) + " must instantiate its authored level, not fallback geometry.");
+                AssertTilesMatchColliders(level);
 
                 if (q == 0)
                 {
@@ -162,6 +202,35 @@ namespace Sleepwalking.Tests.PlayMode
             }
 
             LogAssert.NoUnexpectedReceived();
+        }
+
+        static void AssertTilesMatchColliders(GameObject level)
+        {
+            int tiledPlatforms = 0;
+            foreach (Transform child in level.GetComponentsInChildren<Transform>(true))
+            {
+                if (child.name != "Dream Tiles") continue;
+                tiledPlatforms++;
+                BoxCollider2D collider = child.parent.GetComponent<BoxCollider2D>();
+                string platform = level.name + "/" + child.parent.name;
+                Assert.That(collider, Is.Not.Null, platform);
+                Assert.That(collider.isTrigger, Is.False, platform);
+
+                MeshRenderer[] tiles = child.GetComponentsInChildren<MeshRenderer>(true);
+                Assert.That(tiles, Is.Not.Empty, platform);
+                Bounds visual = tiles[0].bounds;
+                foreach (MeshRenderer tile in tiles)
+                    visual.Encapsulate(tile.bounds);
+
+                // Timed platforms can be inactive, so compare with their authored shape.
+                Vector2 center = child.parent.TransformPoint(collider.offset);
+                Vector2 size = Vector2.Scale(collider.size, child.parent.lossyScale);
+                Assert.That(visual.center.x, Is.EqualTo(center.x).Within(.001f), platform);
+                Assert.That(visual.center.y, Is.EqualTo(center.y).Within(.001f), platform);
+                Assert.That(visual.size.x, Is.EqualTo(size.x).Within(.001f), platform);
+                Assert.That(visual.size.y, Is.EqualTo(size.y).Within(.001f), platform);
+            }
+            Assert.That(tiledPlatforms, Is.GreaterThan(0), level.name);
         }
     }
 }

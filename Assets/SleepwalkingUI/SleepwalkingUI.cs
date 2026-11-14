@@ -504,7 +504,7 @@ namespace Sleepwalking
             slider.maxValue = 100;
             RectTransform bar = Rect("Track", track, Vector2.zero, new Vector2(440, 8));
             bar.gameObject.AddComponent<Image>().color = SecondaryText;
-            RectTransform fillArea = Rect("Fill Area", track, Vector2.zero, new Vector2(440, 8));
+            RectTransform fillArea = Rect("Fill Area", track, Vector2.zero, new Vector2(0, 8));
             fillArea.anchorMin = new Vector2(0, .5f);
             fillArea.anchorMax = new Vector2(1, .5f);
             RectTransform fill = Rect("Fill", fillArea, Vector2.zero, Vector2.zero);

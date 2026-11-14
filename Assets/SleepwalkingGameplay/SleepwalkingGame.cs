@@ -26,6 +26,7 @@ namespace Sleepwalking
         SleepwalkingPlayer player;
         Transform start;
         Vector3 cameraVelocity;
+        Vector3 dreamCameraPosition;
         Vector3 roomCameraPosition = new Vector3(0f, 1f, -20f);
         Quaternion roomCameraRotation = Quaternion.identity;
         bool roomOrthographic = true;
@@ -114,8 +115,23 @@ namespace Sleepwalking
             Vector3 target = inDream && player != null
                 ? new Vector3(Mathf.Max(3f, player.transform.position.x + 1.5f), 1.8f, -20f)
                 : roomCameraPosition;
-            GameCamera.transform.position = Vector3.SmoothDamp(GameCamera.transform.position, target, ref cameraVelocity, inDream ? .35f : .5f);
+            if (inDream)
+            {
+                // Keep the smoothing state continuous while rendering at whole-pixel positions.
+                dreamCameraPosition = Vector3.SmoothDamp(dreamCameraPosition, target, ref cameraVelocity, .35f);
+                GameCamera.transform.position = SnapDreamCamera(dreamCameraPosition);
+            }
+            else
+                GameCamera.transform.position = Vector3.SmoothDamp(GameCamera.transform.position, target, ref cameraVelocity, .5f);
             GameCamera.transform.rotation = Quaternion.Slerp(GameCamera.transform.rotation, inDream ? Quaternion.identity : roomCameraRotation, Time.deltaTime * 6f);
+        }
+
+        Vector3 SnapDreamCamera(Vector3 position)
+        {
+            float unitsPerPixel = 2f * GameCamera.orthographicSize / Mathf.Max(1, GameCamera.pixelHeight);
+            position.x = Mathf.Round(position.x / unitsPerPixel) * unitsPerPixel;
+            position.y = Mathf.Round(position.y / unitsPerPixel) * unitsPerPixel;
+            return position;
         }
 
         bool RoomMenuOpen()
@@ -198,7 +214,9 @@ namespace Sleepwalking
             GameCamera.orthographicSize = 5f;
             CreateLevel();
             inDream = true;
-            GameCamera.transform.position = new Vector3(Mathf.Max(3f, player.transform.position.x + 1.5f), 1.8f, -20f);
+            dreamCameraPosition = new Vector3(Mathf.Max(3f, player.transform.position.x + 1.5f), 1.8f, -20f);
+            cameraVelocity = Vector3.zero;
+            GameCamera.transform.position = SnapDreamCamera(dreamCameraPosition);
             GameCamera.transform.rotation = Quaternion.identity;
             Sleepwalking.Audio.SleepwalkingAudioDirector audio = Sleepwalking.Audio.SleepwalkingAudioDirector.CreateOrGet();
             if (audio != null) audio.EnterDream((Sleepwalking.Audio.DreamTheme)style);

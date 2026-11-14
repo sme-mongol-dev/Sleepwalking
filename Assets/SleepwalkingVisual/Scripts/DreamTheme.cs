@@ -46,10 +46,8 @@ namespace Sleepwalking.Visual
                 return;
             }
 
-            float scaleY = Mathf.Max(.001f, Mathf.Abs(surface.transform.lossyScale.y));
-            float extraDepth = staticGeometry ? 1.5f / scaleY : 0f;
-            Vector2 size = shape.size + new Vector2(0, extraDepth);
-            Vector2 offset = shape.offset - new Vector2(0, extraDepth / 2);
+            Vector2 size = shape.size;
+            Vector2 offset = shape.offset;
             float width = Mathf.Abs(surface.transform.lossyScale.x * size.x);
             float height = Mathf.Abs(surface.transform.lossyScale.y * size.y);
             int columns = width < 1.2f ? 1 : Mathf.Max(3, Mathf.CeilToInt(width / .75f));
