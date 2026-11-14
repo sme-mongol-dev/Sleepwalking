@@ -21,6 +21,8 @@ namespace Sleepwalking
         public float JumpBufferSeconds = .13f;
         public float DashCooldownSeconds = .35f;
         public bool ControlsEnabled = true;
+        public float EffectiveRunSpeed => RunSpeed * (SleepwalkingGame.Instance?.OdradekRunMultiplier ?? 1f);
+        public float EffectiveJumpSpeed => JumpSpeed * (SleepwalkingGame.Instance?.OdradekJumpMultiplier ?? 1f);
 
         Rigidbody2D body;
         BoxCollider2D shape;
@@ -125,7 +127,7 @@ namespace Sleepwalking
 
             Vector2 velocity = body.linearVelocity;
             // При отсутствии ввода игрок следует за платформой, но может бежать в любую сторону.
-            velocity.x = Mathf.MoveTowards(velocity.x, horizontal * RunSpeed + platformVelocity.x,
+            velocity.x = Mathf.MoveTowards(velocity.x, horizontal * EffectiveRunSpeed + platformVelocity.x,
                 (grounded ? GroundAcceleration : AirAcceleration) * Time.fixedDeltaTime);
             if (grounded && platformVelocity.y < 0f) velocity.y = Mathf.Min(velocity.y, platformVelocity.y);
             bool sliding = wall != 0 && !grounded && velocity.y < -WallSlideSpeed && horizontal * wall > 0f;
@@ -135,8 +137,8 @@ namespace Sleepwalking
                 velocity.y = -WallSlideSpeed;
             if (jumpBuffer > 0f && (coyote > 0f || wall != 0))
             {
-                if (wall != 0 && !grounded) velocity.x = -wall * RunSpeed;
-                velocity.y = JumpSpeed;
+                if (wall != 0 && !grounded) velocity.x = -wall * EffectiveRunSpeed;
+                velocity.y = EffectiveJumpSpeed;
                 jumpBuffer = 0f;
                 coyote = 0f;
                 SleepwalkingGame.Instance?.PlayCue("Jump");

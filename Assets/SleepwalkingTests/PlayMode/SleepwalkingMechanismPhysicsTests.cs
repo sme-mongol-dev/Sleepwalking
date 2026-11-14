@@ -66,7 +66,7 @@ namespace Sleepwalking.Tests.PlayMode
         }
 
         [UnityTest]
-        public IEnumerator BeamWidthMatchesThreeToFourPixelsAtBothRenderHeights()
+        public IEnumerator BeamWidthPreservesReferenceThicknessWithoutPixelFilter()
         {
             yield return LoadScene();
             Camera camera = (Camera)gameType.GetField("GameCamera").GetValue(game);
@@ -74,25 +74,11 @@ namespace Sleepwalking.Tests.PlayMode
             Assert.That(camera, Is.Not.Null);
             Assert.That(beamWidth, Is.Not.Null);
 
-            RenderTexture original = camera.targetTexture;
-            foreach (int height in new[] { 180, 240 })
-            {
-                RenderTexture target = new RenderTexture(320, height, 24);
-                target.Create();
-                try
-                {
-                    camera.targetTexture = target;
-                    float width = (float)beamWidth.Invoke(game, null);
-                    float pixels = width * height / (camera.orthographicSize * 2f);
-                    Assert.That(pixels, Is.InRange(3f, 4f), "Beam width at 320x" + height + ".");
-                }
-                finally
-                {
-                    camera.targetTexture = original;
-                    target.Release();
-                    UnityEngine.Object.Destroy(target);
-                }
-            }
+            Assert.That(camera.targetTexture, Is.Null);
+            float width = (float)beamWidth.Invoke(game, null);
+            int referenceHeight = Mathf.Max(180, Mathf.CeilToInt(320f * Screen.height / Screen.width));
+            float pixels = width * referenceHeight / (camera.orthographicSize * 2f);
+            Assert.That(pixels, Is.InRange(3f, 4f));
             LogAssert.NoUnexpectedReceived();
         }
 

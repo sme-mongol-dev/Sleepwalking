@@ -13,6 +13,140 @@ namespace Sleepwalking.Tests.PlayMode
     public sealed class SleepwalkingCycleTests
     {
         [UnityTest]
+        public IEnumerator TexturedRoomHighlightsAndOpensEachMenuAction()
+        {
+            yield return SceneManager.LoadSceneAsync("Assets/Scenes/Sleepwalking.unity");
+            yield return null;
+
+            GameObject room = GameObject.Find("Waking room");
+            GameObject ui = GameObject.Find("Sleepwalking UI");
+            Assert.That(room, Is.Not.Null);
+            Assert.That(ui, Is.Not.Null);
+            Camera camera = Camera.main;
+            Assert.That(camera, Is.Not.Null);
+            Assert.That(camera.targetTexture, Is.Null, "The menu must render directly to the screen.");
+            Light light = room.transform.Find("Window Light").GetComponent<Light>();
+            Assert.That(light, Is.Not.Null);
+            Assert.That(light.lightmapBakeType, Is.EqualTo(LightmapBakeType.Realtime));
+            Assert.That(light.shadows, Is.EqualTo(LightShadows.Soft));
+            Transform window = room.transform.Find("Window");
+            Assert.That(light.transform.position.y, Is.GreaterThan(window.position.y));
+            foreach (Renderer renderer in room.GetComponentsInChildren<Renderer>())
+                Assert.That(renderer.shadowCastingMode,
+                    Is.EqualTo(renderer.transform == window ? UnityEngine.Rendering.ShadowCastingMode.Off :
+                        UnityEngine.Rendering.ShadowCastingMode.TwoSided), renderer.name);
+            Color32[] shadowed = CaptureRoomLighting(camera, 1280, 720);
+            light.shadows = LightShadows.None;
+            yield return null;
+            Color32[] unshadowed = CaptureRoomLighting(camera, 1280, 720, "-NoShadows");
+            light.shadows = LightShadows.Soft;
+            yield return null;
+            int shadowPixels = 0;
+            for (int i = 0; i < shadowed.Length; i++)
+                if (Mathf.Abs(shadowed[i].r - unshadowed[i].r) + Mathf.Abs(shadowed[i].g - unshadowed[i].g) +
+                    Mathf.Abs(shadowed[i].b - unshadowed[i].b) > 6) shadowPixels++;
+            Assert.That(shadowPixels, Is.GreaterThan(100), "Realtime shadows must visibly change the rendered room.");
+            CaptureRoomLighting(camera, 960, 720);
+            Transform canvas = ui.transform.Find("Sleepwalking Canvas");
+            Component controller = ui.GetComponent("SleepwalkingUI");
+            var closeOverlay = controller.GetType().GetMethod("CloseOverlay");
+            var processRoomInput = controller.GetType().GetMethod("ProcessRoomInput", BindingFlags.Instance | BindingFlags.NonPublic);
+            Assert.That(closeOverlay, Is.Not.Null);
+            Assert.That(processRoomInput, Is.Not.Null);
+            string[] props = { "Clock", "Books", "Door", "Bed" };
+            string[] screens = { "Settings", "Credits", "Confirmation" };
+            var properties = new MaterialPropertyBlock();
+            int highlight = Shader.PropertyToID("_Highlight");
+            Physics.SyncTransforms();
+            for (int i = 0; i < props.Length; i++)
+            {
+                Transform prop = room.transform.Find(props[i]);
+                Assert.That(prop, Is.Not.Null);
+                var renderer = prop.GetComponent<Renderer>();
+                var texture = (Texture2D)renderer.sharedMaterial.mainTexture;
+                Assert.That(texture.filterMode, Is.EqualTo(FilterMode.Point));
+                Assert.That(texture.mipmapCount, Is.EqualTo(1));
+
+                Vector2 opaque = RoomTexturePoint(camera, prop, texture, true);
+                Vector2 transparent = RoomTexturePoint(camera, prop, texture, false);
+                processRoomInput.Invoke(controller, new object[] { camera, transparent, false, false, false });
+                renderer.GetPropertyBlock(properties);
+                Assert.That(properties.GetFloat(highlight), Is.Zero, prop.name + " transparent pixel");
+
+                processRoomInput.Invoke(controller, new object[] { camera, opaque, false, false, false });
+                renderer.GetPropertyBlock(properties);
+                Assert.That(properties.GetFloat(highlight), Is.GreaterThan(0f), prop.name + " hover");
+
+                processRoomInput.Invoke(controller, new object[] { camera, opaque, true, false, false });
+                if (i < screens.Length)
+                {
+                    Assert.That(canvas.Find(screens[i]).gameObject.activeSelf, Is.True, prop.name + " click");
+                    renderer.GetPropertyBlock(properties);
+                    Assert.That(properties.GetFloat(highlight), Is.Zero, prop.name + " overlay");
+                    closeOverlay.Invoke(controller, null);
+                }
+            }
+
+            float deadline = Time.realtimeSinceStartup + 5f;
+            while (GameObject.Find("Dream L01") == null && Time.realtimeSinceStartup < deadline)
+                yield return null;
+            Assert.That(GameObject.Find("Dream L01"), Is.Not.Null, "Bed click must start the first dream.");
+        }
+
+        static Vector2 RoomTexturePoint(Camera camera, Transform prop, Texture2D texture, bool opaque)
+        {
+            BoxCollider collider = prop.GetComponent<BoxCollider>();
+            float bestDistance = float.PositiveInfinity;
+            Vector2 closest = default;
+            for (int y = 0; y < texture.height; y++)
+            for (int x = 0; x < texture.width; x++)
+            {
+                Vector2 point = new Vector2((x + .5f) / texture.width - .5f, (y + .5f) / texture.height - .5f);
+                Vector2 offset = point - (Vector2)collider.center;
+                if (Mathf.Abs(offset.x) >= collider.size.x * .5f || Mathf.Abs(offset.y) >= collider.size.y * .5f)
+                    continue;
+                if ((texture.GetPixel(x, y).a >= .5f) != opaque || offset.sqrMagnitude >= bestDistance)
+                    continue;
+                closest = point;
+                bestDistance = offset.sqrMagnitude;
+            }
+            Assert.That(bestDistance, Is.LessThan(float.PositiveInfinity), prop.name);
+            Vector3 viewport = camera.WorldToViewportPoint(prop.TransformPoint(closest));
+            return new Vector2(viewport.x * Screen.width, viewport.y * Screen.height);
+        }
+
+        static Color32[] CaptureRoomLighting(Camera camera, int width, int height, string suffix = "")
+        {
+            RenderTexture target = RenderTexture.GetTemporary(width, height, 24);
+            RenderTexture previousTarget = camera.targetTexture;
+            RenderTexture previousActive = RenderTexture.active;
+            float previousSize = camera.orthographicSize;
+            var image = new Texture2D(width, height, TextureFormat.RGBA32, false);
+            try
+            {
+                camera.targetTexture = target;
+                camera.orthographicSize = Mathf.Max(4.15f, 7.9f * height / width);
+                camera.Render();
+                RenderTexture.active = target;
+                image.ReadPixels(new Rect(0, 0, width, height), 0, 0);
+                image.Apply();
+                string folder = System.IO.Path.GetFullPath(System.IO.Path.Combine(Application.dataPath, "../Builds/QA"));
+                System.IO.Directory.CreateDirectory(folder);
+                System.IO.File.WriteAllBytes(System.IO.Path.Combine(folder, "MenuLighting-" + width + "x" + height + suffix + ".png"),
+                    image.EncodeToPNG());
+                return image.GetPixels32();
+            }
+            finally
+            {
+                camera.targetTexture = previousTarget;
+                camera.orthographicSize = previousSize;
+                RenderTexture.active = previousActive;
+                RenderTexture.ReleaseTemporary(target);
+                UnityEngine.Object.Destroy(image);
+            }
+        }
+
+        [UnityTest]
         public IEnumerator VolumeFillsStayAlignedWithTracksWhenHovered()
         {
             yield return SceneManager.LoadSceneAsync("Assets/Scenes/Sleepwalking.unity");
@@ -112,6 +246,20 @@ namespace Sleepwalking.Tests.PlayMode
             GameObject room = (GameObject)roomField.GetValue(game);
             Assert.That(room, Is.Not.Null);
             Assert.That(room.activeSelf, Is.True);
+            MonoBehaviour environment = Array.Find(room.GetComponents<MonoBehaviour>(),
+                component => component.GetType().Name == "RoomEnvironment");
+            Assert.That(environment, Is.Not.Null);
+            var poster = (Renderer)environment.GetType().GetField("Poster").GetValue(environment);
+            var posters = (Texture2D[])environment.GetType().GetField("Posters").GetValue(environment);
+            Assert.That(posters, Has.Length.EqualTo(12));
+            Assert.That(posters, Is.Unique);
+            Assert.That(poster, Is.Not.Null);
+            var posterProperties = new MaterialPropertyBlock();
+            poster.GetPropertyBlock(posterProperties);
+            Texture initialPoster = posterProperties.GetTexture("_MainTex");
+            Assert.That(initialPoster, Is.Not.Null);
+            Assert.That(posters, Does.Contain(initialPoster));
+            Assert.That(posterProperties.GetTexture("_BaseMap"), Is.SameAs(initialPoster));
 
             Component dreamHotspot = null;
             foreach (MonoBehaviour component in room.GetComponentsInChildren<MonoBehaviour>(true))
@@ -191,6 +339,8 @@ namespace Sleepwalking.Tests.PlayMode
                 Assert.That((bool)transitioning.GetValue(game), Is.False, "Wake " + (q + 1) + " transition did not finish.");
                 Assert.That((int)completedDreams.GetValue(game), Is.EqualTo(q + 1));
                 Assert.That(room.activeSelf, Is.True, "The waking room must return after dream " + (q + 1) + ".");
+                poster.GetPropertyBlock(posterProperties);
+                Assert.That(posterProperties.GetTexture("_MainTex"), Is.SameAs(initialPoster));
                 Assert.That(GameObject.Find("Dream L" + (q % 7 + 1).ToString("00")), Is.Null,
                     "The completed dream level must be removed.");
                 if (q == 0)

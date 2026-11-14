@@ -11,8 +11,17 @@ using UnityEngine.TestTools;
 
 namespace Sleepwalking.Tests.PlayMode
 {
+    [TestFixture(1)]
+    [TestFixture(100)]
     public sealed class SleepwalkingTraversalSequenceTests
     {
+        readonly int odradek;
+
+        public SleepwalkingTraversalSequenceTests(int odradek)
+        {
+            this.odradek = odradek;
+        }
+
         sealed class Route
         {
             public int Level;
@@ -115,6 +124,7 @@ namespace Sleepwalking.Tests.PlayMode
             route.Game = FindComponent(GameObject.Find("Sleepwalking Game"), "Sleepwalking.SleepwalkingGame");
             Assert.That(route.Game, Is.Not.Null);
             Type gameType = route.Game.GetType();
+            gameType.GetField("odradek", BindingFlags.Instance | BindingFlags.NonPublic).SetValue(route.Game, odradek);
             Array profiles = (Array)gameType.GetField("MovementProfiles").GetValue(route.Game);
             Assert.That(profiles.Length, Is.GreaterThan(route.ProfileIndex));
             ScriptableObject profile = (ScriptableObject)profiles.GetValue(route.ProfileIndex);
@@ -466,11 +476,14 @@ namespace Sleepwalking.Tests.PlayMode
 
         static bool IsDying(Route route) => (bool)route.Dying.GetValue(route.Game);
 
-        static void Finish(Route route)
+        void Finish(Route route)
         {
             string projectRoot = Path.GetFullPath(Path.Combine(Application.dataPath, ".."));
-            string path = Path.Combine(projectRoot, "Docs", "QA", "traversal-sequence-L" +
-                route.Level.ToString("00") + (route.ProfileIndex == 0 ? "-controlled.csv" : "-responsive.csv"));
+            string folder = Path.Combine(projectRoot, "Builds", "QA");
+            Directory.CreateDirectory(folder);
+            string path = Path.Combine(folder, "traversal-sequence-L" +
+                route.Level.ToString("00") + "-odradek-" + odradek +
+                (route.ProfileIndex == 0 ? "-controlled.csv" : "-responsive.csv"));
             File.WriteAllLines(path, route.Trace);
             Assert.That(route.Failure, Is.Null, route.Failure + "; see " + path);
             LogAssert.NoUnexpectedReceived();

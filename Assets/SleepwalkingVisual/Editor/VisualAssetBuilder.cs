@@ -18,6 +18,7 @@ namespace Sleepwalking.Visual.Editor
         const string DreamLevelPreviewScene = Root + "/Preview/DreamLevelPlayerPreview.unity";
         const string TileShowcaseScene = Root + "/Preview/TileShowcase.unity";
         const string TilesetRoot = Root + "/Textures/Tilesets";
+        public const string MenuRoomPrefab = Root + "/Prefabs/SleepwalkingMenuRoom.prefab";
         static Material background, panel, frame, shadow, text, secondary, accent, hover, pressed, blue, heaven;
 
         [MenuItem("Sleepwalking/Build Visual Assets")]
@@ -34,6 +35,7 @@ namespace Sleepwalking.Visual.Editor
             BuildRoom();
             BuildIllustratedVariant();
             BuildIllustratedRoomPreview();
+            BuildTexturedMenu();
             AssetDatabase.SaveAssets();
             Debug.Log("Visual assets ready: room, illustrated variant, preview scene, four dream themes.");
         }
@@ -103,6 +105,114 @@ namespace Sleepwalking.Visual.Editor
             }
             AssetDatabase.SaveAssets();
             Debug.Log("Four original dream tilesets imported as 32-pixel tiles.");
+        }
+
+        [MenuItem("Sleepwalking/Build Textured Menu")]
+        public static void BuildTexturedMenu()
+        {
+            LoadMaterials();
+            GameObject room = new GameObject("Sleepwalking Menu Room");
+            try
+            {
+                RoomEnvironment environment = room.AddComponent<RoomEnvironment>();
+                Transform root = room.transform;
+                Box(root, "Wallpaper", new Vector3(0, 2.5f, 2), new Vector3(32, 8.4f, .1f), panel);
+                Box(root, "Lower Wall", new Vector3(0, -.88f, 1.8f), new Vector3(32, 1.52f, .1f), shadow);
+                Box(root, "Baseboard", new Vector3(0, -1.56f, 1.6f), new Vector3(32, .12f, .1f), frame);
+                Box(root, "Floor", new Vector3(0, -4.14f, 1.5f), new Vector3(32, 5.04f, .1f), background);
+
+                MeshRenderer bed = MenuArtwork(root, "Bed", "BoyAndBed", new Vector3(-3.2f, -.18f, 0), .032f, true);
+                MeshRenderer books = MenuArtwork(root, "Books", "Books", new Vector3(-4.9f, 2.52f, 0), .032f, true);
+                MeshRenderer clock = MenuArtwork(root, "Clock", "Clock", new Vector3(.15f, 2.65f, 0), .024f, true);
+                MeshRenderer door = MenuArtwork(root, "Door", "Door", new Vector3(6.48f, .9f, 0), .020f, true);
+                MeshRenderer calendar = MenuArtwork(root, "Calendar", "Calendar", new Vector3(5.18f, 4.62f, .4f), .013f);
+                MenuArtwork(root, "Window", "Window", new Vector3(3.05f, 2.03f, .5f), .027f);
+                MenuArtwork(root, "Nightstand", "Tymba", new Vector3(3.05f, .32f, .3f), .022f);
+                environment.ClockHand = MenuArtwork(clock.transform, "Clock Hands", "ClockArrows",
+                    new Vector3(0, 0, -.02f), 1f / 128).transform;
+                environment.Picture = calendar.transform;
+                AddMenuPoster(environment);
+                RoomDynamicLighting.Apply(room);
+
+                AddMenuHotspot(bed, RoomAction.Dream, "New Game");
+                AddMenuHotspot(books, RoomAction.Credits, "Credits");
+                AddMenuHotspot(clock, RoomAction.Settings, "Settings");
+                AddMenuHotspot(door, RoomAction.Quit, "Quit Game");
+
+                GameObject cameraNode = Group(root, "Room Camera", new Vector3(0, 1.44f, -10));
+                cameraNode.tag = "MainCamera";
+                Camera camera = cameraNode.AddComponent<Camera>();
+                camera.orthographic = true;
+                camera.orthographicSize = 4.15f;
+                camera.clearFlags = CameraClearFlags.SolidColor;
+                camera.backgroundColor = ColorFromHex("161318");
+
+                if (PrefabUtility.SaveAsPrefabAsset(room, MenuRoomPrefab) == null)
+                    throw new System.InvalidOperationException("Could not save the textured menu prefab.");
+                AssetDatabase.SaveAssets();
+            }
+            finally
+            {
+                Object.DestroyImmediate(room);
+            }
+        }
+
+        static MeshRenderer MenuArtwork(Transform parent, string name, string textureName,
+            Vector3 position, float unitsPerPixel, bool readable = false)
+        {
+            Texture2D texture = LoadMenuTexture(Root + "/Textures/Menu/" + textureName + ".png", readable);
+            Material material = AtlasMaterial("Menu_" + textureName, Shader.Find("Sleepwalking/PixelCutout"),
+                texture, Vector2.one, Vector2.zero);
+            return TexturedQuad(parent, name, position,
+                new Vector3(texture.width * unitsPerPixel, texture.height * unitsPerPixel, 1), material)
+                .GetComponent<MeshRenderer>();
+        }
+
+        static Texture2D LoadMenuTexture(string path, bool readable = false)
+        {
+            if (AssetImporter.GetAtPath(path) is not TextureImporter importer)
+                throw new System.InvalidOperationException("Missing menu texture: " + path);
+            importer.filterMode = FilterMode.Point;
+            importer.mipmapEnabled = false;
+            importer.textureCompression = TextureImporterCompression.Uncompressed;
+            importer.npotScale = TextureImporterNPOTScale.None;
+            importer.wrapMode = TextureWrapMode.Clamp;
+            importer.isReadable = readable;
+            importer.SaveAndReimport();
+
+            return AssetDatabase.LoadAssetAtPath<Texture2D>(path);
+        }
+
+        static void AddMenuPoster(RoomEnvironment environment)
+        {
+            string[] files = Directory.GetFiles(Root + "/Textures/Posters", "*.png");
+            System.Array.Sort(files, System.StringComparer.Ordinal);
+            if (files.Length != 12) throw new System.InvalidOperationException("Expected twelve menu poster textures.");
+            environment.Posters = System.Array.ConvertAll(files, path => LoadMenuTexture(path.Replace('\\', '/')));
+            Material material = AtlasMaterial("Menu_Poster", Shader.Find("Sleepwalking/PixelCutout"),
+                environment.Posters[0], Vector2.one, Vector2.zero);
+            environment.Poster = TexturedQuad(environment.transform, "Poster", new Vector3(-1.61f, 2.65f, .45f),
+                new Vector3(1.48f, 2.96f, 1f), material).GetComponent<MeshRenderer>();
+        }
+
+        static void AddMenuHotspot(MeshRenderer artwork, RoomAction action, string label)
+        {
+            // Делаем коллайдер по непрозрачным границам без полей исходного PNG.
+            Texture2D texture = (Texture2D)artwork.sharedMaterial.mainTexture;
+            Color32[] pixels = texture.GetPixels32();
+            Vector2 min = Vector2.one;
+            Vector2 max = Vector2.zero;
+            for (int y = 0; y < texture.height; y++)
+            for (int x = 0; x < texture.width; x++)
+            {
+                if (pixels[y * texture.width + x].a < 128) continue;
+                min = Vector2.Min(min, new Vector2((float)x / texture.width, (float)y / texture.height));
+                max = Vector2.Max(max, new Vector2((x + 1f) / texture.width, (y + 1f) / texture.height));
+            }
+            Vector2 center = (min + max) * .5f - Vector2.one * .5f;
+            Vector2 size = max - min;
+            Hotspot(artwork.gameObject, action, label, center, new Vector3(size.x, size.y, .02f));
+            artwork.GetComponent<RoomHotspot>().Artwork = artwork;
         }
 
         static void BuildTemporaryDreamerSprite()
@@ -416,7 +526,7 @@ namespace Sleepwalking.Visual.Editor
             return material;
         }
 
-        static void TexturedQuad(Transform parent, string name, Vector3 position, Vector3 scale, Material material)
+        static GameObject TexturedQuad(Transform parent, string name, Vector3 position, Vector3 scale, Material material)
         {
             GameObject quad = GameObject.CreatePrimitive(PrimitiveType.Quad);
             quad.name = name;
@@ -425,6 +535,7 @@ namespace Sleepwalking.Visual.Editor
             quad.transform.localScale = scale;
             quad.GetComponent<Renderer>().sharedMaterial = material;
             Object.DestroyImmediate(quad.GetComponent<Collider>());
+            return quad;
         }
 
         static Material Material(string name, string hex)

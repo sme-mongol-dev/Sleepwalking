@@ -11,8 +11,17 @@ using UnityEngine.TestTools;
 
 namespace Sleepwalking.Tests.PlayMode
 {
+    [TestFixture(1)]
+    [TestFixture(100)]
     public sealed class SleepwalkingRemainingRouteTests
     {
+        readonly int odradek;
+
+        public SleepwalkingRemainingRouteTests(int odradek)
+        {
+            this.odradek = odradek;
+        }
+
         sealed class Route
         {
             public int Level;
@@ -198,8 +207,9 @@ namespace Sleepwalking.Tests.PlayMode
                 yield return new WaitForFixedUpdate();
                 if (route.Body == null) { route.Failure = "Player destroyed on L07"; yield break; }
                 position = route.Body.position;
-                if (wallJump && jumpNow)
-                    wallJumpActivated = route.Body.linearVelocity.y > beforeY + 2f &&
+                // Update may consume the simulated press after this fixed step.
+                if (stage == 0 && wallJump)
+                    wallJumpActivated |= route.Body.linearVelocity.y > beforeY + 2f &&
                         route.Body.linearVelocity.y > 5f;
                 if (dashNow)
                     dashActivated = (float)dashRemaining.GetValue(route.Player) > 0f &&
@@ -282,6 +292,7 @@ namespace Sleepwalking.Tests.PlayMode
             route.Game = FindComponent(GameObject.Find("Sleepwalking Game"), "Sleepwalking.SleepwalkingGame");
             Assert.That(route.Game, Is.Not.Null);
             Type gameType = route.Game.GetType();
+            gameType.GetField("odradek", BindingFlags.Instance | BindingFlags.NonPublic).SetValue(route.Game, odradek);
             Array profiles = (Array)gameType.GetField("MovementProfiles").GetValue(route.Game);
             ScriptableObject profile = (ScriptableObject)profiles.GetValue(1);
             Assert.That(profile, Is.Not.Null);
@@ -505,11 +516,13 @@ namespace Sleepwalking.Tests.PlayMode
 
         static bool Dying(Route route) => (bool)route.Dying.GetValue(route.Game);
 
-        static void Finish(Route route)
+        void Finish(Route route)
         {
             string root = Path.GetFullPath(Path.Combine(Application.dataPath, ".."));
-            string path = Path.Combine(root, "Docs", "QA", "traversal-remaining-L" +
-                route.Level.ToString("00") + ".csv");
+            string folder = Path.Combine(root, "Builds", "QA");
+            Directory.CreateDirectory(folder);
+            string path = Path.Combine(folder, "traversal-remaining-L" +
+                route.Level.ToString("00") + "-odradek-" + odradek + ".csv");
             File.WriteAllLines(path, route.Trace);
             File.WriteAllLines(Path.ChangeExtension(path, ".events.txt"), route.Events);
             Assert.That(route.Failure, Is.Null, route.Failure + "; last support " + route.LastSupport +

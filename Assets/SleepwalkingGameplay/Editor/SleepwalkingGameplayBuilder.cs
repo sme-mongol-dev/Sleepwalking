@@ -65,7 +65,7 @@ public static class SleepwalkingGameplayBuilder
         for (int q = 0; q < 7; q++)
             game.LevelPrefabs[q] = AssetDatabase.LoadAssetAtPath<GameObject>(
                 "Assets/SleepwalkingLevels/Prefabs/L" + (q + 1).ToString("00") + "_DreamGeometry.prefab");
-        game.RoomPrefab = AssetDatabase.LoadAssetAtPath<GameObject>("Assets/SleepwalkingVisual/Prefabs/SleepwalkingRoom.prefab");
+        game.RoomPrefab = AssetDatabase.LoadAssetAtPath<GameObject>(Sleepwalking.Visual.Editor.VisualAssetBuilder.MenuRoomPrefab);
         string[] themeNames = { "Meat", "PostApocalypse", "DeepWater", "Heaven" };
         for (int q = 0; q < themeNames.Length; q++)
             game.ThemePrefabs[q] = AssetDatabase.LoadAssetAtPath<GameObject>(
@@ -97,7 +97,7 @@ public static class SleepwalkingGameplayBuilder
             if (AssetDatabase.LoadAssetAtPath<GameObject>(
                 "Assets/SleepwalkingLevels/Prefabs/L" + (q + 1).ToString("00") + "_DreamGeometry.prefab") == null)
                 throw new UnityException("Missing authored dream geometry L" + (q + 1).ToString("00"));
-        if (AssetDatabase.LoadAssetAtPath<GameObject>("Assets/SleepwalkingVisual/Prefabs/SleepwalkingRoom.prefab") == null)
+        if (AssetDatabase.LoadAssetAtPath<GameObject>(Sleepwalking.Visual.Editor.VisualAssetBuilder.MenuRoomPrefab) == null)
             throw new UnityException("Missing editable room prefab.");
         string[] themes = { "Meat", "PostApocalypse", "DeepWater", "Heaven" };
         foreach (string theme in themes)

@@ -70,6 +70,7 @@ namespace Sleepwalking
 
         public void DisableFor(float seconds)
         {
+            seconds *= SleepwalkingGame.Instance?.OdradekDisableMultiplier ?? 1f;
             disabledUntil = Mathf.Max(disabledUntil, Time.time + Mathf.Max(.1f, seconds));
         }
 

@@ -1,5 +1,4 @@
 using Sleepwalking;
-using PixelRoomView = Sleepwalking.Visual.PixelRoomView;
 using UnityEditor;
 using UnityEditor.SceneManagement;
 using UnityEngine;
@@ -41,7 +40,6 @@ public static class SleepwalkingSceneBuilder
         camera.fieldOfView = 54;
         camera.clearFlags = CameraClearFlags.SolidColor;
         camera.backgroundColor = SleepwalkingUI.Background;
-        if (camera.GetComponent<PixelRoomView>() == null) camera.gameObject.AddComponent<PixelRoomView>();
         ui.roomCamera = camera;
 
         Block(room, "Back Wall", new Vector3(0, 2, 5), new Vector3(14, 7, .3f), SleepwalkingUI.Panel);

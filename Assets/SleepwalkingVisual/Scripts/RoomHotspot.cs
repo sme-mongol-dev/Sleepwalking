@@ -10,26 +10,38 @@ namespace Sleepwalking.Visual
     {
         public RoomAction Action;
         public string Label;
+        public MeshRenderer Artwork;
 
-        public static RoomHotspot Raycast(Camera camera, Vector2 screenPosition)
+        static readonly int Highlight = Shader.PropertyToID("_Highlight");
+        Renderer[] artworkLayers;
+        MaterialPropertyBlock properties;
+
+        public bool ContainsArtworkPixel(Vector3 worldPoint)
         {
-            if (camera == null) return null;
-            // Камера рисует в маленькую RenderTexture; координаты мыши приходят в размере окна.
-            Vector2 pixelPosition = new Vector2(
-                screenPosition.x * camera.pixelWidth / Mathf.Max(1, Screen.width),
-                screenPosition.y * camera.pixelHeight / Mathf.Max(1, Screen.height));
-            Ray ray = camera.ScreenPointToRay(pixelPosition);
-            RaycastHit[] hits = Physics.RaycastAll(ray, 100f);
-            RoomHotspot closest = null;
-            float distance = float.MaxValue;
-            foreach (RaycastHit hit in hits)
+            if (Artwork == null) return true;
+
+            Texture2D texture = (Texture2D)Artwork.sharedMaterial.mainTexture;
+            Vector3 local = Artwork.transform.InverseTransformPoint(worldPoint);
+            int x = Mathf.FloorToInt((local.x + .5f) * texture.width);
+            int y = Mathf.FloorToInt((local.y + .5f) * texture.height);
+            return x >= 0 && x < texture.width && y >= 0 && y < texture.height &&
+                texture.GetPixel(x, y).a >= .5f;
+        }
+
+        public void SetHighlighted(bool highlighted)
+        {
+            if (Artwork == null) return;
+            artworkLayers ??= Artwork.GetComponentsInChildren<Renderer>(true);
+            properties ??= new MaterialPropertyBlock();
+            foreach (Renderer layer in artworkLayers)
             {
-                RoomHotspot hotspot = hit.collider.GetComponentInParent<RoomHotspot>();
-                if (hotspot == null || hit.distance >= distance) continue;
-                closest = hotspot;
-                distance = hit.distance;
+                layer.GetPropertyBlock(properties);
+                properties.SetFloat(Highlight, highlighted ? .14f : 0f);
+                if (layer.sharedMaterial.HasProperty("_EmissionColor"))
+                    properties.SetColor("_EmissionColor", layer.sharedMaterial.GetColor("_EmissionColor") +
+                        (highlighted ? new Color(.14f, .13f, .12f, 0f) : Color.clear));
+                layer.SetPropertyBlock(properties);
             }
-            return closest;
         }
     }
 }

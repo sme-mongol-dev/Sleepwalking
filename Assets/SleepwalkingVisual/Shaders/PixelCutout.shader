@@ -3,6 +3,7 @@ Shader "Sleepwalking/PixelCutout"
     Properties
     {
         _MainTex ("Pixel Art", 2D) = "white" {}
+        _Highlight ("Highlight", Range(0, 1)) = 0
     }
     SubShader
     {
@@ -23,6 +24,7 @@ Shader "Sleepwalking/PixelCutout"
             SAMPLER(sampler_MainTex);
             CBUFFER_START(UnityPerMaterial)
                 float4 _MainTex_ST;
+                float _Highlight;
             CBUFFER_END
 
             struct Attributes
@@ -49,6 +51,7 @@ Shader "Sleepwalking/PixelCutout"
             {
                 half4 color = SAMPLE_TEXTURE2D(_MainTex, sampler_MainTex, input.uv);
                 clip(color.a - 0.5h);
+                color.rgb = lerp(color.rgb, half3(1, 0.9, 0.8), _Highlight);
                 return color;
             }
             ENDHLSL

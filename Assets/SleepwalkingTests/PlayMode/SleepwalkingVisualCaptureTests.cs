@@ -63,7 +63,6 @@ namespace Sleepwalking.Tests.PlayMode
                     {
                         // Фиксированный дальний ракурс проверяет покрытие фона за концом маршрута.
                         gameCamera.transform.position = new Vector3(20.5f, 1.8f, -20f);
-                        gameCamera.Render();
                     }
                     string name = q == 1 ? "dream-L01-final-main" : "dream-L07-far-final-main";
                     CaptureFinalFrame(gameCamera, (int)style.GetValue(game), name, q == 7);
@@ -82,31 +81,39 @@ namespace Sleepwalking.Tests.PlayMode
 
         static void CaptureFinalFrame(Camera gameCamera, int style, string name, bool forcedCamera)
         {
-            RenderTexture target = gameCamera.targetTexture;
-            Assert.That(target, Is.Not.Null);
-            Assert.That(target.IsCreated(), Is.True);
+            string projectRoot = Path.GetFullPath(Path.Combine(Application.dataPath, ".."));
+            string path = Path.Combine(projectRoot, "Builds", "QA", name + ".png");
+            CaptureDreamFrame(gameCamera, path, " Style=" + style + " ForcedCamera=" + forcedCamera);
+        }
+
+        static void CaptureDreamFrame(Camera camera, string path, string metadata = "")
+        {
+            Directory.CreateDirectory(Path.GetDirectoryName(path));
             GameObject dreamer = GameObject.Find("Dreamer");
             Assert.That(dreamer, Is.Not.Null);
-            Vector3 playerViewport = gameCamera.WorldToViewportPoint(dreamer.transform.position);
-            RenderTexture previous = RenderTexture.active;
-            Texture2D image = new Texture2D(target.width, target.height, TextureFormat.RGBA32, false);
+            Vector3 playerViewport = camera.WorldToViewportPoint(dreamer.transform.position);
+            var target = RenderTexture.GetTemporary(camera.pixelWidth, camera.pixelHeight, 24);
+            RenderTexture original = camera.targetTexture;
+            RenderTexture active = RenderTexture.active;
+            var image = new Texture2D(target.width, target.height, TextureFormat.RGBA32, false);
             try
             {
+                camera.targetTexture = target;
+                camera.Render();
                 RenderTexture.active = target;
                 image.ReadPixels(new Rect(0, 0, target.width, target.height), 0, 0);
                 image.Apply();
-                string projectRoot = Path.GetFullPath(Path.Combine(Application.dataPath, ".."));
-                string path = Path.Combine(projectRoot, "Docs", "QA", name + ".png");
                 File.WriteAllBytes(path, image.EncodeToPNG());
                 File.WriteAllText(Path.ChangeExtension(path, ".txt"),
-                    "Camera=" + gameCamera.transform.position + " Size=" + gameCamera.orthographicSize +
+                    "Camera=" + camera.transform.position + " Size=" + camera.orthographicSize +
                     " Player=" + dreamer.transform.position + " PlayerViewport=" + playerViewport +
-                    " Target=" + target.width + "x" + target.height + " Style=" + style +
-                    " ForcedCamera=" + forcedCamera + " TimeScale=" + Time.timeScale);
+                    " Target=" + target.width + "x" + target.height + metadata + " TimeScale=" + Time.timeScale);
             }
             finally
             {
-                RenderTexture.active = previous;
+                camera.targetTexture = original;
+                RenderTexture.active = active;
+                RenderTexture.ReleaseTemporary(target);
                 UnityEngine.Object.Destroy(image);
             }
         }
@@ -168,35 +175,11 @@ namespace Sleepwalking.Tests.PlayMode
                     yield return new WaitForSecondsRealtime(1.2f);
                     yield return null;
                     yield return null;
-                    RenderTexture target = gameCamera.targetTexture;
-                    Assert.That(target, Is.Not.Null, "PixelRoomView must assign a RenderTexture to the game camera.");
-                    Assert.That(target.IsCreated(), Is.True);
-                    GameObject dreamer = GameObject.Find("Dreamer");
-                    Assert.That(dreamer, Is.Not.Null);
-                    Vector3 playerViewport = gameCamera.WorldToViewportPoint(dreamer.transform.position);
-
-                    RenderTexture previous = RenderTexture.active;
-                    Texture2D image = new Texture2D(target.width, target.height, TextureFormat.RGBA32, false);
-                    try
-                    {
-                        RenderTexture.active = target;
-                        image.ReadPixels(new Rect(0, 0, target.width, target.height), 0, 0);
-                        image.Apply();
-                        string projectRoot = Path.GetFullPath(Path.Combine(Application.dataPath, ".."));
-                        string tag = Environment.GetEnvironmentVariable("SLEEPWALKING_QA_CAPTURE_TAG") ?? "capture";
-                        string path = Path.Combine(projectRoot, "Docs", "QA",
-                            "dream-L" + (q + 1).ToString("00") + "-" + names[selectedStyle] + "-" + tag + ".png");
-                        File.WriteAllBytes(path, image.EncodeToPNG());
-                        File.WriteAllText(Path.ChangeExtension(path, ".txt"),
-                            "Camera=" + gameCamera.transform.position + " Size=" + gameCamera.orthographicSize +
-                            " Player=" + dreamer.transform.position + " PlayerViewport=" + playerViewport +
-                            " Target=" + target.width + "x" + target.height + " TimeScale=" + Time.timeScale);
-                    }
-                    finally
-                    {
-                        RenderTexture.active = previous;
-                        UnityEngine.Object.Destroy(image);
-                    }
+                    string projectRoot = Path.GetFullPath(Path.Combine(Application.dataPath, ".."));
+                    string tag = Environment.GetEnvironmentVariable("SLEEPWALKING_QA_CAPTURE_TAG") ?? "capture";
+                    string path = Path.Combine(projectRoot, "Builds", "QA",
+                        "dream-L" + (q + 1).ToString("00") + "-" + names[selectedStyle] + "-" + tag + ".png");
+                    CaptureDreamFrame(gameCamera, path);
                     captured[selectedStyle] = true;
                     captureCount++;
                 }

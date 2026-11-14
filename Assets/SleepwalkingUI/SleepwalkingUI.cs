@@ -120,6 +120,7 @@ namespace Sleepwalking
         float previousTimeScale = 1f;
         Component hoveredTarget;
         Component focusedTarget;
+        RoomHotspot highlightedTarget;
         Vector2 lastPointerPosition;
         Camera fittedRoomCamera;
         float baseRoomSize;
@@ -377,7 +378,7 @@ namespace Sleepwalking
             RectTransform parent = (RectTransform)root;
             Text logo = Title(parent, "Sleepwalking", new Vector2(-100, 422), new Vector2(1300, 180), 144, true);
             logoFrame = (RectTransform)logo.transform.parent;
-            Text subtitle = MakeText(parent, "Subtitle", "Full Circle of your dream", bodyFont, 26, SecondaryText, new Vector2(-100, 50), new Vector2(900, 52));
+            Text subtitle = MakeText(parent, "Subtitle", "Full Circle of your dream", bodyFont, 26, SecondaryText, new Vector2(-100, 354), new Vector2(900, 52));
             subtitle.fontStyle = FontStyle.Normal;
             roomHint = MakeText(parent, "Room Hint", "HOVER AN OBJECT  /  TAB TO FOCUS", bodyFont, 26, SecondaryText, new Vector2(0, -380), new Vector2(900, 52));
             Text version = MakeText(parent, "Version", "v0.1", bodyFont, 26, SecondaryText, Vector2.zero, new Vector2(250, 50));
@@ -659,6 +660,7 @@ namespace Sleepwalking
 
         void Show(GameObject screen)
         {
+            if (screen != menu) HighlightRoomTarget(null);
             menu.SetActive(screen == menu);
             pause.SetActive(screen == pause);
             settings.SetActive(screen == settings);
@@ -801,7 +803,6 @@ namespace Sleepwalking
             }
         }
 
-        // Визуальный модуль подключается по имени типа, чтобы UI-сцена собиралась отдельно от него.
         static bool TryGetRoomAction(Component target, out RoomAction action, out string label)
         {
             action = RoomAction.Dream;
@@ -813,21 +814,32 @@ namespace Sleepwalking
                 label = local.Label;
                 return true;
             }
-            Type type = target.GetType();
-            if (type.FullName != "Sleepwalking.Visual.RoomHotspot") return false;
-            object value = type.GetField("Action")?.GetValue(target) ?? type.GetProperty("Action")?.GetValue(target);
-            if (value == null || !Enum.TryParse(value.ToString(), out action)) return false;
-            label = (type.GetField("Label")?.GetValue(target) ?? type.GetProperty("Label")?.GetValue(target)) as string;
+            if (target is not RoomHotspot hotspot) return false;
+            action = hotspot.Action switch
+            {
+                Visual.RoomAction.Settings => RoomAction.Settings,
+                Visual.RoomAction.Credits => RoomAction.Credits,
+                Visual.RoomAction.Quit => RoomAction.Quit,
+                _ => RoomAction.Dream
+            };
+            label = hotspot.Label;
             return true;
         }
 
         static Component FindRoomTarget(Collider collider)
         {
             if (collider == null) return null;
-            MonoBehaviour[] components = collider.GetComponentsInParent<MonoBehaviour>();
-            foreach (MonoBehaviour component in components)
-                if (TryGetRoomAction(component, out _, out _)) return component;
-            return null;
+            RoomHotspot hotspot = collider.GetComponentInParent<RoomHotspot>();
+            if (hotspot != null) return hotspot;
+            return collider.GetComponentInParent<SleepwalkingRoomTarget>();
+        }
+
+        void HighlightRoomTarget(RoomHotspot target)
+        {
+            if (highlightedTarget == target) return;
+            if (highlightedTarget != null) highlightedTarget.SetHighlighted(false);
+            highlightedTarget = target;
+            if (highlightedTarget != null) highlightedTarget.SetHighlighted(true);
         }
 
         void UpdateRoomTargets()
@@ -835,12 +847,15 @@ namespace Sleepwalking
             if (!inRoom || !menu.activeSelf)
             {
                 hoveredTarget = null;
+                focusedTarget = null;
+                HighlightRoomTarget(null);
                 roomLabelFrame.gameObject.SetActive(false);
                 return;
             }
             Camera camera = roomCamera != null ? roomCamera : Camera.main;
             if (camera == null)
             {
+                HighlightRoomTarget(null);
                 roomLabelFrame.gameObject.SetActive(false);
                 return;
             }
@@ -865,6 +880,11 @@ namespace Sleepwalking
             next = Input.GetKeyDown(KeyCode.Tab) || Input.GetKeyDown(KeyCode.RightArrow);
             activate = Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.Space);
 #endif
+            ProcessRoomInput(camera, pointer, click, next, activate);
+        }
+
+        void ProcessRoomInput(Camera camera, Vector2 pointer, bool click, bool next, bool activate)
+        {
             if ((pointer - lastPointerPosition).sqrMagnitude > 4f) focusedTarget = null;
             lastPointerPosition = pointer;
             if (next)
@@ -892,8 +912,11 @@ namespace Sleepwalking
             Ray ray = camera.ScreenPointToRay(cameraPoint);
             Component previousHover = hoveredTarget;
             hoveredTarget = Physics.Raycast(ray, out RaycastHit hit, 1000f) ? FindRoomTarget(hit.collider) : null;
+            if (hoveredTarget is RoomHotspot hotspot && !hotspot.ContainsArtworkPixel(hit.point))
+                hoveredTarget = null;
             if (hoveredTarget != null && hoveredTarget != previousHover) PlayHover();
             Component selected = focusedTarget != null ? focusedTarget : hoveredTarget;
+            HighlightRoomTarget(selected as RoomHotspot);
             roomLabelFrame.gameObject.SetActive(selected != null);
             if (TryGetRoomAction(selected, out RoomAction action, out string label))
             {
@@ -949,8 +972,8 @@ namespace Sleepwalking
         {
             ui = GetComponent<SleepwalkingUI>();
             if (ui == null) return;
-            if (ui.roomCamera != null && ui.roomCamera.GetComponent<PixelRoomView>() == null)
-                ui.roomCamera.gameObject.AddComponent<PixelRoomView>();
+            if (ui.roomCamera != null && ui.roomCamera.TryGetComponent(out PixelRoomView pixelView))
+                pixelView.enabled = false;
             audioDirector = SleepwalkingAudioDirector.CreateOrGet();
             if (audioDirector != null)
             {

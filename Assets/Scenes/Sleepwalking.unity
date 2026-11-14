@@ -166,7 +166,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 64a8630dd59dba74fa5e0e56e029b23b, type: 2}
   - {fileID: 11400000, guid: 4f4c5a430e760774c9e9e466342ebf6d, type: 2}
   MovementProfile: {fileID: 11400000, guid: 64a8630dd59dba74fa5e0e56e029b23b, type: 2}
-  RoomPrefab: {fileID: 765171706599663929, guid: fa4113bd7309c0b4ca8979639bd2c164, type: 3}
+  RoomPrefab: {fileID: 3387149823977496480, guid: 735b53709a49f7e46a535019da99a217, type: 3}
   UI: {fileID: 984960090}
   GameCamera: {fileID: 0}
 --- !u!4 &616542069

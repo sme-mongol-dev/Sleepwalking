@@ -26,7 +26,6 @@ namespace Sleepwalking
         SleepwalkingPlayer player;
         Transform start;
         Vector3 cameraVelocity;
-        Vector3 dreamCameraPosition;
         Vector3 roomCameraPosition = new Vector3(0f, 1f, -20f);
         Quaternion roomCameraRotation = Quaternion.identity;
         bool roomOrthographic = true;
@@ -46,6 +45,7 @@ namespace Sleepwalking
         void Awake()
         {
             Instance = this;
+            ResetOdradek();
             BuildRoom();
             if (GameCamera == null) GameCamera = Camera.main;
             if (GameCamera == null)
@@ -58,8 +58,8 @@ namespace Sleepwalking
             roomOrthographicSize = GameCamera.orthographicSize;
             GameCamera.backgroundColor = Hex("161318");
             if (GameCamera.GetComponent<AudioListener>() == null) GameCamera.gameObject.AddComponent<AudioListener>();
-            if (GameCamera.GetComponent<Sleepwalking.Visual.PixelRoomView>() == null)
-                GameCamera.gameObject.AddComponent<Sleepwalking.Visual.PixelRoomView>();
+            if (GameCamera.TryGetComponent(out Sleepwalking.Visual.PixelRoomView pixelView))
+                pixelView.enabled = false;
             if (UI == null) UI = FindFirstObjectByType<SleepwalkingUI>();
         }
 
@@ -79,6 +79,7 @@ namespace Sleepwalking
         void Update()
         {
             UpdateAudioVolumes();
+            if (inDream && !transitioning) dreamElapsedSeconds += Time.deltaTime;
             if (inDream) UpdateBeamWidths();
             if (inDream && player != null && player.transform.position.y < -8f) KillPlayer(player.transform.position);
 #if ENABLE_INPUT_SYSTEM
@@ -115,23 +116,9 @@ namespace Sleepwalking
             Vector3 target = inDream && player != null
                 ? new Vector3(Mathf.Max(3f, player.transform.position.x + 1.5f), 1.8f, -20f)
                 : roomCameraPosition;
-            if (inDream)
-            {
-                // Keep the smoothing state continuous while rendering at whole-pixel positions.
-                dreamCameraPosition = Vector3.SmoothDamp(dreamCameraPosition, target, ref cameraVelocity, .35f);
-                GameCamera.transform.position = SnapDreamCamera(dreamCameraPosition);
-            }
-            else
-                GameCamera.transform.position = Vector3.SmoothDamp(GameCamera.transform.position, target, ref cameraVelocity, .5f);
+            GameCamera.transform.position = Vector3.SmoothDamp(GameCamera.transform.position, target,
+                ref cameraVelocity, inDream ? .35f : .5f);
             GameCamera.transform.rotation = Quaternion.Slerp(GameCamera.transform.rotation, inDream ? Quaternion.identity : roomCameraRotation, Time.deltaTime * 6f);
-        }
-
-        Vector3 SnapDreamCamera(Vector3 position)
-        {
-            float unitsPerPixel = 2f * GameCamera.orthographicSize / Mathf.Max(1, GameCamera.pixelHeight);
-            position.x = Mathf.Round(position.x / unitsPerPixel) * unitsPerPixel;
-            position.y = Mathf.Round(position.y / unitsPerPixel) * unitsPerPixel;
-            return position;
         }
 
         bool RoomMenuOpen()
@@ -143,6 +130,9 @@ namespace Sleepwalking
 
         void OnGUI()
         {
+            string odradekLabel = "ODRADEK " + Odradek + "/100";
+            if (!inDream && LastOdradekGain > 0) odradekLabel += " (+" + LastOdradekGain + ")";
+            GUI.Label(new Rect(Screen.width - 220, 12, 204, 32), odradekLabel);
             if (inDream)
             {
                 GUI.Label(new Rect(16, 12, 650, 32), "DREAM " + (completedDreams % 7 + 1) + "/7   CYCLE " + (completedDreams / 7 + 1));
@@ -212,11 +202,11 @@ namespace Sleepwalking
             if (room != null) room.SetActive(false);
             GameCamera.orthographic = true;
             GameCamera.orthographicSize = 5f;
+            BeginDreamPerformance();
             CreateLevel();
             inDream = true;
-            dreamCameraPosition = new Vector3(Mathf.Max(3f, player.transform.position.x + 1.5f), 1.8f, -20f);
+            GameCamera.transform.position = new Vector3(Mathf.Max(3f, player.transform.position.x + 1.5f), 1.8f, -20f);
             cameraVelocity = Vector3.zero;
-            GameCamera.transform.position = SnapDreamCamera(dreamCameraPosition);
             GameCamera.transform.rotation = Quaternion.identity;
             Sleepwalking.Audio.SleepwalkingAudioDirector audio = Sleepwalking.Audio.SleepwalkingAudioDirector.CreateOrGet();
             if (audio != null) audio.EnterDream((Sleepwalking.Audio.DreamTheme)style);
@@ -248,6 +238,7 @@ namespace Sleepwalking
                 yield return null;
             }
             inDream = false;
+            RewardDreamPerformance();
             completedDreams++;
             DestroyLevel();
             roomChange++;
@@ -281,6 +272,7 @@ namespace Sleepwalking
             transitioning = dying = inDream = false;
             fade = 0f;
             completedDreams = roomChange = 0;
+            ResetOdradek();
             PlayerPrefs.SetInt("Sleepwalking.DreamStarted", 0);
             DestroyLevel();
             room.SetActive(true);
@@ -293,6 +285,7 @@ namespace Sleepwalking
         public void KillPlayer(Vector2 contact)
         {
             if (!inDream || transitioning || dying || player == null) return;
+            dreamDeaths++;
             StartCoroutine(ImpactAndRetry(contact));
         }
 
@@ -487,11 +480,10 @@ namespace Sleepwalking
 
         float BeamWidth()
         {
-            Sleepwalking.Visual.PixelRoomView view = GameCamera.GetComponent<Sleepwalking.Visual.PixelRoomView>();
+            // Сохраняем прежнюю толщину луча в мире после отключения пикселизации камеры.
             float aspect = (float)Mathf.Max(1, Screen.width) / Mathf.Max(1, Screen.height);
-            int pixelHeight = GameCamera.targetTexture != null ? GameCamera.targetTexture.height :
-                view != null ? Mathf.Max(64, view.BaseHeight, Mathf.CeilToInt(view.BaseWidth / aspect)) : 180;
-            return 3.5f * GameCamera.orthographicSize * 2f / Mathf.Max(64, pixelHeight);
+            int referenceHeight = Mathf.Max(180, Mathf.CeilToInt(320 / aspect));
+            return 3.5f * GameCamera.orthographicSize * 2f / referenceHeight;
         }
 
         void UpdateBeamWidths()

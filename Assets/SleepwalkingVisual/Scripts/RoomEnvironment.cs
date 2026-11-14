@@ -9,6 +9,8 @@ namespace Sleepwalking.Visual
         public Transform LooseBook;
         public Transform Curtain;
         public GameObject ExtraStar;
+        public MeshRenderer Poster;
+        public Texture2D[] Posters;
 
         Quaternion clockStart;
         Quaternion pictureStart;
@@ -18,6 +20,16 @@ namespace Sleepwalking.Visual
 
         void Awake()
         {
+            if (Poster != null && Posters != null && Posters.Length > 0)
+            {
+                var properties = new MaterialPropertyBlock();
+                Poster.GetPropertyBlock(properties);
+                Texture2D poster = Posters[Random.Range(0, Posters.Length)];
+                properties.SetTexture("_MainTex", poster);
+                properties.SetTexture("_BaseMap", poster);
+                properties.SetTexture("_EmissionMap", poster);
+                Poster.SetPropertyBlock(properties);
+            }
             CaptureInitialState();
             SetWakeCount(0);
         }
