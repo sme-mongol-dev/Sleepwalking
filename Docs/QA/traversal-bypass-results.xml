@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="1" result="Failed(Child)" total="1" passed="0" failed="1" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-11-14 11:02:39Z" end-time="2026-11-14 11:02:44Z" duration="4,9708357">
+  <test-suite type="TestSuite" id="1026" name="Sleepwalking" fullname="Sleepwalking" runstate="Runnable" testcasecount="11" result="Failed" site="Child" start-time="2026-11-14 11:02:39Z" end-time="2026-11-14 11:02:44Z" duration="4.970836" total="1" passed="0" failed="1" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="PlayMode" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="Assembly" id="1019" name="Sleepwalking.PlayMode.Tests.dll" fullname="T:/Sleepwalking/Library/ScriptAssemblies/Sleepwalking.PlayMode.Tests.dll" runstate="Runnable" testcasecount="11" result="Failed" site="Child" start-time="2026-11-14 11:02:39Z" end-time="2026-11-14 11:02:44Z" duration="4.964488" total="1" passed="0" failed="1" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="671700" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="PlayMode" />
+        <property name="EditorOnly" value="False" />
+      </properties>
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="1020" name="Sleepwalking" fullname="Sleepwalking" runstate="Runnable" testcasecount="11" result="Failed" site="Child" start-time="2026-11-14 11:02:39Z" end-time="2026-11-14 11:02:44Z" duration="4.963932" total="1" passed="0" failed="1" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestSuite" id="1021" name="Tests" fullname="Sleepwalking.Tests" runstate="Runnable" testcasecount="11" result="Failed" site="Child" start-time="2026-11-14 11:02:39Z" end-time="2026-11-14 11:02:44Z" duration="4.963573" total="1" passed="0" failed="1" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="TestSuite" id="1022" name="PlayMode" fullname="Sleepwalking.Tests.PlayMode" runstate="Runnable" testcasecount="11" result="Failed" site="Child" start-time="2026-11-14 11:02:39Z" end-time="2026-11-14 11:02:44Z" duration="4.963188" total="1" passed="0" failed="1" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-suite type="TestFixture" id="1010" name="SleepwalkingTraversalBypassTests" fullname="Sleepwalking.Tests.PlayMode.SleepwalkingTraversalBypassTests" classname="Sleepwalking.Tests.PlayMode.SleepwalkingTraversalBypassTests" runstate="Runnable" testcasecount="1" result="Failed" site="Child" start-time="2026-11-14 11:02:39Z" end-time="2026-11-14 11:02:44Z" duration="4.962120" total="1" passed="0" failed="1" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="1011" name="SampledPlainJumpBypassAuditL05AndL06" fullname="Sleepwalking.Tests.PlayMode.SleepwalkingTraversalBypassTests.SampledPlainJumpBypassAuditL05AndL06" methodname="SampledPlainJumpBypassAuditL05AndL06" classname="Sleepwalking.Tests.PlayMode.SleepwalkingTraversalBypassTests" runstate="Runnable" seed="1243634042" result="Failed" start-time="2026-11-14 11:02:39Z" end-time="2026-11-14 11:02:44Z" duration="4.953002" asserts="0">
+                <properties>
+                  <property name="_JOINTYPE" value="UnityCombinatorial" />
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Plain jump bypasses a required mechanism in a sampled route; see traversal-bypass-*.csv. L05_Aggressive_Start_to_ExitRun landed at X=9,688 with edge margin=0,913; L06_Responsive_Start_to_LiftLanding landed at X=8,581 with edge margin=0,306
+  Expected: <empty>
+  But was:  < "L05_Aggressive_Start_to_ExitRun landed at X=9,688 with edge margin=0,913", "L06_Responsive_Start_to_LiftLanding landed at X=8,581 with edge margin=0,306" >
+]]></message>
+                  <stack-trace><![CDATA[at Sleepwalking.Tests.PlayMode.SleepwalkingTraversalBypassTests+<SampledPlainJumpBypassAuditL05AndL06>d__4.MoveNext () [0x001f7] in T:\Sleepwalking\Assets\SleepwalkingTests\PlayMode\SleepwalkingTraversalBypassTests.cs:61
+at UnityEngine.TestTools.TestEnumerator+<Execute>d__7.MoveNext () [0x0003a] in .\Library\PackageCache\com.unity.test-framework@bd7f943e9647\UnityEngine.TestRunner\NUnitExtensions\Attributes\TestEnumerator.cs:44
+]]></stack-trace>
+                </failure>
+                <output><![CDATA[Saving results to: C:/Users/TIMBUHTUK/AppData/LocalLow/DefaultCompany/Sleepwalking\TestResults.xml
+]]></output>
+              </test-case>
+            </test-suite>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

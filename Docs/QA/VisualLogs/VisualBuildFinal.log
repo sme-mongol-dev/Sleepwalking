@@ -1,0 +1,1866 @@
+VBCSCompilerServerWatchdog: watching VBCSCompiler (PID 229100)
+[Licensing::Module] Trying to connect to existing licensing client channel...
+Built from '6000.3/respin/6000.3.28f1-21f78c3e21d1' branch; Version is '6000.3.28f1 (8f082d2fe476) revision 9373741'; Using compiler version '194234433'; Build Type 'Release'
+[Licensing::IpcConnector] Successfully connected to: "LicenseClient-TIMBUHTUK" at "2026-11-13T23:56:04.7558694Z"
+OS: 'Windows 11  (10.0.26200) Professional' Language: 'uk' Physical Memory: 31959 MB
+BatchMode: 1, IsHumanControllingUs: 0, StartBugReporterOnCrash: 0, Is64bit: 1
+System  architecture: x64
+Process architecture: x64
+Date: 2026-11-13T23:56:04Z
+[Licensing::Client] Code 10 while verifying Licensing Client signature (process Id: 39100, path: "C:/Program Files/WindowsApps/UnityTechnologies.UnityHub_4.0.0.65535_x64__2vrhnee42bhxm/app/UnityLicensingClient_V1/Unity.Licensing.Client.exe")
+[Licensing::Module] LicensingClient has failed validation; ignoring
+[Licensing::Client] Handshaking with LicensingClient:
+  Version:                 1.19.0+4cc3dda
+  Session Id:              6e6a9a4f9874431a88699a838ae22262
+  Correlation Id:          1868dbaffe5977010af9e191ad6a8576
+  External correlation Id: 8020084971787302839
+  Machine Id:              pEWEbfH3Yx5ksa7oNXFl8HA4b+w=
+[Licensing::Module] Successfully connected to LicensingClient on channel: "LicenseClient-TIMBUHTUK" (connect: 0.00s, validation: 0.00s, handshake: 0.06s)
+[Licensing::IpcConnector] Successfully connected to: "LicenseClient-TIMBUHTUK-notifications" at "2026-11-13T23:56:04.8160353Z"
+[Licensing::Module] Error: Access token is unavailable; failed to update
+[Licensing::Client] Successfully resolved entitlement details
+[Licensing::Module] License group:
+  Id: 7972650386868-UnityPersXXXX
+  Product: Unity Personal
+  Type: Assigned
+  Expiration: Unlimited
+[Licensing::Client] Successfully updated license, isAsync: True, time: 0.00
+[Licensing::Client] Successfully resolved entitlement details
+[Licensing::Module] Licensing Background thread has ended after 0.07s
+
+COMMAND LINE ARGUMENTS:
+C:\Program Files\Unity\Hub\Editor\6000.3.28f1\Editor\Unity.exe
+-batchmode
+-nographics
+-quit
+-projectPath
+T:\Sleepwalking
+-executeMethod
+Sleepwalking.Visual.Editor.VisualAssetBuilder.Build
+-logFile
+T:\Sleepwalking\Assets\SleepwalkingVisual\Preview\VisualBuildFinal.log
+Successfully changed project path to: T:\Sleepwalking
+T:/Sleepwalking
+[UnityMemory] Configuration Parameters - Can be set up in boot.config
+    "memorysetup-temp-allocator-size-nav-mesh-worker=65536"
+    "memorysetup-temp-allocator-size-audio-worker=65536"
+    "memorysetup-temp-allocator-size-gfx=262144"
+    "memorysetup-allocator-temp-initial-block-size-main=262144"
+    "memorysetup-allocator-temp-initial-block-size-worker=262144"
+    "memorysetup-temp-allocator-size-background-worker=32768"
+    "memorysetup-temp-allocator-size-job-worker=262144"
+    "memorysetup-temp-allocator-size-preload-manager=33554432"
+    "memorysetup-remapper-allocator-initial-capacity=32768"
+    "memorysetup-temp-allocator-size-gi-baking-worker=262144"
+    "memorysetup-temp-allocator-size-gi-baking-worker=262144"
+    "memorysetup-temp-allocator-size-gi-baking-worker=262144"
+    "memorysetup-temp-allocator-size-gi-baking-worker=262144"
+    "memorysetup-temp-allocator-size-gi-baking-worker=262144"
+    "memorysetup-bucket-allocator-granularity=16"
+    "memorysetup-bucket-allocator-bucket-count=8"
+    "memorysetup-bucket-allocator-block-size=33554432"
+    "memorysetup-bucket-allocator-block-count=8"
+    "memorysetup-main-allocator-block-size=16777216"
+    "memorysetup-thread-allocator-block-size=16777216"
+    "memorysetup-gfx-main-allocator-block-size=16777216"
+    "memorysetup-gfx-thread-allocator-block-size=16777216"
+    "memorysetup-cache-allocator-block-size=4194304"
+    "memorysetup-typetree-allocator-block-size=2097152"
+    "memorysetup-profiler-bucket-allocator-granularity=16"
+    "memorysetup-profiler-bucket-allocator-bucket-count=8"
+    "memorysetup-profiler-bucket-allocator-block-size=33554432"
+    "memorysetup-profiler-bucket-allocator-block-count=8"
+    "memorysetup-profiler-allocator-block-size=16777216"
+    "memorysetup-profiler-editor-allocator-block-size=1048576"
+    "memorysetup-temp-allocator-size-main=16777216"
+    "memorysetup-job-temp-allocator-block-size=2097152"
+    "memorysetup-job-temp-allocator-block-size-background=1048576"
+    "memorysetup-job-temp-allocator-reduction-small-platforms=262144"
+    "memorysetup-temp-allocator-size-cloud-worker=32768"
+Player connection [228904]  Target information:
+
+Player connection [228904]  * "[IP] 172.30.224.1 [Port] 55504 [Flags] 2 [Guid] 2215759923 [EditorId] 2215759923 [Version] 1048832 [Id] WindowsEditor(7,DESKTOP-3CGSIM8) [Debug] 1 [PackageName] WindowsEditor [ProjectName] Editor" 
+
+Player connection [228904]  * "[IP] 192.168.56.1 [Port] 55504 [Flags] 2 [Guid] 2215759923 [EditorId] 2215759923 [Version] 1048832 [Id] WindowsEditor(7,DESKTOP-3CGSIM8) [Debug] 1 [PackageName] WindowsEditor [ProjectName] Editor" 
+
+Player connection [228904]  * "[IP] 192.168.1.100 [Port] 55504 [Flags] 2 [Guid] 2215759923 [EditorId] 2215759923 [Version] 1048832 [Id] WindowsEditor(7,DESKTOP-3CGSIM8) [Debug] 1 [PackageName] WindowsEditor [ProjectName] Editor" 
+
+Unable to join player connection multicast group (err: 10013).
+Player connection [228904] Host joined alternative multi-casting on [225.0.0.222:34997]...
+Input System module state changed to: Initialized.
+[Physics::Module] Initialized fallback backend.
+[Physics::Module] Id: 0xdecafbad
+[Package Manager] Connected to IPC stream "Upm-228900" after 0.2 seconds.
+[Licensing::Client] Successfully resolved entitlement details
+Library Redirect Path: Library/
+[Physics::Module] Selected backend.
+[Physics::Module] Name: PhysX
+[Physics::Module] Id: 0xf2b8ea05
+[Physics::Module] SDK Version: 4.1.2
+[Physics::Module] Integration Version: 1.0.0
+[Physics::Module] Threading Mode: Multi-Threaded
+Artifact Garbage Collection - Removed 1 unused hashed content files
+Refreshing native plugins compatible for Editor in 0.17 ms, found 0 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Initialize engine version: 6000.3.28f1 (8f082d2fe476)
+[Subsystems] Discovering subsystems at path C:/Program Files/Unity/Hub/Editor/6000.3.28f1/Editor/Data/Resources/UnitySubsystems
+[Subsystems] Discovering subsystems at path T:/Sleepwalking/Assets
+Forcing GfxDevice: Null
+GfxDevice: creating device client; kGfxThreadingModeNonThreaded
+NullGfxDevice:
+    Version:  NULL 1.0 [1.0]
+    Renderer: Null Device
+    Vendor:   Unity Technologies
+Initialize mono
+Mono path[0] = 'C:/Program Files/Unity/Hub/Editor/6000.3.28f1/Editor/Data/Managed'
+Mono path[1] = 'C:/Program Files/Unity/Hub/Editor/6000.3.28f1/Editor/Data/MonoBleedingEdge/lib/mono/unityjit-win32'
+Mono config path = 'C:/Program Files/Unity/Hub/Editor/6000.3.28f1/Editor/Data/MonoBleedingEdge/etc'
+Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56900
+Using cacheserver namespaces - metadata:defaultmetadata, artifacts:defaultartifacts
+Using cacheserver namespaces - metadata:defaultmetadata, artifacts:defaultartifacts
+ImportWorker Server TCP listen port: 0
+AcceleratorClientConnectionCallback - disconnected - :0
+Begin MonoManager ReloadAssembly
+Registering precompiled unity dll's ...
+Register platform support module: C:/Program Files/Unity/Hub/Editor/6000.3.28f1/Editor/Data/PlaybackEngines/WebGLSupport/UnityEditor.WebGL.Extensions.dll
+Register platform support module: C:/Program Files/Unity/Hub/Editor/6000.3.28f1/Editor/Data/PlaybackEngines/MacStandaloneSupport/UnityEditor.OSXStandalone.Extensions.dll
+[Licensing::Client] Successfully resolved entitlement details
+Register platform support module: C:/Program Files/Unity/Hub/Editor/6000.3.28f1/Editor/Data/PlaybackEngines/VisionOSPlayer/UnityEditor.VisionOS.Extensions.dll
+Register platform support module: C:/Program Files/Unity/Hub/Editor/6000.3.28f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/UnityEditor.WindowsStandalone.Extensions.dll
+[Licensing::Client] Successfully resolved entitlement details
+Register platform support module: C:/Program Files/Unity/Hub/Editor/6000.3.28f1/Editor/Data/PlaybackEngines/MetroSupport/UnityEditor.UWP.Extensions.dll
+[Licensing::Client] Successfully resolved entitlement details
+Register platform support module: C:/Program Files/Unity/Hub/Editor/6000.3.28f1/Editor/Data/PlaybackEngines/AndroidPlayer/UnityEditor.Android.Extensions.dll
+Register platform support module: C:/Program Files/Unity/Hub/Editor/6000.3.28f1/Editor/Data/PlaybackEngines/iOSSupport/UnityEditor.iOS.Extensions.dll
+Register platform support module: C:/Program Files/Unity/Hub/Editor/6000.3.28f1/Editor/Data/PlaybackEngines/AppleTVSupport/UnityEditor.AppleTV.Extensions.dll
+Register platform support module: C:/Program Files/Unity/Hub/Editor/6000.3.28f1/Editor/Data/PlaybackEngines/LinuxStandaloneSupport/UnityEditor.LinuxStandalone.Extensions.dll
+Registered in 0.010009 seconds.
+- Loaded All Assemblies, in  0.338 seconds
+Native extension for LinuxStandalone target not found
+Native extension for AppleTV target not found
+Native extension for iOS target not found
+Native extension for Android target not found
+Native extension for UWP target not found
+Native extension for WindowsStandalone target not found
+Failed to load: C:/Program Files/Unity/Hub/Editor/6000.3.28f1/Editor/Data/PlaybackEngines/VisionOSPlayer\x64\UnityEditor.VisionOS.Native.dll
+Native extension for VisionOS target not found
+Native extension for OSXStandalone target not found
+Native extension for WebGL target not found
+Package Manager log level set to [2]
+[Licensing::Client] Successfully resolved entitlement details
+ScheduleIndexationOnStartup MainProcess:False IndexOnStartup:True
+Mono: successfully reloaded assembly
+- Finished resetting the current domain, in  2.253 seconds
+Domain Reload Profiling: 2588ms
+	BeginReloadAssembly (104ms)
+		ExecutionOrderSort (0ms)
+		DisableScriptedObjects (0ms)
+		BackupInstance (0ms)
+		ReleaseScriptingObjects (0ms)
+		CreateAndSetChildDomain (10ms)
+	RebuildCommonClasses (31ms)
+	RebuildNativeTypeToScriptingClass (12ms)
+	initialDomainReloadingComplete (49ms)
+	LoadAllAssembliesAndSetupDomain (139ms)
+		LoadAssemblies (93ms)
+		RebuildTransferFunctionScriptingTraits (0ms)
+		AnalyzeDomain (135ms)
+			TypeCache.Refresh (133ms)
+				TypeCache.ScanAssembly (123ms)
+			BuildScriptInfoCaches (0ms)
+			ResolveRequiredComponents (0ms)
+	FinalizeReload (2254ms)
+		ReleaseScriptCaches (0ms)
+		RebuildScriptCaches (0ms)
+		SetupLoadedEditorAssemblies (2228ms)
+			LogAssemblyErrors (0ms)
+			InitializePlatformSupportModulesInManaged (77ms)
+			SetLoadedEditorAssemblies (3ms)
+			BeforeProcessingInitializeOnLoad (57ms)
+			ProcessInitializeOnLoadAttributes (92ms)
+			ProcessInitializeOnLoadMethodAttributes (1998ms)
+			AfterProcessingInitializeOnLoad (0ms)
+			EditorAssembliesLoaded (0ms)
+		ExecutionOrderSort2 (0ms)
+		AwakeInstancesAfterBackupRestoration (0ms)
+[Licensing::Client] Successfully resolved entitlement details
+Application.AssetDatabase Initial Refresh Start
+[Package Manager] Restoring resolved packages state from cache
+[Licensing::Client] Successfully resolved entitlement details
+[Package Manager] Registered 59 packages:
+  Packages from [https://packages.unity.com]:
+    com.unity.ai.navigation@2.0.16 (location: T:\Sleepwalking\Library\PackageCache\com.unity.ai.navigation@d0cf77b009bb)
+    com.unity.collab-proxy@2.14.0 (location: T:\Sleepwalking\Library\PackageCache\com.unity.collab-proxy@ac5a9def1e96)
+    com.unity.ide.rider@3.1.0 (location: T:\Sleepwalking\Library\PackageCache\com.unity.ide.rider@570989d4a882)
+    com.unity.ide.visualstudio@2.0.26 (location: T:\Sleepwalking\Library\PackageCache\com.unity.ide.visualstudio@a99d56dec63f)
+    com.unity.inputsystem@1.20.1 (location: T:\Sleepwalking\Library\PackageCache\com.unity.inputsystem@2436e68c60c4)
+    com.unity.pipeline@1.0.0 (location: T:\Sleepwalking\Library\PackageCache\com.unity.pipeline@178b93997022)
+    com.unity.timeline@1.8.13 (location: T:\Sleepwalking\Library\PackageCache\com.unity.timeline@3a22918286f5)
+    com.unity.visualscripting@1.9.12 (location: T:\Sleepwalking\Library\PackageCache\com.unity.visualscripting@4edfcc09512f)
+    com.unity.nuget.mono-cecil@1.11.6 (location: T:\Sleepwalking\Library\PackageCache\com.unity.nuget.mono-cecil@ecb9724e46ff)
+    com.unity.nuget.newtonsoft-json@3.2.2 (location: T:\Sleepwalking\Library\PackageCache\com.unity.nuget.newtonsoft-json@4dfd81071c64)
+    com.unity.searcher@4.9.5 (location: T:\Sleepwalking\Library\PackageCache\com.unity.searcher@a463122f2c00)
+    com.unity.burst@1.8.31 (location: T:\Sleepwalking\Library\PackageCache\com.unity.burst@bfa84123c21a)
+    com.unity.mathematics@1.3.3 (location: T:\Sleepwalking\Library\PackageCache\com.unity.mathematics@19a9377c4ffa)
+    com.unity.collections@2.7.1 (location: T:\Sleepwalking\Library\PackageCache\com.unity.collections@88d5bf65ce66)
+    com.unity.test-framework.performance@3.5.0 (location: T:\Sleepwalking\Library\PackageCache\com.unity.test-framework.performance@8b56083ec0f0)
+  Built-in packages:
+    com.unity.multiplayer.center@1.0.1 (location: T:\Sleepwalking\Library\PackageCache\com.unity.multiplayer.center@f01f4ba8d00a)
+    com.unity.render-pipelines.universal@17.3.0 (location: T:\Sleepwalking\Library\PackageCache\com.unity.render-pipelines.universal@029be7ffa662)
+    com.unity.test-framework@1.6.0 (location: T:\Sleepwalking\Library\PackageCache\com.unity.test-framework@bd7f943e9647)
+    com.unity.ugui@2.0.0 (location: T:\Sleepwalking\Library\PackageCache\com.unity.ugui@44a561608371)
+    com.unity.modules.accessibility@1.0.0 (location: T:\Sleepwalking\Library\PackageCache\com.unity.modules.accessibility)
+    com.unity.modules.adaptiveperformance@1.0.0 (location: T:\Sleepwalking\Library\PackageCache\com.unity.modules.adaptiveperformance)
+    com.unity.modules.ai@1.0.0 (location: T:\Sleepwalking\Library\PackageCache\com.unity.modules.ai)
+    com.unity.modules.androidjni@1.0.0 (location: T:\Sleepwalking\Library\PackageCache\com.unity.modules.androidjni)
+    com.unity.modules.animation@1.0.0 (location: T:\Sleepwalking\Library\PackageCache\com.unity.modules.animation)
+    com.unity.modules.assetbundle@1.0.0 (location: T:\Sleepwalking\Library\PackageCache\com.unity.modules.assetbundle)
+    com.unity.modules.audio@1.0.0 (location: T:\Sleepwalking\Library\PackageCache\com.unity.modules.audio)
+    com.unity.modules.cloth@1.0.0 (location: T:\Sleepwalking\Library\PackageCache\com.unity.modules.cloth)
+    com.unity.modules.director@1.0.0 (location: T:\Sleepwalking\Library\PackageCache\com.unity.modules.director)
+    com.unity.modules.imageconversion@1.0.0 (location: T:\Sleepwalking\Library\PackageCache\com.unity.modules.imageconversion)
+    com.unity.modules.imgui@1.0.0 (location: T:\Sleepwalking\Library\PackageCache\com.unity.modules.imgui)
+    com.unity.modules.jsonserialize@1.0.0 (location: T:\Sleepwalking\Library\PackageCache\com.unity.modules.jsonserialize)
+    com.unity.modules.particlesystem@1.0.0 (location: T:\Sleepwalking\Library\PackageCache\com.unity.modules.particlesystem)
+    com.unity.modules.physics@1.0.0 (location: T:\Sleepwalking\Library\PackageCache\com.unity.modules.physics)
+    com.unity.modules.physics2d@1.0.0 (location: T:\Sleepwalking\Library\PackageCache\com.unity.modules.physics2d)
+    com.unity.modules.screencapture@1.0.0 (location: T:\Sleepwalking\Library\PackageCache\com.unity.modules.screencapture)
+    com.unity.modules.terrain@1.0.0 (location: T:\Sleepwalking\Library\PackageCache\com.unity.modules.terrain)
+    com.unity.modules.terrainphysics@1.0.0 (location: T:\Sleepwalking\Library\PackageCache\com.unity.modules.terrainphysics)
+    com.unity.modules.tilemap@1.0.0 (location: T:\Sleepwalking\Library\PackageCache\com.unity.modules.tilemap)
+    com.unity.modules.ui@1.0.0 (location: T:\Sleepwalking\Library\PackageCache\com.unity.modules.ui)
+    com.unity.modules.uielements@1.0.0 (location: T:\Sleepwalking\Library\PackageCache\com.unity.modules.uielements)
+    com.unity.modules.umbra@1.0.0 (location: T:\Sleepwalking\Library\PackageCache\com.unity.modules.umbra)
+    com.unity.modules.unityanalytics@1.0.0 (location: T:\Sleepwalking\Library\PackageCache\com.unity.modules.unityanalytics)
+    com.unity.modules.unitywebrequest@1.0.0 (location: T:\Sleepwalking\Library\PackageCache\com.unity.modules.unitywebrequest)
+    com.unity.modules.unitywebrequestassetbundle@1.0.0 (location: T:\Sleepwalking\Library\PackageCache\com.unity.modules.unitywebrequestassetbundle)
+    com.unity.modules.unitywebrequestaudio@1.0.0 (location: T:\Sleepwalking\Library\PackageCache\com.unity.modules.unitywebrequestaudio)
+    com.unity.modules.unitywebrequesttexture@1.0.0 (location: T:\Sleepwalking\Library\PackageCache\com.unity.modules.unitywebrequesttexture)
+    com.unity.modules.unitywebrequestwww@1.0.0 (location: T:\Sleepwalking\Library\PackageCache\com.unity.modules.unitywebrequestwww)
+    com.unity.modules.vectorgraphics@1.0.0 (location: T:\Sleepwalking\Library\PackageCache\com.unity.modules.vectorgraphics)
+    com.unity.modules.vehicles@1.0.0 (location: T:\Sleepwalking\Library\PackageCache\com.unity.modules.vehicles)
+    com.unity.modules.video@1.0.0 (location: T:\Sleepwalking\Library\PackageCache\com.unity.modules.video)
+    com.unity.modules.vr@1.0.0 (location: T:\Sleepwalking\Library\PackageCache\com.unity.modules.vr)
+    com.unity.modules.wind@1.0.0 (location: T:\Sleepwalking\Library\PackageCache\com.unity.modules.wind)
+    com.unity.modules.xr@1.0.0 (location: T:\Sleepwalking\Library\PackageCache\com.unity.modules.xr)
+    com.unity.modules.subsystems@1.0.0 (location: T:\Sleepwalking\Library\PackageCache\com.unity.modules.subsystems)
+    com.unity.modules.hierarchycore@1.0.0 (location: T:\Sleepwalking\Library\PackageCache\com.unity.modules.hierarchycore)
+    com.unity.ext.nunit@2.0.5 (location: T:\Sleepwalking\Library\PackageCache\com.unity.ext.nunit@d8c07649098d)
+    com.unity.render-pipelines.core@17.3.0 (location: T:\Sleepwalking\Library\PackageCache\com.unity.render-pipelines.core@3424017a4ec3)
+    com.unity.shadergraph@17.3.0 (location: T:\Sleepwalking\Library\PackageCache\com.unity.shadergraph@d526115bb944)
+    com.unity.render-pipelines.universal-config@17.0.3 (location: T:\Sleepwalking\Library\PackageCache\com.unity.render-pipelines.universal-config@8dc1aab4af1d)
+[Subsystems] No new subsystems found in resolved package list.
+[Package Manager] Done registering packages in 0.02 seconds
+'Assets/SleepwalkingVisual/Preview/VisualBuildFinal.log' Amount of processed bytes '18796' does not match file size '9829'
+[ScriptCompilation] Requested script compilation because: Assetdatabase observed changes in script compilation related files
+Starting: C:\Program Files\Unity\Hub\Editor\6000.3.28f1\Editor\Data\Tools\BuildPipeline\bee_backend.exe --ipc --defer-dag-verification --dagfile="Library/Bee/1900b0aE.dag" --continue-on-failure --profile="Library/Bee/backend1.traceevents" ScriptAssemblies
+WorkingDir: T:/Sleepwalking
+DisplayProgressbar: Compiling Scripts
+ExitCode: 0 Duration: 1s812ms
+[761/964    0s] ILPP-Configuration Library/ilpp-configuration.nevergeneratedoutput
+[960/964    1s] Csc Library/Bee/artifacts/1900b0aE.dag/Assembly-CSharp-Editor.dll (+2 others)
+[961/964    0s] ILPostProcess Library/Bee/artifacts/1900b0aE.dag/post-processed/Assembly-CSharp-Editor.dll (+pdb)
+Processing assembly Library/Bee/artifacts/1900b0aE.dag/Assembly-CSharp-Editor.dll, with 137 defines and 363 references
+
+processors: Unity.Jobs.CodeGen.JobsILPostProcessor, Unity.Pipeline.CodeGen.MethodReloadInPlaceILPostProcessor, zzzUnity.Burst.CodeGen.BurstILPostProcessor
+
+running Unity.Jobs.CodeGen.JobsILPostProcessor
+
+running Unity.Pipeline.CodeGen.MethodReloadInPlaceILPostProcessor
+
+running zzzUnity.Burst.CodeGen.BurstILPostProcessor
+[962/964    0s] CopyFiles Library/ScriptAssemblies/Assembly-CSharp-Editor.pdb
+[963/964    0s] CopyFiles Library/ScriptAssemblies/Assembly-CSharp-Editor.dll
+*** Tundra build success (1.76 seconds), 5 items updated, 964 evaluated
+AssetDatabase: script compilation time: 2.188329s
+'Assets/SleepwalkingVisual/Preview/VisualBuildFinal.log' Amount of processed bytes '20430' does not match file size '19371'
+Begin MonoManager ReloadAssembly
+Total cache size 37064044
+Total cache size after purge 37064044, took 00:00:00.0567933
+- Loaded All Assemblies, in  1.081 seconds
+'Assets/SleepwalkingVisual/Preview/VisualBuildFinal.log' Amount of processed bytes '20722' does not match file size '20555'
+Refreshing native plugins compatible for Editor in 1.08 ms, found 4 plugins.
+Native extension for LinuxStandalone target not found
+Native extension for AppleTV target not found
+Native extension for iOS target not found
+Native extension for Android target not found
+Native extension for UWP target not found
+Native extension for WindowsStandalone target not found
+Failed to load: C:/Program Files/Unity/Hub/Editor/6000.3.28f1/Editor/Data/PlaybackEngines/VisionOSPlayer\x64\UnityEditor.VisionOS.Native.dll
+Native extension for VisionOS target not found
+Native extension for OSXStandalone target not found
+Native extension for WebGL target not found
+Refreshing native plugins compatible for Editor in 1.32 ms, found 4 plugins.
+Start HTTP server: port:7800
+Pipeline: Descriptor written to T:\Sleepwalking\Library\Pipeline\.unity-pipeline-port
+ScheduleIndexationOnStartup MainProcess:True IndexOnStartup:True
+Mono: successfully reloaded assembly
+- Finished resetting the current domain, in  3.025 seconds
+Domain Reload Profiling: 4099ms
+	BeginReloadAssembly (227ms)
+		ExecutionOrderSort (0ms)
+		DisableScriptedObjects (27ms)
+		BackupInstance (0ms)
+		ReleaseScriptingObjects (0ms)
+		CreateAndSetChildDomain (53ms)
+	RebuildCommonClasses (32ms)
+	RebuildNativeTypeToScriptingClass (11ms)
+	initialDomainReloadingComplete (50ms)
+	LoadAllAssembliesAndSetupDomain (754ms)
+		LoadAssemblies (524ms)
+		RebuildTransferFunctionScriptingTraits (0ms)
+		AnalyzeDomain (340ms)
+			TypeCache.Refresh (273ms)
+				TypeCache.ScanAssembly (257ms)
+			BuildScriptInfoCaches (48ms)
+			ResolveRequiredComponents (13ms)
+	FinalizeReload (3026ms)
+		ReleaseScriptCaches (0ms)
+		RebuildScriptCaches (0ms)
+		SetupLoadedEditorAssemblies (2841ms)
+			LogAssemblyErrors (0ms)
+			InitializePlatformSupportModulesInManaged (52ms)
+			SetLoadedEditorAssemblies (3ms)
+			BeforeProcessingInitializeOnLoad (137ms)
+			ProcessInitializeOnLoadAttributes (2417ms)
+			ProcessInitializeOnLoadMethodAttributes (223ms)
+			AfterProcessingInitializeOnLoad (8ms)
+			EditorAssembliesLoaded (0ms)
+		ExecutionOrderSort2 (0ms)
+		AwakeInstancesAfterBackupRestoration (15ms)
+'Assets/SleepwalkingVisual/Preview/VisualBuildFinal.log' Amount of processed bytes '23005' does not match file size '21583'
+Start importing Assets/SleepwalkingVisual/Preview/VisualBuildFinal.log using Guid(ed243ed8251c82e41ae400cedbd2ad26) (DefaultImporter) -> (artifact id: '00000000000000000000000000000000') in 0.055766 seconds
+Import Error Code:(4)
+Message: Build asset version error: assets/sleepwalkingvisual/preview/visualbuildfinal.log in SourceAssetDB has modification time of '2026-11-13T23:56:15.350606Z' while content on disk has modification time of '2026-11-13T23:56:15.4167499Z'
+Start importing Assets/SleepwalkingVisual/Preview/VisualBuildFinal.log using Guid(ed243ed8251c82e41ae400cedbd2ad26) (DefaultImporter) -> (artifact id: '00000000000000000000000000000000') in 0.0006657 seconds
+Import Error Code:(4)
+Message: Build asset version error: assets/sleepwalkingvisual/preview/visualbuildfinal.log in SourceAssetDB has modification time of '2026-11-13T23:56:15.350606Z' while content on disk has modification time of '2026-11-13T23:56:15.4971016Z'
+Start importing Assets/SleepwalkingVisual/Preview/VisualBuildFinal.log using Guid(ed243ed8251c82e41ae400cedbd2ad26) (DefaultImporter) -> (artifact id: '00000000000000000000000000000000') in 0.001887 seconds
+Import Error Code:(4)
+Message: Build asset version error: assets/sleepwalkingvisual/preview/visualbuildfinal.log in SourceAssetDB has modification time of '2026-11-13T23:56:15.350606Z' while content on disk has modification time of '2026-11-13T23:56:15.5132449Z'
+Start importing Assets/SleepwalkingVisual/Preview/VisualBuildFinal.log using Guid(ed243ed8251c82e41ae400cedbd2ad26) (DefaultImporter) -> (artifact id: '00000000000000000000000000000000') in 0.0011335 seconds
+Import Error Code:(4)
+Message: Build asset version error: assets/sleepwalkingvisual/preview/visualbuildfinal.log in SourceAssetDB has modification time of '2026-11-13T23:56:15.350606Z' while content on disk has modification time of '2026-11-13T23:56:15.5288179Z'
+Start importing Assets/SleepwalkingVisual/Preview/VisualBuildFinal.log using Guid(ed243ed8251c82e41ae400cedbd2ad26) (DefaultImporter) -> (artifact id: '00000000000000000000000000000000') in 0.0012655 seconds
+Import Error Code:(4)
+Message: Build asset version error: assets/sleepwalkingvisual/preview/visualbuildfinal.log in SourceAssetDB has modification time of '2026-11-13T23:56:15.350606Z' while content on disk has modification time of '2026-11-13T23:56:15.5449303Z'
+Start importing Assets/SleepwalkingVisual/Preview/VisualBuildFinal.log using Guid(ed243ed8251c82e41ae400cedbd2ad26) (DefaultImporter) -> (artifact id: '00000000000000000000000000000000') in 0.0011489 seconds
+Import Error Code:(4)
+Message: Build asset version error: assets/sleepwalkingvisual/preview/visualbuildfinal.log in SourceAssetDB has modification time of '2026-11-13T23:56:15.350606Z' while content on disk has modification time of '2026-11-13T23:56:15.5599822Z'
+Start importing Assets/SleepwalkingVisual/Preview/VisualBuildFinal.log using Guid(ed243ed8251c82e41ae400cedbd2ad26) (DefaultImporter) -> (artifact id: '00000000000000000000000000000000') in 0.0009757 seconds
+Import Error Code:(4)
+Message: Build asset version error: assets/sleepwalkingvisual/preview/visualbuildfinal.log in SourceAssetDB has modification time of '2026-11-13T23:56:15.350606Z' while content on disk has modification time of '2026-11-13T23:56:15.5756437Z'
+Start importing Assets/SleepwalkingVisual/Preview/VisualBuildFinal.log using Guid(ed243ed8251c82e41ae400cedbd2ad26) (DefaultImporter) -> (artifact id: '00000000000000000000000000000000') in 0.0124106 seconds
+Import Error Code:(4)
+Message: Build asset version error: assets/sleepwalkingvisual/preview/visualbuildfinal.log in SourceAssetDB has modification time of '2026-11-13T23:56:15.350606Z' while content on disk has modification time of '2026-11-13T23:56:15.5913345Z'
+An infinite import loop has been detected. The following Assets were imported multiple times, but no changes to them have been detected. Please check if any custom code is trying to import them:
+Assets/SleepwalkingVisual/Preview/VisualBuildFinal.log(modified date 2026-11-13T23:56:15.6039993Z)
+Refreshing native plugins compatible for Editor in 1.15 ms, found 4 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Asset Pipeline Refresh (id=8e2491882baf58f488729a1baf3e087d): Total: 7.302 seconds - Initiated by InitialRefreshV2(ForceSynchronousImport)
+	Summary:
+		Imports: total=0 (actual=8, local cache=18446744073709551608, cache server=0)
+		Asset DB Process Time: managed=3 ms, native=3670 ms
+		Asset DB Callback time: managed=281 ms, native=23 ms
+		Scripting: domain reloads=1, domain reload time=1081 ms, compile time=2191 ms, other=49 ms
+		Project Asset Count: scripts=1434, non-scripts=2497
+		Asset File Changes: new=1, changed=3, moved=0, deleted=0
+		Scan Filter Count: 0
+	InvokeCustomDependenciesCallbacks: 0.002ms
+	InvokePackagesCallback: 23.787ms
+	ApplyChangesToAssetFolders: 0.884ms
+	Scan: 169.145ms
+	OnSourceAssetsModified: 1.187ms
+	CategorizeAssetsWithTransientArtifact: 38.108ms
+	ProcessAssetsWithTransientArtifactChanges: 77.211ms
+	CategorizeAssets: 68.367ms
+	ImportOutOfDateAssets: 3117.887ms (842.489ms without children)
+		ImportManagerImport: 78.555ms (1.193ms without children)
+			ImportInProcess: 77.341ms
+			UpdateCategorizedAssets: 0.022ms
+		CompileScripts: 2190.913ms
+		ReloadNativeAssets: 0.244ms
+		UnloadImportedAssets: 2.822ms
+		EnsureUptoDateAssetsAreRegisteredWithGuidPM: 2.404ms
+		InitializingProgressBar: 0.046ms
+		PostProcessAllAssetNotificationsAddChangedAssets: 0.001ms
+		OnDemandSchedulerStart: 0.413ms
+	PostProcessAllAssets: 280.554ms
+	Hotreload: 3.902ms
+	GatherAllCurrentPrimaryArtifactRevisions: 0.002ms
+	UnloadStreamsBegin: 1.905ms
+	UnloadStreamsEnd: 0.001ms
+	GenerateScriptTypeHashes: 1.931ms
+	Untracked: 3518.570ms
+
+Application.AssetDatabase Initial Refresh End
+Scanning for USB devices : 7.188ms
+Initializing Unity extensions:
+[MODES] ModeService[none].Initialize
+[MODES] ModeService[none].LoadModes
+[MODES] Loading mode Default (0) for mode-current-id-Sleepwalking
+GetVirtualKey: Could not map char: n (110) to any virtual key
+GetVirtualKey: Could not map char: o (111) to any virtual key
+GetVirtualKey: Could not map char: s (115) to any virtual key
+GetVirtualKey: Could not map char: s (115) to any virtual key
+GetVirtualKey: Could not map char: b (98) to any virtual key
+GetVirtualKey: Could not map char: b (98) to any virtual key
+GetVirtualKey: Could not map char: z (122) to any virtual key
+GetVirtualKey: Could not map char: y (121) to any virtual key
+GetVirtualKey: Could not map char: x (120) to any virtual key
+GetVirtualKey: Could not map char: c (99) to any virtual key
+GetVirtualKey: Could not map char: v (118) to any virtual key
+GetVirtualKey: Could not map char: V (86) to any virtual key
+GetVirtualKey: Could not map char: d (100) to any virtual key
+GetVirtualKey: Could not map char: f (102) to any virtual key
+GetVirtualKey: Could not map char: f (102) to any virtual key
+GetVirtualKey: Could not map char: a (97) to any virtual key
+GetVirtualKey: Could not map char: d (100) to any virtual key
+GetVirtualKey: Could not map char: c (99) to any virtual key
+GetVirtualKey: Could not map char: r (114) to any virtual key
+GetVirtualKey: Could not map char: i (105) to any virtual key
+GetVirtualKey: Could not map char: l (108) to any virtual key
+GetVirtualKey: Could not map char: f (102) to any virtual key
+GetVirtualKey: Could not map char: k (107) to any virtual key
+GetVirtualKey: Could not map char: p (112) to any virtual key
+GetVirtualKey: Could not map char: p (112) to any virtual key
+GetVirtualKey: Could not map char: p (112) to any virtual key
+GetVirtualKey: Could not map char: c (99) to any virtual key
+GetVirtualKey: Could not map char: r (114) to any virtual key
+GetVirtualKey: Could not map char: P (80) to any virtual key
+GetVirtualKey: Could not map char: n (110) to any virtual key
+GetVirtualKey: Could not map char: n (110) to any virtual key
+GetVirtualKey: Could not map char: g (103) to any virtual key
+GetVirtualKey: Could not map char: f (102) to any virtual key
+GetVirtualKey: Could not map char: f (102) to any virtual key
+GetVirtualKey: Could not map char: a (97) to any virtual key
+GetVirtualKey: Could not map char: a (97) to any virtual key
+GetVirtualKey: Could not map char: c (99) to any virtual key
+GetVirtualKey: Could not map char: u (117) to any virtual key
+Unloading 19 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 7028 unused Assets / (2.2 MB). Loaded Objects now: 7898.
+Memory consumption went from 207.8 MB to 205.6 MB.
+Total: 9.027100 ms (FindLiveObjects: 0.718800 ms CreateObjectMapping: 0.241200 ms MarkObjects: 6.461900 ms  DeleteObjects: 1.604700 ms)
+
+GetVirtualKey: Could not map char: n (110) to any virtual key
+GetVirtualKey: Could not map char: o (111) to any virtual key
+GetVirtualKey: Could not map char: s (115) to any virtual key
+GetVirtualKey: Could not map char: s (115) to any virtual key
+GetVirtualKey: Could not map char: b (98) to any virtual key
+GetVirtualKey: Could not map char: b (98) to any virtual key
+GetVirtualKey: Could not map char: z (122) to any virtual key
+GetVirtualKey: Could not map char: y (121) to any virtual key
+GetVirtualKey: Could not map char: x (120) to any virtual key
+GetVirtualKey: Could not map char: c (99) to any virtual key
+GetVirtualKey: Could not map char: v (118) to any virtual key
+GetVirtualKey: Could not map char: V (86) to any virtual key
+GetVirtualKey: Could not map char: d (100) to any virtual key
+GetVirtualKey: Could not map char: f (102) to any virtual key
+GetVirtualKey: Could not map char: f (102) to any virtual key
+GetVirtualKey: Could not map char: a (97) to any virtual key
+GetVirtualKey: Could not map char: d (100) to any virtual key
+GetVirtualKey: Could not map char: c (99) to any virtual key
+GetVirtualKey: Could not map char: r (114) to any virtual key
+GetVirtualKey: Could not map char: i (105) to any virtual key
+GetVirtualKey: Could not map char: l (108) to any virtual key
+GetVirtualKey: Could not map char: f (102) to any virtual key
+GetVirtualKey: Could not map char: k (107) to any virtual key
+GetVirtualKey: Could not map char: p (112) to any virtual key
+GetVirtualKey: Could not map char: p (112) to any virtual key
+GetVirtualKey: Could not map char: p (112) to any virtual key
+GetVirtualKey: Could not map char: c (99) to any virtual key
+GetVirtualKey: Could not map char: r (114) to any virtual key
+GetVirtualKey: Could not map char: P (80) to any virtual key
+GetVirtualKey: Could not map char: n (110) to any virtual key
+GetVirtualKey: Could not map char: n (110) to any virtual key
+GetVirtualKey: Could not map char: g (103) to any virtual key
+GetVirtualKey: Could not map char: f (102) to any virtual key
+GetVirtualKey: Could not map char: f (102) to any virtual key
+GetVirtualKey: Could not map char: a (97) to any virtual key
+GetVirtualKey: Could not map char: a (97) to any virtual key
+GetVirtualKey: Could not map char: c (99) to any virtual key
+GetVirtualKey: Could not map char: u (117) to any virtual key
+Start importing Assets/SleepwalkingVisual/Preview/VisualBuildFinal.log using Guid(ed243ed8251c82e41ae400cedbd2ad26) (DefaultImporter) -> (artifact id: '00000000000000000000000000000000') in 0.0006451 seconds
+Import Error Code:(4)
+Message: Build asset version error: assets/sleepwalkingvisual/preview/visualbuildfinal.log in SourceAssetDB has modification time of '2026-11-13T23:56:15.350606Z' while content on disk has modification time of '2026-11-13T23:56:16.3172746Z'
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEditor.PrefabUtility:SaveAsPrefabAsset_Internal (UnityEngine.GameObject,string,bool&)
+UnityEditor.PrefabUtility:SaveAsPrefabAsset (UnityEngine.GameObject,string,bool&)
+UnityEditor.PrefabUtility:SaveAsPrefabAsset (UnityEngine.GameObject,string)
+Sleepwalking.Visual.Editor.VisualAssetBuilder:BuildTheme (Sleepwalking.Visual.DreamThemeId,UnityEngine.Material,UnityEngine.Material,UnityEngine.Material) (at Assets/SleepwalkingVisual/Editor/VisualAssetBuilder.cs:299)
+Sleepwalking.Visual.Editor.VisualAssetBuilder:BuildThemes () (at Assets/SleepwalkingVisual/Editor/VisualAssetBuilder.cs:255)
+Sleepwalking.Visual.Editor.VisualAssetBuilder:Build () (at Assets/SleepwalkingVisual/Editor/VisualAssetBuilder.cs:22)
+
+[Assets/SleepwalkingVisual/Editor/VisualAssetBuilder.cs line 255]
+
+'Assets/SleepwalkingVisual/Preview/VisualBuildFinal.log' Amount of processed bytes '35656' does not match file size '29041'
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEditor.PrefabUtility:SaveAsPrefabAsset_Internal (UnityEngine.GameObject,string,bool&)
+UnityEditor.PrefabUtility:SaveAsPrefabAsset (UnityEngine.GameObject,string,bool&)
+UnityEditor.PrefabUtility:SaveAsPrefabAsset (UnityEngine.GameObject,string)
+Sleepwalking.Visual.Editor.VisualAssetBuilder:BuildTheme (Sleepwalking.Visual.DreamThemeId,UnityEngine.Material,UnityEngine.Material,UnityEngine.Material) (at Assets/SleepwalkingVisual/Editor/VisualAssetBuilder.cs:299)
+Sleepwalking.Visual.Editor.VisualAssetBuilder:BuildThemes () (at Assets/SleepwalkingVisual/Editor/VisualAssetBuilder.cs:255)
+Sleepwalking.Visual.Editor.VisualAssetBuilder:Build () (at Assets/SleepwalkingVisual/Editor/VisualAssetBuilder.cs:22)
+
+[Assets/SleepwalkingVisual/Editor/VisualAssetBuilder.cs line 255]
+
+Start importing Assets/SleepwalkingVisual/Preview/VisualBuildFinal.log using Guid(ed243ed8251c82e41ae400cedbd2ad26) (DefaultImporter) -> (artifact id: '00000000000000000000000000000000') in 0.000584 seconds
+Import Error Code:(4)
+Message: Build asset version error: assets/sleepwalkingvisual/preview/visualbuildfinal.log in SourceAssetDB has modification time of '2026-11-13T23:56:15.350606Z' while content on disk has modification time of '2026-11-13T23:56:16.3328856Z'
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEditor.PrefabUtility:SaveAsPrefabAsset_Internal (UnityEngine.GameObject,string,bool&)
+UnityEditor.PrefabUtility:SaveAsPrefabAsset (UnityEngine.GameObject,string,bool&)
+UnityEditor.PrefabUtility:SaveAsPrefabAsset (UnityEngine.GameObject,string)
+Sleepwalking.Visual.Editor.VisualAssetBuilder:BuildTheme (Sleepwalking.Visual.DreamThemeId,UnityEngine.Material,UnityEngine.Material,UnityEngine.Material) (at Assets/SleepwalkingVisual/Editor/VisualAssetBuilder.cs:299)
+Sleepwalking.Visual.Editor.VisualAssetBuilder:BuildThemes () (at Assets/SleepwalkingVisual/Editor/VisualAssetBuilder.cs:255)
+Sleepwalking.Visual.Editor.VisualAssetBuilder:Build () (at Assets/SleepwalkingVisual/Editor/VisualAssetBuilder.cs:22)
+
+[Assets/SleepwalkingVisual/Editor/VisualAssetBuilder.cs line 255]
+
+'Assets/SleepwalkingVisual/Preview/VisualBuildFinal.log' Amount of processed bytes '38060' does not match file size '36684'
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEditor.PrefabUtility:SaveAsPrefabAsset_Internal (UnityEngine.GameObject,string,bool&)
+UnityEditor.PrefabUtility:SaveAsPrefabAsset (UnityEngine.GameObject,string,bool&)
+UnityEditor.PrefabUtility:SaveAsPrefabAsset (UnityEngine.GameObject,string)
+Sleepwalking.Visual.Editor.VisualAssetBuilder:BuildTheme (Sleepwalking.Visual.DreamThemeId,UnityEngine.Material,UnityEngine.Material,UnityEngine.Material) (at Assets/SleepwalkingVisual/Editor/VisualAssetBuilder.cs:299)
+Sleepwalking.Visual.Editor.VisualAssetBuilder:BuildThemes () (at Assets/SleepwalkingVisual/Editor/VisualAssetBuilder.cs:255)
+Sleepwalking.Visual.Editor.VisualAssetBuilder:Build () (at Assets/SleepwalkingVisual/Editor/VisualAssetBuilder.cs:22)
+
+[Assets/SleepwalkingVisual/Editor/VisualAssetBuilder.cs line 255]
+
+Start importing Assets/SleepwalkingVisual/Preview/VisualBuildFinal.log using Guid(ed243ed8251c82e41ae400cedbd2ad26) (DefaultImporter) -> (artifact id: '00000000000000000000000000000000') in 0.0006474 seconds
+Import Error Code:(4)
+Message: Build asset version error: assets/sleepwalkingvisual/preview/visualbuildfinal.log in SourceAssetDB has modification time of '2026-11-13T23:56:15.350606Z' while content on disk has modification time of '2026-11-13T23:56:16.3526214Z'
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEditor.PrefabUtility:SaveAsPrefabAsset_Internal (UnityEngine.GameObject,string,bool&)
+UnityEditor.PrefabUtility:SaveAsPrefabAsset (UnityEngine.GameObject,string,bool&)
+UnityEditor.PrefabUtility:SaveAsPrefabAsset (UnityEngine.GameObject,string)
+Sleepwalking.Visual.Editor.VisualAssetBuilder:BuildTheme (Sleepwalking.Visual.DreamThemeId,UnityEngine.Material,UnityEngine.Material,UnityEngine.Material) (at Assets/SleepwalkingVisual/Editor/VisualAssetBuilder.cs:299)
+Sleepwalking.Visual.Editor.VisualAssetBuilder:BuildThemes () (at Assets/SleepwalkingVisual/Editor/VisualAssetBuilder.cs:255)
+Sleepwalking.Visual.Editor.VisualAssetBuilder:Build () (at Assets/SleepwalkingVisual/Editor/VisualAssetBuilder.cs:22)
+
+[Assets/SleepwalkingVisual/Editor/VisualAssetBuilder.cs line 255]
+
+'Assets/SleepwalkingVisual/Preview/VisualBuildFinal.log' Amount of processed bytes '40465' does not match file size '39088'
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEditor.PrefabUtility:SaveAsPrefabAsset_Internal (UnityEngine.GameObject,string,bool&)
+UnityEditor.PrefabUtility:SaveAsPrefabAsset (UnityEngine.GameObject,string,bool&)
+UnityEditor.PrefabUtility:SaveAsPrefabAsset (UnityEngine.GameObject,string)
+Sleepwalking.Visual.Editor.VisualAssetBuilder:BuildTheme (Sleepwalking.Visual.DreamThemeId,UnityEngine.Material,UnityEngine.Material,UnityEngine.Material) (at Assets/SleepwalkingVisual/Editor/VisualAssetBuilder.cs:299)
+Sleepwalking.Visual.Editor.VisualAssetBuilder:BuildThemes () (at Assets/SleepwalkingVisual/Editor/VisualAssetBuilder.cs:255)
+Sleepwalking.Visual.Editor.VisualAssetBuilder:Build () (at Assets/SleepwalkingVisual/Editor/VisualAssetBuilder.cs:22)
+
+[Assets/SleepwalkingVisual/Editor/VisualAssetBuilder.cs line 255]
+
+Start importing Assets/SleepwalkingVisual/Preview/VisualBuildFinal.log using Guid(ed243ed8251c82e41ae400cedbd2ad26) (DefaultImporter) -> (artifact id: '00000000000000000000000000000000') in 0.0006359 seconds
+Import Error Code:(4)
+Message: Build asset version error: assets/sleepwalkingvisual/preview/visualbuildfinal.log in SourceAssetDB has modification time of '2026-11-13T23:56:15.350606Z' while content on disk has modification time of '2026-11-13T23:56:16.3724806Z'
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEditor.PrefabUtility:SaveAsPrefabAsset_Internal (UnityEngine.GameObject,string,bool&)
+UnityEditor.PrefabUtility:SaveAsPrefabAsset (UnityEngine.GameObject,string,bool&)
+UnityEditor.PrefabUtility:SaveAsPrefabAsset (UnityEngine.GameObject,string)
+Sleepwalking.Visual.Editor.VisualAssetBuilder:BuildTheme (Sleepwalking.Visual.DreamThemeId,UnityEngine.Material,UnityEngine.Material,UnityEngine.Material) (at Assets/SleepwalkingVisual/Editor/VisualAssetBuilder.cs:299)
+Sleepwalking.Visual.Editor.VisualAssetBuilder:BuildThemes () (at Assets/SleepwalkingVisual/Editor/VisualAssetBuilder.cs:255)
+Sleepwalking.Visual.Editor.VisualAssetBuilder:Build () (at Assets/SleepwalkingVisual/Editor/VisualAssetBuilder.cs:22)
+
+[Assets/SleepwalkingVisual/Editor/VisualAssetBuilder.cs line 255]
+
+'Assets/SleepwalkingVisual/Preview/VisualBuildFinal.log' Amount of processed bytes '42870' does not match file size '41493'
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEditor.PrefabUtility:SaveAsPrefabAsset_Internal (UnityEngine.GameObject,string,bool&)
+UnityEditor.PrefabUtility:SaveAsPrefabAsset (UnityEngine.GameObject,string,bool&)
+UnityEditor.PrefabUtility:SaveAsPrefabAsset (UnityEngine.GameObject,string)
+Sleepwalking.Visual.Editor.VisualAssetBuilder:BuildTheme (Sleepwalking.Visual.DreamThemeId,UnityEngine.Material,UnityEngine.Material,UnityEngine.Material) (at Assets/SleepwalkingVisual/Editor/VisualAssetBuilder.cs:299)
+Sleepwalking.Visual.Editor.VisualAssetBuilder:BuildThemes () (at Assets/SleepwalkingVisual/Editor/VisualAssetBuilder.cs:255)
+Sleepwalking.Visual.Editor.VisualAssetBuilder:Build () (at Assets/SleepwalkingVisual/Editor/VisualAssetBuilder.cs:22)
+
+[Assets/SleepwalkingVisual/Editor/VisualAssetBuilder.cs line 255]
+
+Start importing Assets/SleepwalkingVisual/Preview/VisualBuildFinal.log using Guid(ed243ed8251c82e41ae400cedbd2ad26) (DefaultImporter) -> (artifact id: '00000000000000000000000000000000') in 0.0021321 seconds
+Import Error Code:(4)
+Message: Build asset version error: assets/sleepwalkingvisual/preview/visualbuildfinal.log in SourceAssetDB has modification time of '2026-11-13T23:56:15.350606Z' while content on disk has modification time of '2026-11-13T23:56:16.392226Z'
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEditor.PrefabUtility:SaveAsPrefabAsset_Internal (UnityEngine.GameObject,string,bool&)
+UnityEditor.PrefabUtility:SaveAsPrefabAsset (UnityEngine.GameObject,string,bool&)
+UnityEditor.PrefabUtility:SaveAsPrefabAsset (UnityEngine.GameObject,string)
+Sleepwalking.Visual.Editor.VisualAssetBuilder:BuildTheme (Sleepwalking.Visual.DreamThemeId,UnityEngine.Material,UnityEngine.Material,UnityEngine.Material) (at Assets/SleepwalkingVisual/Editor/VisualAssetBuilder.cs:299)
+Sleepwalking.Visual.Editor.VisualAssetBuilder:BuildThemes () (at Assets/SleepwalkingVisual/Editor/VisualAssetBuilder.cs:255)
+Sleepwalking.Visual.Editor.VisualAssetBuilder:Build () (at Assets/SleepwalkingVisual/Editor/VisualAssetBuilder.cs:22)
+
+[Assets/SleepwalkingVisual/Editor/VisualAssetBuilder.cs line 255]
+
+'Assets/SleepwalkingVisual/Preview/VisualBuildFinal.log' Amount of processed bytes '45274' does not match file size '44031'
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEditor.PrefabUtility:SaveAsPrefabAsset_Internal (UnityEngine.GameObject,string,bool&)
+UnityEditor.PrefabUtility:SaveAsPrefabAsset (UnityEngine.GameObject,string,bool&)
+UnityEditor.PrefabUtility:SaveAsPrefabAsset (UnityEngine.GameObject,string)
+Sleepwalking.Visual.Editor.VisualAssetBuilder:BuildTheme (Sleepwalking.Visual.DreamThemeId,UnityEngine.Material,UnityEngine.Material,UnityEngine.Material) (at Assets/SleepwalkingVisual/Editor/VisualAssetBuilder.cs:299)
+Sleepwalking.Visual.Editor.VisualAssetBuilder:BuildThemes () (at Assets/SleepwalkingVisual/Editor/VisualAssetBuilder.cs:255)
+Sleepwalking.Visual.Editor.VisualAssetBuilder:Build () (at Assets/SleepwalkingVisual/Editor/VisualAssetBuilder.cs:22)
+
+[Assets/SleepwalkingVisual/Editor/VisualAssetBuilder.cs line 255]
+
+Start importing Assets/SleepwalkingVisual/Preview/VisualBuildFinal.log using Guid(ed243ed8251c82e41ae400cedbd2ad26) (DefaultImporter) -> (artifact id: '00000000000000000000000000000000') in 0.0009044 seconds
+Import Error Code:(4)
+Message: Build asset version error: assets/sleepwalkingvisual/preview/visualbuildfinal.log in SourceAssetDB has modification time of '2026-11-13T23:56:15.350606Z' while content on disk has modification time of '2026-11-13T23:56:16.4132669Z'
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEditor.PrefabUtility:SaveAsPrefabAsset_Internal (UnityEngine.GameObject,string,bool&)
+UnityEditor.PrefabUtility:SaveAsPrefabAsset (UnityEngine.GameObject,string,bool&)
+UnityEditor.PrefabUtility:SaveAsPrefabAsset (UnityEngine.GameObject,string)
+Sleepwalking.Visual.Editor.VisualAssetBuilder:BuildTheme (Sleepwalking.Visual.DreamThemeId,UnityEngine.Material,UnityEngine.Material,UnityEngine.Material) (at Assets/SleepwalkingVisual/Editor/VisualAssetBuilder.cs:299)
+Sleepwalking.Visual.Editor.VisualAssetBuilder:BuildThemes () (at Assets/SleepwalkingVisual/Editor/VisualAssetBuilder.cs:255)
+Sleepwalking.Visual.Editor.VisualAssetBuilder:Build () (at Assets/SleepwalkingVisual/Editor/VisualAssetBuilder.cs:22)
+
+[Assets/SleepwalkingVisual/Editor/VisualAssetBuilder.cs line 255]
+
+'Assets/SleepwalkingVisual/Preview/VisualBuildFinal.log' Amount of processed bytes '47679' does not match file size '46302'
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEditor.PrefabUtility:SaveAsPrefabAsset_Internal (UnityEngine.GameObject,string,bool&)
+UnityEditor.PrefabUtility:SaveAsPrefabAsset (UnityEngine.GameObject,string,bool&)
+UnityEditor.PrefabUtility:SaveAsPrefabAsset (UnityEngine.GameObject,string)
+Sleepwalking.Visual.Editor.VisualAssetBuilder:BuildTheme (Sleepwalking.Visual.DreamThemeId,UnityEngine.Material,UnityEngine.Material,UnityEngine.Material) (at Assets/SleepwalkingVisual/Editor/VisualAssetBuilder.cs:299)
+Sleepwalking.Visual.Editor.VisualAssetBuilder:BuildThemes () (at Assets/SleepwalkingVisual/Editor/VisualAssetBuilder.cs:255)
+Sleepwalking.Visual.Editor.VisualAssetBuilder:Build () (at Assets/SleepwalkingVisual/Editor/VisualAssetBuilder.cs:22)
+
+[Assets/SleepwalkingVisual/Editor/VisualAssetBuilder.cs line 255]
+
+Start importing Assets/SleepwalkingVisual/Preview/VisualBuildFinal.log using Guid(ed243ed8251c82e41ae400cedbd2ad26) (DefaultImporter) -> (artifact id: '00000000000000000000000000000000') in 0.0014564 seconds
+Import Error Code:(4)
+Message: Build asset version error: assets/sleepwalkingvisual/preview/visualbuildfinal.log in SourceAssetDB has modification time of '2026-11-13T23:56:15.350606Z' while content on disk has modification time of '2026-11-13T23:56:16.4347346Z'
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEditor.PrefabUtility:SaveAsPrefabAsset_Internal (UnityEngine.GameObject,string,bool&)
+UnityEditor.PrefabUtility:SaveAsPrefabAsset (UnityEngine.GameObject,string,bool&)
+UnityEditor.PrefabUtility:SaveAsPrefabAsset (UnityEngine.GameObject,string)
+Sleepwalking.Visual.Editor.VisualAssetBuilder:BuildTheme (Sleepwalking.Visual.DreamThemeId,UnityEngine.Material,UnityEngine.Material,UnityEngine.Material) (at Assets/SleepwalkingVisual/Editor/VisualAssetBuilder.cs:299)
+Sleepwalking.Visual.Editor.VisualAssetBuilder:BuildThemes () (at Assets/SleepwalkingVisual/Editor/VisualAssetBuilder.cs:255)
+Sleepwalking.Visual.Editor.VisualAssetBuilder:Build () (at Assets/SleepwalkingVisual/Editor/VisualAssetBuilder.cs:22)
+
+[Assets/SleepwalkingVisual/Editor/VisualAssetBuilder.cs line 255]
+
+An infinite import loop has been detected. The following Assets were imported multiple times, but no changes to them have been detected. Please check if any custom code is trying to import them:
+Assets/SleepwalkingVisual/Preview/VisualBuildFinal.log(modified date 2026-11-13T23:56:16.4367731Z)
+Assets/SleepwalkingVisual/Prefabs/Themes/Meat.prefab(modified date 2026-11-13T23:56:16.2699403Z)
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEditor.PrefabUtility:SaveAsPrefabAsset_Internal (UnityEngine.GameObject,string,bool&)
+UnityEditor.PrefabUtility:SaveAsPrefabAsset (UnityEngine.GameObject,string,bool&)
+UnityEditor.PrefabUtility:SaveAsPrefabAsset (UnityEngine.GameObject,string)
+Sleepwalking.Visual.Editor.VisualAssetBuilder:BuildTheme (Sleepwalking.Visual.DreamThemeId,UnityEngine.Material,UnityEngine.Material,UnityEngine.Material) (at Assets/SleepwalkingVisual/Editor/VisualAssetBuilder.cs:299)
+Sleepwalking.Visual.Editor.VisualAssetBuilder:BuildThemes () (at Assets/SleepwalkingVisual/Editor/VisualAssetBuilder.cs:255)
+Sleepwalking.Visual.Editor.VisualAssetBuilder:Build () (at Assets/SleepwalkingVisual/Editor/VisualAssetBuilder.cs:22)
+
+[Assets/SleepwalkingVisual/Editor/VisualAssetBuilder.cs line 255]
+
+Refreshing native plugins compatible for Editor in 1.07 ms, found 4 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Asset Pipeline Refresh (id=2a19279d9b875054d963b1d7ee7f548d): Total: 0.199 seconds - Initiated by StopAssetImportingV2(NoUpdateAssetOptions)
+Start importing Assets/SleepwalkingVisual/Preview/VisualBuildFinal.log using Guid(ed243ed8251c82e41ae400cedbd2ad26) (DefaultImporter) -> (artifact id: '00000000000000000000000000000000') in 0.0006439 seconds
+Import Error Code:(4)
+Message: Build asset version error: assets/sleepwalkingvisual/preview/visualbuildfinal.log in SourceAssetDB has modification time of '2026-11-13T23:56:15.350606Z' while content on disk has modification time of '2026-11-13T23:56:16.5207556Z'
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEditor.PrefabUtility:SaveAsPrefabAsset_Internal (UnityEngine.GameObject,string,bool&)
+UnityEditor.PrefabUtility:SaveAsPrefabAsset (UnityEngine.GameObject,string,bool&)
+UnityEditor.PrefabUtility:SaveAsPrefabAsset (UnityEngine.GameObject,string)
+Sleepwalking.Visual.Editor.VisualAssetBuilder:BuildTheme (Sleepwalking.Visual.DreamThemeId,UnityEngine.Material,UnityEngine.Material,UnityEngine.Material) (at Assets/SleepwalkingVisual/Editor/VisualAssetBuilder.cs:299)
+Sleepwalking.Visual.Editor.VisualAssetBuilder:BuildThemes () (at Assets/SleepwalkingVisual/Editor/VisualAssetBuilder.cs:256)
+Sleepwalking.Visual.Editor.VisualAssetBuilder:Build () (at Assets/SleepwalkingVisual/Editor/VisualAssetBuilder.cs:22)
+
+[Assets/SleepwalkingVisual/Editor/VisualAssetBuilder.cs line 256]
+
+'Assets/SleepwalkingVisual/Preview/VisualBuildFinal.log' Amount of processed bytes '53030' does not match file size '48707'
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEditor.PrefabUtility:SaveAsPrefabAsset_Internal (UnityEngine.GameObject,string,bool&)
+UnityEditor.PrefabUtility:SaveAsPrefabAsset (UnityEngine.GameObject,string,bool&)
+UnityEditor.PrefabUtility:SaveAsPrefabAsset (UnityEngine.GameObject,string)
+Sleepwalking.Visual.Editor.VisualAssetBuilder:BuildTheme (Sleepwalking.Visual.DreamThemeId,UnityEngine.Material,UnityEngine.Material,UnityEngine.Material) (at Assets/SleepwalkingVisual/Editor/VisualAssetBuilder.cs:299)
+Sleepwalking.Visual.Editor.VisualAssetBuilder:BuildThemes () (at Assets/SleepwalkingVisual/Editor/VisualAssetBuilder.cs:256)
+Sleepwalking.Visual.Editor.VisualAssetBuilder:Build () (at Assets/SleepwalkingVisual/Editor/VisualAssetBuilder.cs:22)
+
+[Assets/SleepwalkingVisual/Editor/VisualAssetBuilder.cs line 256]
+
+Start importing Assets/SleepwalkingVisual/Preview/VisualBuildFinal.log using Guid(ed243ed8251c82e41ae400cedbd2ad26) (DefaultImporter) -> (artifact id: '00000000000000000000000000000000') in 0.0007082 seconds
+Import Error Code:(4)
+Message: Build asset version error: assets/sleepwalkingvisual/preview/visualbuildfinal.log in SourceAssetDB has modification time of '2026-11-13T23:56:15.350606Z' while content on disk has modification time of '2026-11-13T23:56:16.535736Z'
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEditor.PrefabUtility:SaveAsPrefabAsset_Internal (UnityEngine.GameObject,string,bool&)
+UnityEditor.PrefabUtility:SaveAsPrefabAsset (UnityEngine.GameObject,string,bool&)
+UnityEditor.PrefabUtility:SaveAsPrefabAsset (UnityEngine.GameObject,string)
+Sleepwalking.Visual.Editor.VisualAssetBuilder:BuildTheme (Sleepwalking.Visual.DreamThemeId,UnityEngine.Material,UnityEngine.Material,UnityEngine.Material) (at Assets/SleepwalkingVisual/Editor/VisualAssetBuilder.cs:299)
+Sleepwalking.Visual.Editor.VisualAssetBuilder:BuildThemes () (at Assets/SleepwalkingVisual/Editor/VisualAssetBuilder.cs:256)
+Sleepwalking.Visual.Editor.VisualAssetBuilder:Build () (at Assets/SleepwalkingVisual/Editor/VisualAssetBuilder.cs:22)
+
+[Assets/SleepwalkingVisual/Editor/VisualAssetBuilder.cs line 256]
+
+'Assets/SleepwalkingVisual/Preview/VisualBuildFinal.log' Amount of processed bytes '55434' does not match file size '54058'
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEditor.PrefabUtility:SaveAsPrefabAsset_Internal (UnityEngine.GameObject,string,bool&)
+UnityEditor.PrefabUtility:SaveAsPrefabAsset (UnityEngine.GameObject,string,bool&)
+UnityEditor.PrefabUtility:SaveAsPrefabAsset (UnityEngine.GameObject,string)
+Sleepwalking.Visual.Editor.VisualAssetBuilder:BuildTheme (Sleepwalking.Visual.DreamThemeId,UnityEngine.Material,UnityEngine.Material,UnityEngine.Material) (at Assets/SleepwalkingVisual/Editor/VisualAssetBuilder.cs:299)
+Sleepwalking.Visual.Editor.VisualAssetBuilder:BuildThemes () (at Assets/SleepwalkingVisual/Editor/VisualAssetBuilder.cs:256)
+Sleepwalking.Visual.Editor.VisualAssetBuilder:Build () (at Assets/SleepwalkingVisual/Editor/VisualAssetBuilder.cs:22)
+
+[Assets/SleepwalkingVisual/Editor/VisualAssetBuilder.cs line 256]
+
+Start importing Assets/SleepwalkingVisual/Preview/VisualBuildFinal.log using Guid(ed243ed8251c82e41ae400cedbd2ad26) (DefaultImporter) -> (artifact id: '00000000000000000000000000000000') in 0.0006834 seconds
+Import Error Code:(4)
+Message: Build asset version error: assets/sleepwalkingvisual/preview/visualbuildfinal.log in SourceAssetDB has modification time of '2026-11-13T23:56:15.350606Z' while content on disk has modification time of '2026-11-13T23:56:16.5612304Z'
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEditor.PrefabUtility:SaveAsPrefabAsset_Internal (UnityEngine.GameObject,string,bool&)
+UnityEditor.PrefabUtility:SaveAsPrefabAsset (UnityEngine.GameObject,string,bool&)
+UnityEditor.PrefabUtility:SaveAsPrefabAsset (UnityEngine.GameObject,string)
+Sleepwalking.Visual.Editor.VisualAssetBuilder:BuildTheme (Sleepwalking.Visual.DreamThemeId,UnityEngine.Material,UnityEngine.Material,UnityEngine.Material) (at Assets/SleepwalkingVisual/Editor/VisualAssetBuilder.cs:299)
+Sleepwalking.Visual.Editor.VisualAssetBuilder:BuildThemes () (at Assets/SleepwalkingVisual/Editor/VisualAssetBuilder.cs:256)
+Sleepwalking.Visual.Editor.VisualAssetBuilder:Build () (at Assets/SleepwalkingVisual/Editor/VisualAssetBuilder.cs:22)
+
+[Assets/SleepwalkingVisual/Editor/VisualAssetBuilder.cs line 256]
+
+'Assets/SleepwalkingVisual/Preview/VisualBuildFinal.log' Amount of processed bytes '57839' does not match file size '56462'
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEditor.PrefabUtility:SaveAsPrefabAsset_Internal (UnityEngine.GameObject,string,bool&)
+UnityEditor.PrefabUtility:SaveAsPrefabAsset (UnityEngine.GameObject,string,bool&)
+UnityEditor.PrefabUtility:SaveAsPrefabAsset (UnityEngine.GameObject,string)
+Sleepwalking.Visual.Editor.VisualAssetBuilder:BuildTheme (Sleepwalking.Visual.DreamThemeId,UnityEngine.Material,UnityEngine.Material,UnityEngine.Material) (at Assets/SleepwalkingVisual/Editor/VisualAssetBuilder.cs:299)
+Sleepwalking.Visual.Editor.VisualAssetBuilder:BuildThemes () (at Assets/SleepwalkingVisual/Editor/VisualAssetBuilder.cs:256)
+Sleepwalking.Visual.Editor.VisualAssetBuilder:Build () (at Assets/SleepwalkingVisual/Editor/VisualAssetBuilder.cs:22)
+
+[Assets/SleepwalkingVisual/Editor/VisualAssetBuilder.cs line 256]
+
+Start importing Assets/SleepwalkingVisual/Preview/VisualBuildFinal.log using Guid(ed243ed8251c82e41ae400cedbd2ad26) (DefaultImporter) -> (artifact id: '00000000000000000000000000000000') in 0.000675 seconds
+Import Error Code:(4)
+Message: Build asset version error: assets/sleepwalkingvisual/preview/visualbuildfinal.log in SourceAssetDB has modification time of '2026-11-13T23:56:15.350606Z' while content on disk has modification time of '2026-11-13T23:56:16.5852425Z'
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEditor.PrefabUtility:SaveAsPrefabAsset_Internal (UnityEngine.GameObject,string,bool&)
+UnityEditor.PrefabUtility:SaveAsPrefabAsset (UnityEngine.GameObject,string,bool&)
+UnityEditor.PrefabUtility:SaveAsPrefabAsset (UnityEngine.GameObject,string)
+Sleepwalking.Visual.Editor.VisualAssetBuilder:BuildTheme (Sleepwalking.Visual.DreamThemeId,UnityEngine.Material,UnityEngine.Material,UnityEngine.Material) (at Assets/SleepwalkingVisual/Editor/VisualAssetBuilder.cs:299)
+Sleepwalking.Visual.Editor.VisualAssetBuilder:BuildThemes () (at Assets/SleepwalkingVisual/Editor/VisualAssetBuilder.cs:256)
+Sleepwalking.Visual.Editor.VisualAssetBuilder:Build () (at Assets/SleepwalkingVisual/Editor/VisualAssetBuilder.cs:22)
+
+[Assets/SleepwalkingVisual/Editor/VisualAssetBuilder.cs line 256]
+
+'Assets/SleepwalkingVisual/Preview/VisualBuildFinal.log' Amount of processed bytes '60243' does not match file size '58867'
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEditor.PrefabUtility:SaveAsPrefabAsset_Internal (UnityEngine.GameObject,string,bool&)
+UnityEditor.PrefabUtility:SaveAsPrefabAsset (UnityEngine.GameObject,string,bool&)
+UnityEditor.PrefabUtility:SaveAsPrefabAsset (UnityEngine.GameObject,string)
+Sleepwalking.Visual.Editor.VisualAssetBuilder:BuildTheme (Sleepwalking.Visual.DreamThemeId,UnityEngine.Material,UnityEngine.Material,UnityEngine.Material) (at Assets/SleepwalkingVisual/Editor/VisualAssetBuilder.cs:299)
+Sleepwalking.Visual.Editor.VisualAssetBuilder:BuildThemes () (at Assets/SleepwalkingVisual/Editor/VisualAssetBuilder.cs:256)
+Sleepwalking.Visual.Editor.VisualAssetBuilder:Build () (at Assets/SleepwalkingVisual/Editor/VisualAssetBuilder.cs:22)
+
+[Assets/SleepwalkingVisual/Editor/VisualAssetBuilder.cs line 256]
+
+Start importing Assets/SleepwalkingVisual/Preview/VisualBuildFinal.log using Guid(ed243ed8251c82e41ae400cedbd2ad26) (DefaultImporter) -> (artifact id: '00000000000000000000000000000000') in 0.0007274 seconds
+Import Error Code:(4)
+Message: Build asset version error: assets/sleepwalkingvisual/preview/visualbuildfinal.log in SourceAssetDB has modification time of '2026-11-13T23:56:15.350606Z' while content on disk has modification time of '2026-11-13T23:56:16.6104285Z'
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEditor.PrefabUtility:SaveAsPrefabAsset_Internal (UnityEngine.GameObject,string,bool&)
+UnityEditor.PrefabUtility:SaveAsPrefabAsset (UnityEngine.GameObject,string,bool&)
+UnityEditor.PrefabUtility:SaveAsPrefabAsset (UnityEngine.GameObject,string)
+Sleepwalking.Visual.Editor.VisualAssetBuilder:BuildTheme (Sleepwalking.Visual.DreamThemeId,UnityEngine.Material,UnityEngine.Material,UnityEngine.Material) (at Assets/SleepwalkingVisual/Editor/VisualAssetBuilder.cs:299)
+Sleepwalking.Visual.Editor.VisualAssetBuilder:BuildThemes () (at Assets/SleepwalkingVisual/Editor/VisualAssetBuilder.cs:256)
+Sleepwalking.Visual.Editor.VisualAssetBuilder:Build () (at Assets/SleepwalkingVisual/Editor/VisualAssetBuilder.cs:22)
+
+[Assets/SleepwalkingVisual/Editor/VisualAssetBuilder.cs line 256]
+
+'Assets/SleepwalkingVisual/Preview/VisualBuildFinal.log' Amount of processed bytes '62648' does not match file size '61271'
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEditor.PrefabUtility:SaveAsPrefabAsset_Internal (UnityEngine.GameObject,string,bool&)
+UnityEditor.PrefabUtility:SaveAsPrefabAsset (UnityEngine.GameObject,string,bool&)
+UnityEditor.PrefabUtility:SaveAsPrefabAsset (UnityEngine.GameObject,string)
+Sleepwalking.Visual.Editor.VisualAssetBuilder:BuildTheme (Sleepwalking.Visual.DreamThemeId,UnityEngine.Material,UnityEngine.Material,UnityEngine.Material) (at Assets/SleepwalkingVisual/Editor/VisualAssetBuilder.cs:299)
+Sleepwalking.Visual.Editor.VisualAssetBuilder:BuildThemes () (at Assets/SleepwalkingVisual/Editor/VisualAssetBuilder.cs:256)
+Sleepwalking.Visual.Editor.VisualAssetBuilder:Build () (at Assets/SleepwalkingVisual/Editor/VisualAssetBuilder.cs:22)
+
+[Assets/SleepwalkingVisual/Editor/VisualAssetBuilder.cs line 256]
+
+Start importing Assets/SleepwalkingVisual/Preview/VisualBuildFinal.log using Guid(ed243ed8251c82e41ae400cedbd2ad26) (DefaultImporter) -> (artifact id: '00000000000000000000000000000000') in 0.0007529 seconds
+Import Error Code:(4)
+Message: Build asset version error: assets/sleepwalkingvisual/preview/visualbuildfinal.log in SourceAssetDB has modification time of '2026-11-13T23:56:15.350606Z' while content on disk has modification time of '2026-11-13T23:56:16.6315782Z'
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEditor.PrefabUtility:SaveAsPrefabAsset_Internal (UnityEngine.GameObject,string,bool&)
+UnityEditor.PrefabUtility:SaveAsPrefabAsset (UnityEngine.GameObject,string,bool&)
+UnityEditor.PrefabUtility:SaveAsPrefabAsset (UnityEngine.GameObject,string)
+Sleepwalking.Visual.Editor.VisualAssetBuilder:BuildTheme (Sleepwalking.Visual.DreamThemeId,UnityEngine.Material,UnityEngine.Material,UnityEngine.Material) (at Assets/SleepwalkingVisual/Editor/VisualAssetBuilder.cs:299)
+Sleepwalking.Visual.Editor.VisualAssetBuilder:BuildThemes () (at Assets/SleepwalkingVisual/Editor/VisualAssetBuilder.cs:256)
+Sleepwalking.Visual.Editor.VisualAssetBuilder:Build () (at Assets/SleepwalkingVisual/Editor/VisualAssetBuilder.cs:22)
+
+[Assets/SleepwalkingVisual/Editor/VisualAssetBuilder.cs line 256]
+
+'Assets/SleepwalkingVisual/Preview/VisualBuildFinal.log' Amount of processed bytes '65053' does not match file size '63676'
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEditor.PrefabUtility:SaveAsPrefabAsset_Internal (UnityEngine.GameObject,string,bool&)
+UnityEditor.PrefabUtility:SaveAsPrefabAsset (UnityEngine.GameObject,string,bool&)
+UnityEditor.PrefabUtility:SaveAsPrefabAsset (UnityEngine.GameObject,string)
+Sleepwalking.Visual.Editor.VisualAssetBuilder:BuildTheme (Sleepwalking.Visual.DreamThemeId,UnityEngine.Material,UnityEngine.Material,UnityEngine.Material) (at Assets/SleepwalkingVisual/Editor/VisualAssetBuilder.cs:299)
+Sleepwalking.Visual.Editor.VisualAssetBuilder:BuildThemes () (at Assets/SleepwalkingVisual/Editor/VisualAssetBuilder.cs:256)
+Sleepwalking.Visual.Editor.VisualAssetBuilder:Build () (at Assets/SleepwalkingVisual/Editor/VisualAssetBuilder.cs:22)
+
+[Assets/SleepwalkingVisual/Editor/VisualAssetBuilder.cs line 256]
+
+Start importing Assets/SleepwalkingVisual/Preview/VisualBuildFinal.log using Guid(ed243ed8251c82e41ae400cedbd2ad26) (DefaultImporter) -> (artifact id: '00000000000000000000000000000000') in 0.0007498 seconds
+Import Error Code:(4)
+Message: Build asset version error: assets/sleepwalkingvisual/preview/visualbuildfinal.log in SourceAssetDB has modification time of '2026-11-13T23:56:15.350606Z' while content on disk has modification time of '2026-11-13T23:56:16.6573222Z'
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEditor.PrefabUtility:SaveAsPrefabAsset_Internal (UnityEngine.GameObject,string,bool&)
+UnityEditor.PrefabUtility:SaveAsPrefabAsset (UnityEngine.GameObject,string,bool&)
+UnityEditor.PrefabUtility:SaveAsPrefabAsset (UnityEngine.GameObject,string)
+Sleepwalking.Visual.Editor.VisualAssetBuilder:BuildTheme (Sleepwalking.Visual.DreamThemeId,UnityEngine.Material,UnityEngine.Material,UnityEngine.Material) (at Assets/SleepwalkingVisual/Editor/VisualAssetBuilder.cs:299)
+Sleepwalking.Visual.Editor.VisualAssetBuilder:BuildThemes () (at Assets/SleepwalkingVisual/Editor/VisualAssetBuilder.cs:256)
+Sleepwalking.Visual.Editor.VisualAssetBuilder:Build () (at Assets/SleepwalkingVisual/Editor/VisualAssetBuilder.cs:22)
+
+[Assets/SleepwalkingVisual/Editor/VisualAssetBuilder.cs line 256]
+
+An infinite import loop has been detected. The following Assets were imported multiple times, but no changes to them have been detected. Please check if any custom code is trying to import them:
+Assets/SleepwalkingVisual/Prefabs/Themes/PostApocalypse.prefab(modified date 2026-11-13T23:56:16.4918772Z)
+Assets/SleepwalkingVisual/Preview/VisualBuildFinal.log(modified date 2026-11-13T23:56:16.6573222Z)
+Assets/SleepwalkingVisual/Prefabs/Themes/Meat.prefab(modified date 2026-11-13T23:56:16.2699403Z)
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEditor.PrefabUtility:SaveAsPrefabAsset_Internal (UnityEngine.GameObject,string,bool&)
+UnityEditor.PrefabUtility:SaveAsPrefabAsset (UnityEngine.GameObject,string,bool&)
+UnityEditor.PrefabUtility:SaveAsPrefabAsset (UnityEngine.GameObject,string)
+Sleepwalking.Visual.Editor.VisualAssetBuilder:BuildTheme (Sleepwalking.Visual.DreamThemeId,UnityEngine.Material,UnityEngine.Material,UnityEngine.Material) (at Assets/SleepwalkingVisual/Editor/VisualAssetBuilder.cs:299)
+Sleepwalking.Visual.Editor.VisualAssetBuilder:BuildThemes () (at Assets/SleepwalkingVisual/Editor/VisualAssetBuilder.cs:256)
+Sleepwalking.Visual.Editor.VisualAssetBuilder:Build () (at Assets/SleepwalkingVisual/Editor/VisualAssetBuilder.cs:22)
+
+[Assets/SleepwalkingVisual/Editor/VisualAssetBuilder.cs line 256]
+
+Refreshing native plugins compatible for Editor in 1.05 ms, found 4 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Asset Pipeline Refresh (id=30a199c8caef206429d2f50c2e68e815): Total: 0.169 seconds - Initiated by StopAssetImportingV2(NoUpdateAssetOptions)
+Start importing Assets/SleepwalkingVisual/Preview/VisualBuildFinal.log using Guid(ed243ed8251c82e41ae400cedbd2ad26) (DefaultImporter) -> (artifact id: '00000000000000000000000000000000') in 0.0007569 seconds
+Import Error Code:(4)
+Message: Build asset version error: assets/sleepwalkingvisual/preview/visualbuildfinal.log in SourceAssetDB has modification time of '2026-11-13T23:56:15.350606Z' while content on disk has modification time of '2026-11-13T23:56:16.6950037Z'
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEditor.PrefabUtility:SaveAsPrefabAsset_Internal (UnityEngine.GameObject,string,bool&)
+UnityEditor.PrefabUtility:SaveAsPrefabAsset (UnityEngine.GameObject,string,bool&)
+UnityEditor.PrefabUtility:SaveAsPrefabAsset (UnityEngine.GameObject,string)
+Sleepwalking.Visual.Editor.VisualAssetBuilder:BuildTheme (Sleepwalking.Visual.DreamThemeId,UnityEngine.Material,UnityEngine.Material,UnityEngine.Material) (at Assets/SleepwalkingVisual/Editor/VisualAssetBuilder.cs:299)
+Sleepwalking.Visual.Editor.VisualAssetBuilder:BuildThemes () (at Assets/SleepwalkingVisual/Editor/VisualAssetBuilder.cs:257)
+Sleepwalking.Visual.Editor.VisualAssetBuilder:Build () (at Assets/SleepwalkingVisual/Editor/VisualAssetBuilder.cs:22)
+
+[Assets/SleepwalkingVisual/Editor/VisualAssetBuilder.cs line 257]
+
+'Assets/SleepwalkingVisual/Preview/VisualBuildFinal.log' Amount of processed bytes '70512' does not match file size '66081'
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEditor.PrefabUtility:SaveAsPrefabAsset_Internal (UnityEngine.GameObject,string,bool&)
+UnityEditor.PrefabUtility:SaveAsPrefabAsset (UnityEngine.GameObject,string,bool&)
+UnityEditor.PrefabUtility:SaveAsPrefabAsset (UnityEngine.GameObject,string)
+Sleepwalking.Visual.Editor.VisualAssetBuilder:BuildTheme (Sleepwalking.Visual.DreamThemeId,UnityEngine.Material,UnityEngine.Material,UnityEngine.Material) (at Assets/SleepwalkingVisual/Editor/VisualAssetBuilder.cs:299)
+Sleepwalking.Visual.Editor.VisualAssetBuilder:BuildThemes () (at Assets/SleepwalkingVisual/Editor/VisualAssetBuilder.cs:257)
+Sleepwalking.Visual.Editor.VisualAssetBuilder:Build () (at Assets/SleepwalkingVisual/Editor/VisualAssetBuilder.cs:22)
+
+[Assets/SleepwalkingVisual/Editor/VisualAssetBuilder.cs line 257]
+
+Start importing Assets/SleepwalkingVisual/Preview/VisualBuildFinal.log using Guid(ed243ed8251c82e41ae400cedbd2ad26) (DefaultImporter) -> (artifact id: '00000000000000000000000000000000') in 0.0006465 seconds
+Import Error Code:(4)
+Message: Build asset version error: assets/sleepwalkingvisual/preview/visualbuildfinal.log in SourceAssetDB has modification time of '2026-11-13T23:56:15.350606Z' while content on disk has modification time of '2026-11-13T23:56:16.7151086Z'
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEditor.PrefabUtility:SaveAsPrefabAsset_Internal (UnityEngine.GameObject,string,bool&)
+UnityEditor.PrefabUtility:SaveAsPrefabAsset (UnityEngine.GameObject,string,bool&)
+UnityEditor.PrefabUtility:SaveAsPrefabAsset (UnityEngine.GameObject,string)
+Sleepwalking.Visual.Editor.VisualAssetBuilder:BuildTheme (Sleepwalking.Visual.DreamThemeId,UnityEngine.Material,UnityEngine.Material,UnityEngine.Material) (at Assets/SleepwalkingVisual/Editor/VisualAssetBuilder.cs:299)
+Sleepwalking.Visual.Editor.VisualAssetBuilder:BuildThemes () (at Assets/SleepwalkingVisual/Editor/VisualAssetBuilder.cs:257)
+Sleepwalking.Visual.Editor.VisualAssetBuilder:Build () (at Assets/SleepwalkingVisual/Editor/VisualAssetBuilder.cs:22)
+
+[Assets/SleepwalkingVisual/Editor/VisualAssetBuilder.cs line 257]
+
+'Assets/SleepwalkingVisual/Preview/VisualBuildFinal.log' Amount of processed bytes '72917' does not match file size '71540'
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEditor.PrefabUtility:SaveAsPrefabAsset_Internal (UnityEngine.GameObject,string,bool&)
+UnityEditor.PrefabUtility:SaveAsPrefabAsset (UnityEngine.GameObject,string,bool&)
+UnityEditor.PrefabUtility:SaveAsPrefabAsset (UnityEngine.GameObject,string)
+Sleepwalking.Visual.Editor.VisualAssetBuilder:BuildTheme (Sleepwalking.Visual.DreamThemeId,UnityEngine.Material,UnityEngine.Material,UnityEngine.Material) (at Assets/SleepwalkingVisual/Editor/VisualAssetBuilder.cs:299)
+Sleepwalking.Visual.Editor.VisualAssetBuilder:BuildThemes () (at Assets/SleepwalkingVisual/Editor/VisualAssetBuilder.cs:257)
+Sleepwalking.Visual.Editor.VisualAssetBuilder:Build () (at Assets/SleepwalkingVisual/Editor/VisualAssetBuilder.cs:22)
+
+[Assets/SleepwalkingVisual/Editor/VisualAssetBuilder.cs line 257]
+
+Start importing Assets/SleepwalkingVisual/Preview/VisualBuildFinal.log using Guid(ed243ed8251c82e41ae400cedbd2ad26) (DefaultImporter) -> (artifact id: '00000000000000000000000000000000') in 0.0007644 seconds
+Import Error Code:(4)
+Message: Build asset version error: assets/sleepwalkingvisual/preview/visualbuildfinal.log in SourceAssetDB has modification time of '2026-11-13T23:56:15.350606Z' while content on disk has modification time of '2026-11-13T23:56:16.7433496Z'
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEditor.PrefabUtility:SaveAsPrefabAsset_Internal (UnityEngine.GameObject,string,bool&)
+UnityEditor.PrefabUtility:SaveAsPrefabAsset (UnityEngine.GameObject,string,bool&)
+UnityEditor.PrefabUtility:SaveAsPrefabAsset (UnityEngine.GameObject,string)
+Sleepwalking.Visual.Editor.VisualAssetBuilder:BuildTheme (Sleepwalking.Visual.DreamThemeId,UnityEngine.Material,UnityEngine.Material,UnityEngine.Material) (at Assets/SleepwalkingVisual/Editor/VisualAssetBuilder.cs:299)
+Sleepwalking.Visual.Editor.VisualAssetBuilder:BuildThemes () (at Assets/SleepwalkingVisual/Editor/VisualAssetBuilder.cs:257)
+Sleepwalking.Visual.Editor.VisualAssetBuilder:Build () (at Assets/SleepwalkingVisual/Editor/VisualAssetBuilder.cs:22)
+
+[Assets/SleepwalkingVisual/Editor/VisualAssetBuilder.cs line 257]
+
+'Assets/SleepwalkingVisual/Preview/VisualBuildFinal.log' Amount of processed bytes '75322' does not match file size '73945'
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEditor.PrefabUtility:SaveAsPrefabAsset_Internal (UnityEngine.GameObject,string,bool&)
+UnityEditor.PrefabUtility:SaveAsPrefabAsset (UnityEngine.GameObject,string,bool&)
+UnityEditor.PrefabUtility:SaveAsPrefabAsset (UnityEngine.GameObject,string)
+Sleepwalking.Visual.Editor.VisualAssetBuilder:BuildTheme (Sleepwalking.Visual.DreamThemeId,UnityEngine.Material,UnityEngine.Material,UnityEngine.Material) (at Assets/SleepwalkingVisual/Editor/VisualAssetBuilder.cs:299)
+Sleepwalking.Visual.Editor.VisualAssetBuilder:BuildThemes () (at Assets/SleepwalkingVisual/Editor/VisualAssetBuilder.cs:257)
+Sleepwalking.Visual.Editor.VisualAssetBuilder:Build () (at Assets/SleepwalkingVisual/Editor/VisualAssetBuilder.cs:22)
+
+[Assets/SleepwalkingVisual/Editor/VisualAssetBuilder.cs line 257]
+
+Start importing Assets/SleepwalkingVisual/Preview/VisualBuildFinal.log using Guid(ed243ed8251c82e41ae400cedbd2ad26) (DefaultImporter) -> (artifact id: '00000000000000000000000000000000') in 0.0007394 seconds
+Import Error Code:(4)
+Message: Build asset version error: assets/sleepwalkingvisual/preview/visualbuildfinal.log in SourceAssetDB has modification time of '2026-11-13T23:56:15.350606Z' while content on disk has modification time of '2026-11-13T23:56:16.7695627Z'
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEditor.PrefabUtility:SaveAsPrefabAsset_Internal (UnityEngine.GameObject,string,bool&)
+UnityEditor.PrefabUtility:SaveAsPrefabAsset (UnityEngine.GameObject,string,bool&)
+UnityEditor.PrefabUtility:SaveAsPrefabAsset (UnityEngine.GameObject,string)
+Sleepwalking.Visual.Editor.VisualAssetBuilder:BuildTheme (Sleepwalking.Visual.DreamThemeId,UnityEngine.Material,UnityEngine.Material,UnityEngine.Material) (at Assets/SleepwalkingVisual/Editor/VisualAssetBuilder.cs:299)
+Sleepwalking.Visual.Editor.VisualAssetBuilder:BuildThemes () (at Assets/SleepwalkingVisual/Editor/VisualAssetBuilder.cs:257)
+Sleepwalking.Visual.Editor.VisualAssetBuilder:Build () (at Assets/SleepwalkingVisual/Editor/VisualAssetBuilder.cs:22)
+
+[Assets/SleepwalkingVisual/Editor/VisualAssetBuilder.cs line 257]
+
+'Assets/SleepwalkingVisual/Preview/VisualBuildFinal.log' Amount of processed bytes '77727' does not match file size '76350'
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEditor.PrefabUtility:SaveAsPrefabAsset_Internal (UnityEngine.GameObject,string,bool&)
+UnityEditor.PrefabUtility:SaveAsPrefabAsset (UnityEngine.GameObject,string,bool&)
+UnityEditor.PrefabUtility:SaveAsPrefabAsset (UnityEngine.GameObject,string)
+Sleepwalking.Visual.Editor.VisualAssetBuilder:BuildTheme (Sleepwalking.Visual.DreamThemeId,UnityEngine.Material,UnityEngine.Material,UnityEngine.Material) (at Assets/SleepwalkingVisual/Editor/VisualAssetBuilder.cs:299)
+Sleepwalking.Visual.Editor.VisualAssetBuilder:BuildThemes () (at Assets/SleepwalkingVisual/Editor/VisualAssetBuilder.cs:257)
+Sleepwalking.Visual.Editor.VisualAssetBuilder:Build () (at Assets/SleepwalkingVisual/Editor/VisualAssetBuilder.cs:22)
+
+[Assets/SleepwalkingVisual/Editor/VisualAssetBuilder.cs line 257]
+
+Start importing Assets/SleepwalkingVisual/Preview/VisualBuildFinal.log using Guid(ed243ed8251c82e41ae400cedbd2ad26) (DefaultImporter) -> (artifact id: '00000000000000000000000000000000') in 0.0006803 seconds
+Import Error Code:(4)
+Message: Build asset version error: assets/sleepwalkingvisual/preview/visualbuildfinal.log in SourceAssetDB has modification time of '2026-11-13T23:56:15.350606Z' while content on disk has modification time of '2026-11-13T23:56:16.7989448Z'
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEditor.PrefabUtility:SaveAsPrefabAsset_Internal (UnityEngine.GameObject,string,bool&)
+UnityEditor.PrefabUtility:SaveAsPrefabAsset (UnityEngine.GameObject,string,bool&)
+UnityEditor.PrefabUtility:SaveAsPrefabAsset (UnityEngine.GameObject,string)
+Sleepwalking.Visual.Editor.VisualAssetBuilder:BuildTheme (Sleepwalking.Visual.DreamThemeId,UnityEngine.Material,UnityEngine.Material,UnityEngine.Material) (at Assets/SleepwalkingVisual/Editor/VisualAssetBuilder.cs:299)
+Sleepwalking.Visual.Editor.VisualAssetBuilder:BuildThemes () (at Assets/SleepwalkingVisual/Editor/VisualAssetBuilder.cs:257)
+Sleepwalking.Visual.Editor.VisualAssetBuilder:Build () (at Assets/SleepwalkingVisual/Editor/VisualAssetBuilder.cs:22)
+
+[Assets/SleepwalkingVisual/Editor/VisualAssetBuilder.cs line 257]
+
+'Assets/SleepwalkingVisual/Preview/VisualBuildFinal.log' Amount of processed bytes '80132' does not match file size '78755'
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEditor.PrefabUtility:SaveAsPrefabAsset_Internal (UnityEngine.GameObject,string,bool&)
+UnityEditor.PrefabUtility:SaveAsPrefabAsset (UnityEngine.GameObject,string,bool&)
+UnityEditor.PrefabUtility:SaveAsPrefabAsset (UnityEngine.GameObject,string)
+Sleepwalking.Visual.Editor.VisualAssetBuilder:BuildTheme (Sleepwalking.Visual.DreamThemeId,UnityEngine.Material,UnityEngine.Material,UnityEngine.Material) (at Assets/SleepwalkingVisual/Editor/VisualAssetBuilder.cs:299)
+Sleepwalking.Visual.Editor.VisualAssetBuilder:BuildThemes () (at Assets/SleepwalkingVisual/Editor/VisualAssetBuilder.cs:257)
+Sleepwalking.Visual.Editor.VisualAssetBuilder:Build () (at Assets/SleepwalkingVisual/Editor/VisualAssetBuilder.cs:22)
+
+[Assets/SleepwalkingVisual/Editor/VisualAssetBuilder.cs line 257]
+
+Start importing Assets/SleepwalkingVisual/Preview/VisualBuildFinal.log using Guid(ed243ed8251c82e41ae400cedbd2ad26) (DefaultImporter) -> (artifact id: '00000000000000000000000000000000') in 0.000853 seconds
+Import Error Code:(4)
+Message: Build asset version error: assets/sleepwalkingvisual/preview/visualbuildfinal.log in SourceAssetDB has modification time of '2026-11-13T23:56:15.350606Z' while content on disk has modification time of '2026-11-13T23:56:16.8281566Z'
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEditor.PrefabUtility:SaveAsPrefabAsset_Internal (UnityEngine.GameObject,string,bool&)
+UnityEditor.PrefabUtility:SaveAsPrefabAsset (UnityEngine.GameObject,string,bool&)
+UnityEditor.PrefabUtility:SaveAsPrefabAsset (UnityEngine.GameObject,string)
+Sleepwalking.Visual.Editor.VisualAssetBuilder:BuildTheme (Sleepwalking.Visual.DreamThemeId,UnityEngine.Material,UnityEngine.Material,UnityEngine.Material) (at Assets/SleepwalkingVisual/Editor/VisualAssetBuilder.cs:299)
+Sleepwalking.Visual.Editor.VisualAssetBuilder:BuildThemes () (at Assets/SleepwalkingVisual/Editor/VisualAssetBuilder.cs:257)
+Sleepwalking.Visual.Editor.VisualAssetBuilder:Build () (at Assets/SleepwalkingVisual/Editor/VisualAssetBuilder.cs:22)
+
+[Assets/SleepwalkingVisual/Editor/VisualAssetBuilder.cs line 257]
+
+'Assets/SleepwalkingVisual/Preview/VisualBuildFinal.log' Amount of processed bytes '82536' does not match file size '81160'
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEditor.PrefabUtility:SaveAsPrefabAsset_Internal (UnityEngine.GameObject,string,bool&)
+UnityEditor.PrefabUtility:SaveAsPrefabAsset (UnityEngine.GameObject,string,bool&)
+UnityEditor.PrefabUtility:SaveAsPrefabAsset (UnityEngine.GameObject,string)
+Sleepwalking.Visual.Editor.VisualAssetBuilder:BuildTheme (Sleepwalking.Visual.DreamThemeId,UnityEngine.Material,UnityEngine.Material,UnityEngine.Material) (at Assets/SleepwalkingVisual/Editor/VisualAssetBuilder.cs:299)
+Sleepwalking.Visual.Editor.VisualAssetBuilder:BuildThemes () (at Assets/SleepwalkingVisual/Editor/VisualAssetBuilder.cs:257)
+Sleepwalking.Visual.Editor.VisualAssetBuilder:Build () (at Assets/SleepwalkingVisual/Editor/VisualAssetBuilder.cs:22)
+
+[Assets/SleepwalkingVisual/Editor/VisualAssetBuilder.cs line 257]
+
+Start importing Assets/SleepwalkingVisual/Preview/VisualBuildFinal.log using Guid(ed243ed8251c82e41ae400cedbd2ad26) (DefaultImporter) -> (artifact id: '00000000000000000000000000000000') in 0.0007874 seconds
+Import Error Code:(4)
+Message: Build asset version error: assets/sleepwalkingvisual/preview/visualbuildfinal.log in SourceAssetDB has modification time of '2026-11-13T23:56:15.350606Z' while content on disk has modification time of '2026-11-13T23:56:16.8558029Z'
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEditor.PrefabUtility:SaveAsPrefabAsset_Internal (UnityEngine.GameObject,string,bool&)
+UnityEditor.PrefabUtility:SaveAsPrefabAsset (UnityEngine.GameObject,string,bool&)
+UnityEditor.PrefabUtility:SaveAsPrefabAsset (UnityEngine.GameObject,string)
+Sleepwalking.Visual.Editor.VisualAssetBuilder:BuildTheme (Sleepwalking.Visual.DreamThemeId,UnityEngine.Material,UnityEngine.Material,UnityEngine.Material) (at Assets/SleepwalkingVisual/Editor/VisualAssetBuilder.cs:299)
+Sleepwalking.Visual.Editor.VisualAssetBuilder:BuildThemes () (at Assets/SleepwalkingVisual/Editor/VisualAssetBuilder.cs:257)
+Sleepwalking.Visual.Editor.VisualAssetBuilder:Build () (at Assets/SleepwalkingVisual/Editor/VisualAssetBuilder.cs:22)
+
+[Assets/SleepwalkingVisual/Editor/VisualAssetBuilder.cs line 257]
+
+An infinite import loop has been detected. The following Assets were imported multiple times, but no changes to them have been detected. Please check if any custom code is trying to import them:
+Assets/SleepwalkingVisual/Prefabs/Themes/PostApocalypse.prefab(modified date 2026-11-13T23:56:16.4918772Z)
+Assets/SleepwalkingVisual/Preview/VisualBuildFinal.log(modified date 2026-11-13T23:56:16.8568037Z)
+Assets/SleepwalkingVisual/Prefabs/Themes/Meat.prefab(modified date 2026-11-13T23:56:16.2699403Z)
+Assets/SleepwalkingVisual/Prefabs/Themes/DeepWater.prefab(modified date 2026-11-13T23:56:16.6643468Z)
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEditor.PrefabUtility:SaveAsPrefabAsset_Internal (UnityEngine.GameObject,string,bool&)
+UnityEditor.PrefabUtility:SaveAsPrefabAsset (UnityEngine.GameObject,string,bool&)
+UnityEditor.PrefabUtility:SaveAsPrefabAsset (UnityEngine.GameObject,string)
+Sleepwalking.Visual.Editor.VisualAssetBuilder:BuildTheme (Sleepwalking.Visual.DreamThemeId,UnityEngine.Material,UnityEngine.Material,UnityEngine.Material) (at Assets/SleepwalkingVisual/Editor/VisualAssetBuilder.cs:299)
+Sleepwalking.Visual.Editor.VisualAssetBuilder:BuildThemes () (at Assets/SleepwalkingVisual/Editor/VisualAssetBuilder.cs:257)
+Sleepwalking.Visual.Editor.VisualAssetBuilder:Build () (at Assets/SleepwalkingVisual/Editor/VisualAssetBuilder.cs:22)
+
+[Assets/SleepwalkingVisual/Editor/VisualAssetBuilder.cs line 257]
+
+Refreshing native plugins compatible for Editor in 1.06 ms, found 4 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Asset Pipeline Refresh (id=c3b2eda4c8a122843bfab73ab2f714bc): Total: 0.197 seconds - Initiated by StopAssetImportingV2(NoUpdateAssetOptions)
+Start importing Assets/SleepwalkingVisual/Preview/VisualBuildFinal.log using Guid(ed243ed8251c82e41ae400cedbd2ad26) (DefaultImporter) -> (artifact id: '00000000000000000000000000000000') in 0.0025796 seconds
+Import Error Code:(4)
+Message: Build asset version error: assets/sleepwalkingvisual/preview/visualbuildfinal.log in SourceAssetDB has modification time of '2026-11-13T23:56:15.350606Z' while content on disk has modification time of '2026-11-13T23:56:16.9013114Z'
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEditor.PrefabUtility:SaveAsPrefabAsset_Internal (UnityEngine.GameObject,string,bool&)
+UnityEditor.PrefabUtility:SaveAsPrefabAsset (UnityEngine.GameObject,string,bool&)
+UnityEditor.PrefabUtility:SaveAsPrefabAsset (UnityEngine.GameObject,string)
+Sleepwalking.Visual.Editor.VisualAssetBuilder:BuildTheme (Sleepwalking.Visual.DreamThemeId,UnityEngine.Material,UnityEngine.Material,UnityEngine.Material) (at Assets/SleepwalkingVisual/Editor/VisualAssetBuilder.cs:299)
+Sleepwalking.Visual.Editor.VisualAssetBuilder:BuildThemes () (at Assets/SleepwalkingVisual/Editor/VisualAssetBuilder.cs:258)
+Sleepwalking.Visual.Editor.VisualAssetBuilder:Build () (at Assets/SleepwalkingVisual/Editor/VisualAssetBuilder.cs:22)
+
+[Assets/SleepwalkingVisual/Editor/VisualAssetBuilder.cs line 258]
+
+'Assets/SleepwalkingVisual/Preview/VisualBuildFinal.log' Amount of processed bytes '88098' does not match file size '83564'
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEditor.PrefabUtility:SaveAsPrefabAsset_Internal (UnityEngine.GameObject,string,bool&)
+UnityEditor.PrefabUtility:SaveAsPrefabAsset (UnityEngine.GameObject,string,bool&)
+UnityEditor.PrefabUtility:SaveAsPrefabAsset (UnityEngine.GameObject,string)
+Sleepwalking.Visual.Editor.VisualAssetBuilder:BuildTheme (Sleepwalking.Visual.DreamThemeId,UnityEngine.Material,UnityEngine.Material,UnityEngine.Material) (at Assets/SleepwalkingVisual/Editor/VisualAssetBuilder.cs:299)
+Sleepwalking.Visual.Editor.VisualAssetBuilder:BuildThemes () (at Assets/SleepwalkingVisual/Editor/VisualAssetBuilder.cs:258)
+Sleepwalking.Visual.Editor.VisualAssetBuilder:Build () (at Assets/SleepwalkingVisual/Editor/VisualAssetBuilder.cs:22)
+
+[Assets/SleepwalkingVisual/Editor/VisualAssetBuilder.cs line 258]
+
+Start importing Assets/SleepwalkingVisual/Preview/VisualBuildFinal.log using Guid(ed243ed8251c82e41ae400cedbd2ad26) (DefaultImporter) -> (artifact id: '00000000000000000000000000000000') in 0.0016298 seconds
+Import Error Code:(4)
+Message: Build asset version error: assets/sleepwalkingvisual/preview/visualbuildfinal.log in SourceAssetDB has modification time of '2026-11-13T23:56:15.350606Z' while content on disk has modification time of '2026-11-13T23:56:16.922775Z'
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEditor.PrefabUtility:SaveAsPrefabAsset_Internal (UnityEngine.GameObject,string,bool&)
+UnityEditor.PrefabUtility:SaveAsPrefabAsset (UnityEngine.GameObject,string,bool&)
+UnityEditor.PrefabUtility:SaveAsPrefabAsset (UnityEngine.GameObject,string)
+Sleepwalking.Visual.Editor.VisualAssetBuilder:BuildTheme (Sleepwalking.Visual.DreamThemeId,UnityEngine.Material,UnityEngine.Material,UnityEngine.Material) (at Assets/SleepwalkingVisual/Editor/VisualAssetBuilder.cs:299)
+Sleepwalking.Visual.Editor.VisualAssetBuilder:BuildThemes () (at Assets/SleepwalkingVisual/Editor/VisualAssetBuilder.cs:258)
+Sleepwalking.Visual.Editor.VisualAssetBuilder:Build () (at Assets/SleepwalkingVisual/Editor/VisualAssetBuilder.cs:22)
+
+[Assets/SleepwalkingVisual/Editor/VisualAssetBuilder.cs line 258]
+
+'Assets/SleepwalkingVisual/Preview/VisualBuildFinal.log' Amount of processed bytes '90502' does not match file size '89126'
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEditor.PrefabUtility:SaveAsPrefabAsset_Internal (UnityEngine.GameObject,string,bool&)
+UnityEditor.PrefabUtility:SaveAsPrefabAsset (UnityEngine.GameObject,string,bool&)
+UnityEditor.PrefabUtility:SaveAsPrefabAsset (UnityEngine.GameObject,string)
+Sleepwalking.Visual.Editor.VisualAssetBuilder:BuildTheme (Sleepwalking.Visual.DreamThemeId,UnityEngine.Material,UnityEngine.Material,UnityEngine.Material) (at Assets/SleepwalkingVisual/Editor/VisualAssetBuilder.cs:299)
+Sleepwalking.Visual.Editor.VisualAssetBuilder:BuildThemes () (at Assets/SleepwalkingVisual/Editor/VisualAssetBuilder.cs:258)
+Sleepwalking.Visual.Editor.VisualAssetBuilder:Build () (at Assets/SleepwalkingVisual/Editor/VisualAssetBuilder.cs:22)
+
+[Assets/SleepwalkingVisual/Editor/VisualAssetBuilder.cs line 258]
+
+Start importing Assets/SleepwalkingVisual/Preview/VisualBuildFinal.log using Guid(ed243ed8251c82e41ae400cedbd2ad26) (DefaultImporter) -> (artifact id: '00000000000000000000000000000000') in 0.0026167 seconds
+Import Error Code:(4)
+Message: Build asset version error: assets/sleepwalkingvisual/preview/visualbuildfinal.log in SourceAssetDB has modification time of '2026-11-13T23:56:15.350606Z' while content on disk has modification time of '2026-11-13T23:56:16.9517266Z'
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEditor.PrefabUtility:SaveAsPrefabAsset_Internal (UnityEngine.GameObject,string,bool&)
+UnityEditor.PrefabUtility:SaveAsPrefabAsset (UnityEngine.GameObject,string,bool&)
+UnityEditor.PrefabUtility:SaveAsPrefabAsset (UnityEngine.GameObject,string)
+Sleepwalking.Visual.Editor.VisualAssetBuilder:BuildTheme (Sleepwalking.Visual.DreamThemeId,UnityEngine.Material,UnityEngine.Material,UnityEngine.Material) (at Assets/SleepwalkingVisual/Editor/VisualAssetBuilder.cs:299)
+Sleepwalking.Visual.Editor.VisualAssetBuilder:BuildThemes () (at Assets/SleepwalkingVisual/Editor/VisualAssetBuilder.cs:258)
+Sleepwalking.Visual.Editor.VisualAssetBuilder:Build () (at Assets/SleepwalkingVisual/Editor/VisualAssetBuilder.cs:22)
+
+[Assets/SleepwalkingVisual/Editor/VisualAssetBuilder.cs line 258]
+
+'Assets/SleepwalkingVisual/Preview/VisualBuildFinal.log' Amount of processed bytes '92907' does not match file size '91530'
+Start importing Assets/SleepwalkingVisual/Preview/VisualBuildFinal.log using Guid(ed243ed8251c82e41ae400cedbd2ad26) (DefaultImporter) -> (artifact id: '00000000000000000000000000000000') in 0.0021799 seconds
+Import Error Code:(4)
+Message: Build asset version error: assets/sleepwalkingvisual/preview/visualbuildfinal.log in SourceAssetDB has modification time of '2026-11-13T23:56:15.350606Z' while content on disk has modification time of '2026-11-13T23:56:16.98044Z'
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEditor.PrefabUtility:SaveAsPrefabAsset_Internal (UnityEngine.GameObject,string,bool&)
+UnityEditor.PrefabUtility:SaveAsPrefabAsset (UnityEngine.GameObject,string,bool&)
+UnityEditor.PrefabUtility:SaveAsPrefabAsset (UnityEngine.GameObject,string)
+Sleepwalking.Visual.Editor.VisualAssetBuilder:BuildTheme (Sleepwalking.Visual.DreamThemeId,UnityEngine.Material,UnityEngine.Material,UnityEngine.Material) (at Assets/SleepwalkingVisual/Editor/VisualAssetBuilder.cs:299)
+Sleepwalking.Visual.Editor.VisualAssetBuilder:BuildThemes () (at Assets/SleepwalkingVisual/Editor/VisualAssetBuilder.cs:258)
+Sleepwalking.Visual.Editor.VisualAssetBuilder:Build () (at Assets/SleepwalkingVisual/Editor/VisualAssetBuilder.cs:22)
+
+[Assets/SleepwalkingVisual/Editor/VisualAssetBuilder.cs line 258]
+
+'Assets/SleepwalkingVisual/Preview/VisualBuildFinal.log' Amount of processed bytes '94407' does not match file size '93032'
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEditor.PrefabUtility:SaveAsPrefabAsset_Internal (UnityEngine.GameObject,string,bool&)
+UnityEditor.PrefabUtility:SaveAsPrefabAsset (UnityEngine.GameObject,string,bool&)
+UnityEditor.PrefabUtility:SaveAsPrefabAsset (UnityEngine.GameObject,string)
+Sleepwalking.Visual.Editor.VisualAssetBuilder:BuildTheme (Sleepwalking.Visual.DreamThemeId,UnityEngine.Material,UnityEngine.Material,UnityEngine.Material) (at Assets/SleepwalkingVisual/Editor/VisualAssetBuilder.cs:299)
+Sleepwalking.Visual.Editor.VisualAssetBuilder:BuildThemes () (at Assets/SleepwalkingVisual/Editor/VisualAssetBuilder.cs:258)
+Sleepwalking.Visual.Editor.VisualAssetBuilder:Build () (at Assets/SleepwalkingVisual/Editor/VisualAssetBuilder.cs:22)
+
+[Assets/SleepwalkingVisual/Editor/VisualAssetBuilder.cs line 258]
+
+Start importing Assets/SleepwalkingVisual/Preview/VisualBuildFinal.log using Guid(ed243ed8251c82e41ae400cedbd2ad26) (DefaultImporter) -> (artifact id: '00000000000000000000000000000000') in 0.0031639 seconds
+Import Error Code:(4)
+Message: Build asset version error: assets/sleepwalkingvisual/preview/visualbuildfinal.log in SourceAssetDB has modification time of '2026-11-13T23:56:15.350606Z' while content on disk has modification time of '2026-11-13T23:56:17.0115096Z'
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEditor.PrefabUtility:SaveAsPrefabAsset_Internal (UnityEngine.GameObject,string,bool&)
+UnityEditor.PrefabUtility:SaveAsPrefabAsset (UnityEngine.GameObject,string,bool&)
+UnityEditor.PrefabUtility:SaveAsPrefabAsset (UnityEngine.GameObject,string)
+Sleepwalking.Visual.Editor.VisualAssetBuilder:BuildTheme (Sleepwalking.Visual.DreamThemeId,UnityEngine.Material,UnityEngine.Material,UnityEngine.Material) (at Assets/SleepwalkingVisual/Editor/VisualAssetBuilder.cs:299)
+Sleepwalking.Visual.Editor.VisualAssetBuilder:BuildThemes () (at Assets/SleepwalkingVisual/Editor/VisualAssetBuilder.cs:258)
+Sleepwalking.Visual.Editor.VisualAssetBuilder:Build () (at Assets/SleepwalkingVisual/Editor/VisualAssetBuilder.cs:22)
+
+[Assets/SleepwalkingVisual/Editor/VisualAssetBuilder.cs line 258]
+
+'Assets/SleepwalkingVisual/Preview/VisualBuildFinal.log' Amount of processed bytes '96812' does not match file size '95435'
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEditor.PrefabUtility:SaveAsPrefabAsset_Internal (UnityEngine.GameObject,string,bool&)
+UnityEditor.PrefabUtility:SaveAsPrefabAsset (UnityEngine.GameObject,string,bool&)
+UnityEditor.PrefabUtility:SaveAsPrefabAsset (UnityEngine.GameObject,string)
+Sleepwalking.Visual.Editor.VisualAssetBuilder:BuildTheme (Sleepwalking.Visual.DreamThemeId,UnityEngine.Material,UnityEngine.Material,UnityEngine.Material) (at Assets/SleepwalkingVisual/Editor/VisualAssetBuilder.cs:299)
+Sleepwalking.Visual.Editor.VisualAssetBuilder:BuildThemes () (at Assets/SleepwalkingVisual/Editor/VisualAssetBuilder.cs:258)
+Sleepwalking.Visual.Editor.VisualAssetBuilder:Build () (at Assets/SleepwalkingVisual/Editor/VisualAssetBuilder.cs:22)
+
+[Assets/SleepwalkingVisual/Editor/VisualAssetBuilder.cs line 258]
+
+Start importing Assets/SleepwalkingVisual/Preview/VisualBuildFinal.log using Guid(ed243ed8251c82e41ae400cedbd2ad26) (DefaultImporter) -> (artifact id: '00000000000000000000000000000000') in 0.0035976 seconds
+Import Error Code:(4)
+Message: Build asset version error: assets/sleepwalkingvisual/preview/visualbuildfinal.log in SourceAssetDB has modification time of '2026-11-13T23:56:15.350606Z' while content on disk has modification time of '2026-11-13T23:56:17.0446395Z'
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEditor.PrefabUtility:SaveAsPrefabAsset_Internal (UnityEngine.GameObject,string,bool&)
+UnityEditor.PrefabUtility:SaveAsPrefabAsset (UnityEngine.GameObject,string,bool&)
+UnityEditor.PrefabUtility:SaveAsPrefabAsset (UnityEngine.GameObject,string)
+Sleepwalking.Visual.Editor.VisualAssetBuilder:BuildTheme (Sleepwalking.Visual.DreamThemeId,UnityEngine.Material,UnityEngine.Material,UnityEngine.Material) (at Assets/SleepwalkingVisual/Editor/VisualAssetBuilder.cs:299)
+Sleepwalking.Visual.Editor.VisualAssetBuilder:BuildThemes () (at Assets/SleepwalkingVisual/Editor/VisualAssetBuilder.cs:258)
+Sleepwalking.Visual.Editor.VisualAssetBuilder:Build () (at Assets/SleepwalkingVisual/Editor/VisualAssetBuilder.cs:22)
+
+[Assets/SleepwalkingVisual/Editor/VisualAssetBuilder.cs line 258]
+
+'Assets/SleepwalkingVisual/Preview/VisualBuildFinal.log' Amount of processed bytes '99217' does not match file size '97840'
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEditor.PrefabUtility:SaveAsPrefabAsset_Internal (UnityEngine.GameObject,string,bool&)
+UnityEditor.PrefabUtility:SaveAsPrefabAsset (UnityEngine.GameObject,string,bool&)
+UnityEditor.PrefabUtility:SaveAsPrefabAsset (UnityEngine.GameObject,string)
+Sleepwalking.Visual.Editor.VisualAssetBuilder:BuildTheme (Sleepwalking.Visual.DreamThemeId,UnityEngine.Material,UnityEngine.Material,UnityEngine.Material) (at Assets/SleepwalkingVisual/Editor/VisualAssetBuilder.cs:299)
+Sleepwalking.Visual.Editor.VisualAssetBuilder:BuildThemes () (at Assets/SleepwalkingVisual/Editor/VisualAssetBuilder.cs:258)
+Sleepwalking.Visual.Editor.VisualAssetBuilder:Build () (at Assets/SleepwalkingVisual/Editor/VisualAssetBuilder.cs:22)
+
+[Assets/SleepwalkingVisual/Editor/VisualAssetBuilder.cs line 258]
+
+Start importing Assets/SleepwalkingVisual/Preview/VisualBuildFinal.log using Guid(ed243ed8251c82e41ae400cedbd2ad26) (DefaultImporter) -> (artifact id: '00000000000000000000000000000000') in 0.0039209 seconds
+Import Error Code:(4)
+Message: Build asset version error: assets/sleepwalkingvisual/preview/visualbuildfinal.log in SourceAssetDB has modification time of '2026-11-13T23:56:15.350606Z' while content on disk has modification time of '2026-11-13T23:56:17.0729162Z'
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEditor.PrefabUtility:SaveAsPrefabAsset_Internal (UnityEngine.GameObject,string,bool&)
+UnityEditor.PrefabUtility:SaveAsPrefabAsset (UnityEngine.GameObject,string,bool&)
+UnityEditor.PrefabUtility:SaveAsPrefabAsset (UnityEngine.GameObject,string)
+Sleepwalking.Visual.Editor.VisualAssetBuilder:BuildTheme (Sleepwalking.Visual.DreamThemeId,UnityEngine.Material,UnityEngine.Material,UnityEngine.Material) (at Assets/SleepwalkingVisual/Editor/VisualAssetBuilder.cs:299)
+Sleepwalking.Visual.Editor.VisualAssetBuilder:BuildThemes () (at Assets/SleepwalkingVisual/Editor/VisualAssetBuilder.cs:258)
+Sleepwalking.Visual.Editor.VisualAssetBuilder:Build () (at Assets/SleepwalkingVisual/Editor/VisualAssetBuilder.cs:22)
+
+[Assets/SleepwalkingVisual/Editor/VisualAssetBuilder.cs line 258]
+
+An infinite import loop has been detected. The following Assets were imported multiple times, but no changes to them have been detected. Please check if any custom code is trying to import them:
+Assets/SleepwalkingVisual/Prefabs/Themes/PostApocalypse.prefab(modified date 2026-11-13T23:56:16.4918772Z)
+Assets/SleepwalkingVisual/Preview/VisualBuildFinal.log(modified date 2026-11-13T23:56:17.0765371Z)
+Assets/SleepwalkingVisual/Prefabs/Themes/Meat.prefab(modified date 2026-11-13T23:56:16.2699403Z)
+Assets/SleepwalkingVisual/Prefabs/Themes/Heaven.prefab(modified date 2026-11-13T23:56:16.864948Z)
+Assets/SleepwalkingVisual/Prefabs/Themes/DeepWater.prefab(modified date 2026-11-13T23:56:16.6643468Z)
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEditor.PrefabUtility:SaveAsPrefabAsset_Internal (UnityEngine.GameObject,string,bool&)
+UnityEditor.PrefabUtility:SaveAsPrefabAsset (UnityEngine.GameObject,string,bool&)
+UnityEditor.PrefabUtility:SaveAsPrefabAsset (UnityEngine.GameObject,string)
+Sleepwalking.Visual.Editor.VisualAssetBuilder:BuildTheme (Sleepwalking.Visual.DreamThemeId,UnityEngine.Material,UnityEngine.Material,UnityEngine.Material) (at Assets/SleepwalkingVisual/Editor/VisualAssetBuilder.cs:299)
+Sleepwalking.Visual.Editor.VisualAssetBuilder:BuildThemes () (at Assets/SleepwalkingVisual/Editor/VisualAssetBuilder.cs:258)
+Sleepwalking.Visual.Editor.VisualAssetBuilder:Build () (at Assets/SleepwalkingVisual/Editor/VisualAssetBuilder.cs:22)
+
+[Assets/SleepwalkingVisual/Editor/VisualAssetBuilder.cs line 258]
+
+Refreshing native plugins compatible for Editor in 1.77 ms, found 4 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Asset Pipeline Refresh (id=fb8c41cff0342f5498e2595da0c31f51): Total: 0.271 seconds - Initiated by StopAssetImportingV2(NoUpdateAssetOptions)
+Start importing Assets/SleepwalkingVisual/Preview/VisualBuildFinal.log using Guid(ed243ed8251c82e41ae400cedbd2ad26) (DefaultImporter) -> (artifact id: '00000000000000000000000000000000') in 0.0023781 seconds
+Import Error Code:(4)
+Message: Build asset version error: assets/sleepwalkingvisual/preview/visualbuildfinal.log in SourceAssetDB has modification time of '2026-11-13T23:56:15.350606Z' while content on disk has modification time of '2026-11-13T23:56:17.2232473Z'
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEditor.PrefabUtility:SaveAsPrefabAsset_Internal (UnityEngine.GameObject,string,bool&)
+UnityEditor.PrefabUtility:SaveAsPrefabAsset (UnityEngine.GameObject,string,bool&)
+UnityEditor.PrefabUtility:SaveAsPrefabAsset (UnityEngine.GameObject,string)
+Sleepwalking.Visual.Editor.VisualAssetBuilder:BuildRoom () (at Assets/SleepwalkingVisual/Editor/VisualAssetBuilder.cs:221)
+Sleepwalking.Visual.Editor.VisualAssetBuilder:Build () (at Assets/SleepwalkingVisual/Editor/VisualAssetBuilder.cs:23)
+
+[Assets/SleepwalkingVisual/Editor/VisualAssetBuilder.cs line 221]
+
+'Assets/SleepwalkingVisual/Preview/VisualBuildFinal.log' Amount of processed bytes '104656' does not match file size '100245'
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEditor.PrefabUtility:SaveAsPrefabAsset_Internal (UnityEngine.GameObject,string,bool&)
+UnityEditor.PrefabUtility:SaveAsPrefabAsset (UnityEngine.GameObject,string,bool&)
+UnityEditor.PrefabUtility:SaveAsPrefabAsset (UnityEngine.GameObject,string)
+Sleepwalking.Visual.Editor.VisualAssetBuilder:BuildRoom () (at Assets/SleepwalkingVisual/Editor/VisualAssetBuilder.cs:221)
+Sleepwalking.Visual.Editor.VisualAssetBuilder:Build () (at Assets/SleepwalkingVisual/Editor/VisualAssetBuilder.cs:23)
+
+[Assets/SleepwalkingVisual/Editor/VisualAssetBuilder.cs line 221]
+
+Start importing Assets/SleepwalkingVisual/Preview/VisualBuildFinal.log using Guid(ed243ed8251c82e41ae400cedbd2ad26) (DefaultImporter) -> (artifact id: '00000000000000000000000000000000') in 0.0021319 seconds
+Import Error Code:(4)
+Message: Build asset version error: assets/sleepwalkingvisual/preview/visualbuildfinal.log in SourceAssetDB has modification time of '2026-11-13T23:56:15.350606Z' while content on disk has modification time of '2026-11-13T23:56:17.245029Z'
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEditor.PrefabUtility:SaveAsPrefabAsset_Internal (UnityEngine.GameObject,string,bool&)
+UnityEditor.PrefabUtility:SaveAsPrefabAsset (UnityEngine.GameObject,string,bool&)
+UnityEditor.PrefabUtility:SaveAsPrefabAsset (UnityEngine.GameObject,string)
+Sleepwalking.Visual.Editor.VisualAssetBuilder:BuildRoom () (at Assets/SleepwalkingVisual/Editor/VisualAssetBuilder.cs:221)
+Sleepwalking.Visual.Editor.VisualAssetBuilder:Build () (at Assets/SleepwalkingVisual/Editor/VisualAssetBuilder.cs:23)
+
+[Assets/SleepwalkingVisual/Editor/VisualAssetBuilder.cs line 221]
+
+'Assets/SleepwalkingVisual/Preview/VisualBuildFinal.log' Amount of processed bytes '106618' does not match file size '105673'
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEditor.PrefabUtility:SaveAsPrefabAsset_Internal (UnityEngine.GameObject,string,bool&)
+UnityEditor.PrefabUtility:SaveAsPrefabAsset (UnityEngine.GameObject,string,bool&)
+UnityEditor.PrefabUtility:SaveAsPrefabAsset (UnityEngine.GameObject,string)
+Sleepwalking.Visual.Editor.VisualAssetBuilder:BuildRoom () (at Assets/SleepwalkingVisual/Editor/VisualAssetBuilder.cs:221)
+Sleepwalking.Visual.Editor.VisualAssetBuilder:Build () (at Assets/SleepwalkingVisual/Editor/VisualAssetBuilder.cs:23)
+
+[Assets/SleepwalkingVisual/Editor/VisualAssetBuilder.cs line 221]
+
+Start importing Assets/SleepwalkingVisual/Preview/VisualBuildFinal.log using Guid(ed243ed8251c82e41ae400cedbd2ad26) (DefaultImporter) -> (artifact id: '00000000000000000000000000000000') in 0.0022584 seconds
+Import Error Code:(4)
+Message: Build asset version error: assets/sleepwalkingvisual/preview/visualbuildfinal.log in SourceAssetDB has modification time of '2026-11-13T23:56:15.350606Z' while content on disk has modification time of '2026-11-13T23:56:17.2759154Z'
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEditor.PrefabUtility:SaveAsPrefabAsset_Internal (UnityEngine.GameObject,string,bool&)
+UnityEditor.PrefabUtility:SaveAsPrefabAsset (UnityEngine.GameObject,string,bool&)
+UnityEditor.PrefabUtility:SaveAsPrefabAsset (UnityEngine.GameObject,string)
+Sleepwalking.Visual.Editor.VisualAssetBuilder:BuildRoom () (at Assets/SleepwalkingVisual/Editor/VisualAssetBuilder.cs:221)
+Sleepwalking.Visual.Editor.VisualAssetBuilder:Build () (at Assets/SleepwalkingVisual/Editor/VisualAssetBuilder.cs:23)
+
+[Assets/SleepwalkingVisual/Editor/VisualAssetBuilder.cs line 221]
+
+'Assets/SleepwalkingVisual/Preview/VisualBuildFinal.log' Amount of processed bytes '108581' does not match file size '107426'
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEditor.PrefabUtility:SaveAsPrefabAsset_Internal (UnityEngine.GameObject,string,bool&)
+UnityEditor.PrefabUtility:SaveAsPrefabAsset (UnityEngine.GameObject,string,bool&)
+UnityEditor.PrefabUtility:SaveAsPrefabAsset (UnityEngine.GameObject,string)
+Sleepwalking.Visual.Editor.VisualAssetBuilder:BuildRoom () (at Assets/SleepwalkingVisual/Editor/VisualAssetBuilder.cs:221)
+Sleepwalking.Visual.Editor.VisualAssetBuilder:Build () (at Assets/SleepwalkingVisual/Editor/VisualAssetBuilder.cs:23)
+
+[Assets/SleepwalkingVisual/Editor/VisualAssetBuilder.cs line 221]
+
+Start importing Assets/SleepwalkingVisual/Preview/VisualBuildFinal.log using Guid(ed243ed8251c82e41ae400cedbd2ad26) (DefaultImporter) -> (artifact id: '00000000000000000000000000000000') in 0.0062855 seconds
+Import Error Code:(4)
+Message: Build asset version error: assets/sleepwalkingvisual/preview/visualbuildfinal.log in SourceAssetDB has modification time of '2026-11-13T23:56:15.350606Z' while content on disk has modification time of '2026-11-13T23:56:17.3032921Z'
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEditor.PrefabUtility:SaveAsPrefabAsset_Internal (UnityEngine.GameObject,string,bool&)
+UnityEditor.PrefabUtility:SaveAsPrefabAsset (UnityEngine.GameObject,string,bool&)
+UnityEditor.PrefabUtility:SaveAsPrefabAsset (UnityEngine.GameObject,string)
+Sleepwalking.Visual.Editor.VisualAssetBuilder:BuildRoom () (at Assets/SleepwalkingVisual/Editor/VisualAssetBuilder.cs:221)
+Sleepwalking.Visual.Editor.VisualAssetBuilder:Build () (at Assets/SleepwalkingVisual/Editor/VisualAssetBuilder.cs:23)
+
+[Assets/SleepwalkingVisual/Editor/VisualAssetBuilder.cs line 221]
+
+'Assets/SleepwalkingVisual/Preview/VisualBuildFinal.log' Amount of processed bytes '110544' does not match file size '109389'
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEditor.PrefabUtility:SaveAsPrefabAsset_Internal (UnityEngine.GameObject,string,bool&)
+UnityEditor.PrefabUtility:SaveAsPrefabAsset (UnityEngine.GameObject,string,bool&)
+UnityEditor.PrefabUtility:SaveAsPrefabAsset (UnityEngine.GameObject,string)
+Sleepwalking.Visual.Editor.VisualAssetBuilder:BuildRoom () (at Assets/SleepwalkingVisual/Editor/VisualAssetBuilder.cs:221)
+Sleepwalking.Visual.Editor.VisualAssetBuilder:Build () (at Assets/SleepwalkingVisual/Editor/VisualAssetBuilder.cs:23)
+
+[Assets/SleepwalkingVisual/Editor/VisualAssetBuilder.cs line 221]
+
+Start importing Assets/SleepwalkingVisual/Preview/VisualBuildFinal.log using Guid(ed243ed8251c82e41ae400cedbd2ad26) (DefaultImporter) -> (artifact id: '00000000000000000000000000000000') in 0.0046556 seconds
+Import Error Code:(4)
+Message: Build asset version error: assets/sleepwalkingvisual/preview/visualbuildfinal.log in SourceAssetDB has modification time of '2026-11-13T23:56:15.350606Z' while content on disk has modification time of '2026-11-13T23:56:17.3393977Z'
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEditor.PrefabUtility:SaveAsPrefabAsset_Internal (UnityEngine.GameObject,string,bool&)
+UnityEditor.PrefabUtility:SaveAsPrefabAsset (UnityEngine.GameObject,string,bool&)
+UnityEditor.PrefabUtility:SaveAsPrefabAsset (UnityEngine.GameObject,string)
+Sleepwalking.Visual.Editor.VisualAssetBuilder:BuildRoom () (at Assets/SleepwalkingVisual/Editor/VisualAssetBuilder.cs:221)
+Sleepwalking.Visual.Editor.VisualAssetBuilder:Build () (at Assets/SleepwalkingVisual/Editor/VisualAssetBuilder.cs:23)
+
+[Assets/SleepwalkingVisual/Editor/VisualAssetBuilder.cs line 221]
+
+'Assets/SleepwalkingVisual/Preview/VisualBuildFinal.log' Amount of processed bytes '112507' does not match file size '111352'
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEditor.PrefabUtility:SaveAsPrefabAsset_Internal (UnityEngine.GameObject,string,bool&)
+UnityEditor.PrefabUtility:SaveAsPrefabAsset (UnityEngine.GameObject,string,bool&)
+UnityEditor.PrefabUtility:SaveAsPrefabAsset (UnityEngine.GameObject,string)
+Sleepwalking.Visual.Editor.VisualAssetBuilder:BuildRoom () (at Assets/SleepwalkingVisual/Editor/VisualAssetBuilder.cs:221)
+Sleepwalking.Visual.Editor.VisualAssetBuilder:Build () (at Assets/SleepwalkingVisual/Editor/VisualAssetBuilder.cs:23)
+
+[Assets/SleepwalkingVisual/Editor/VisualAssetBuilder.cs line 221]
+
+Start importing Assets/SleepwalkingVisual/Preview/VisualBuildFinal.log using Guid(ed243ed8251c82e41ae400cedbd2ad26) (DefaultImporter) -> (artifact id: '00000000000000000000000000000000') in 0.0053322 seconds
+Import Error Code:(4)
+Message: Build asset version error: assets/sleepwalkingvisual/preview/visualbuildfinal.log in SourceAssetDB has modification time of '2026-11-13T23:56:15.350606Z' while content on disk has modification time of '2026-11-13T23:56:17.3718227Z'
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEditor.PrefabUtility:SaveAsPrefabAsset_Internal (UnityEngine.GameObject,string,bool&)
+UnityEditor.PrefabUtility:SaveAsPrefabAsset (UnityEngine.GameObject,string,bool&)
+UnityEditor.PrefabUtility:SaveAsPrefabAsset (UnityEngine.GameObject,string)
+Sleepwalking.Visual.Editor.VisualAssetBuilder:BuildRoom () (at Assets/SleepwalkingVisual/Editor/VisualAssetBuilder.cs:221)
+Sleepwalking.Visual.Editor.VisualAssetBuilder:Build () (at Assets/SleepwalkingVisual/Editor/VisualAssetBuilder.cs:23)
+
+[Assets/SleepwalkingVisual/Editor/VisualAssetBuilder.cs line 221]
+
+'Assets/SleepwalkingVisual/Preview/VisualBuildFinal.log' Amount of processed bytes '114470' does not match file size '113315'
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEditor.PrefabUtility:SaveAsPrefabAsset_Internal (UnityEngine.GameObject,string,bool&)
+UnityEditor.PrefabUtility:SaveAsPrefabAsset (UnityEngine.GameObject,string,bool&)
+UnityEditor.PrefabUtility:SaveAsPrefabAsset (UnityEngine.GameObject,string)
+Sleepwalking.Visual.Editor.VisualAssetBuilder:BuildRoom () (at Assets/SleepwalkingVisual/Editor/VisualAssetBuilder.cs:221)
+Sleepwalking.Visual.Editor.VisualAssetBuilder:Build () (at Assets/SleepwalkingVisual/Editor/VisualAssetBuilder.cs:23)
+
+[Assets/SleepwalkingVisual/Editor/VisualAssetBuilder.cs line 221]
+
+Start importing Assets/SleepwalkingVisual/Preview/VisualBuildFinal.log using Guid(ed243ed8251c82e41ae400cedbd2ad26) (DefaultImporter) -> (artifact id: '00000000000000000000000000000000') in 0.0036365 seconds
+Import Error Code:(4)
+Message: Build asset version error: assets/sleepwalkingvisual/preview/visualbuildfinal.log in SourceAssetDB has modification time of '2026-11-13T23:56:15.350606Z' while content on disk has modification time of '2026-11-13T23:56:17.4040169Z'
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEditor.PrefabUtility:SaveAsPrefabAsset_Internal (UnityEngine.GameObject,string,bool&)
+UnityEditor.PrefabUtility:SaveAsPrefabAsset (UnityEngine.GameObject,string,bool&)
+UnityEditor.PrefabUtility:SaveAsPrefabAsset (UnityEngine.GameObject,string)
+Sleepwalking.Visual.Editor.VisualAssetBuilder:BuildRoom () (at Assets/SleepwalkingVisual/Editor/VisualAssetBuilder.cs:221)
+Sleepwalking.Visual.Editor.VisualAssetBuilder:Build () (at Assets/SleepwalkingVisual/Editor/VisualAssetBuilder.cs:23)
+
+[Assets/SleepwalkingVisual/Editor/VisualAssetBuilder.cs line 221]
+
+An infinite import loop has been detected. The following Assets were imported multiple times, but no changes to them have been detected. Please check if any custom code is trying to import them:
+Assets/SleepwalkingVisual/Prefabs/Themes/PostApocalypse.prefab(modified date 2026-11-13T23:56:16.4918772Z)
+Assets/SleepwalkingVisual/Prefabs/SleepwalkingRoom.prefab(modified date 2026-11-13T23:56:17.1909019Z)
+Assets/SleepwalkingVisual/Preview/VisualBuildFinal.log(modified date 2026-11-13T23:56:17.4077343Z)
+Assets/SleepwalkingVisual/Prefabs/Themes/Meat.prefab(modified date 2026-11-13T23:56:16.2699403Z)
+Assets/SleepwalkingVisual/Prefabs/Themes/Heaven.prefab(modified date 2026-11-13T23:56:16.864948Z)
+Assets/SleepwalkingVisual/Prefabs/Themes/DeepWater.prefab(modified date 2026-11-13T23:56:16.6643468Z)
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEditor.PrefabUtility:SaveAsPrefabAsset_Internal (UnityEngine.GameObject,string,bool&)
+UnityEditor.PrefabUtility:SaveAsPrefabAsset (UnityEngine.GameObject,string,bool&)
+UnityEditor.PrefabUtility:SaveAsPrefabAsset (UnityEngine.GameObject,string)
+Sleepwalking.Visual.Editor.VisualAssetBuilder:BuildRoom () (at Assets/SleepwalkingVisual/Editor/VisualAssetBuilder.cs:221)
+Sleepwalking.Visual.Editor.VisualAssetBuilder:Build () (at Assets/SleepwalkingVisual/Editor/VisualAssetBuilder.cs:23)
+
+[Assets/SleepwalkingVisual/Editor/VisualAssetBuilder.cs line 221]
+
+Refreshing native plugins compatible for Editor in 1.49 ms, found 4 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Asset Pipeline Refresh (id=23b7e933ad0bdac4ea26a13daba93e32): Total: 0.245 seconds - Initiated by StopAssetImportingV2(NoUpdateAssetOptions)
+Unloading 0 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 13 unused Assets / (0.5 KB). Loaded Objects now: 7912.
+Memory consumption went from 180.2 MB to 180.2 MB.
+Total: 9.746200 ms (FindLiveObjects: 0.458800 ms CreateObjectMapping: 0.363400 ms MarkObjects: 8.886300 ms  DeleteObjects: 0.036500 ms)
+
+Start importing Assets/SleepwalkingVisual/Preview/VisualBuildFinal.log using Guid(ed243ed8251c82e41ae400cedbd2ad26) (DefaultImporter) -> (artifact id: '00000000000000000000000000000000') in 0.003577 seconds
+Import Error Code:(4)
+Message: Build asset version error: assets/sleepwalkingvisual/preview/visualbuildfinal.log in SourceAssetDB has modification time of '2026-11-13T23:56:15.350606Z' while content on disk has modification time of '2026-11-13T23:56:17.6030888Z'
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEditor.SceneManagement.EditorSceneManager:SaveSceneInternal (UnityEngine.SceneManagement.Scene,string,bool)
+UnityEditor.SceneManagement.EditorSceneManager:SaveScene (UnityEngine.SceneManagement.Scene,string,bool)
+UnityEditor.SceneManagement.EditorSceneManager:SaveScene (UnityEngine.SceneManagement.Scene,string)
+Sleepwalking.Visual.Editor.VisualAssetBuilder:BuildRoom () (at Assets/SleepwalkingVisual/Editor/VisualAssetBuilder.cs:239)
+Sleepwalking.Visual.Editor.VisualAssetBuilder:Build () (at Assets/SleepwalkingVisual/Editor/VisualAssetBuilder.cs:23)
+
+[Assets/SleepwalkingVisual/Editor/VisualAssetBuilder.cs line 239]
+
+'Assets/SleepwalkingVisual/Preview/VisualBuildFinal.log' Amount of processed bytes '119743' does not match file size '118520'
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEditor.SceneManagement.EditorSceneManager:SaveSceneInternal (UnityEngine.SceneManagement.Scene,string,bool)
+UnityEditor.SceneManagement.EditorSceneManager:SaveScene (UnityEngine.SceneManagement.Scene,string,bool)
+UnityEditor.SceneManagement.EditorSceneManager:SaveScene (UnityEngine.SceneManagement.Scene,string)
+Sleepwalking.Visual.Editor.VisualAssetBuilder:BuildRoom () (at Assets/SleepwalkingVisual/Editor/VisualAssetBuilder.cs:239)
+Sleepwalking.Visual.Editor.VisualAssetBuilder:Build () (at Assets/SleepwalkingVisual/Editor/VisualAssetBuilder.cs:23)
+
+[Assets/SleepwalkingVisual/Editor/VisualAssetBuilder.cs line 239]
+
+Start importing Assets/SleepwalkingVisual/Preview/VisualBuildFinal.log using Guid(ed243ed8251c82e41ae400cedbd2ad26) (DefaultImporter) -> (artifact id: '00000000000000000000000000000000') in 0.0008231 seconds
+Import Error Code:(4)
+Message: Build asset version error: assets/sleepwalkingvisual/preview/visualbuildfinal.log in SourceAssetDB has modification time of '2026-11-13T23:56:15.350606Z' while content on disk has modification time of '2026-11-13T23:56:17.6375146Z'
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEditor.SceneManagement.EditorSceneManager:SaveSceneInternal (UnityEngine.SceneManagement.Scene,string,bool)
+UnityEditor.SceneManagement.EditorSceneManager:SaveScene (UnityEngine.SceneManagement.Scene,string,bool)
+UnityEditor.SceneManagement.EditorSceneManager:SaveScene (UnityEngine.SceneManagement.Scene,string)
+Sleepwalking.Visual.Editor.VisualAssetBuilder:BuildRoom () (at Assets/SleepwalkingVisual/Editor/VisualAssetBuilder.cs:239)
+Sleepwalking.Visual.Editor.VisualAssetBuilder:Build () (at Assets/SleepwalkingVisual/Editor/VisualAssetBuilder.cs:23)
+
+[Assets/SleepwalkingVisual/Editor/VisualAssetBuilder.cs line 239]
+
+'Assets/SleepwalkingVisual/Preview/VisualBuildFinal.log' Amount of processed bytes '121844' does not match file size '120620'
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEditor.SceneManagement.EditorSceneManager:SaveSceneInternal (UnityEngine.SceneManagement.Scene,string,bool)
+UnityEditor.SceneManagement.EditorSceneManager:SaveScene (UnityEngine.SceneManagement.Scene,string,bool)
+UnityEditor.SceneManagement.EditorSceneManager:SaveScene (UnityEngine.SceneManagement.Scene,string)
+Sleepwalking.Visual.Editor.VisualAssetBuilder:BuildRoom () (at Assets/SleepwalkingVisual/Editor/VisualAssetBuilder.cs:239)
+Sleepwalking.Visual.Editor.VisualAssetBuilder:Build () (at Assets/SleepwalkingVisual/Editor/VisualAssetBuilder.cs:23)
+
+[Assets/SleepwalkingVisual/Editor/VisualAssetBuilder.cs line 239]
+
+Start importing Assets/SleepwalkingVisual/Preview/VisualBuildFinal.log using Guid(ed243ed8251c82e41ae400cedbd2ad26) (DefaultImporter) -> (artifact id: '00000000000000000000000000000000') in 0.0008894 seconds
+Import Error Code:(4)
+Message: Build asset version error: assets/sleepwalkingvisual/preview/visualbuildfinal.log in SourceAssetDB has modification time of '2026-11-13T23:56:15.350606Z' while content on disk has modification time of '2026-11-13T23:56:17.669389Z'
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEditor.SceneManagement.EditorSceneManager:SaveSceneInternal (UnityEngine.SceneManagement.Scene,string,bool)
+UnityEditor.SceneManagement.EditorSceneManager:SaveScene (UnityEngine.SceneManagement.Scene,string,bool)
+UnityEditor.SceneManagement.EditorSceneManager:SaveScene (UnityEngine.SceneManagement.Scene,string)
+Sleepwalking.Visual.Editor.VisualAssetBuilder:BuildRoom () (at Assets/SleepwalkingVisual/Editor/VisualAssetBuilder.cs:239)
+Sleepwalking.Visual.Editor.VisualAssetBuilder:Build () (at Assets/SleepwalkingVisual/Editor/VisualAssetBuilder.cs:23)
+
+[Assets/SleepwalkingVisual/Editor/VisualAssetBuilder.cs line 239]
+
+'Assets/SleepwalkingVisual/Preview/VisualBuildFinal.log' Amount of processed bytes '123944' does not match file size '122721'
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEditor.SceneManagement.EditorSceneManager:SaveSceneInternal (UnityEngine.SceneManagement.Scene,string,bool)
+UnityEditor.SceneManagement.EditorSceneManager:SaveScene (UnityEngine.SceneManagement.Scene,string,bool)
+UnityEditor.SceneManagement.EditorSceneManager:SaveScene (UnityEngine.SceneManagement.Scene,string)
+Sleepwalking.Visual.Editor.VisualAssetBuilder:BuildRoom () (at Assets/SleepwalkingVisual/Editor/VisualAssetBuilder.cs:239)
+Sleepwalking.Visual.Editor.VisualAssetBuilder:Build () (at Assets/SleepwalkingVisual/Editor/VisualAssetBuilder.cs:23)
+
+[Assets/SleepwalkingVisual/Editor/VisualAssetBuilder.cs line 239]
+
+Start importing Assets/SleepwalkingVisual/Preview/VisualBuildFinal.log using Guid(ed243ed8251c82e41ae400cedbd2ad26) (DefaultImporter) -> (artifact id: '00000000000000000000000000000000') in 0.0009807 seconds
+Import Error Code:(4)
+Message: Build asset version error: assets/sleepwalkingvisual/preview/visualbuildfinal.log in SourceAssetDB has modification time of '2026-11-13T23:56:15.350606Z' while content on disk has modification time of '2026-11-13T23:56:17.7018352Z'
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEditor.SceneManagement.EditorSceneManager:SaveSceneInternal (UnityEngine.SceneManagement.Scene,string,bool)
+UnityEditor.SceneManagement.EditorSceneManager:SaveScene (UnityEngine.SceneManagement.Scene,string,bool)
+UnityEditor.SceneManagement.EditorSceneManager:SaveScene (UnityEngine.SceneManagement.Scene,string)
+Sleepwalking.Visual.Editor.VisualAssetBuilder:BuildRoom () (at Assets/SleepwalkingVisual/Editor/VisualAssetBuilder.cs:239)
+Sleepwalking.Visual.Editor.VisualAssetBuilder:Build () (at Assets/SleepwalkingVisual/Editor/VisualAssetBuilder.cs:23)
+
+[Assets/SleepwalkingVisual/Editor/VisualAssetBuilder.cs line 239]
+
+'Assets/SleepwalkingVisual/Preview/VisualBuildFinal.log' Amount of processed bytes '126045' does not match file size '124821'
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEditor.SceneManagement.EditorSceneManager:SaveSceneInternal (UnityEngine.SceneManagement.Scene,string,bool)
+UnityEditor.SceneManagement.EditorSceneManager:SaveScene (UnityEngine.SceneManagement.Scene,string,bool)
+UnityEditor.SceneManagement.EditorSceneManager:SaveScene (UnityEngine.SceneManagement.Scene,string)
+Sleepwalking.Visual.Editor.VisualAssetBuilder:BuildRoom () (at Assets/SleepwalkingVisual/Editor/VisualAssetBuilder.cs:239)
+Sleepwalking.Visual.Editor.VisualAssetBuilder:Build () (at Assets/SleepwalkingVisual/Editor/VisualAssetBuilder.cs:23)
+
+[Assets/SleepwalkingVisual/Editor/VisualAssetBuilder.cs line 239]
+
+Start importing Assets/SleepwalkingVisual/Preview/VisualBuildFinal.log using Guid(ed243ed8251c82e41ae400cedbd2ad26) (DefaultImporter) -> (artifact id: '00000000000000000000000000000000') in 0.0007136 seconds
+Import Error Code:(4)
+Message: Build asset version error: assets/sleepwalkingvisual/preview/visualbuildfinal.log in SourceAssetDB has modification time of '2026-11-13T23:56:15.350606Z' while content on disk has modification time of '2026-11-13T23:56:17.7374382Z'
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEditor.SceneManagement.EditorSceneManager:SaveSceneInternal (UnityEngine.SceneManagement.Scene,string,bool)
+UnityEditor.SceneManagement.EditorSceneManager:SaveScene (UnityEngine.SceneManagement.Scene,string,bool)
+UnityEditor.SceneManagement.EditorSceneManager:SaveScene (UnityEngine.SceneManagement.Scene,string)
+Sleepwalking.Visual.Editor.VisualAssetBuilder:BuildRoom () (at Assets/SleepwalkingVisual/Editor/VisualAssetBuilder.cs:239)
+Sleepwalking.Visual.Editor.VisualAssetBuilder:Build () (at Assets/SleepwalkingVisual/Editor/VisualAssetBuilder.cs:23)
+
+[Assets/SleepwalkingVisual/Editor/VisualAssetBuilder.cs line 239]
+
+'Assets/SleepwalkingVisual/Preview/VisualBuildFinal.log' Amount of processed bytes '128146' does not match file size '126922'
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEditor.SceneManagement.EditorSceneManager:SaveSceneInternal (UnityEngine.SceneManagement.Scene,string,bool)
+UnityEditor.SceneManagement.EditorSceneManager:SaveScene (UnityEngine.SceneManagement.Scene,string,bool)
+UnityEditor.SceneManagement.EditorSceneManager:SaveScene (UnityEngine.SceneManagement.Scene,string)
+Sleepwalking.Visual.Editor.VisualAssetBuilder:BuildRoom () (at Assets/SleepwalkingVisual/Editor/VisualAssetBuilder.cs:239)
+Sleepwalking.Visual.Editor.VisualAssetBuilder:Build () (at Assets/SleepwalkingVisual/Editor/VisualAssetBuilder.cs:23)
+
+[Assets/SleepwalkingVisual/Editor/VisualAssetBuilder.cs line 239]
+
+Start importing Assets/SleepwalkingVisual/Preview/VisualBuildFinal.log using Guid(ed243ed8251c82e41ae400cedbd2ad26) (DefaultImporter) -> (artifact id: '00000000000000000000000000000000') in 0.0008523 seconds
+Import Error Code:(4)
+Message: Build asset version error: assets/sleepwalkingvisual/preview/visualbuildfinal.log in SourceAssetDB has modification time of '2026-11-13T23:56:15.350606Z' while content on disk has modification time of '2026-11-13T23:56:17.7710502Z'
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEditor.SceneManagement.EditorSceneManager:SaveSceneInternal (UnityEngine.SceneManagement.Scene,string,bool)
+UnityEditor.SceneManagement.EditorSceneManager:SaveScene (UnityEngine.SceneManagement.Scene,string,bool)
+UnityEditor.SceneManagement.EditorSceneManager:SaveScene (UnityEngine.SceneManagement.Scene,string)
+Sleepwalking.Visual.Editor.VisualAssetBuilder:BuildRoom () (at Assets/SleepwalkingVisual/Editor/VisualAssetBuilder.cs:239)
+Sleepwalking.Visual.Editor.VisualAssetBuilder:Build () (at Assets/SleepwalkingVisual/Editor/VisualAssetBuilder.cs:23)
+
+[Assets/SleepwalkingVisual/Editor/VisualAssetBuilder.cs line 239]
+
+'Assets/SleepwalkingVisual/Preview/VisualBuildFinal.log' Amount of processed bytes '130247' does not match file size '129023'
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEditor.SceneManagement.EditorSceneManager:SaveSceneInternal (UnityEngine.SceneManagement.Scene,string,bool)
+UnityEditor.SceneManagement.EditorSceneManager:SaveScene (UnityEngine.SceneManagement.Scene,string,bool)
+UnityEditor.SceneManagement.EditorSceneManager:SaveScene (UnityEngine.SceneManagement.Scene,string)
+Sleepwalking.Visual.Editor.VisualAssetBuilder:BuildRoom () (at Assets/SleepwalkingVisual/Editor/VisualAssetBuilder.cs:239)
+Sleepwalking.Visual.Editor.VisualAssetBuilder:Build () (at Assets/SleepwalkingVisual/Editor/VisualAssetBuilder.cs:23)
+
+[Assets/SleepwalkingVisual/Editor/VisualAssetBuilder.cs line 239]
+
+Start importing Assets/SleepwalkingVisual/Preview/VisualBuildFinal.log using Guid(ed243ed8251c82e41ae400cedbd2ad26) (DefaultImporter) -> (artifact id: '00000000000000000000000000000000') in 0.000872 seconds
+Import Error Code:(4)
+Message: Build asset version error: assets/sleepwalkingvisual/preview/visualbuildfinal.log in SourceAssetDB has modification time of '2026-11-13T23:56:15.350606Z' while content on disk has modification time of '2026-11-13T23:56:17.8057414Z'
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEditor.SceneManagement.EditorSceneManager:SaveSceneInternal (UnityEngine.SceneManagement.Scene,string,bool)
+UnityEditor.SceneManagement.EditorSceneManager:SaveScene (UnityEngine.SceneManagement.Scene,string,bool)
+UnityEditor.SceneManagement.EditorSceneManager:SaveScene (UnityEngine.SceneManagement.Scene,string)
+Sleepwalking.Visual.Editor.VisualAssetBuilder:BuildRoom () (at Assets/SleepwalkingVisual/Editor/VisualAssetBuilder.cs:239)
+Sleepwalking.Visual.Editor.VisualAssetBuilder:Build () (at Assets/SleepwalkingVisual/Editor/VisualAssetBuilder.cs:23)
+
+[Assets/SleepwalkingVisual/Editor/VisualAssetBuilder.cs line 239]
+
+An infinite import loop has been detected. The following Assets were imported multiple times, but no changes to them have been detected. Please check if any custom code is trying to import them:
+Assets/SleepwalkingVisual/Materials/GlitchBlue_229EDE.mat - (Force Reimport)(modified date 2026-11-13T23:56:17.4885413Z)
+Assets/SleepwalkingVisual/Materials/Shadow_3C2030.mat - (Force Reimport)(modified date 2026-11-13T23:56:17.5049635Z)
+Assets/SleepwalkingVisual/Materials/Hover_E04020.mat - (Force Reimport)(modified date 2026-11-13T23:56:17.4955379Z)
+Assets/SleepwalkingVisual/Materials/Pressed_6E1830.mat - (Force Reimport)(modified date 2026-11-13T23:56:17.51247Z)
+Assets/SleepwalkingVisual/Prefabs/Themes/PostApocalypse.prefab(modified date 2026-11-13T23:56:16.4918772Z)
+Assets/SleepwalkingVisual/Materials/Secondary_B4B8D4.mat - (Force Reimport)(modified date 2026-11-13T23:56:17.5293147Z)
+Assets/SleepwalkingVisual/Prefabs/SleepwalkingRoom.prefab(modified date 2026-11-13T23:56:17.1909019Z)
+Assets/SleepwalkingVisual/Preview/VisualBuildFinal.log(modified date 2026-11-13T23:56:17.8057414Z)
+Assets/SleepwalkingVisual/Materials/Frame_8C5050.mat - (Force Reimport)(modified date 2026-11-13T23:56:17.5525388Z)
+Assets/SleepwalkingVisual/Materials/Heaven_90DCC0.mat - (Force Reimport)(modified date 2026-11-13T23:56:17.5613527Z)
+Assets/SleepwalkingVisual/Materials/Background_161318.mat - (Force Reimport)(modified date 2026-11-13T23:56:17.4804835Z)
+Assets/SleepwalkingVisual/Prefabs/Themes/Meat.prefab(modified date 2026-11-13T23:56:16.2699403Z)
+Assets/SleepwalkingVisual/Prefabs/Themes/Heaven.prefab(modified date 2026-11-13T23:56:16.864948Z)
+Assets/SleepwalkingVisual/Materials/Accent_B4202A.mat - (Force Reimport)(modified date 2026-11-13T23:56:17.5206758Z)
+Assets/SleepwalkingVisual/Prefabs/Themes/DeepWater.prefab(modified date 2026-11-13T23:56:16.6643468Z)
+Assets/SleepwalkingVisual/Materials/Panel_222036.mat - (Force Reimport)(modified date 2026-11-13T23:56:17.5375423Z)
+Assets/SleepwalkingVisual/Materials/Text_F8D4B8.mat - (Force Reimport)(modified date 2026-11-13T23:56:17.5440921Z)
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEditor.SceneManagement.EditorSceneManager:SaveSceneInternal (UnityEngine.SceneManagement.Scene,string,bool)
+UnityEditor.SceneManagement.EditorSceneManager:SaveScene (UnityEngine.SceneManagement.Scene,string,bool)
+UnityEditor.SceneManagement.EditorSceneManager:SaveScene (UnityEngine.SceneManagement.Scene,string)
+Sleepwalking.Visual.Editor.VisualAssetBuilder:BuildRoom () (at Assets/SleepwalkingVisual/Editor/VisualAssetBuilder.cs:239)
+Sleepwalking.Visual.Editor.VisualAssetBuilder:Build () (at Assets/SleepwalkingVisual/Editor/VisualAssetBuilder.cs:23)
+
+[Assets/SleepwalkingVisual/Editor/VisualAssetBuilder.cs line 239]
+
+Refreshing native plugins compatible for Editor in 1.41 ms, found 4 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Asset Pipeline Refresh (id=cf10f2225a01bbd4088f05da024fe0cc): Total: 0.247 seconds - Initiated by StopAssetImportingV2(NoUpdateAssetOptions)
+Start importing Assets/SleepwalkingVisual/Preview/RoomPreview.unity using Guid(ac23a6ad604e4b44d9b48d91d51da5a0) (DefaultImporter) -> (artifact id: '08d74ffce06cd3f6216585f738db353e') in 0.0010586 seconds
+Start importing Assets/SleepwalkingVisual/Preview/VisualBuildFinal.log using Guid(ed243ed8251c82e41ae400cedbd2ad26) (DefaultImporter) -> (artifact id: '00000000000000000000000000000000') in 0.0007159 seconds
+Import Error Code:(4)
+Message: Build asset version error: assets/sleepwalkingvisual/preview/visualbuildfinal.log in SourceAssetDB has modification time of '2026-11-13T23:56:15.350606Z' while content on disk has modification time of '2026-11-13T23:56:17.8582841Z'
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEditor.SceneManagement.EditorSceneManager:SaveSceneInternal (UnityEngine.SceneManagement.Scene,string,bool)
+UnityEditor.SceneManagement.EditorSceneManager:SaveScene (UnityEngine.SceneManagement.Scene,string,bool)
+UnityEditor.SceneManagement.EditorSceneManager:SaveScene (UnityEngine.SceneManagement.Scene,string)
+Sleepwalking.Visual.Editor.VisualAssetBuilder:BuildRoom () (at Assets/SleepwalkingVisual/Editor/VisualAssetBuilder.cs:239)
+Sleepwalking.Visual.Editor.VisualAssetBuilder:Build () (at Assets/SleepwalkingVisual/Editor/VisualAssetBuilder.cs:23)
+
+[Assets/SleepwalkingVisual/Editor/VisualAssetBuilder.cs line 239]
+
+'Assets/SleepwalkingVisual/Preview/VisualBuildFinal.log' Amount of processed bytes '136909' does not match file size '131124'
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEditor.SceneManagement.EditorSceneManager:SaveSceneInternal (UnityEngine.SceneManagement.Scene,string,bool)
+UnityEditor.SceneManagement.EditorSceneManager:SaveScene (UnityEngine.SceneManagement.Scene,string,bool)
+UnityEditor.SceneManagement.EditorSceneManager:SaveScene (UnityEngine.SceneManagement.Scene,string)
+Sleepwalking.Visual.Editor.VisualAssetBuilder:BuildRoom () (at Assets/SleepwalkingVisual/Editor/VisualAssetBuilder.cs:239)
+Sleepwalking.Visual.Editor.VisualAssetBuilder:Build () (at Assets/SleepwalkingVisual/Editor/VisualAssetBuilder.cs:23)
+
+[Assets/SleepwalkingVisual/Editor/VisualAssetBuilder.cs line 239]
+
+Start importing Assets/SleepwalkingVisual/Preview/VisualBuildFinal.log using Guid(ed243ed8251c82e41ae400cedbd2ad26) (DefaultImporter) -> (artifact id: '00000000000000000000000000000000') in 0.0007227 seconds
+Import Error Code:(4)
+Message: Build asset version error: assets/sleepwalkingvisual/preview/visualbuildfinal.log in SourceAssetDB has modification time of '2026-11-13T23:56:15.350606Z' while content on disk has modification time of '2026-11-13T23:56:17.878354Z'
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEditor.SceneManagement.EditorSceneManager:SaveSceneInternal (UnityEngine.SceneManagement.Scene,string,bool)
+UnityEditor.SceneManagement.EditorSceneManager:SaveScene (UnityEngine.SceneManagement.Scene,string,bool)
+UnityEditor.SceneManagement.EditorSceneManager:SaveScene (UnityEngine.SceneManagement.Scene,string)
+Sleepwalking.Visual.Editor.VisualAssetBuilder:BuildRoom () (at Assets/SleepwalkingVisual/Editor/VisualAssetBuilder.cs:239)
+Sleepwalking.Visual.Editor.VisualAssetBuilder:Build () (at Assets/SleepwalkingVisual/Editor/VisualAssetBuilder.cs:23)
+
+[Assets/SleepwalkingVisual/Editor/VisualAssetBuilder.cs line 239]
+
+'Assets/SleepwalkingVisual/Preview/VisualBuildFinal.log' Amount of processed bytes '139009' does not match file size '137786'
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEditor.SceneManagement.EditorSceneManager:SaveSceneInternal (UnityEngine.SceneManagement.Scene,string,bool)
+UnityEditor.SceneManagement.EditorSceneManager:SaveScene (UnityEngine.SceneManagement.Scene,string,bool)
+UnityEditor.SceneManagement.EditorSceneManager:SaveScene (UnityEngine.SceneManagement.Scene,string)
+Sleepwalking.Visual.Editor.VisualAssetBuilder:BuildRoom () (at Assets/SleepwalkingVisual/Editor/VisualAssetBuilder.cs:239)
+Sleepwalking.Visual.Editor.VisualAssetBuilder:Build () (at Assets/SleepwalkingVisual/Editor/VisualAssetBuilder.cs:23)
+
+[Assets/SleepwalkingVisual/Editor/VisualAssetBuilder.cs line 239]
+
+Start importing Assets/SleepwalkingVisual/Preview/VisualBuildFinal.log using Guid(ed243ed8251c82e41ae400cedbd2ad26) (DefaultImporter) -> (artifact id: '00000000000000000000000000000000') in 0.0007151 seconds
+Import Error Code:(4)
+Message: Build asset version error: assets/sleepwalkingvisual/preview/visualbuildfinal.log in SourceAssetDB has modification time of '2026-11-13T23:56:15.350606Z' while content on disk has modification time of '2026-11-13T23:56:17.9122888Z'
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEditor.SceneManagement.EditorSceneManager:SaveSceneInternal (UnityEngine.SceneManagement.Scene,string,bool)
+UnityEditor.SceneManagement.EditorSceneManager:SaveScene (UnityEngine.SceneManagement.Scene,string,bool)
+UnityEditor.SceneManagement.EditorSceneManager:SaveScene (UnityEngine.SceneManagement.Scene,string)
+Sleepwalking.Visual.Editor.VisualAssetBuilder:BuildRoom () (at Assets/SleepwalkingVisual/Editor/VisualAssetBuilder.cs:239)
+Sleepwalking.Visual.Editor.VisualAssetBuilder:Build () (at Assets/SleepwalkingVisual/Editor/VisualAssetBuilder.cs:23)
+
+[Assets/SleepwalkingVisual/Editor/VisualAssetBuilder.cs line 239]
+
+'Assets/SleepwalkingVisual/Preview/VisualBuildFinal.log' Amount of processed bytes '141110' does not match file size '139886'
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEditor.SceneManagement.EditorSceneManager:SaveSceneInternal (UnityEngine.SceneManagement.Scene,string,bool)
+UnityEditor.SceneManagement.EditorSceneManager:SaveScene (UnityEngine.SceneManagement.Scene,string,bool)
+UnityEditor.SceneManagement.EditorSceneManager:SaveScene (UnityEngine.SceneManagement.Scene,string)
+Sleepwalking.Visual.Editor.VisualAssetBuilder:BuildRoom () (at Assets/SleepwalkingVisual/Editor/VisualAssetBuilder.cs:239)
+Sleepwalking.Visual.Editor.VisualAssetBuilder:Build () (at Assets/SleepwalkingVisual/Editor/VisualAssetBuilder.cs:23)
+
+[Assets/SleepwalkingVisual/Editor/VisualAssetBuilder.cs line 239]
+
+Start importing Assets/SleepwalkingVisual/Preview/VisualBuildFinal.log using Guid(ed243ed8251c82e41ae400cedbd2ad26) (DefaultImporter) -> (artifact id: '00000000000000000000000000000000') in 0.0007865 seconds
+Import Error Code:(4)
+Message: Build asset version error: assets/sleepwalkingvisual/preview/visualbuildfinal.log in SourceAssetDB has modification time of '2026-11-13T23:56:15.350606Z' while content on disk has modification time of '2026-11-13T23:56:17.9476501Z'
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEditor.SceneManagement.EditorSceneManager:SaveSceneInternal (UnityEngine.SceneManagement.Scene,string,bool)
+UnityEditor.SceneManagement.EditorSceneManager:SaveScene (UnityEngine.SceneManagement.Scene,string,bool)
+UnityEditor.SceneManagement.EditorSceneManager:SaveScene (UnityEngine.SceneManagement.Scene,string)
+Sleepwalking.Visual.Editor.VisualAssetBuilder:BuildRoom () (at Assets/SleepwalkingVisual/Editor/VisualAssetBuilder.cs:239)
+Sleepwalking.Visual.Editor.VisualAssetBuilder:Build () (at Assets/SleepwalkingVisual/Editor/VisualAssetBuilder.cs:23)
+
+[Assets/SleepwalkingVisual/Editor/VisualAssetBuilder.cs line 239]
+
+'Assets/SleepwalkingVisual/Preview/VisualBuildFinal.log' Amount of processed bytes '143211' does not match file size '141987'
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEditor.SceneManagement.EditorSceneManager:SaveSceneInternal (UnityEngine.SceneManagement.Scene,string,bool)
+UnityEditor.SceneManagement.EditorSceneManager:SaveScene (UnityEngine.SceneManagement.Scene,string,bool)
+UnityEditor.SceneManagement.EditorSceneManager:SaveScene (UnityEngine.SceneManagement.Scene,string)
+Sleepwalking.Visual.Editor.VisualAssetBuilder:BuildRoom () (at Assets/SleepwalkingVisual/Editor/VisualAssetBuilder.cs:239)
+Sleepwalking.Visual.Editor.VisualAssetBuilder:Build () (at Assets/SleepwalkingVisual/Editor/VisualAssetBuilder.cs:23)
+
+[Assets/SleepwalkingVisual/Editor/VisualAssetBuilder.cs line 239]
+
+Start importing Assets/SleepwalkingVisual/Preview/VisualBuildFinal.log using Guid(ed243ed8251c82e41ae400cedbd2ad26) (DefaultImporter) -> (artifact id: '00000000000000000000000000000000') in 0.0006516 seconds
+Import Error Code:(4)
+Message: Build asset version error: assets/sleepwalkingvisual/preview/visualbuildfinal.log in SourceAssetDB has modification time of '2026-11-13T23:56:15.350606Z' while content on disk has modification time of '2026-11-13T23:56:17.9832596Z'
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEditor.SceneManagement.EditorSceneManager:SaveSceneInternal (UnityEngine.SceneManagement.Scene,string,bool)
+UnityEditor.SceneManagement.EditorSceneManager:SaveScene (UnityEngine.SceneManagement.Scene,string,bool)
+UnityEditor.SceneManagement.EditorSceneManager:SaveScene (UnityEngine.SceneManagement.Scene,string)
+Sleepwalking.Visual.Editor.VisualAssetBuilder:BuildRoom () (at Assets/SleepwalkingVisual/Editor/VisualAssetBuilder.cs:239)
+Sleepwalking.Visual.Editor.VisualAssetBuilder:Build () (at Assets/SleepwalkingVisual/Editor/VisualAssetBuilder.cs:23)
+
+[Assets/SleepwalkingVisual/Editor/VisualAssetBuilder.cs line 239]
+
+'Assets/SleepwalkingVisual/Preview/VisualBuildFinal.log' Amount of processed bytes '145312' does not match file size '144088'
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEditor.SceneManagement.EditorSceneManager:SaveSceneInternal (UnityEngine.SceneManagement.Scene,string,bool)
+UnityEditor.SceneManagement.EditorSceneManager:SaveScene (UnityEngine.SceneManagement.Scene,string,bool)
+UnityEditor.SceneManagement.EditorSceneManager:SaveScene (UnityEngine.SceneManagement.Scene,string)
+Sleepwalking.Visual.Editor.VisualAssetBuilder:BuildRoom () (at Assets/SleepwalkingVisual/Editor/VisualAssetBuilder.cs:239)
+Sleepwalking.Visual.Editor.VisualAssetBuilder:Build () (at Assets/SleepwalkingVisual/Editor/VisualAssetBuilder.cs:23)
+
+[Assets/SleepwalkingVisual/Editor/VisualAssetBuilder.cs line 239]
+
+Start importing Assets/SleepwalkingVisual/Preview/VisualBuildFinal.log using Guid(ed243ed8251c82e41ae400cedbd2ad26) (DefaultImporter) -> (artifact id: '00000000000000000000000000000000') in 0.0008169 seconds
+Import Error Code:(4)
+Message: Build asset version error: assets/sleepwalkingvisual/preview/visualbuildfinal.log in SourceAssetDB has modification time of '2026-11-13T23:56:15.350606Z' while content on disk has modification time of '2026-11-13T23:56:18.0166889Z'
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEditor.SceneManagement.EditorSceneManager:SaveSceneInternal (UnityEngine.SceneManagement.Scene,string,bool)
+UnityEditor.SceneManagement.EditorSceneManager:SaveScene (UnityEngine.SceneManagement.Scene,string,bool)
+UnityEditor.SceneManagement.EditorSceneManager:SaveScene (UnityEngine.SceneManagement.Scene,string)
+Sleepwalking.Visual.Editor.VisualAssetBuilder:BuildRoom () (at Assets/SleepwalkingVisual/Editor/VisualAssetBuilder.cs:239)
+Sleepwalking.Visual.Editor.VisualAssetBuilder:Build () (at Assets/SleepwalkingVisual/Editor/VisualAssetBuilder.cs:23)
+
+[Assets/SleepwalkingVisual/Editor/VisualAssetBuilder.cs line 239]
+
+'Assets/SleepwalkingVisual/Preview/VisualBuildFinal.log' Amount of processed bytes '147413' does not match file size '146189'
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEditor.SceneManagement.EditorSceneManager:SaveSceneInternal (UnityEngine.SceneManagement.Scene,string,bool)
+UnityEditor.SceneManagement.EditorSceneManager:SaveScene (UnityEngine.SceneManagement.Scene,string,bool)
+UnityEditor.SceneManagement.EditorSceneManager:SaveScene (UnityEngine.SceneManagement.Scene,string)
+Sleepwalking.Visual.Editor.VisualAssetBuilder:BuildRoom () (at Assets/SleepwalkingVisual/Editor/VisualAssetBuilder.cs:239)
+Sleepwalking.Visual.Editor.VisualAssetBuilder:Build () (at Assets/SleepwalkingVisual/Editor/VisualAssetBuilder.cs:23)
+
+[Assets/SleepwalkingVisual/Editor/VisualAssetBuilder.cs line 239]
+
+Start importing Assets/SleepwalkingVisual/Preview/VisualBuildFinal.log using Guid(ed243ed8251c82e41ae400cedbd2ad26) (DefaultImporter) -> (artifact id: '00000000000000000000000000000000') in 0.000894 seconds
+Import Error Code:(4)
+Message: Build asset version error: assets/sleepwalkingvisual/preview/visualbuildfinal.log in SourceAssetDB has modification time of '2026-11-13T23:56:15.350606Z' while content on disk has modification time of '2026-11-13T23:56:18.0523334Z'
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEditor.SceneManagement.EditorSceneManager:SaveSceneInternal (UnityEngine.SceneManagement.Scene,string,bool)
+UnityEditor.SceneManagement.EditorSceneManager:SaveScene (UnityEngine.SceneManagement.Scene,string,bool)
+UnityEditor.SceneManagement.EditorSceneManager:SaveScene (UnityEngine.SceneManagement.Scene,string)
+Sleepwalking.Visual.Editor.VisualAssetBuilder:BuildRoom () (at Assets/SleepwalkingVisual/Editor/VisualAssetBuilder.cs:239)
+Sleepwalking.Visual.Editor.VisualAssetBuilder:Build () (at Assets/SleepwalkingVisual/Editor/VisualAssetBuilder.cs:23)
+
+[Assets/SleepwalkingVisual/Editor/VisualAssetBuilder.cs line 239]
+
+An infinite import loop has been detected. The following Assets were imported multiple times, but no changes to them have been detected. Please check if any custom code is trying to import them:
+Assets/SleepwalkingVisual/Materials/GlitchBlue_229EDE.mat(modified date 2026-11-13T23:56:17.4885413Z)
+Assets/SleepwalkingVisual/Materials/Shadow_3C2030.mat(modified date 2026-11-13T23:56:17.5049635Z)
+Assets/SleepwalkingVisual/Materials/Hover_E04020.mat(modified date 2026-11-13T23:56:17.4955379Z)
+Assets/SleepwalkingVisual/Materials/Pressed_6E1830.mat(modified date 2026-11-13T23:56:17.51247Z)
+Assets/SleepwalkingVisual/Prefabs/Themes/PostApocalypse.prefab(modified date 2026-11-13T23:56:16.4918772Z)
+Assets/SleepwalkingVisual/Materials/Secondary_B4B8D4.mat(modified date 2026-11-13T23:56:17.5293147Z)
+Assets/SleepwalkingVisual/Prefabs/SleepwalkingRoom.prefab(modified date 2026-11-13T23:56:17.1909019Z)
+Assets/SleepwalkingVisual/Preview/VisualBuildFinal.log(modified date 2026-11-13T23:56:18.0523334Z)
+Assets/SleepwalkingVisual/Materials/Frame_8C5050.mat(modified date 2026-11-13T23:56:17.5525388Z)
+Assets/SleepwalkingVisual/Materials/Heaven_90DCC0.mat(modified date 2026-11-13T23:56:17.5613527Z)
+Assets/SleepwalkingVisual/Materials/Background_161318.mat(modified date 2026-11-13T23:56:17.4804835Z)
+Assets/SleepwalkingVisual/Prefabs/Themes/Meat.prefab(modified date 2026-11-13T23:56:16.2699403Z)
+Assets/SleepwalkingVisual/Prefabs/Themes/Heaven.prefab(modified date 2026-11-13T23:56:16.864948Z)
+Assets/SleepwalkingVisual/Materials/Accent_B4202A.mat(modified date 2026-11-13T23:56:17.5206758Z)
+Assets/SleepwalkingVisual/Prefabs/Themes/DeepWater.prefab(modified date 2026-11-13T23:56:16.6643468Z)
+Assets/SleepwalkingVisual/Materials/Panel_222036.mat(modified date 2026-11-13T23:56:17.5375423Z)
+Assets/SleepwalkingVisual/Materials/Text_F8D4B8.mat(modified date 2026-11-13T23:56:17.5440921Z)
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEditor.SceneManagement.EditorSceneManager:SaveSceneInternal (UnityEngine.SceneManagement.Scene,string,bool)
+UnityEditor.SceneManagement.EditorSceneManager:SaveScene (UnityEngine.SceneManagement.Scene,string,bool)
+UnityEditor.SceneManagement.EditorSceneManager:SaveScene (UnityEngine.SceneManagement.Scene,string)
+Sleepwalking.Visual.Editor.VisualAssetBuilder:BuildRoom () (at Assets/SleepwalkingVisual/Editor/VisualAssetBuilder.cs:239)
+Sleepwalking.Visual.Editor.VisualAssetBuilder:Build () (at Assets/SleepwalkingVisual/Editor/VisualAssetBuilder.cs:23)
+
+[Assets/SleepwalkingVisual/Editor/VisualAssetBuilder.cs line 239]
+
+NullReferenceException: Object reference not set to an instance of an object
+  at UnityEditor.Rendering.BuiltIn.MaterialPostprocessor.OnPostprocessAllAssets (System.String[] importedAssets, System.String[] deletedAssets, System.String[] movedAssets, System.String[] movedFromAssetPaths) [0x00037] in .\Library\PackageCache\com.unity.shadergraph@d526115bb944\Editor\Generation\Targets\BuiltIn\Editor\AssetPostProcessors\MaterialPostprocessor.cs:77 
+  at (wrapper managed-to-native) System.Reflection.RuntimeMethodInfo.InternalInvoke(System.Reflection.RuntimeMethodInfo,object,object[],System.Exception&)
+  at System.Reflection.RuntimeMethodInfo.Invoke (System.Object obj, System.Reflection.BindingFlags invokeAttr, System.Reflection.Binder binder, System.Object[] parameters, System.Globalization.CultureInfo culture) [0x0006a] in <b2ed3aa968d84284a17b07ec9195055c>:0 
+Rethrow as TargetInvocationException: Exception has been thrown by the target of an invocation.
+  at System.Reflection.RuntimeMethodInfo.Invoke (System.Object obj, System.Reflection.BindingFlags invokeAttr, System.Reflection.Binder binder, System.Object[] parameters, System.Globalization.CultureInfo culture) [0x00083] in <b2ed3aa968d84284a17b07ec9195055c>:0 
+  at System.Reflection.MethodBase.Invoke (System.Object obj, System.Object[] parameters) [0x00000] in <b2ed3aa968d84284a17b07ec9195055c>:0 
+  at UnityEditor.AssetPostprocessingInternal.InvokeMethod (System.Reflection.MethodInfo method, System.Object[] args) [0x00033] in <c11b84dc4d8b474bb659a85e84285eaa>:0 
+  at UnityEditor.AssetPostprocessingInternal.PostprocessAllAssets (System.String[] importedAssets, System.String[] addedAssets, System.String[] deletedAssets, System.String[] movedAssets, System.String[] movedFromPathAssets, System.Boolean didDomainReload) [0x00116] in <c11b84dc4d8b474bb659a85e84285eaa>:0 
+UnityEngine.DebugLogHandler:Internal_LogException_Injected(Exception, IntPtr)
+UnityEngine.DebugLogHandler:Internal_LogException(Exception, Object)
+UnityEngine.DebugLogHandler:LogException(Exception, Object)
+UnityEngine.Logger:LogException(Exception, Object)
+UnityEngine.Debug:LogException(Exception)
+UnityEditor.AssetPostprocessingInternal:PostprocessAllAssets(String[], String[], String[], String[], String[], Boolean)
+UnityEditor.SceneManagement.EditorSceneManager:SaveSceneInternal_Injected(Scene&, ManagedSpanWrapper&, Boolean)
+UnityEditor.SceneManagement.EditorSceneManager:SaveSceneInternal(Scene, String, Boolean)
+UnityEditor.SceneManagement.EditorSceneManager:SaveScene(Scene, String, Boolean)
+UnityEditor.SceneManagement.EditorSceneManager:SaveScene(Scene, String)
+Sleepwalking.Visual.Editor.VisualAssetBuilder:BuildRoom() (at Assets\SleepwalkingVisual\Editor\VisualAssetBuilder.cs:239)
+Sleepwalking.Visual.Editor.VisualAssetBuilder:Build() (at Assets\SleepwalkingVisual\Editor\VisualAssetBuilder.cs:23)
+
+(Filename: ./Library/PackageCache/com.unity.shadergraph@d526115bb944/Editor/Generation/Targets/BuiltIn/Editor/AssetPostProcessors/MaterialPostprocessor.cs Line: 77)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at UnityEditor.Rendering.Universal.MaterialPostprocessor.OnPostprocessAllAssets (System.String[] importedAssets, System.String[] deletedAssets, System.String[] movedAssets, System.String[] movedFromAssetPaths) [0x00040] in .\Library\PackageCache\com.unity.render-pipelines.universal@029be7ffa662\Editor\AssetPostProcessors\MaterialPostprocessor.cs:137 
+  at (wrapper managed-to-native) System.Reflection.RuntimeMethodInfo.InternalInvoke(System.Reflection.RuntimeMethodInfo,object,object[],System.Exception&)
+  at System.Reflection.RuntimeMethodInfo.Invoke (System.Object obj, System.Reflection.BindingFlags invokeAttr, System.Reflection.Binder binder, System.Object[] parameters, System.Globalization.CultureInfo culture) [0x0006a] in <b2ed3aa968d84284a17b07ec9195055c>:0 
+Rethrow as TargetInvocationException: Exception has been thrown by the target of an invocation.
+  at System.Reflection.RuntimeMethodInfo.Invoke (System.Object obj, System.Reflection.BindingFlags invokeAttr, System.Reflection.Binder binder, System.Object[] parameters, System.Globalization.CultureInfo culture) [0x00083] in <b2ed3aa968d84284a17b07ec9195055c>:0 
+  at System.Reflection.MethodBase.Invoke (System.Object obj, System.Object[] parameters) [0x00000] in <b2ed3aa968d84284a17b07ec9195055c>:0 
+  at UnityEditor.AssetPostprocessingInternal.InvokeMethod (System.Reflection.MethodInfo method, System.Object[] args) [0x00033] in <c11b84dc4d8b474bb659a85e84285eaa>:0 
+  at UnityEditor.AssetPostprocessingInternal.PostprocessAllAssets (System.String[] importedAssets, System.String[] addedAssets, System.String[] deletedAssets, System.String[] movedAssets, System.String[] movedFromPathAssets, System.Boolean didDomainReload) [0x00116] in <c11b84dc4d8b474bb659a85e84285eaa>:0 
+UnityEngine.DebugLogHandler:Internal_LogException_Injected(Exception, IntPtr)
+UnityEngine.DebugLogHandler:Internal_LogException(Exception, Object)
+UnityEngine.DebugLogHandler:LogException(Exception, Object)
+UnityEngine.Logger:LogException(Exception, Object)
+UnityEngine.Debug:LogException(Exception)
+UnityEditor.AssetPostprocessingInternal:PostprocessAllAssets(String[], String[], String[], String[], String[], Boolean)
+UnityEditor.SceneManagement.EditorSceneManager:SaveSceneInternal_Injected(Scene&, ManagedSpanWrapper&, Boolean)
+UnityEditor.SceneManagement.EditorSceneManager:SaveSceneInternal(Scene, String, Boolean)
+UnityEditor.SceneManagement.EditorSceneManager:SaveScene(Scene, String, Boolean)
+UnityEditor.SceneManagement.EditorSceneManager:SaveScene(Scene, String)
+Sleepwalking.Visual.Editor.VisualAssetBuilder:BuildRoom() (at Assets\SleepwalkingVisual\Editor\VisualAssetBuilder.cs:239)
+Sleepwalking.Visual.Editor.VisualAssetBuilder:Build() (at Assets\SleepwalkingVisual\Editor\VisualAssetBuilder.cs:23)
+
+(Filename: ./Library/PackageCache/com.unity.render-pipelines.universal@029be7ffa662/Editor/AssetPostProcessors/MaterialPostprocessor.cs Line: 137)
+
+Refreshing native plugins compatible for Editor in 1.06 ms, found 4 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Asset Pipeline Refresh (id=212e436bf9aac3b48b5920c4d6566724): Total: 0.242 seconds - Initiated by StopAssetImportingV2(NoUpdateAssetOptions)
+'Assets/SleepwalkingVisual/Preview/VisualBuildFinal.log' Amount of processed bytes '158502' does not match file size '148290'
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEditor.AssetDatabase:Refresh ()
+Sleepwalking.Visual.Editor.VisualAssetBuilder:Build () (at Assets/SleepwalkingVisual/Editor/VisualAssetBuilder.cs:25)
+
+[Assets/SleepwalkingVisual/Editor/VisualAssetBuilder.cs line 25]
+
+Asset Pipeline Refresh (id=6295e5c2c4e69374f8ad10eca532fa2f): Total: 0.026 seconds - Initiated by RefreshV2(NoUpdateAssetOptions)
+Visual assets ready: room, preview scene, four dream themes.
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+Sleepwalking.Visual.Editor.VisualAssetBuilder:Build () (at Assets/SleepwalkingVisual/Editor/VisualAssetBuilder.cs:26)
+
+(Filename: Assets/SleepwalkingVisual/Editor/VisualAssetBuilder.cs Line: 26)
+
+Batchmode quit successfully invoked - shutting down!
+Pipeline Server stopped
+Killing ADB server in 2,1091378 seconds.
+[Physics::Module] Cleanup current backend.
+[Physics::Module] Id: 0xf2b8ea05
+Input System module state changed to: ShutdownInProgress.
+Input System polling thread exited.
+Input System module state changed to: Shutdown.
+[Licensing::IpcConnector] LicenseClient-TIMBUHTUK-notifications channel disconnected successfully.
+[Licensing::IpcConnector] LicenseClient-TIMBUHTUK channel disconnected successfully.
+AcceleratorClientConnectionCallback - disconnected - :0
+Cleanup mono
+Exiting batchmode successfully now!
+Exiting without the bug reporter. Application will terminate with return code 0

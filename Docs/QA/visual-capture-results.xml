@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="1" result="Failed(Child)" total="1" passed="0" failed="1" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-11-14 00:45:49Z" end-time="2026-11-14 00:46:01Z" duration="11,9602921">
+  <test-suite type="TestSuite" id="1012" name="Sleepwalking" fullname="Sleepwalking" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-11-14 00:45:49Z" end-time="2026-11-14 00:46:01Z" duration="11.960292" total="1" passed="0" failed="1" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="PlayMode" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="Assembly" id="1005" name="Sleepwalking.PlayMode.Tests.dll" fullname="T:/Sleepwalking/Library/ScriptAssemblies/Sleepwalking.PlayMode.Tests.dll" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-11-14 00:45:49Z" end-time="2026-11-14 00:46:01Z" duration="11.953834" total="1" passed="0" failed="1" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="325540" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="PlayMode" />
+        <property name="EditorOnly" value="False" />
+      </properties>
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="1006" name="Sleepwalking" fullname="Sleepwalking" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-11-14 00:45:49Z" end-time="2026-11-14 00:46:01Z" duration="11.953445" total="1" passed="0" failed="1" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestSuite" id="1007" name="Tests" fullname="Sleepwalking.Tests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-11-14 00:45:49Z" end-time="2026-11-14 00:46:01Z" duration="11.952869" total="1" passed="0" failed="1" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="TestSuite" id="1008" name="PlayMode" fullname="Sleepwalking.Tests.PlayMode" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-11-14 00:45:49Z" end-time="2026-11-14 00:46:01Z" duration="11.952571" total="1" passed="0" failed="1" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-suite type="TestFixture" id="1003" name="SleepwalkingVisualCaptureTests" fullname="Sleepwalking.Tests.PlayMode.SleepwalkingVisualCaptureTests" classname="Sleepwalking.Tests.PlayMode.SleepwalkingVisualCaptureTests" runstate="Runnable" testcasecount="1" result="Failed" site="Child" start-time="2026-11-14 00:45:49Z" end-time="2026-11-14 00:46:01Z" duration="11.951694" total="1" passed="0" failed="1" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="1004" name="CaptureFirstCycleAssignedStyles" fullname="Sleepwalking.Tests.PlayMode.SleepwalkingVisualCaptureTests.CaptureFirstCycleAssignedStyles" methodname="CaptureFirstCycleAssignedStyles" classname="Sleepwalking.Tests.PlayMode.SleepwalkingVisualCaptureTests" runstate="Runnable" seed="2146749855" result="Failed" start-time="2026-11-14 00:45:49Z" end-time="2026-11-14 00:46:01Z" duration="11.943285" asserts="0">
+                <properties>
+                  <property name="_JOINTYPE" value="UnityCombinatorial" />
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[Unhandled log message: '[Log] Sleepwalking QA visual capture: T:\Sleepwalking\Docs\QA\dream-L01-Meat-polish.png (320x240)'. Use UnityEngine.TestTools.LogAssert.Expect]]></message>
+                  <stack-trace><![CDATA[Sleepwalking.Tests.PlayMode.SleepwalkingVisualCaptureTests/<CaptureFirstCycleAssignedStyles>d__0:MoveNext () (at Assets/SleepwalkingTests/PlayMode/SleepwalkingVisualCaptureTests.cs:84)
+UnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)
+
+]]></stack-trace>
+                </failure>
+                <output><![CDATA[Sleepwalking QA visual capture: T:\Sleepwalking\Docs\QA\dream-L01-Meat-polish.png (320x240)
+Saving results to: C:/Users/TIMBUHTUK/AppData/LocalLow/DefaultCompany/Sleepwalking\TestResults.xml
+]]></output>
+              </test-case>
+            </test-suite>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

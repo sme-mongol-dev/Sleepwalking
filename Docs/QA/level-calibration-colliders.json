@@ -1,0 +1,2830 @@
+{
+  "L01": [
+    {
+      "name": "BedExit",
+      "ancestry": [
+        [
+          "{x: 11, y: 0.2, z: 0}",
+          "{x: 1, y: 1, z: 1}",
+          "{x: 0, y: 0, z: 0, w: 1}"
+        ],
+        [
+          "{x: 0, y: 0, z: 0}",
+          "{x: 1, y: 1, z: 1}",
+          "{x: 0, y: 0, z: 0, w: 1}"
+        ],
+        [
+          "{x: 0, y: 0, z: 0}",
+          "{x: 1, y: 1, z: 1}",
+          "{x: 0, y: 0, z: 0, w: 1}"
+        ]
+      ],
+      "type": "BoxCollider2D",
+      "enabled": "1",
+      "trigger": "1",
+      "size": "{x: 1.4, y: 1.5}",
+      "center": "",
+      "offset": "{x: 0, y: 0.75}",
+      "radius": "",
+      "points": ""
+    },
+    {
+      "name": "ExitRun",
+      "ancestry": [
+        [
+          "{x: 10.75, y: -0.15, z: 0}",
+          "{x: 2.5, y: 0.7, z: 0.8}",
+          "{x: 0, y: 0, z: 0, w: 1}"
+        ],
+        [
+          "{x: 0, y: 0, z: 0}",
+          "{x: 1, y: 1, z: 1}",
+          "{x: 0, y: 0, z: 0, w: 1}"
+        ],
+        [
+          "{x: 0, y: 0, z: 0}",
+          "{x: 1, y: 1, z: 1}",
+          "{x: 0, y: 0, z: 0, w: 1}"
+        ]
+      ],
+      "type": "BoxCollider2D",
+      "enabled": "1",
+      "trigger": "0",
+      "size": "{x: 1, y: 1}",
+      "center": "",
+      "offset": "{x: 0, y: 0}",
+      "radius": "",
+      "points": ""
+    },
+    {
+      "name": "FallReset",
+      "ancestry": [
+        [
+          "{x: 6.5, y: -3.2, z: 0}",
+          "{x: 13, y: 0.3, z: 0.8}",
+          "{x: 0, y: 0, z: 0, w: 1}"
+        ],
+        [
+          "{x: 0, y: 0, z: 0}",
+          "{x: 1, y: 1, z: 1}",
+          "{x: 0, y: 0, z: 0, w: 1}"
+        ],
+        [
+          "{x: 0, y: 0, z: 0}",
+          "{x: 1, y: 1, z: 1}",
+          "{x: 0, y: 0, z: 0, w: 1}"
+        ]
+      ],
+      "type": "BoxCollider2D",
+      "enabled": "1",
+      "trigger": "1",
+      "size": "{x: 1, y: 1}",
+      "center": "",
+      "offset": "{x: 0, y: 0}",
+      "radius": "",
+      "points": ""
+    },
+    {
+      "name": "Frame",
+      "ancestry": [
+        [
+          "{x: 0, y: 0.2, z: 0}",
+          "{x: 1.25, y: 0.35, z: 0.8}",
+          "{x: 0, y: 0, z: 0, w: 1}"
+        ],
+        [
+          "{x: 11, y: 0.2, z: 0}",
+          "{x: 1, y: 1, z: 1}",
+          "{x: 0, y: 0, z: 0, w: 1}"
+        ],
+        [
+          "{x: 0, y: 0, z: 0}",
+          "{x: 1, y: 1, z: 1}",
+          "{x: 0, y: 0, z: 0, w: 1}"
+        ],
+        [
+          "{x: 0, y: 0, z: 0}",
+          "{x: 1, y: 1, z: 1}",
+          "{x: 0, y: 0, z: 0, w: 1}"
+        ]
+      ],
+      "type": "BoxCollider2D",
+      "enabled": "1",
+      "trigger": "1",
+      "size": "{x: 1, y: 1}",
+      "center": "",
+      "offset": "{x: 0, y: 0}",
+      "radius": "",
+      "points": ""
+    },
+    {
+      "name": "JumpLanding",
+      "ancestry": [
+        [
+          "{x: 6.8, y: -0.35, z: 0}",
+          "{x: 3.2, y: 0.7, z: 0.8}",
+          "{x: 0, y: 0, z: 0, w: 1}"
+        ],
+        [
+          "{x: 0, y: 0, z: 0}",
+          "{x: 1, y: 1, z: 1}",
+          "{x: 0, y: 0, z: 0, w: 1}"
+        ],
+        [
+          "{x: 0, y: 0, z: 0}",
+          "{x: 1, y: 1, z: 1}",
+          "{x: 0, y: 0, z: 0, w: 1}"
+        ]
+      ],
+      "type": "BoxCollider2D",
+      "enabled": "1",
+      "trigger": "0",
+      "size": "{x: 1, y: 1}",
+      "center": "",
+      "offset": "{x: 0, y: 0}",
+      "radius": "",
+      "points": ""
+    },
+    {
+      "name": "Pillow",
+      "ancestry": [
+        [
+          "{x: -0.42, y: 0.46, z: 0}",
+          "{x: 0.28, y: 0.22, z: 0.8}",
+          "{x: 0, y: 0, z: 0, w: 1}"
+        ],
+        [
+          "{x: 11, y: 0.2, z: 0}",
+          "{x: 1, y: 1, z: 1}",
+          "{x: 0, y: 0, z: 0, w: 1}"
+        ],
+        [
+          "{x: 0, y: 0, z: 0}",
+          "{x: 1, y: 1, z: 1}",
+          "{x: 0, y: 0, z: 0, w: 1}"
+        ],
+        [
+          "{x: 0, y: 0, z: 0}",
+          "{x: 1, y: 1, z: 1}",
+          "{x: 0, y: 0, z: 0, w: 1}"
+        ]
+      ],
+      "type": "BoxCollider2D",
+      "enabled": "1",
+      "trigger": "1",
+      "size": "{x: 1, y: 1}",
+      "center": "",
+      "offset": "{x: 0, y: 0}",
+      "radius": "",
+      "points": ""
+    },
+    {
+      "name": "Start",
+      "ancestry": [
+        [
+          "{x: 1.9, y: -0.35, z: 0}",
+          "{x: 3.8, y: 0.7, z: 0.8}",
+          "{x: 0, y: 0, z: 0, w: 1}"
+        ],
+        [
+          "{x: 0, y: 0, z: 0}",
+          "{x: 1, y: 1, z: 1}",
+          "{x: 0, y: 0, z: 0, w: 1}"
+        ],
+        [
+          "{x: 0, y: 0, z: 0}",
+          "{x: 1, y: 1, z: 1}",
+          "{x: 0, y: 0, z: 0, w: 1}"
+        ]
+      ],
+      "type": "BoxCollider2D",
+      "enabled": "1",
+      "trigger": "0",
+      "size": "{x: 1, y: 1}",
+      "center": "",
+      "offset": "{x: 0, y: 0}",
+      "radius": "",
+      "points": ""
+    }
+  ],
+  "L02": [
+    {
+      "name": "BedExit",
+      "ancestry": [
+        [
+          "{x: 11, y: 0.2, z: 0}",
+          "{x: 1, y: 1, z: 1}",
+          "{x: 0, y: 0, z: 0, w: 1}"
+        ],
+        [
+          "{x: 0, y: 0, z: 0}",
+          "{x: 1, y: 1, z: 1}",
+          "{x: 0, y: 0, z: 0, w: 1}"
+        ],
+        [
+          "{x: 0, y: 0, z: 0}",
+          "{x: 1, y: 1, z: 1}",
+          "{x: 0, y: 0, z: 0, w: 1}"
+        ]
+      ],
+      "type": "BoxCollider2D",
+      "enabled": "1",
+      "trigger": "1",
+      "size": "{x: 1.4, y: 1.5}",
+      "center": "",
+      "offset": "{x: 0, y: 0.75}",
+      "radius": "",
+      "points": ""
+    },
+    {
+      "name": "ExitRun",
+      "ancestry": [
+        [
+          "{x: 10.65, y: -0.15, z: 0}",
+          "{x: 2.7, y: 0.7, z: 0.8}",
+          "{x: 0, y: 0, z: 0, w: 1}"
+        ],
+        [
+          "{x: 0, y: 0, z: 0}",
+          "{x: 1, y: 1, z: 1}",
+          "{x: 0, y: 0, z: 0, w: 1}"
+        ],
+        [
+          "{x: 0, y: 0, z: 0}",
+          "{x: 1, y: 1, z: 1}",
+          "{x: 0, y: 0, z: 0, w: 1}"
+        ]
+      ],
+      "type": "BoxCollider2D",
+      "enabled": "1",
+      "trigger": "0",
+      "size": "{x: 1, y: 1}",
+      "center": "",
+      "offset": "{x: 0, y: 0}",
+      "radius": "",
+      "points": ""
+    },
+    {
+      "name": "FallReset",
+      "ancestry": [
+        [
+          "{x: 6.5, y: -3.2, z: 0}",
+          "{x: 13, y: 0.3, z: 0.8}",
+          "{x: 0, y: 0, z: 0, w: 1}"
+        ],
+        [
+          "{x: 0, y: 0, z: 0}",
+          "{x: 1, y: 1, z: 1}",
+          "{x: 0, y: 0, z: 0, w: 1}"
+        ],
+        [
+          "{x: 0, y: 0, z: 0}",
+          "{x: 1, y: 1, z: 1}",
+          "{x: 0, y: 0, z: 0, w: 1}"
+        ]
+      ],
+      "type": "BoxCollider2D",
+      "enabled": "1",
+      "trigger": "1",
+      "size": "{x: 1, y: 1}",
+      "center": "",
+      "offset": "{x: 0, y: 0}",
+      "radius": "",
+      "points": ""
+    },
+    {
+      "name": "Frame",
+      "ancestry": [
+        [
+          "{x: 0, y: 0.2, z: 0}",
+          "{x: 1.25, y: 0.35, z: 0.8}",
+          "{x: 0, y: 0, z: 0, w: 1}"
+        ],
+        [
+          "{x: 11, y: 0.2, z: 0}",
+          "{x: 1, y: 1, z: 1}",
+          "{x: 0, y: 0, z: 0, w: 1}"
+        ],
+        [
+          "{x: 0, y: 0, z: 0}",
+          "{x: 1, y: 1, z: 1}",
+          "{x: 0, y: 0, z: 0, w: 1}"
+        ],
+        [
+          "{x: 0, y: 0, z: 0}",
+          "{x: 1, y: 1, z: 1}",
+          "{x: 0, y: 0, z: 0, w: 1}"
+        ]
+      ],
+      "type": "BoxCollider2D",
+      "enabled": "1",
+      "trigger": "1",
+      "size": "{x: 1, y: 1}",
+      "center": "",
+      "offset": "{x: 0, y: 0}",
+      "radius": "",
+      "points": ""
+    },
+    {
+      "name": "L02_FloorSpikes_1",
+      "ancestry": [
+        [
+          "{x: 6.375, y: 0.24, z: 0}",
+          "{x: 0.45, y: 0.48, z: 0.8}",
+          "{x: 0, y: 0, z: 0, w: 1}"
+        ],
+        [
+          "{x: 0, y: 0, z: 0}",
+          "{x: 1, y: 1, z: 1}",
+          "{x: 0, y: 0, z: 0, w: 1}"
+        ],
+        [
+          "{x: 0, y: 0, z: 0}",
+          "{x: 1, y: 1, z: 1}",
+          "{x: 0, y: 0, z: 0, w: 1}"
+        ]
+      ],
+      "type": "PolygonCollider2D",
+      "enabled": "1",
+      "trigger": "1",
+      "size": "",
+      "center": "",
+      "offset": "{x: 0, y: 0}",
+      "radius": "",
+      "points": "  m_Points:\n    m_Paths:\n    - - {x: -0.5, y: -0.5}\n      - {x: 0.5, y: -0.5}\n      - {x: 0, y: 0.5}\n"
+    },
+    {
+      "name": "L02_FloorSpikes_2",
+      "ancestry": [
+        [
+          "{x: 6.825, y: 0.24, z: 0}",
+          "{x: 0.45, y: 0.48, z: 0.8}",
+          "{x: 0, y: 0, z: 0, w: 1}"
+        ],
+        [
+          "{x: 0, y: 0, z: 0}",
+          "{x: 1, y: 1, z: 1}",
+          "{x: 0, y: 0, z: 0, w: 1}"
+        ],
+        [
+          "{x: 0, y: 0, z: 0}",
+          "{x: 1, y: 1, z: 1}",
+          "{x: 0, y: 0, z: 0, w: 1}"
+        ]
+      ],
+      "type": "PolygonCollider2D",
+      "enabled": "1",
+      "trigger": "1",
+      "size": "",
+      "center": "",
+      "offset": "{x: 0, y: 0}",
+      "radius": "",
+      "points": "  m_Points:\n    m_Paths:\n    - - {x: -0.5, y: -0.5}\n      - {x: 0.5, y: -0.5}\n      - {x: 0, y: 0.5}\n"
+    },
+    {
+      "name": "L02_PitSpikes_1",
+      "ancestry": [
+        [
+          "{x: 3.875, y: -0.56, z: 0}",
+          "{x: 0.45, y: 0.48, z: 0.8}",
+          "{x: 0, y: 0, z: 0, w: 1}"
+        ],
+        [
+          "{x: 0, y: 0, z: 0}",
+          "{x: 1, y: 1, z: 1}",
+          "{x: 0, y: 0, z: 0, w: 1}"
+        ],
+        [
+          "{x: 0, y: 0, z: 0}",
+          "{x: 1, y: 1, z: 1}",
+          "{x: 0, y: 0, z: 0, w: 1}"
+        ]
+      ],
+      "type": "PolygonCollider2D",
+      "enabled": "1",
+      "trigger": "1",
+      "size": "",
+      "center": "",
+      "offset": "{x: 0, y: 0}",
+      "radius": "",
+      "points": "  m_Points:\n    m_Paths:\n    - - {x: -0.5, y: -0.5}\n      - {x: 0.5, y: -0.5}\n      - {x: 0, y: 0.5}\n"
+    },
+    {
+      "name": "L02_PitSpikes_2",
+      "ancestry": [
+        [
+          "{x: 4.325, y: -0.56, z: 0}",
+          "{x: 0.45, y: 0.48, z: 0.8}",
+          "{x: 0, y: 0, z: 0, w: 1}"
+        ],
+        [
+          "{x: 0, y: 0, z: 0}",
+          "{x: 1, y: 1, z: 1}",
+          "{x: 0, y: 0, z: 0, w: 1}"
+        ],
+        [
+          "{x: 0, y: 0, z: 0}",
+          "{x: 1, y: 1, z: 1}",
+          "{x: 0, y: 0, z: 0, w: 1}"
+        ]
+      ],
+      "type": "PolygonCollider2D",
+      "enabled": "1",
+      "trigger": "1",
+      "size": "",
+      "center": "",
+      "offset": "{x: 0, y: 0}",
+      "radius": "",
+      "points": "  m_Points:\n    m_Paths:\n    - - {x: -0.5, y: -0.5}\n      - {x: 0.5, y: -0.5}\n      - {x: 0, y: 0.5}\n"
+    },
+    {
+      "name": "Pillow",
+      "ancestry": [
+        [
+          "{x: -0.42, y: 0.46, z: 0}",
+          "{x: 0.28, y: 0.22, z: 0.8}",
+          "{x: 0, y: 0, z: 0, w: 1}"
+        ],
+        [
+          "{x: 11, y: 0.2, z: 0}",
+          "{x: 1, y: 1, z: 1}",
+          "{x: 0, y: 0, z: 0, w: 1}"
+        ],
+        [
+          "{x: 0, y: 0, z: 0}",
+          "{x: 1, y: 1, z: 1}",
+          "{x: 0, y: 0, z: 0, w: 1}"
+        ],
+        [
+          "{x: 0, y: 0, z: 0}",
+          "{x: 1, y: 1, z: 1}",
+          "{x: 0, y: 0, z: 0, w: 1}"
+        ]
+      ],
+      "type": "BoxCollider2D",
+      "enabled": "1",
+      "trigger": "1",
+      "size": "{x: 1, y: 1}",
+      "center": "",
+      "offset": "{x: 0, y: 0}",
+      "radius": "",
+      "points": ""
+    },
+    {
+      "name": "SpikeLanding",
+      "ancestry": [
+        [
+          "{x: 6.45, y: -0.35, z: 0}",
+          "{x: 3.5, y: 0.7, z: 0.8}",
+          "{x: 0, y: 0, z: 0, w: 1}"
+        ],
+        [
+          "{x: 0, y: 0, z: 0}",
+          "{x: 1, y: 1, z: 1}",
+          "{x: 0, y: 0, z: 0, w: 1}"
+        ],
+        [
+          "{x: 0, y: 0, z: 0}",
+          "{x: 1, y: 1, z: 1}",
+          "{x: 0, y: 0, z: 0, w: 1}"
+        ]
+      ],
+      "type": "BoxCollider2D",
+      "enabled": "1",
+      "trigger": "0",
+      "size": "{x: 1, y: 1}",
+      "center": "",
+      "offset": "{x: 0, y: 0}",
+      "radius": "",
+      "points": ""
+    },
+    {
+      "name": "Start",
+      "ancestry": [
+        [
+          "{x: 1.75, y: -0.35, z: 0}",
+          "{x: 3.5, y: 0.7, z: 0.8}",
+          "{x: 0, y: 0, z: 0, w: 1}"
+        ],
+        [
+          "{x: 0, y: 0, z: 0}",
+          "{x: 1, y: 1, z: 1}",
+          "{x: 0, y: 0, z: 0, w: 1}"
+        ],
+        [
+          "{x: 0, y: 0, z: 0}",
+          "{x: 1, y: 1, z: 1}",
+          "{x: 0, y: 0, z: 0, w: 1}"
+        ]
+      ],
+      "type": "BoxCollider2D",
+      "enabled": "1",
+      "trigger": "0",
+      "size": "{x: 1, y: 1}",
+      "center": "",
+      "offset": "{x: 0, y: 0}",
+      "radius": "",
+      "points": ""
+    }
+  ],
+  "L03": [
+    {
+      "name": "BedExit",
+      "ancestry": [
+        [
+          "{x: 11, y: 0.2, z: 0}",
+          "{x: 1, y: 1, z: 1}",
+          "{x: 0, y: 0, z: 0, w: 1}"
+        ],
+        [
+          "{x: 0, y: 0, z: 0}",
+          "{x: 1, y: 1, z: 1}",
+          "{x: 0, y: 0, z: 0, w: 1}"
+        ],
+        [
+          "{x: 0, y: 0, z: 0}",
+          "{x: 1, y: 1, z: 1}",
+          "{x: 0, y: 0, z: 0, w: 1}"
+        ]
+      ],
+      "type": "BoxCollider2D",
+      "enabled": "1",
+      "trigger": "1",
+      "size": "{x: 1.4, y: 1.5}",
+      "center": "",
+      "offset": "{x: 0, y: 0.75}",
+      "radius": "",
+      "points": ""
+    },
+    {
+      "name": "ExitRun",
+      "ancestry": [
+        [
+          "{x: 10.75, y: -0.15, z: 0}",
+          "{x: 2.5, y: 0.7, z: 0.8}",
+          "{x: 0, y: 0, z: 0, w: 1}"
+        ],
+        [
+          "{x: 0, y: 0, z: 0}",
+          "{x: 1, y: 1, z: 1}",
+          "{x: 0, y: 0, z: 0, w: 1}"
+        ],
+        [
+          "{x: 0, y: 0, z: 0}",
+          "{x: 1, y: 1, z: 1}",
+          "{x: 0, y: 0, z: 0, w: 1}"
+        ]
+      ],
+      "type": "BoxCollider2D",
+      "enabled": "1",
+      "trigger": "0",
+      "size": "{x: 1, y: 1}",
+      "center": "",
+      "offset": "{x: 0, y: 0}",
+      "radius": "",
+      "points": ""
+    },
+    {
+      "name": "FallReset",
+      "ancestry": [
+        [
+          "{x: 6.5, y: -3.2, z: 0}",
+          "{x: 13, y: 0.3, z: 0.8}",
+          "{x: 0, y: 0, z: 0, w: 1}"
+        ],
+        [
+          "{x: 0, y: 0, z: 0}",
+          "{x: 1, y: 1, z: 1}",
+          "{x: 0, y: 0, z: 0, w: 1}"
+        ],
+        [
+          "{x: 0, y: 0, z: 0}",
+          "{x: 1, y: 1, z: 1}",
+          "{x: 0, y: 0, z: 0, w: 1}"
+        ]
+      ],
+      "type": "BoxCollider2D",
+      "enabled": "1",
+      "trigger": "1",
+      "size": "{x: 1, y: 1}",
+      "center": "",
+      "offset": "{x: 0, y: 0}",
+      "radius": "",
+      "points": ""
+    },
+    {
+      "name": "Frame",
+      "ancestry": [
+        [
+          "{x: 0, y: 0.2, z: 0}",
+          "{x: 1.25, y: 0.35, z: 0.8}",
+          "{x: 0, y: 0, z: 0, w: 1}"
+        ],
+        [
+          "{x: 11, y: 0.2, z: 0}",
+          "{x: 1, y: 1, z: 1}",
+          "{x: 0, y: 0, z: 0, w: 1}"
+        ],
+        [
+          "{x: 0, y: 0, z: 0}",
+          "{x: 1, y: 1, z: 1}",
+          "{x: 0, y: 0, z: 0, w: 1}"
+        ],
+        [
+          "{x: 0, y: 0, z: 0}",
+          "{x: 1, y: 1, z: 1}",
+          "{x: 0, y: 0, z: 0, w: 1}"
+        ]
+      ],
+      "type": "BoxCollider2D",
+      "enabled": "1",
+      "trigger": "1",
+      "size": "{x: 1, y: 1}",
+      "center": "",
+      "offset": "{x: 0, y: 0}",
+      "radius": "",
+      "points": ""
+    },
+    {
+      "name": "L03_Saw",
+      "ancestry": [
+        [
+          "{x: 6.45, y: 0.39, z: 0}",
+          "{x: 0.75, y: 0.75, z: 0.8}",
+          "{x: 0, y: 0, z: 0, w: 1}"
+        ],
+        [
+          "{x: 0, y: 0, z: 0}",
+          "{x: 1, y: 1, z: 1}",
+          "{x: 0, y: 0, z: 0, w: 1}"
+        ],
+        [
+          "{x: 0, y: 0, z: 0}",
+          "{x: 1, y: 1, z: 1}",
+          "{x: 0, y: 0, z: 0, w: 1}"
+        ]
+      ],
+      "type": "CircleCollider2D",
+      "enabled": "1",
+      "trigger": "1",
+      "size": "",
+      "center": "",
+      "offset": "{x: 0, y: 0}",
+      "radius": "0.5",
+      "points": ""
+    },
+    {
+      "name": "Pillow",
+      "ancestry": [
+        [
+          "{x: -0.42, y: 0.46, z: 0}",
+          "{x: 0.28, y: 0.22, z: 0.8}",
+          "{x: 0, y: 0, z: 0, w: 1}"
+        ],
+        [
+          "{x: 11, y: 0.2, z: 0}",
+          "{x: 1, y: 1, z: 1}",
+          "{x: 0, y: 0, z: 0, w: 1}"
+        ],
+        [
+          "{x: 0, y: 0, z: 0}",
+          "{x: 1, y: 1, z: 1}",
+          "{x: 0, y: 0, z: 0, w: 1}"
+        ],
+        [
+          "{x: 0, y: 0, z: 0}",
+          "{x: 1, y: 1, z: 1}",
+          "{x: 0, y: 0, z: 0, w: 1}"
+        ]
+      ],
+      "type": "BoxCollider2D",
+      "enabled": "1",
+      "trigger": "1",
+      "size": "{x: 1, y: 1}",
+      "center": "",
+      "offset": "{x: 0, y: 0}",
+      "radius": "",
+      "points": ""
+    },
+    {
+      "name": "SawRun",
+      "ancestry": [
+        [
+          "{x: 6.6, y: -0.35, z: 0}",
+          "{x: 3.6, y: 0.7, z: 0.8}",
+          "{x: 0, y: 0, z: 0, w: 1}"
+        ],
+        [
+          "{x: 0, y: 0, z: 0}",
+          "{x: 1, y: 1, z: 1}",
+          "{x: 0, y: 0, z: 0, w: 1}"
+        ],
+        [
+          "{x: 0, y: 0, z: 0}",
+          "{x: 1, y: 1, z: 1}",
+          "{x: 0, y: 0, z: 0, w: 1}"
+        ]
+      ],
+      "type": "BoxCollider2D",
+      "enabled": "1",
+      "trigger": "0",
+      "size": "{x: 1, y: 1}",
+      "center": "",
+      "offset": "{x: 0, y: 0}",
+      "radius": "",
+      "points": ""
+    },
+    {
+      "name": "Start",
+      "ancestry": [
+        [
+          "{x: 1.8, y: -0.35, z: 0}",
+          "{x: 3.6, y: 0.7, z: 0.8}",
+          "{x: 0, y: 0, z: 0, w: 1}"
+        ],
+        [
+          "{x: 0, y: 0, z: 0}",
+          "{x: 1, y: 1, z: 1}",
+          "{x: 0, y: 0, z: 0, w: 1}"
+        ],
+        [
+          "{x: 0, y: 0, z: 0}",
+          "{x: 1, y: 1, z: 1}",
+          "{x: 0, y: 0, z: 0, w: 1}"
+        ]
+      ],
+      "type": "BoxCollider2D",
+      "enabled": "1",
+      "trigger": "0",
+      "size": "{x: 1, y: 1}",
+      "center": "",
+      "offset": "{x: 0, y: 0}",
+      "radius": "",
+      "points": ""
+    }
+  ],
+  "L04": [
+    {
+      "name": "BedExit",
+      "ancestry": [
+        [
+          "{x: 10.5, y: 0.2, z: 0}",
+          "{x: 1, y: 1, z: 1}",
+          "{x: 0, y: 0, z: 0, w: 1}"
+        ],
+        [
+          "{x: 0, y: 0, z: 0}",
+          "{x: 1, y: 1, z: 1}",
+          "{x: 0, y: 0, z: 0, w: 1}"
+        ],
+        [
+          "{x: 0, y: 0, z: 0}",
+          "{x: 1, y: 1, z: 1}",
+          "{x: 0, y: 0, z: 0, w: 1}"
+        ]
+      ],
+      "type": "BoxCollider2D",
+      "enabled": "1",
+      "trigger": "1",
+      "size": "{x: 1.4, y: 1.5}",
+      "center": "",
+      "offset": "{x: 0, y: 0.75}",
+      "radius": "",
+      "points": ""
+    },
+    {
+      "name": "FallReset",
+      "ancestry": [
+        [
+          "{x: 6.5, y: -3.2, z: 0}",
+          "{x: 13, y: 0.3, z: 0.8}",
+          "{x: 0, y: 0, z: 0, w: 1}"
+        ],
+        [
+          "{x: 0, y: 0, z: 0}",
+          "{x: 1, y: 1, z: 1}",
+          "{x: 0, y: 0, z: 0, w: 1}"
+        ],
+        [
+          "{x: 0, y: 0, z: 0}",
+          "{x: 1, y: 1, z: 1}",
+          "{x: 0, y: 0, z: 0, w: 1}"
+        ]
+      ],
+      "type": "BoxCollider2D",
+      "enabled": "1",
+      "trigger": "1",
+      "size": "{x: 1, y: 1}",
+      "center": "",
+      "offset": "{x: 0, y: 0}",
+      "radius": "",
+      "points": ""
+    },
+    {
+      "name": "Frame",
+      "ancestry": [
+        [
+          "{x: 0, y: 0.2, z: 0}",
+          "{x: 1.25, y: 0.35, z: 0.8}",
+          "{x: 0, y: 0, z: 0, w: 1}"
+        ],
+        [
+          "{x: 10.5, y: 0.2, z: 0}",
+          "{x: 1, y: 1, z: 1}",
+          "{x: 0, y: 0, z: 0, w: 1}"
+        ],
+        [
+          "{x: 0, y: 0, z: 0}",
+          "{x: 1, y: 1, z: 1}",
+          "{x: 0, y: 0, z: 0, w: 1}"
+        ],
+        [
+          "{x: 0, y: 0, z: 0}",
+          "{x: 1, y: 1, z: 1}",
+          "{x: 0, y: 0, z: 0, w: 1}"
+        ]
+      ],
+      "type": "BoxCollider2D",
+      "enabled": "1",
+      "trigger": "1",
+      "size": "{x: 1, y: 1}",
+      "center": "",
+      "offset": "{x: 0, y: 0}",
+      "radius": "",
+      "points": ""
+    },
+    {
+      "name": "L04_ButtonLaser",
+      "ancestry": [
+        [
+          "{x: 3.1, y: 0.12, z: 0}",
+          "{x: 0.55, y: 0.24, z: 0.8}",
+          "{x: 0, y: 0, z: 0, w: 1}"
+        ],
+        [
+          "{x: 0, y: 0, z: 0}",
+          "{x: 1, y: 1, z: 1}",
+          "{x: 0, y: 0, z: 0, w: 1}"
+        ],
+        [
+          "{x: 0, y: 0, z: 0}",
+          "{x: 1, y: 1, z: 1}",
+          "{x: 0, y: 0, z: 0, w: 1}"
+        ]
+      ],
+      "type": "BoxCollider2D",
+      "enabled": "1",
+      "trigger": "1",
+      "size": "{x: 1, y: 1}",
+      "center": "",
+      "offset": "{x: 0, y: 0}",
+      "radius": "",
+      "points": ""
+    },
+    {
+      "name": "L04_Laser_Base",
+      "ancestry": [
+        [
+          "{x: 6, y: 0.325, z: 0}",
+          "{x: 0.8, y: 0.65, z: 0.8}",
+          "{x: 0, y: 0, z: 0, w: 1}"
+        ],
+        [
+          "{x: 0, y: 0, z: 0}",
+          "{x: 1, y: 1, z: 1}",
+          "{x: 0, y: 0, z: 0, w: 1}"
+        ],
+        [
+          "{x: 0, y: 0, z: 0}",
+          "{x: 1, y: 1, z: 1}",
+          "{x: 0, y: 0, z: 0, w: 1}"
+        ]
+      ],
+      "type": "PolygonCollider2D",
+      "enabled": "1",
+      "trigger": "1",
+      "size": "",
+      "center": "",
+      "offset": "{x: 0, y: 0}",
+      "radius": "",
+      "points": "  m_Points:\n    m_Paths:\n    - - {x: -0.5, y: -0.5}\n      - {x: 0.5, y: -0.5}\n      - {x: 0, y: 0.5}\n"
+    },
+    {
+      "name": "L04_Laser_Beam",
+      "ancestry": [
+        [
+          "{x: 6, y: 1.775, z: 0}",
+          "{x: 0.2, y: 2.25, z: 0.8}",
+          "{x: 0, y: 0, z: 0, w: 1}"
+        ],
+        [
+          "{x: 0, y: 0, z: 0}",
+          "{x: 1, y: 1, z: 1}",
+          "{x: 0, y: 0, z: 0, w: 1}"
+        ],
+        [
+          "{x: 0, y: 0, z: 0}",
+          "{x: 1, y: 1, z: 1}",
+          "{x: 0, y: 0, z: 0, w: 1}"
+        ]
+      ],
+      "type": "BoxCollider2D",
+      "enabled": "1",
+      "trigger": "1",
+      "size": "{x: 1, y: 1}",
+      "center": "",
+      "offset": "{x: 0, y: 0}",
+      "radius": "",
+      "points": ""
+    },
+    {
+      "name": "LaserCeiling",
+      "ancestry": [
+        [
+          "{x: 6, y: 3.05, z: 0}",
+          "{x: 1, y: 0.3, z: 0.8}",
+          "{x: 0, y: 0, z: 0, w: 1}"
+        ],
+        [
+          "{x: 0, y: 0, z: 0}",
+          "{x: 1, y: 1, z: 1}",
+          "{x: 0, y: 0, z: 0, w: 1}"
+        ],
+        [
+          "{x: 0, y: 0, z: 0}",
+          "{x: 1, y: 1, z: 1}",
+          "{x: 0, y: 0, z: 0, w: 1}"
+        ]
+      ],
+      "type": "BoxCollider2D",
+      "enabled": "1",
+      "trigger": "0",
+      "size": "{x: 1, y: 1}",
+      "center": "",
+      "offset": "{x: 0, y: 0}",
+      "radius": "",
+      "points": ""
+    },
+    {
+      "name": "LaserRun",
+      "ancestry": [
+        [
+          "{x: 5.8, y: -0.35, z: 0}",
+          "{x: 11.6, y: 0.7, z: 0.8}",
+          "{x: 0, y: 0, z: 0, w: 1}"
+        ],
+        [
+          "{x: 0, y: 0, z: 0}",
+          "{x: 1, y: 1, z: 1}",
+          "{x: 0, y: 0, z: 0, w: 1}"
+        ],
+        [
+          "{x: 0, y: 0, z: 0}",
+          "{x: 1, y: 1, z: 1}",
+          "{x: 0, y: 0, z: 0, w: 1}"
+        ]
+      ],
+      "type": "BoxCollider2D",
+      "enabled": "1",
+      "trigger": "0",
+      "size": "{x: 1, y: 1}",
+      "center": "",
+      "offset": "{x: 0, y: 0}",
+      "radius": "",
+      "points": ""
+    },
+    {
+      "name": "Pillow",
+      "ancestry": [
+        [
+          "{x: -0.42, y: 0.46, z: 0}",
+          "{x: 0.28, y: 0.22, z: 0.8}",
+          "{x: 0, y: 0, z: 0, w: 1}"
+        ],
+        [
+          "{x: 10.5, y: 0.2, z: 0}",
+          "{x: 1, y: 1, z: 1}",
+          "{x: 0, y: 0, z: 0, w: 1}"
+        ],
+        [
+          "{x: 0, y: 0, z: 0}",
+          "{x: 1, y: 1, z: 1}",
+          "{x: 0, y: 0, z: 0, w: 1}"
+        ],
+        [
+          "{x: 0, y: 0, z: 0}",
+          "{x: 1, y: 1, z: 1}",
+          "{x: 0, y: 0, z: 0, w: 1}"
+        ]
+      ],
+      "type": "BoxCollider2D",
+      "enabled": "1",
+      "trigger": "1",
+      "size": "{x: 1, y: 1}",
+      "center": "",
+      "offset": "{x: 0, y: 0}",
+      "radius": "",
+      "points": ""
+    }
+  ],
+  "L05": [
+    {
+      "name": "BedExit",
+      "ancestry": [
+        [
+          "{x: 11, y: 5.2, z: 0}",
+          "{x: 1, y: 1, z: 1}",
+          "{x: 0, y: 0, z: 0, w: 1}"
+        ],
+        [
+          "{x: 0, y: 0, z: 0}",
+          "{x: 1, y: 1, z: 1}",
+          "{x: 0, y: 0, z: 0, w: 1}"
+        ],
+        [
+          "{x: 0, y: 0, z: 0}",
+          "{x: 1, y: 1, z: 1}",
+          "{x: 0, y: 0, z: 0, w: 1}"
+        ]
+      ],
+      "type": "BoxCollider2D",
+      "enabled": "1",
+      "trigger": "1",
+      "size": "{x: 1.4, y: 1.5}",
+      "center": "",
+      "offset": "{x: 0, y: 0.75}",
+      "radius": "",
+      "points": ""
+    },
+    {
+      "name": "ExitRun",
+      "ancestry": [
+        [
+          "{x: 10.25, y: 4.85, z: 0}",
+          "{x: 3.5, y: 0.7, z: 0.8}",
+          "{x: 0, y: 0, z: 0, w: 1}"
+        ],
+        [
+          "{x: 0, y: 0, z: 0}",
+          "{x: 1, y: 1, z: 1}",
+          "{x: 0, y: 0, z: 0, w: 1}"
+        ],
+        [
+          "{x: 0, y: 0, z: 0}",
+          "{x: 1, y: 1, z: 1}",
+          "{x: 0, y: 0, z: 0, w: 1}"
+        ]
+      ],
+      "type": "BoxCollider2D",
+      "enabled": "1",
+      "trigger": "0",
+      "size": "{x: 1, y: 1}",
+      "center": "",
+      "offset": "{x: 0, y: 0}",
+      "radius": "",
+      "points": ""
+    },
+    {
+      "name": "FallReset",
+      "ancestry": [
+        [
+          "{x: 6.5, y: -3.2, z: 0}",
+          "{x: 13, y: 0.3, z: 0.8}",
+          "{x: 0, y: 0, z: 0, w: 1}"
+        ],
+        [
+          "{x: 0, y: 0, z: 0}",
+          "{x: 1, y: 1, z: 1}",
+          "{x: 0, y: 0, z: 0, w: 1}"
+        ],
+        [
+          "{x: 0, y: 0, z: 0}",
+          "{x: 1, y: 1, z: 1}",
+          "{x: 0, y: 0, z: 0, w: 1}"
+        ]
+      ],
+      "type": "BoxCollider2D",
+      "enabled": "1",
+      "trigger": "1",
+      "size": "{x: 1, y: 1}",
+      "center": "",
+      "offset": "{x: 0, y: 0}",
+      "radius": "",
+      "points": ""
+    },
+    {
+      "name": "Frame",
+      "ancestry": [
+        [
+          "{x: 0, y: 0.2, z: 0}",
+          "{x: 1.25, y: 0.35, z: 0.8}",
+          "{x: 0, y: 0, z: 0, w: 1}"
+        ],
+        [
+          "{x: 11, y: 5.2, z: 0}",
+          "{x: 1, y: 1, z: 1}",
+          "{x: 0, y: 0, z: 0, w: 1}"
+        ],
+        [
+          "{x: 0, y: 0, z: 0}",
+          "{x: 1, y: 1, z: 1}",
+          "{x: 0, y: 0, z: 0, w: 1}"
+        ],
+        [
+          "{x: 0, y: 0, z: 0}",
+          "{x: 1, y: 1, z: 1}",
+          "{x: 0, y: 0, z: 0, w: 1}"
+        ]
+      ],
+      "type": "BoxCollider2D",
+      "enabled": "1",
+      "trigger": "1",
+      "size": "{x: 1, y: 1}",
+      "center": "",
+      "offset": "{x: 0, y: 0}",
+      "radius": "",
+      "points": ""
+    },
+    {
+      "name": "L05_PitSpikes_1",
+      "ancestry": [
+        [
+          "{x: 3.475, y: -0.96, z: 0}",
+          "{x: 0.45, y: 0.48, z: 0.8}",
+          "{x: 0, y: 0, z: 0, w: 1}"
+        ],
+        [
+          "{x: 0, y: 0, z: 0}",
+          "{x: 1, y: 1, z: 1}",
+          "{x: 0, y: 0, z: 0, w: 1}"
+        ],
+        [
+          "{x: 0, y: 0, z: 0}",
+          "{x: 1, y: 1, z: 1}",
+          "{x: 0, y: 0, z: 0, w: 1}"
+        ]
+      ],
+      "type": "PolygonCollider2D",
+      "enabled": "1",
+      "trigger": "1",
+      "size": "",
+      "center": "",
+      "offset": "{x: 0, y: 0}",
+      "radius": "",
+      "points": "  m_Points:\n    m_Paths:\n    - - {x: -0.5, y: -0.5}\n      - {x: 0.5, y: -0.5}\n      - {x: 0, y: 0.5}\n"
+    },
+    {
+      "name": "L05_PitSpikes_10",
+      "ancestry": [
+        [
+          "{x: 7.525, y: -0.96, z: 0}",
+          "{x: 0.45, y: 0.48, z: 0.8}",
+          "{x: 0, y: 0, z: 0, w: 1}"
+        ],
+        [
+          "{x: 0, y: 0, z: 0}",
+          "{x: 1, y: 1, z: 1}",
+          "{x: 0, y: 0, z: 0, w: 1}"
+        ],
+        [
+          "{x: 0, y: 0, z: 0}",
+          "{x: 1, y: 1, z: 1}",
+          "{x: 0, y: 0, z: 0, w: 1}"
+        ]
+      ],
+      "type": "PolygonCollider2D",
+      "enabled": "1",
+      "trigger": "1",
+      "size": "",
+      "center": "",
+      "offset": "{x: 0, y: 0}",
+      "radius": "",
+      "points": "  m_Points:\n    m_Paths:\n    - - {x: -0.5, y: -0.5}\n      - {x: 0.5, y: -0.5}\n      - {x: 0, y: 0.5}\n"
+    },
+    {
+      "name": "L05_PitSpikes_11",
+      "ancestry": [
+        [
+          "{x: 7.975, y: -0.96, z: 0}",
+          "{x: 0.45, y: 0.48, z: 0.8}",
+          "{x: 0, y: 0, z: 0, w: 1}"
+        ],
+        [
+          "{x: 0, y: 0, z: 0}",
+          "{x: 1, y: 1, z: 1}",
+          "{x: 0, y: 0, z: 0, w: 1}"
+        ],
+        [
+          "{x: 0, y: 0, z: 0}",
+          "{x: 1, y: 1, z: 1}",
+          "{x: 0, y: 0, z: 0, w: 1}"
+        ]
+      ],
+      "type": "PolygonCollider2D",
+      "enabled": "1",
+      "trigger": "1",
+      "size": "",
+      "center": "",
+      "offset": "{x: 0, y: 0}",
+      "radius": "",
+      "points": "  m_Points:\n    m_Paths:\n    - - {x: -0.5, y: -0.5}\n      - {x: 0.5, y: -0.5}\n      - {x: 0, y: 0.5}\n"
+    },
+    {
+      "name": "L05_PitSpikes_2",
+      "ancestry": [
+        [
+          "{x: 3.925, y: -0.96, z: 0}",
+          "{x: 0.45, y: 0.48, z: 0.8}",
+          "{x: 0, y: 0, z: 0, w: 1}"
+        ],
+        [
+          "{x: 0, y: 0, z: 0}",
+          "{x: 1, y: 1, z: 1}",
+          "{x: 0, y: 0, z: 0, w: 1}"
+        ],
+        [
+          "{x: 0, y: 0, z: 0}",
+          "{x: 1, y: 1, z: 1}",
+          "{x: 0, y: 0, z: 0, w: 1}"
+        ]
+      ],
+      "type": "PolygonCollider2D",
+      "enabled": "1",
+      "trigger": "1",
+      "size": "",
+      "center": "",
+      "offset": "{x: 0, y: 0}",
+      "radius": "",
+      "points": "  m_Points:\n    m_Paths:\n    - - {x: -0.5, y: -0.5}\n      - {x: 0.5, y: -0.5}\n      - {x: 0, y: 0.5}\n"
+    },
+    {
+      "name": "L05_PitSpikes_3",
+      "ancestry": [
+        [
+          "{x: 4.375, y: -0.96, z: 0}",
+          "{x: 0.45, y: 0.48, z: 0.8}",
+          "{x: 0, y: 0, z: 0, w: 1}"
+        ],
+        [
+          "{x: 0, y: 0, z: 0}",
+          "{x: 1, y: 1, z: 1}",
+          "{x: 0, y: 0, z: 0, w: 1}"
+        ],
+        [
+          "{x: 0, y: 0, z: 0}",
+          "{x: 1, y: 1, z: 1}",
+          "{x: 0, y: 0, z: 0, w: 1}"
+        ]
+      ],
+      "type": "PolygonCollider2D",
+      "enabled": "1",
+      "trigger": "1",
+      "size": "",
+      "center": "",
+      "offset": "{x: 0, y: 0}",
+      "radius": "",
+      "points": "  m_Points:\n    m_Paths:\n    - - {x: -0.5, y: -0.5}\n      - {x: 0.5, y: -0.5}\n      - {x: 0, y: 0.5}\n"
+    },
+    {
+      "name": "L05_PitSpikes_4",
+      "ancestry": [
+        [
+          "{x: 4.825, y: -0.96, z: 0}",
+          "{x: 0.45, y: 0.48, z: 0.8}",
+          "{x: 0, y: 0, z: 0, w: 1}"
+        ],
+        [
+          "{x: 0, y: 0, z: 0}",
+          "{x: 1, y: 1, z: 1}",
+          "{x: 0, y: 0, z: 0, w: 1}"
+        ],
+        [
+          "{x: 0, y: 0, z: 0}",
+          "{x: 1, y: 1, z: 1}",
+          "{x: 0, y: 0, z: 0, w: 1}"
+        ]
+      ],
+      "type": "PolygonCollider2D",
+      "enabled": "1",
+      "trigger": "1",
+      "size": "",
+      "center": "",
+      "offset": "{x: 0, y: 0}",
+      "radius": "",
+      "points": "  m_Points:\n    m_Paths:\n    - - {x: -0.5, y: -0.5}\n      - {x: 0.5, y: -0.5}\n      - {x: 0, y: 0.5}\n"
+    },
+    {
+      "name": "L05_PitSpikes_5",
+      "ancestry": [
+        [
+          "{x: 5.275, y: -0.96, z: 0}",
+          "{x: 0.45, y: 0.48, z: 0.8}",
+          "{x: 0, y: 0, z: 0, w: 1}"
+        ],
+        [
+          "{x: 0, y: 0, z: 0}",
+          "{x: 1, y: 1, z: 1}",
+          "{x: 0, y: 0, z: 0, w: 1}"
+        ],
+        [
+          "{x: 0, y: 0, z: 0}",
+          "{x: 1, y: 1, z: 1}",
+          "{x: 0, y: 0, z: 0, w: 1}"
+        ]
+      ],
+      "type": "PolygonCollider2D",
+      "enabled": "1",
+      "trigger": "1",
+      "size": "",
+      "center": "",
+      "offset": "{x: 0, y: 0}",
+      "radius": "",
+      "points": "  m_Points:\n    m_Paths:\n    - - {x: -0.5, y: -0.5}\n      - {x: 0.5, y: -0.5}\n      - {x: 0, y: 0.5}\n"
+    },
+    {
+      "name": "L05_PitSpikes_6",
+      "ancestry": [
+        [
+          "{x: 5.725, y: -0.96, z: 0}",
+          "{x: 0.45, y: 0.48, z: 0.8}",
+          "{x: 0, y: 0, z: 0, w: 1}"
+        ],
+        [
+          "{x: 0, y: 0, z: 0}",
+          "{x: 1, y: 1, z: 1}",
+          "{x: 0, y: 0, z: 0, w: 1}"
+        ],
+        [
+          "{x: 0, y: 0, z: 0}",
+          "{x: 1, y: 1, z: 1}",
+          "{x: 0, y: 0, z: 0, w: 1}"
+        ]
+      ],
+      "type": "PolygonCollider2D",
+      "enabled": "1",
+      "trigger": "1",
+      "size": "",
+      "center": "",
+      "offset": "{x: 0, y: 0}",
+      "radius": "",
+      "points": "  m_Points:\n    m_Paths:\n    - - {x: -0.5, y: -0.5}\n      - {x: 0.5, y: -0.5}\n      - {x: 0, y: 0.5}\n"
+    },
+    {
+      "name": "L05_PitSpikes_7",
+      "ancestry": [
+        [
+          "{x: 6.175, y: -0.96, z: 0}",
+          "{x: 0.45, y: 0.48, z: 0.8}",
+          "{x: 0, y: 0, z: 0, w: 1}"
+        ],
+        [
+          "{x: 0, y: 0, z: 0}",
+          "{x: 1, y: 1, z: 1}",
+          "{x: 0, y: 0, z: 0, w: 1}"
+        ],
+        [
+          "{x: 0, y: 0, z: 0}",
+          "{x: 1, y: 1, z: 1}",
+          "{x: 0, y: 0, z: 0, w: 1}"
+        ]
+      ],
+      "type": "PolygonCollider2D",
+      "enabled": "1",
+      "trigger": "1",
+      "size": "",
+      "center": "",
+      "offset": "{x: 0, y: 0}",
+      "radius": "",
+      "points": "  m_Points:\n    m_Paths:\n    - - {x: -0.5, y: -0.5}\n      - {x: 0.5, y: -0.5}\n      - {x: 0, y: 0.5}\n"
+    },
+    {
+      "name": "L05_PitSpikes_8",
+      "ancestry": [
+        [
+          "{x: 6.625, y: -0.96, z: 0}",
+          "{x: 0.45, y: 0.48, z: 0.8}",
+          "{x: 0, y: 0, z: 0, w: 1}"
+        ],
+        [
+          "{x: 0, y: 0, z: 0}",
+          "{x: 1, y: 1, z: 1}",
+          "{x: 0, y: 0, z: 0, w: 1}"
+        ],
+        [
+          "{x: 0, y: 0, z: 0}",
+          "{x: 1, y: 1, z: 1}",
+          "{x: 0, y: 0, z: 0, w: 1}"
+        ]
+      ],
+      "type": "PolygonCollider2D",
+      "enabled": "1",
+      "trigger": "1",
+      "size": "",
+      "center": "",
+      "offset": "{x: 0, y: 0}",
+      "radius": "",
+      "points": "  m_Points:\n    m_Paths:\n    - - {x: -0.5, y: -0.5}\n      - {x: 0.5, y: -0.5}\n      - {x: 0, y: 0.5}\n"
+    },
+    {
+      "name": "L05_PitSpikes_9",
+      "ancestry": [
+        [
+          "{x: 7.075, y: -0.96, z: 0}",
+          "{x: 0.45, y: 0.48, z: 0.8}",
+          "{x: 0, y: 0, z: 0, w: 1}"
+        ],
+        [
+          "{x: 0, y: 0, z: 0}",
+          "{x: 1, y: 1, z: 1}",
+          "{x: 0, y: 0, z: 0, w: 1}"
+        ],
+        [
+          "{x: 0, y: 0, z: 0}",
+          "{x: 1, y: 1, z: 1}",
+          "{x: 0, y: 0, z: 0, w: 1}"
+        ]
+      ],
+      "type": "PolygonCollider2D",
+      "enabled": "1",
+      "trigger": "1",
+      "size": "",
+      "center": "",
+      "offset": "{x: 0, y: 0}",
+      "radius": "",
+      "points": "  m_Points:\n    m_Paths:\n    - - {x: -0.5, y: -0.5}\n      - {x: 0.5, y: -0.5}\n      - {x: 0, y: 0.5}\n"
+    },
+    {
+      "name": "L05_TimedA",
+      "ancestry": [
+        [
+          "{x: 4, y: 1.15, z: 0}",
+          "{x: 1.3, y: 0.3, z: 0.8}",
+          "{x: 0, y: 0, z: 0, w: 1}"
+        ],
+        [
+          "{x: 0, y: 0, z: 0}",
+          "{x: 1, y: 1, z: 1}",
+          "{x: 0, y: 0, z: 0, w: 1}"
+        ],
+        [
+          "{x: 0, y: 0, z: 0}",
+          "{x: 1, y: 1, z: 1}",
+          "{x: 0, y: 0, z: 0, w: 1}"
+        ]
+      ],
+      "type": "BoxCollider2D",
+      "enabled": "1",
+      "trigger": "0",
+      "size": "{x: 1, y: 1}",
+      "center": "",
+      "offset": "{x: 0, y: 0}",
+      "radius": "",
+      "points": ""
+    },
+    {
+      "name": "L05_TimedB",
+      "ancestry": [
+        [
+          "{x: 5.65, y: 2.45, z: 0}",
+          "{x: 1.3, y: 0.3, z: 0.8}",
+          "{x: 0, y: 0, z: 0, w: 1}"
+        ],
+        [
+          "{x: 0, y: 0, z: 0}",
+          "{x: 1, y: 1, z: 1}",
+          "{x: 0, y: 0, z: 0, w: 1}"
+        ],
+        [
+          "{x: 0, y: 0, z: 0}",
+          "{x: 1, y: 1, z: 1}",
+          "{x: 0, y: 0, z: 0, w: 1}"
+        ]
+      ],
+      "type": "BoxCollider2D",
+      "enabled": "1",
+      "trigger": "0",
+      "size": "{x: 1, y: 1}",
+      "center": "",
+      "offset": "{x: 0, y: 0}",
+      "radius": "",
+      "points": ""
+    },
+    {
+      "name": "L05_TimedC",
+      "ancestry": [
+        [
+          "{x: 7.3, y: 3.75, z: 0}",
+          "{x: 1.3, y: 0.3, z: 0.8}",
+          "{x: 0, y: 0, z: 0, w: 1}"
+        ],
+        [
+          "{x: 0, y: 0, z: 0}",
+          "{x: 1, y: 1, z: 1}",
+          "{x: 0, y: 0, z: 0, w: 1}"
+        ],
+        [
+          "{x: 0, y: 0, z: 0}",
+          "{x: 1, y: 1, z: 1}",
+          "{x: 0, y: 0, z: 0, w: 1}"
+        ]
+      ],
+      "type": "BoxCollider2D",
+      "enabled": "1",
+      "trigger": "0",
+      "size": "{x: 1, y: 1}",
+      "center": "",
+      "offset": "{x: 0, y: 0}",
+      "radius": "",
+      "points": ""
+    },
+    {
+      "name": "Pillow",
+      "ancestry": [
+        [
+          "{x: -0.42, y: 0.46, z: 0}",
+          "{x: 0.28, y: 0.22, z: 0.8}",
+          "{x: 0, y: 0, z: 0, w: 1}"
+        ],
+        [
+          "{x: 11, y: 5.2, z: 0}",
+          "{x: 1, y: 1, z: 1}",
+          "{x: 0, y: 0, z: 0, w: 1}"
+        ],
+        [
+          "{x: 0, y: 0, z: 0}",
+          "{x: 1, y: 1, z: 1}",
+          "{x: 0, y: 0, z: 0, w: 1}"
+        ],
+        [
+          "{x: 0, y: 0, z: 0}",
+          "{x: 1, y: 1, z: 1}",
+          "{x: 0, y: 0, z: 0, w: 1}"
+        ]
+      ],
+      "type": "BoxCollider2D",
+      "enabled": "1",
+      "trigger": "1",
+      "size": "{x: 1, y: 1}",
+      "center": "",
+      "offset": "{x: 0, y: 0}",
+      "radius": "",
+      "points": ""
+    },
+    {
+      "name": "Start",
+      "ancestry": [
+        [
+          "{x: 1.6, y: -0.35, z: 0}",
+          "{x: 3.2, y: 0.7, z: 0.8}",
+          "{x: 0, y: 0, z: 0, w: 1}"
+        ],
+        [
+          "{x: 0, y: 0, z: 0}",
+          "{x: 1, y: 1, z: 1}",
+          "{x: 0, y: 0, z: 0, w: 1}"
+        ],
+        [
+          "{x: 0, y: 0, z: 0}",
+          "{x: 1, y: 1, z: 1}",
+          "{x: 0, y: 0, z: 0, w: 1}"
+        ]
+      ],
+      "type": "BoxCollider2D",
+      "enabled": "1",
+      "trigger": "0",
+      "size": "{x: 1, y: 1}",
+      "center": "",
+      "offset": "{x: 0, y: 0}",
+      "radius": "",
+      "points": ""
+    }
+  ],
+  "L06": [
+    {
+      "name": "BedExit",
+      "ancestry": [
+        [
+          "{x: 17.7, y: 5.05, z: 0}",
+          "{x: 1, y: 1, z: 1}",
+          "{x: 0, y: 0, z: 0, w: 1}"
+        ],
+        [
+          "{x: 0, y: 0, z: 0}",
+          "{x: 1, y: 1, z: 1}",
+          "{x: 0, y: 0, z: 0, w: 1}"
+        ],
+        [
+          "{x: 0, y: 0, z: 0}",
+          "{x: 1, y: 1, z: 1}",
+          "{x: 0, y: 0, z: 0, w: 1}"
+        ]
+      ],
+      "type": "BoxCollider2D",
+      "enabled": "1",
+      "trigger": "1",
+      "size": "{x: 1.4, y: 1.5}",
+      "center": "",
+      "offset": "{x: 0, y: 0.75}",
+      "radius": "",
+      "points": ""
+    },
+    {
+      "name": "FallReset",
+      "ancestry": [
+        [
+          "{x: 11.5, y: -3.2, z: 0}",
+          "{x: 23, y: 0.3, z: 0.8}",
+          "{x: 0, y: 0, z: 0, w: 1}"
+        ],
+        [
+          "{x: 0, y: 0, z: 0}",
+          "{x: 1, y: 1, z: 1}",
+          "{x: 0, y: 0, z: 0, w: 1}"
+        ],
+        [
+          "{x: 0, y: 0, z: 0}",
+          "{x: 1, y: 1, z: 1}",
+          "{x: 0, y: 0, z: 0, w: 1}"
+        ]
+      ],
+      "type": "BoxCollider2D",
+      "enabled": "1",
+      "trigger": "1",
+      "size": "{x: 1, y: 1}",
+      "center": "",
+      "offset": "{x: 0, y: 0}",
+      "radius": "",
+      "points": ""
+    },
+    {
+      "name": "Frame",
+      "ancestry": [
+        [
+          "{x: 0, y: 0.2, z: 0}",
+          "{x: 1.25, y: 0.35, z: 0.8}",
+          "{x: 0, y: 0, z: 0, w: 1}"
+        ],
+        [
+          "{x: 17.7, y: 5.05, z: 0}",
+          "{x: 1, y: 1, z: 1}",
+          "{x: 0, y: 0, z: 0, w: 1}"
+        ],
+        [
+          "{x: 0, y: 0, z: 0}",
+          "{x: 1, y: 1, z: 1}",
+          "{x: 0, y: 0, z: 0, w: 1}"
+        ],
+        [
+          "{x: 0, y: 0, z: 0}",
+          "{x: 1, y: 1, z: 1}",
+          "{x: 0, y: 0, z: 0, w: 1}"
+        ]
+      ],
+      "type": "BoxCollider2D",
+      "enabled": "1",
+      "trigger": "1",
+      "size": "{x: 1, y: 1}",
+      "center": "",
+      "offset": "{x: 0, y: 0}",
+      "radius": "",
+      "points": ""
+    },
+    {
+      "name": "HighExit",
+      "ancestry": [
+        [
+          "{x: 17.75, y: 4.7, z: 0}",
+          "{x: 1.5, y: 0.7, z: 0.8}",
+          "{x: 0, y: 0, z: 0, w: 1}"
+        ],
+        [
+          "{x: 0, y: 0, z: 0}",
+          "{x: 1, y: 1, z: 1}",
+          "{x: 0, y: 0, z: 0, w: 1}"
+        ],
+        [
+          "{x: 0, y: 0, z: 0}",
+          "{x: 1, y: 1, z: 1}",
+          "{x: 0, y: 0, z: 0, w: 1}"
+        ]
+      ],
+      "type": "BoxCollider2D",
+      "enabled": "1",
+      "trigger": "0",
+      "size": "{x: 1, y: 1}",
+      "center": "",
+      "offset": "{x: 0, y: 0}",
+      "radius": "",
+      "points": ""
+    },
+    {
+      "name": "L06_Horizontal",
+      "ancestry": [
+        [
+          "{x: 4.4, y: 0.25, z: 0}",
+          "{x: 1.6, y: 0.3, z: 0.8}",
+          "{x: 0, y: 0, z: 0, w: 1}"
+        ],
+        [
+          "{x: 0, y: 0, z: 0}",
+          "{x: 1, y: 1, z: 1}",
+          "{x: 0, y: 0, z: 0, w: 1}"
+        ],
+        [
+          "{x: 0, y: 0, z: 0}",
+          "{x: 1, y: 1, z: 1}",
+          "{x: 0, y: 0, z: 0, w: 1}"
+        ]
+      ],
+      "type": "BoxCollider2D",
+      "enabled": "1",
+      "trigger": "0",
+      "size": "{x: 1, y: 1}",
+      "center": "",
+      "offset": "{x: 0, y: 0}",
+      "radius": "",
+      "points": ""
+    },
+    {
+      "name": "L06_Vertical",
+      "ancestry": [
+        [
+          "{x: 16.15, y: 2.35, z: 0}",
+          "{x: 1.6, y: 0.3, z: 0.8}",
+          "{x: 0, y: 0, z: 0, w: 1}"
+        ],
+        [
+          "{x: 0, y: 0, z: 0}",
+          "{x: 1, y: 1, z: 1}",
+          "{x: 0, y: 0, z: 0, w: 1}"
+        ],
+        [
+          "{x: 0, y: 0, z: 0}",
+          "{x: 1, y: 1, z: 1}",
+          "{x: 0, y: 0, z: 0, w: 1}"
+        ]
+      ],
+      "type": "BoxCollider2D",
+      "enabled": "1",
+      "trigger": "0",
+      "size": "{x: 1, y: 1}",
+      "center": "",
+      "offset": "{x: 0, y: 0}",
+      "radius": "",
+      "points": ""
+    },
+    {
+      "name": "LiftLanding",
+      "ancestry": [
+        [
+          "{x: 15.2, y: 2, z: 0}",
+          "{x: 1.4, y: 0.7, z: 0.8}",
+          "{x: 0, y: 0, z: 0, w: 1}"
+        ],
+        [
+          "{x: 0, y: 0, z: 0}",
+          "{x: 1, y: 1, z: 1}",
+          "{x: 0, y: 0, z: 0, w: 1}"
+        ],
+        [
+          "{x: 0, y: 0, z: 0}",
+          "{x: 1, y: 1, z: 1}",
+          "{x: 0, y: 0, z: 0, w: 1}"
+        ]
+      ],
+      "type": "BoxCollider2D",
+      "enabled": "1",
+      "trigger": "0",
+      "size": "{x: 1, y: 1}",
+      "center": "",
+      "offset": "{x: 0, y: 0}",
+      "radius": "",
+      "points": ""
+    },
+    {
+      "name": "Pillow",
+      "ancestry": [
+        [
+          "{x: -0.42, y: 0.46, z: 0}",
+          "{x: 0.28, y: 0.22, z: 0.8}",
+          "{x: 0, y: 0, z: 0, w: 1}"
+        ],
+        [
+          "{x: 17.7, y: 5.05, z: 0}",
+          "{x: 1, y: 1, z: 1}",
+          "{x: 0, y: 0, z: 0, w: 1}"
+        ],
+        [
+          "{x: 0, y: 0, z: 0}",
+          "{x: 1, y: 1, z: 1}",
+          "{x: 0, y: 0, z: 0, w: 1}"
+        ],
+        [
+          "{x: 0, y: 0, z: 0}",
+          "{x: 1, y: 1, z: 1}",
+          "{x: 0, y: 0, z: 0, w: 1}"
+        ]
+      ],
+      "type": "BoxCollider2D",
+      "enabled": "1",
+      "trigger": "1",
+      "size": "{x: 1, y: 1}",
+      "center": "",
+      "offset": "{x: 0, y: 0}",
+      "radius": "",
+      "points": ""
+    },
+    {
+      "name": "Start",
+      "ancestry": [
+        [
+          "{x: 1.5, y: -1.25, z: 0}",
+          "{x: 3, y: 0.7, z: 0.8}",
+          "{x: 0, y: 0, z: 0, w: 1}"
+        ],
+        [
+          "{x: 0, y: 0, z: 0}",
+          "{x: 1, y: 1, z: 1}",
+          "{x: 0, y: 0, z: 0, w: 1}"
+        ],
+        [
+          "{x: 0, y: 0, z: 0}",
+          "{x: 1, y: 1, z: 1}",
+          "{x: 0, y: 0, z: 0, w: 1}"
+        ]
+      ],
+      "type": "BoxCollider2D",
+      "enabled": "1",
+      "trigger": "0",
+      "size": "{x: 1, y: 1}",
+      "center": "",
+      "offset": "{x: 0, y: 0}",
+      "radius": "",
+      "points": ""
+    }
+  ],
+  "L07": [
+    {
+      "name": "BedExit",
+      "ancestry": [
+        [
+          "{x: 20.1, y: 2.6, z: 0}",
+          "{x: 1, y: 1, z: 1}",
+          "{x: 0, y: 0, z: 0, w: 1}"
+        ],
+        [
+          "{x: 0, y: 0, z: 0}",
+          "{x: 1, y: 1, z: 1}",
+          "{x: 0, y: 0, z: 0, w: 1}"
+        ],
+        [
+          "{x: 0, y: 0, z: 0}",
+          "{x: 1, y: 1, z: 1}",
+          "{x: 0, y: 0, z: 0, w: 1}"
+        ]
+      ],
+      "type": "BoxCollider2D",
+      "enabled": "1",
+      "trigger": "1",
+      "size": "{x: 1.4, y: 1.5}",
+      "center": "",
+      "offset": "{x: 0, y: 0.75}",
+      "radius": "",
+      "points": ""
+    },
+    {
+      "name": "DashLanding",
+      "ancestry": [
+        [
+          "{x: 19.8, y: 2.25, z: 0}",
+          "{x: 2.6, y: 0.7, z: 0.8}",
+          "{x: 0, y: 0, z: 0, w: 1}"
+        ],
+        [
+          "{x: 0, y: 0, z: 0}",
+          "{x: 1, y: 1, z: 1}",
+          "{x: 0, y: 0, z: 0, w: 1}"
+        ],
+        [
+          "{x: 0, y: 0, z: 0}",
+          "{x: 1, y: 1, z: 1}",
+          "{x: 0, y: 0, z: 0, w: 1}"
+        ]
+      ],
+      "type": "BoxCollider2D",
+      "enabled": "1",
+      "trigger": "0",
+      "size": "{x: 1, y: 1}",
+      "center": "",
+      "offset": "{x: 0, y: 0}",
+      "radius": "",
+      "points": ""
+    },
+    {
+      "name": "FallReset",
+      "ancestry": [
+        [
+          "{x: 11.5, y: -3.2, z: 0}",
+          "{x: 23, y: 0.3, z: 0.8}",
+          "{x: 0, y: 0, z: 0, w: 1}"
+        ],
+        [
+          "{x: 0, y: 0, z: 0}",
+          "{x: 1, y: 1, z: 1}",
+          "{x: 0, y: 0, z: 0, w: 1}"
+        ],
+        [
+          "{x: 0, y: 0, z: 0}",
+          "{x: 1, y: 1, z: 1}",
+          "{x: 0, y: 0, z: 0, w: 1}"
+        ]
+      ],
+      "type": "BoxCollider2D",
+      "enabled": "1",
+      "trigger": "1",
+      "size": "{x: 1, y: 1}",
+      "center": "",
+      "offset": "{x: 0, y: 0}",
+      "radius": "",
+      "points": ""
+    },
+    {
+      "name": "Frame",
+      "ancestry": [
+        [
+          "{x: 0, y: 0.2, z: 0}",
+          "{x: 1.25, y: 0.35, z: 0.8}",
+          "{x: 0, y: 0, z: 0, w: 1}"
+        ],
+        [
+          "{x: 20.1, y: 2.6, z: 0}",
+          "{x: 1, y: 1, z: 1}",
+          "{x: 0, y: 0, z: 0, w: 1}"
+        ],
+        [
+          "{x: 0, y: 0, z: 0}",
+          "{x: 1, y: 1, z: 1}",
+          "{x: 0, y: 0, z: 0, w: 1}"
+        ],
+        [
+          "{x: 0, y: 0, z: 0}",
+          "{x: 1, y: 1, z: 1}",
+          "{x: 0, y: 0, z: 0, w: 1}"
+        ]
+      ],
+      "type": "BoxCollider2D",
+      "enabled": "1",
+      "trigger": "1",
+      "size": "{x: 1, y: 1}",
+      "center": "",
+      "offset": "{x: 0, y: 0}",
+      "radius": "",
+      "points": ""
+    },
+    {
+      "name": "L07_ButtonA",
+      "ancestry": [
+        [
+          "{x: 4.7, y: 2.57, z: 0}",
+          "{x: 0.55, y: 0.24, z: 0.8}",
+          "{x: 0, y: 0, z: 0, w: 1}"
+        ],
+        [
+          "{x: 0, y: 0, z: 0}",
+          "{x: 1, y: 1, z: 1}",
+          "{x: 0, y: 0, z: 0, w: 1}"
+        ],
+        [
+          "{x: 0, y: 0, z: 0}",
+          "{x: 1, y: 1, z: 1}",
+          "{x: 0, y: 0, z: 0, w: 1}"
+        ]
+      ],
+      "type": "BoxCollider2D",
+      "enabled": "1",
+      "trigger": "1",
+      "size": "{x: 1, y: 1}",
+      "center": "",
+      "offset": "{x: 0, y: 0}",
+      "radius": "",
+      "points": ""
+    },
+    {
+      "name": "L07_ButtonB",
+      "ancestry": [
+        [
+          "{x: 9, y: 2.57, z: 0}",
+          "{x: 0.55, y: 0.24, z: 0.8}",
+          "{x: 0, y: 0, z: 0, w: 1}"
+        ],
+        [
+          "{x: 0, y: 0, z: 0}",
+          "{x: 1, y: 1, z: 1}",
+          "{x: 0, y: 0, z: 0, w: 1}"
+        ],
+        [
+          "{x: 0, y: 0, z: 0}",
+          "{x: 1, y: 1, z: 1}",
+          "{x: 0, y: 0, z: 0, w: 1}"
+        ]
+      ],
+      "type": "BoxCollider2D",
+      "enabled": "1",
+      "trigger": "1",
+      "size": "{x: 1, y: 1}",
+      "center": "",
+      "offset": "{x: 0, y: 0}",
+      "radius": "",
+      "points": ""
+    },
+    {
+      "name": "L07_Laser_Base",
+      "ancestry": [
+        [
+          "{x: 7.4, y: 2.775, z: 0}",
+          "{x: 0.8, y: 0.65, z: 0.8}",
+          "{x: 0, y: 0, z: 0, w: 1}"
+        ],
+        [
+          "{x: 0, y: 0, z: 0}",
+          "{x: 1, y: 1, z: 1}",
+          "{x: 0, y: 0, z: 0, w: 1}"
+        ],
+        [
+          "{x: 0, y: 0, z: 0}",
+          "{x: 1, y: 1, z: 1}",
+          "{x: 0, y: 0, z: 0, w: 1}"
+        ]
+      ],
+      "type": "PolygonCollider2D",
+      "enabled": "1",
+      "trigger": "1",
+      "size": "",
+      "center": "",
+      "offset": "{x: 0, y: 0}",
+      "radius": "",
+      "points": "  m_Points:\n    m_Paths:\n    - - {x: -0.5, y: -0.5}\n      - {x: 0.5, y: -0.5}\n      - {x: 0, y: 0.5}\n"
+    },
+    {
+      "name": "L07_Laser_Beam",
+      "ancestry": [
+        [
+          "{x: 7.4, y: 4.1, z: 0}",
+          "{x: 0.2, y: 2, z: 0.8}",
+          "{x: 0, y: 0, z: 0, w: 1}"
+        ],
+        [
+          "{x: 0, y: 0, z: 0}",
+          "{x: 1, y: 1, z: 1}",
+          "{x: 0, y: 0, z: 0, w: 1}"
+        ],
+        [
+          "{x: 0, y: 0, z: 0}",
+          "{x: 1, y: 1, z: 1}",
+          "{x: 0, y: 0, z: 0, w: 1}"
+        ]
+      ],
+      "type": "BoxCollider2D",
+      "enabled": "1",
+      "trigger": "1",
+      "size": "{x: 1, y: 1}",
+      "center": "",
+      "offset": "{x: 0, y: 0}",
+      "radius": "",
+      "points": ""
+    },
+    {
+      "name": "L07_PitSpikes_1",
+      "ancestry": [
+        [
+          "{x: 10.125, y: -0.56, z: 0}",
+          "{x: 0.45, y: 0.48, z: 0.8}",
+          "{x: 0, y: 0, z: 0, w: 1}"
+        ],
+        [
+          "{x: 0, y: 0, z: 0}",
+          "{x: 1, y: 1, z: 1}",
+          "{x: 0, y: 0, z: 0, w: 1}"
+        ],
+        [
+          "{x: 0, y: 0, z: 0}",
+          "{x: 1, y: 1, z: 1}",
+          "{x: 0, y: 0, z: 0, w: 1}"
+        ]
+      ],
+      "type": "PolygonCollider2D",
+      "enabled": "1",
+      "trigger": "1",
+      "size": "",
+      "center": "",
+      "offset": "{x: 0, y: 0}",
+      "radius": "",
+      "points": "  m_Points:\n    m_Paths:\n    - - {x: -0.5, y: -0.5}\n      - {x: 0.5, y: -0.5}\n      - {x: 0, y: 0.5}\n"
+    },
+    {
+      "name": "L07_PitSpikes_10",
+      "ancestry": [
+        [
+          "{x: 14.175, y: -0.56, z: 0}",
+          "{x: 0.45, y: 0.48, z: 0.8}",
+          "{x: 0, y: 0, z: 0, w: 1}"
+        ],
+        [
+          "{x: 0, y: 0, z: 0}",
+          "{x: 1, y: 1, z: 1}",
+          "{x: 0, y: 0, z: 0, w: 1}"
+        ],
+        [
+          "{x: 0, y: 0, z: 0}",
+          "{x: 1, y: 1, z: 1}",
+          "{x: 0, y: 0, z: 0, w: 1}"
+        ]
+      ],
+      "type": "PolygonCollider2D",
+      "enabled": "1",
+      "trigger": "1",
+      "size": "",
+      "center": "",
+      "offset": "{x: 0, y: 0}",
+      "radius": "",
+      "points": "  m_Points:\n    m_Paths:\n    - - {x: -0.5, y: -0.5}\n      - {x: 0.5, y: -0.5}\n      - {x: 0, y: 0.5}\n"
+    },
+    {
+      "name": "L07_PitSpikes_11",
+      "ancestry": [
+        [
+          "{x: 14.625, y: -0.56, z: 0}",
+          "{x: 0.45, y: 0.48, z: 0.8}",
+          "{x: 0, y: 0, z: 0, w: 1}"
+        ],
+        [
+          "{x: 0, y: 0, z: 0}",
+          "{x: 1, y: 1, z: 1}",
+          "{x: 0, y: 0, z: 0, w: 1}"
+        ],
+        [
+          "{x: 0, y: 0, z: 0}",
+          "{x: 1, y: 1, z: 1}",
+          "{x: 0, y: 0, z: 0, w: 1}"
+        ]
+      ],
+      "type": "PolygonCollider2D",
+      "enabled": "1",
+      "trigger": "1",
+      "size": "",
+      "center": "",
+      "offset": "{x: 0, y: 0}",
+      "radius": "",
+      "points": "  m_Points:\n    m_Paths:\n    - - {x: -0.5, y: -0.5}\n      - {x: 0.5, y: -0.5}\n      - {x: 0, y: 0.5}\n"
+    },
+    {
+      "name": "L07_PitSpikes_12",
+      "ancestry": [
+        [
+          "{x: 15.075, y: -0.56, z: 0}",
+          "{x: 0.45, y: 0.48, z: 0.8}",
+          "{x: 0, y: 0, z: 0, w: 1}"
+        ],
+        [
+          "{x: 0, y: 0, z: 0}",
+          "{x: 1, y: 1, z: 1}",
+          "{x: 0, y: 0, z: 0, w: 1}"
+        ],
+        [
+          "{x: 0, y: 0, z: 0}",
+          "{x: 1, y: 1, z: 1}",
+          "{x: 0, y: 0, z: 0, w: 1}"
+        ]
+      ],
+      "type": "PolygonCollider2D",
+      "enabled": "1",
+      "trigger": "1",
+      "size": "",
+      "center": "",
+      "offset": "{x: 0, y: 0}",
+      "radius": "",
+      "points": "  m_Points:\n    m_Paths:\n    - - {x: -0.5, y: -0.5}\n      - {x: 0.5, y: -0.5}\n      - {x: 0, y: 0.5}\n"
+    },
+    {
+      "name": "L07_PitSpikes_13",
+      "ancestry": [
+        [
+          "{x: 15.525, y: -0.56, z: 0}",
+          "{x: 0.45, y: 0.48, z: 0.8}",
+          "{x: 0, y: 0, z: 0, w: 1}"
+        ],
+        [
+          "{x: 0, y: 0, z: 0}",
+          "{x: 1, y: 1, z: 1}",
+          "{x: 0, y: 0, z: 0, w: 1}"
+        ],
+        [
+          "{x: 0, y: 0, z: 0}",
+          "{x: 1, y: 1, z: 1}",
+          "{x: 0, y: 0, z: 0, w: 1}"
+        ]
+      ],
+      "type": "PolygonCollider2D",
+      "enabled": "1",
+      "trigger": "1",
+      "size": "",
+      "center": "",
+      "offset": "{x: 0, y: 0}",
+      "radius": "",
+      "points": "  m_Points:\n    m_Paths:\n    - - {x: -0.5, y: -0.5}\n      - {x: 0.5, y: -0.5}\n      - {x: 0, y: 0.5}\n"
+    },
+    {
+      "name": "L07_PitSpikes_14",
+      "ancestry": [
+        [
+          "{x: 15.975, y: -0.56, z: 0}",
+          "{x: 0.45, y: 0.48, z: 0.8}",
+          "{x: 0, y: 0, z: 0, w: 1}"
+        ],
+        [
+          "{x: 0, y: 0, z: 0}",
+          "{x: 1, y: 1, z: 1}",
+          "{x: 0, y: 0, z: 0, w: 1}"
+        ],
+        [
+          "{x: 0, y: 0, z: 0}",
+          "{x: 1, y: 1, z: 1}",
+          "{x: 0, y: 0, z: 0, w: 1}"
+        ]
+      ],
+      "type": "PolygonCollider2D",
+      "enabled": "1",
+      "trigger": "1",
+      "size": "",
+      "center": "",
+      "offset": "{x: 0, y: 0}",
+      "radius": "",
+      "points": "  m_Points:\n    m_Paths:\n    - - {x: -0.5, y: -0.5}\n      - {x: 0.5, y: -0.5}\n      - {x: 0, y: 0.5}\n"
+    },
+    {
+      "name": "L07_PitSpikes_15",
+      "ancestry": [
+        [
+          "{x: 16.425, y: -0.56, z: 0}",
+          "{x: 0.45, y: 0.48, z: 0.8}",
+          "{x: 0, y: 0, z: 0, w: 1}"
+        ],
+        [
+          "{x: 0, y: 0, z: 0}",
+          "{x: 1, y: 1, z: 1}",
+          "{x: 0, y: 0, z: 0, w: 1}"
+        ],
+        [
+          "{x: 0, y: 0, z: 0}",
+          "{x: 1, y: 1, z: 1}",
+          "{x: 0, y: 0, z: 0, w: 1}"
+        ]
+      ],
+      "type": "PolygonCollider2D",
+      "enabled": "1",
+      "trigger": "1",
+      "size": "",
+      "center": "",
+      "offset": "{x: 0, y: 0}",
+      "radius": "",
+      "points": "  m_Points:\n    m_Paths:\n    - - {x: -0.5, y: -0.5}\n      - {x: 0.5, y: -0.5}\n      - {x: 0, y: 0.5}\n"
+    },
+    {
+      "name": "L07_PitSpikes_16",
+      "ancestry": [
+        [
+          "{x: 16.875, y: -0.56, z: 0}",
+          "{x: 0.45, y: 0.48, z: 0.8}",
+          "{x: 0, y: 0, z: 0, w: 1}"
+        ],
+        [
+          "{x: 0, y: 0, z: 0}",
+          "{x: 1, y: 1, z: 1}",
+          "{x: 0, y: 0, z: 0, w: 1}"
+        ],
+        [
+          "{x: 0, y: 0, z: 0}",
+          "{x: 1, y: 1, z: 1}",
+          "{x: 0, y: 0, z: 0, w: 1}"
+        ]
+      ],
+      "type": "PolygonCollider2D",
+      "enabled": "1",
+      "trigger": "1",
+      "size": "",
+      "center": "",
+      "offset": "{x: 0, y: 0}",
+      "radius": "",
+      "points": "  m_Points:\n    m_Paths:\n    - - {x: -0.5, y: -0.5}\n      - {x: 0.5, y: -0.5}\n      - {x: 0, y: 0.5}\n"
+    },
+    {
+      "name": "L07_PitSpikes_17",
+      "ancestry": [
+        [
+          "{x: 17.325, y: -0.56, z: 0}",
+          "{x: 0.45, y: 0.48, z: 0.8}",
+          "{x: 0, y: 0, z: 0, w: 1}"
+        ],
+        [
+          "{x: 0, y: 0, z: 0}",
+          "{x: 1, y: 1, z: 1}",
+          "{x: 0, y: 0, z: 0, w: 1}"
+        ],
+        [
+          "{x: 0, y: 0, z: 0}",
+          "{x: 1, y: 1, z: 1}",
+          "{x: 0, y: 0, z: 0, w: 1}"
+        ]
+      ],
+      "type": "PolygonCollider2D",
+      "enabled": "1",
+      "trigger": "1",
+      "size": "",
+      "center": "",
+      "offset": "{x: 0, y: 0}",
+      "radius": "",
+      "points": "  m_Points:\n    m_Paths:\n    - - {x: -0.5, y: -0.5}\n      - {x: 0.5, y: -0.5}\n      - {x: 0, y: 0.5}\n"
+    },
+    {
+      "name": "L07_PitSpikes_18",
+      "ancestry": [
+        [
+          "{x: 17.775, y: -0.56, z: 0}",
+          "{x: 0.45, y: 0.48, z: 0.8}",
+          "{x: 0, y: 0, z: 0, w: 1}"
+        ],
+        [
+          "{x: 0, y: 0, z: 0}",
+          "{x: 1, y: 1, z: 1}",
+          "{x: 0, y: 0, z: 0, w: 1}"
+        ],
+        [
+          "{x: 0, y: 0, z: 0}",
+          "{x: 1, y: 1, z: 1}",
+          "{x: 0, y: 0, z: 0, w: 1}"
+        ]
+      ],
+      "type": "PolygonCollider2D",
+      "enabled": "1",
+      "trigger": "1",
+      "size": "",
+      "center": "",
+      "offset": "{x: 0, y: 0}",
+      "radius": "",
+      "points": "  m_Points:\n    m_Paths:\n    - - {x: -0.5, y: -0.5}\n      - {x: 0.5, y: -0.5}\n      - {x: 0, y: 0.5}\n"
+    },
+    {
+      "name": "L07_PitSpikes_19",
+      "ancestry": [
+        [
+          "{x: 18.225, y: -0.56, z: 0}",
+          "{x: 0.45, y: 0.48, z: 0.8}",
+          "{x: 0, y: 0, z: 0, w: 1}"
+        ],
+        [
+          "{x: 0, y: 0, z: 0}",
+          "{x: 1, y: 1, z: 1}",
+          "{x: 0, y: 0, z: 0, w: 1}"
+        ],
+        [
+          "{x: 0, y: 0, z: 0}",
+          "{x: 1, y: 1, z: 1}",
+          "{x: 0, y: 0, z: 0, w: 1}"
+        ]
+      ],
+      "type": "PolygonCollider2D",
+      "enabled": "1",
+      "trigger": "1",
+      "size": "",
+      "center": "",
+      "offset": "{x: 0, y: 0}",
+      "radius": "",
+      "points": "  m_Points:\n    m_Paths:\n    - - {x: -0.5, y: -0.5}\n      - {x: 0.5, y: -0.5}\n      - {x: 0, y: 0.5}\n"
+    },
+    {
+      "name": "L07_PitSpikes_2",
+      "ancestry": [
+        [
+          "{x: 10.575, y: -0.56, z: 0}",
+          "{x: 0.45, y: 0.48, z: 0.8}",
+          "{x: 0, y: 0, z: 0, w: 1}"
+        ],
+        [
+          "{x: 0, y: 0, z: 0}",
+          "{x: 1, y: 1, z: 1}",
+          "{x: 0, y: 0, z: 0, w: 1}"
+        ],
+        [
+          "{x: 0, y: 0, z: 0}",
+          "{x: 1, y: 1, z: 1}",
+          "{x: 0, y: 0, z: 0, w: 1}"
+        ]
+      ],
+      "type": "PolygonCollider2D",
+      "enabled": "1",
+      "trigger": "1",
+      "size": "",
+      "center": "",
+      "offset": "{x: 0, y: 0}",
+      "radius": "",
+      "points": "  m_Points:\n    m_Paths:\n    - - {x: -0.5, y: -0.5}\n      - {x: 0.5, y: -0.5}\n      - {x: 0, y: 0.5}\n"
+    },
+    {
+      "name": "L07_PitSpikes_20",
+      "ancestry": [
+        [
+          "{x: 18.675, y: -0.56, z: 0}",
+          "{x: 0.45, y: 0.48, z: 0.8}",
+          "{x: 0, y: 0, z: 0, w: 1}"
+        ],
+        [
+          "{x: 0, y: 0, z: 0}",
+          "{x: 1, y: 1, z: 1}",
+          "{x: 0, y: 0, z: 0, w: 1}"
+        ],
+        [
+          "{x: 0, y: 0, z: 0}",
+          "{x: 1, y: 1, z: 1}",
+          "{x: 0, y: 0, z: 0, w: 1}"
+        ]
+      ],
+      "type": "PolygonCollider2D",
+      "enabled": "1",
+      "trigger": "1",
+      "size": "",
+      "center": "",
+      "offset": "{x: 0, y: 0}",
+      "radius": "",
+      "points": "  m_Points:\n    m_Paths:\n    - - {x: -0.5, y: -0.5}\n      - {x: 0.5, y: -0.5}\n      - {x: 0, y: 0.5}\n"
+    },
+    {
+      "name": "L07_PitSpikes_3",
+      "ancestry": [
+        [
+          "{x: 11.025, y: -0.56, z: 0}",
+          "{x: 0.45, y: 0.48, z: 0.8}",
+          "{x: 0, y: 0, z: 0, w: 1}"
+        ],
+        [
+          "{x: 0, y: 0, z: 0}",
+          "{x: 1, y: 1, z: 1}",
+          "{x: 0, y: 0, z: 0, w: 1}"
+        ],
+        [
+          "{x: 0, y: 0, z: 0}",
+          "{x: 1, y: 1, z: 1}",
+          "{x: 0, y: 0, z: 0, w: 1}"
+        ]
+      ],
+      "type": "PolygonCollider2D",
+      "enabled": "1",
+      "trigger": "1",
+      "size": "",
+      "center": "",
+      "offset": "{x: 0, y: 0}",
+      "radius": "",
+      "points": "  m_Points:\n    m_Paths:\n    - - {x: -0.5, y: -0.5}\n      - {x: 0.5, y: -0.5}\n      - {x: 0, y: 0.5}\n"
+    },
+    {
+      "name": "L07_PitSpikes_4",
+      "ancestry": [
+        [
+          "{x: 11.475, y: -0.56, z: 0}",
+          "{x: 0.45, y: 0.48, z: 0.8}",
+          "{x: 0, y: 0, z: 0, w: 1}"
+        ],
+        [
+          "{x: 0, y: 0, z: 0}",
+          "{x: 1, y: 1, z: 1}",
+          "{x: 0, y: 0, z: 0, w: 1}"
+        ],
+        [
+          "{x: 0, y: 0, z: 0}",
+          "{x: 1, y: 1, z: 1}",
+          "{x: 0, y: 0, z: 0, w: 1}"
+        ]
+      ],
+      "type": "PolygonCollider2D",
+      "enabled": "1",
+      "trigger": "1",
+      "size": "",
+      "center": "",
+      "offset": "{x: 0, y: 0}",
+      "radius": "",
+      "points": "  m_Points:\n    m_Paths:\n    - - {x: -0.5, y: -0.5}\n      - {x: 0.5, y: -0.5}\n      - {x: 0, y: 0.5}\n"
+    },
+    {
+      "name": "L07_PitSpikes_5",
+      "ancestry": [
+        [
+          "{x: 11.925, y: -0.56, z: 0}",
+          "{x: 0.45, y: 0.48, z: 0.8}",
+          "{x: 0, y: 0, z: 0, w: 1}"
+        ],
+        [
+          "{x: 0, y: 0, z: 0}",
+          "{x: 1, y: 1, z: 1}",
+          "{x: 0, y: 0, z: 0, w: 1}"
+        ],
+        [
+          "{x: 0, y: 0, z: 0}",
+          "{x: 1, y: 1, z: 1}",
+          "{x: 0, y: 0, z: 0, w: 1}"
+        ]
+      ],
+      "type": "PolygonCollider2D",
+      "enabled": "1",
+      "trigger": "1",
+      "size": "",
+      "center": "",
+      "offset": "{x: 0, y: 0}",
+      "radius": "",
+      "points": "  m_Points:\n    m_Paths:\n    - - {x: -0.5, y: -0.5}\n      - {x: 0.5, y: -0.5}\n      - {x: 0, y: 0.5}\n"
+    },
+    {
+      "name": "L07_PitSpikes_6",
+      "ancestry": [
+        [
+          "{x: 12.375, y: -0.56, z: 0}",
+          "{x: 0.45, y: 0.48, z: 0.8}",
+          "{x: 0, y: 0, z: 0, w: 1}"
+        ],
+        [
+          "{x: 0, y: 0, z: 0}",
+          "{x: 1, y: 1, z: 1}",
+          "{x: 0, y: 0, z: 0, w: 1}"
+        ],
+        [
+          "{x: 0, y: 0, z: 0}",
+          "{x: 1, y: 1, z: 1}",
+          "{x: 0, y: 0, z: 0, w: 1}"
+        ]
+      ],
+      "type": "PolygonCollider2D",
+      "enabled": "1",
+      "trigger": "1",
+      "size": "",
+      "center": "",
+      "offset": "{x: 0, y: 0}",
+      "radius": "",
+      "points": "  m_Points:\n    m_Paths:\n    - - {x: -0.5, y: -0.5}\n      - {x: 0.5, y: -0.5}\n      - {x: 0, y: 0.5}\n"
+    },
+    {
+      "name": "L07_PitSpikes_7",
+      "ancestry": [
+        [
+          "{x: 12.825, y: -0.56, z: 0}",
+          "{x: 0.45, y: 0.48, z: 0.8}",
+          "{x: 0, y: 0, z: 0, w: 1}"
+        ],
+        [
+          "{x: 0, y: 0, z: 0}",
+          "{x: 1, y: 1, z: 1}",
+          "{x: 0, y: 0, z: 0, w: 1}"
+        ],
+        [
+          "{x: 0, y: 0, z: 0}",
+          "{x: 1, y: 1, z: 1}",
+          "{x: 0, y: 0, z: 0, w: 1}"
+        ]
+      ],
+      "type": "PolygonCollider2D",
+      "enabled": "1",
+      "trigger": "1",
+      "size": "",
+      "center": "",
+      "offset": "{x: 0, y: 0}",
+      "radius": "",
+      "points": "  m_Points:\n    m_Paths:\n    - - {x: -0.5, y: -0.5}\n      - {x: 0.5, y: -0.5}\n      - {x: 0, y: 0.5}\n"
+    },
+    {
+      "name": "L07_PitSpikes_8",
+      "ancestry": [
+        [
+          "{x: 13.275, y: -0.56, z: 0}",
+          "{x: 0.45, y: 0.48, z: 0.8}",
+          "{x: 0, y: 0, z: 0, w: 1}"
+        ],
+        [
+          "{x: 0, y: 0, z: 0}",
+          "{x: 1, y: 1, z: 1}",
+          "{x: 0, y: 0, z: 0, w: 1}"
+        ],
+        [
+          "{x: 0, y: 0, z: 0}",
+          "{x: 1, y: 1, z: 1}",
+          "{x: 0, y: 0, z: 0, w: 1}"
+        ]
+      ],
+      "type": "PolygonCollider2D",
+      "enabled": "1",
+      "trigger": "1",
+      "size": "",
+      "center": "",
+      "offset": "{x: 0, y: 0}",
+      "radius": "",
+      "points": "  m_Points:\n    m_Paths:\n    - - {x: -0.5, y: -0.5}\n      - {x: 0.5, y: -0.5}\n      - {x: 0, y: 0.5}\n"
+    },
+    {
+      "name": "L07_PitSpikes_9",
+      "ancestry": [
+        [
+          "{x: 13.725, y: -0.56, z: 0}",
+          "{x: 0.45, y: 0.48, z: 0.8}",
+          "{x: 0, y: 0, z: 0, w: 1}"
+        ],
+        [
+          "{x: 0, y: 0, z: 0}",
+          "{x: 1, y: 1, z: 1}",
+          "{x: 0, y: 0, z: 0, w: 1}"
+        ],
+        [
+          "{x: 0, y: 0, z: 0}",
+          "{x: 1, y: 1, z: 1}",
+          "{x: 0, y: 0, z: 0, w: 1}"
+        ]
+      ],
+      "type": "PolygonCollider2D",
+      "enabled": "1",
+      "trigger": "1",
+      "size": "",
+      "center": "",
+      "offset": "{x: 0, y: 0}",
+      "radius": "",
+      "points": "  m_Points:\n    m_Paths:\n    - - {x: -0.5, y: -0.5}\n      - {x: 0.5, y: -0.5}\n      - {x: 0, y: 0.5}\n"
+    },
+    {
+      "name": "L07_Saw",
+      "ancestry": [
+        [
+          "{x: 19, y: 3, z: 0}",
+          "{x: 0.75, y: 0.75, z: 0.8}",
+          "{x: 0, y: 0, z: 0, w: 1}"
+        ],
+        [
+          "{x: 0, y: 0, z: 0}",
+          "{x: 1, y: 1, z: 1}",
+          "{x: 0, y: 0, z: 0, w: 1}"
+        ],
+        [
+          "{x: 0, y: 0, z: 0}",
+          "{x: 1, y: 1, z: 1}",
+          "{x: 0, y: 0, z: 0, w: 1}"
+        ]
+      ],
+      "type": "CircleCollider2D",
+      "enabled": "1",
+      "trigger": "1",
+      "size": "",
+      "center": "",
+      "offset": "{x: 0, y: 0}",
+      "radius": "0.5",
+      "points": ""
+    },
+    {
+      "name": "LaserCeiling",
+      "ancestry": [
+        [
+          "{x: 7.4, y: 5.25, z: 0}",
+          "{x: 1, y: 0.3, z: 0.8}",
+          "{x: 0, y: 0, z: 0, w: 1}"
+        ],
+        [
+          "{x: 0, y: 0, z: 0}",
+          "{x: 1, y: 1, z: 1}",
+          "{x: 0, y: 0, z: 0, w: 1}"
+        ],
+        [
+          "{x: 0, y: 0, z: 0}",
+          "{x: 1, y: 1, z: 1}",
+          "{x: 0, y: 0, z: 0, w: 1}"
+        ]
+      ],
+      "type": "BoxCollider2D",
+      "enabled": "1",
+      "trigger": "0",
+      "size": "{x: 1, y: 1}",
+      "center": "",
+      "offset": "{x: 0, y: 0}",
+      "radius": "",
+      "points": ""
+    },
+    {
+      "name": "LaserRun",
+      "ancestry": [
+        [
+          "{x: 7.5, y: 2.1, z: 0}",
+          "{x: 4.4, y: 0.7, z: 0.8}",
+          "{x: 0, y: 0, z: 0, w: 1}"
+        ],
+        [
+          "{x: 0, y: 0, z: 0}",
+          "{x: 1, y: 1, z: 1}",
+          "{x: 0, y: 0, z: 0, w: 1}"
+        ],
+        [
+          "{x: 0, y: 0, z: 0}",
+          "{x: 1, y: 1, z: 1}",
+          "{x: 0, y: 0, z: 0, w: 1}"
+        ]
+      ],
+      "type": "BoxCollider2D",
+      "enabled": "1",
+      "trigger": "0",
+      "size": "{x: 1, y: 1}",
+      "center": "",
+      "offset": "{x: 0, y: 0}",
+      "radius": "",
+      "points": ""
+    },
+    {
+      "name": "Pillow",
+      "ancestry": [
+        [
+          "{x: -0.42, y: 0.46, z: 0}",
+          "{x: 0.28, y: 0.22, z: 0.8}",
+          "{x: 0, y: 0, z: 0, w: 1}"
+        ],
+        [
+          "{x: 20.1, y: 2.6, z: 0}",
+          "{x: 1, y: 1, z: 1}",
+          "{x: 0, y: 0, z: 0, w: 1}"
+        ],
+        [
+          "{x: 0, y: 0, z: 0}",
+          "{x: 1, y: 1, z: 1}",
+          "{x: 0, y: 0, z: 0, w: 1}"
+        ],
+        [
+          "{x: 0, y: 0, z: 0}",
+          "{x: 1, y: 1, z: 1}",
+          "{x: 0, y: 0, z: 0, w: 1}"
+        ]
+      ],
+      "type": "BoxCollider2D",
+      "enabled": "1",
+      "trigger": "1",
+      "size": "{x: 1, y: 1}",
+      "center": "",
+      "offset": "{x: 0, y: 0}",
+      "radius": "",
+      "points": ""
+    },
+    {
+      "name": "Start",
+      "ancestry": [
+        [
+          "{x: 1.55, y: -0.35, z: 0}",
+          "{x: 3.1, y: 0.7, z: 0.8}",
+          "{x: 0, y: 0, z: 0, w: 1}"
+        ],
+        [
+          "{x: 0, y: 0, z: 0}",
+          "{x: 1, y: 1, z: 1}",
+          "{x: 0, y: 0, z: 0, w: 1}"
+        ],
+        [
+          "{x: 0, y: 0, z: 0}",
+          "{x: 1, y: 1, z: 1}",
+          "{x: 0, y: 0, z: 0, w: 1}"
+        ]
+      ],
+      "type": "BoxCollider2D",
+      "enabled": "1",
+      "trigger": "0",
+      "size": "{x: 1, y: 1}",
+      "center": "",
+      "offset": "{x: 0, y: 0}",
+      "radius": "",
+      "points": ""
+    },
+    {
+      "name": "WallGrabLedge",
+      "ancestry": [
+        [
+          "{x: 4.5, y: 1.225, z: 0}",
+          "{x: 1.6, y: 2.45, z: 0.8}",
+          "{x: 0, y: 0, z: 0, w: 1}"
+        ],
+        [
+          "{x: 0, y: 0, z: 0}",
+          "{x: 1, y: 1, z: 1}",
+          "{x: 0, y: 0, z: 0, w: 1}"
+        ],
+        [
+          "{x: 0, y: 0, z: 0}",
+          "{x: 1, y: 1, z: 1}",
+          "{x: 0, y: 0, z: 0, w: 1}"
+        ]
+      ],
+      "type": "BoxCollider2D",
+      "enabled": "1",
+      "trigger": "0",
+      "size": "{x: 1, y: 1}",
+      "center": "",
+      "offset": "{x: 0, y: 0}",
+      "radius": "",
+      "points": ""
+    }
+  ]
+}

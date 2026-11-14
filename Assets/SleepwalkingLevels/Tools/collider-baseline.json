@@ -1,0 +1,30 @@
+{
+  "L01": {
+    "count": 7,
+    "sha256": "61a2a1377108d53ca1d6ddfb0540fdf621258e250e0c3eca1b5afe0fc6a4b310"
+  },
+  "L02": {
+    "count": 11,
+    "sha256": "676b01866c8760186180b299059cd50f83ccb8bdf723072ed8876ba9f17597a9"
+  },
+  "L03": {
+    "count": 8,
+    "sha256": "0379e49c66c2a0f13ed9e2be8ed99f7efae229315f3a5e6809d503fbe08ddda6"
+  },
+  "L04": {
+    "count": 9,
+    "sha256": "25cd31a30950a43054c8349b9230eb20a7dfc76438c77cfa9cb8b7c5589b2456"
+  },
+  "L05": {
+    "count": 20,
+    "sha256": "f7eab4f44b1a0a91db098425d9657b49e26384fae0f55488d2f7151c8cff8bff"
+  },
+  "L06": {
+    "count": 9,
+    "sha256": "adf9e50c17cd1c300ddf905524f0356f42aca9fd60fc68a7c38b75465f38eb4a"
+  },
+  "L07": {
+    "count": 34,
+    "sha256": "da82e9c25a05559479780752946dfd9281dcc18a67f4ed7fc7656d98be6de01d"
+  }
+}

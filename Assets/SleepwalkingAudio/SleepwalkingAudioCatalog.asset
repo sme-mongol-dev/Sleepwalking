@@ -1,0 +1,76 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 21261887faac80f41acbdca282254b07, type: 3}
+  m_Name: SleepwalkingAudioCatalog
+  m_EditorClassIdentifier: Assembly-CSharp::Sleepwalking.Audio.SleepwalkingAudioCatalog
+  MenuMusic: {fileID: 8300000, guid: 796bc7f469bfcec44a1a16459e928bb6, type: 3}
+  DreamAmbience:
+  - {fileID: 8300000, guid: 5e837e011d92d474fac87f5ba8a89e7c, type: 3}
+  - {fileID: 8300000, guid: c2976377de9210142a3295dfd97d9042, type: 3}
+  - {fileID: 8300000, guid: f12bd3bba05c6fd4f95eafc169c95e23, type: 3}
+  - {fileID: 8300000, guid: be4a91cfe76e0814d8cf1e13a47f18e9, type: 3}
+  Cues:
+  - Cue: 0
+    Variants:
+    - {fileID: 8300000, guid: 518dd4e7336c8f94b823df85a2c03ef9, type: 3}
+    - {fileID: 8300000, guid: 6c683a2dd1c3d0245b496e237c4d3b2c, type: 3}
+    Gain: 0.38
+  - Cue: 1
+    Variants:
+    - {fileID: 8300000, guid: 8bf0bb1c66654a746bddd1b9c70c9ae7, type: 3}
+    - {fileID: 8300000, guid: 6c683a2dd1c3d0245b496e237c4d3b2c, type: 3}
+    Gain: 0.48
+  - Cue: 2
+    Variants:
+    - {fileID: 8300000, guid: 62a27b4127e4dcc4c9bf70bae1f52e3f, type: 3}
+    - {fileID: 8300000, guid: f2cd3c3cb91f072499d0ed73f1bc7b45, type: 3}
+    Gain: 0.45
+  - Cue: 3
+    Variants:
+    - {fileID: 8300000, guid: cf12a3af0a3098844b12114990c688f2, type: 3}
+    - {fileID: 8300000, guid: 28202fe145001e54086105cd2b7acb4d, type: 3}
+    - {fileID: 8300000, guid: d40c61f46cbea764ea6c6b6f425eff2d, type: 3}
+    - {fileID: 8300000, guid: c4a91a1eba76cf141bee6b8ddba2d8e7, type: 3}
+    Gain: 0.43
+  - Cue: 4
+    Variants:
+    - {fileID: 8300000, guid: b06c19e96cba9604b8703cd71065a7ff, type: 3}
+    - {fileID: 8300000, guid: e71a390237004044aa5eaa7973898b4a, type: 3}
+    - {fileID: 8300000, guid: 262f3a0a616ea194da49cc51f636a49f, type: 3}
+    Gain: 0.58
+  - Cue: 5
+    Variants:
+    - {fileID: 8300000, guid: 98bbd6e51571b904f9efa84fdb801027, type: 3}
+    - {fileID: 8300000, guid: fad22ae5dea27084d8f1624c51fd1afc, type: 3}
+    - {fileID: 8300000, guid: e0cad9d71b2f2fd45af7a7553bd0b641, type: 3}
+    - {fileID: 8300000, guid: 15dd8df7ec989d94cae5ee9bc23d3523, type: 3}
+    Gain: 0.45
+  - Cue: 6
+    Variants:
+    - {fileID: 8300000, guid: b7c4748059104a94c9119a2d6170d931, type: 3}
+    - {fileID: 8300000, guid: f03019b78b26e4348983b8ebee2aed1c, type: 3}
+    Gain: 0.45
+  - Cue: 7
+    Variants:
+    - {fileID: 8300000, guid: c3b383f0d29c52646b6f332eb3688437, type: 3}
+    - {fileID: 8300000, guid: fd165c718f98d2c4690dc76dc4a09234, type: 3}
+    Gain: 0.22
+  - Cue: 8
+    Variants:
+    - {fileID: 8300000, guid: b7c4748059104a94c9119a2d6170d931, type: 3}
+    - {fileID: 8300000, guid: f03019b78b26e4348983b8ebee2aed1c, type: 3}
+    Gain: 0.38
+  - Cue: 9
+    Variants:
+    - {fileID: 8300000, guid: fd165c718f98d2c4690dc76dc4a09234, type: 3}
+    - {fileID: 8300000, guid: c3b383f0d29c52646b6f332eb3688437, type: 3}
+    Gain: 0.3

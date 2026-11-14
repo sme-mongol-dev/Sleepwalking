@@ -1,0 +1,43 @@
+VBCSCompilerServerWatchdog: watching VBCSCompiler (PID 350568)
+[Licensing::Module] Trying to connect to existing licensing client channel...
+Built from '6000.3/respin/6000.3.28f1-21f78c3e21d1' branch; Version is '6000.3.28f1 (8f082d2fe476) revision 9373741'; Using compiler version '194234433'; Build Type 'Release'
+[Licensing::IpcConnector] Successfully connected to: "LicenseClient-TIMBUHTUK" at "2026-11-14T00:52:33.2015348Z"
+OS: 'Windows 11  (10.0.26200) Professional' Language: 'uk' Physical Memory: 31959 MB
+BatchMode: 1, IsHumanControllingUs: 0, StartBugReporterOnCrash: 0, Is64bit: 1
+System  architecture: x64
+Process architecture: x64
+Date: 2026-11-14T00:52:33Z
+[Licensing::Client] Code 10 while verifying Licensing Client signature (process Id: 39100, path: "C:/Program Files/WindowsApps/UnityTechnologies.UnityHub_4.0.0.65535_x64__2vrhnee42bhxm/app/UnityLicensingClient_V1/Unity.Licensing.Client.exe")
+[Licensing::Module] LicensingClient has failed validation; ignoring
+[Licensing::Client] Handshaking with LicensingClient:
+  Version:                 1.19.0+4cc3dda
+  Session Id:              2b04e5d5a1aa432280295515b1dcfea7
+  Correlation Id:          1868dbaffe5977010af9e191ad6a8576
+  External correlation Id: 111565089912145112
+  Machine Id:              pEWEbfH3Yx5ksa7oNXFl8HA4b+w=
+[Licensing::Module] Successfully connected to LicensingClient on channel: "LicenseClient-TIMBUHTUK" (connect: 0.00s, validation: 0.00s, handshake: 0.08s)
+[Licensing::IpcConnector] Successfully connected to: "LicenseClient-TIMBUHTUK-notifications" at "2026-11-14T00:52:33.2883965Z"
+[Licensing::Module] Error: Access token is unavailable; failed to update
+[Licensing::Client] Successfully resolved entitlement details
+[Licensing::Module] License group:
+  Id: 7972650386868-UnityPersXXXX
+  Product: Unity Personal
+  Type: Assigned
+  Expiration: Unlimited
+[Licensing::Client] Successfully updated license, isAsync: True, time: 0.01
+[Licensing::Client] Successfully resolved entitlement details
+[Licensing::Module] Licensing Background thread has ended after 0.11s
+
+COMMAND LINE ARGUMENTS:
+C:\Program Files\Unity\Hub\Editor\6000.3.28f1\Editor\Unity.exe
+-batchmode
+-quit
+-projectPath
+T:\Sleepwalking
+-executeMethod
+Sleepwalking.Visual.Editor.VisualAssetBuilder.Build
+-logFile
+T:\Sleepwalking\Docs\QA\VisualLogs\VisualRoomOnlyFraming.log
+Successfully changed project path to: T:\Sleepwalking
+T:/Sleepwalking
+Exiting without the bug reporter. Application will terminate with return code 1

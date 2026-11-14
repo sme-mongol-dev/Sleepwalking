@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="1" result="Passed" total="1" passed="1" failed="0" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-11-14 11:07:53Z" end-time="2026-11-14 11:10:02Z" duration="129,162664">
+  <test-suite type="TestSuite" id="1026" name="Sleepwalking" fullname="Sleepwalking" runstate="Runnable" testcasecount="11" result="Passed" start-time="2026-11-14 11:07:53Z" end-time="2026-11-14 11:10:02Z" duration="129.162664" total="1" passed="1" failed="0" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="PlayMode" />
+    </properties>
+    <test-suite type="Assembly" id="1019" name="Sleepwalking.PlayMode.Tests.dll" fullname="T:/Sleepwalking/Library/ScriptAssemblies/Sleepwalking.PlayMode.Tests.dll" runstate="Runnable" testcasecount="11" result="Passed" start-time="2026-11-14 11:07:53Z" end-time="2026-11-14 11:10:02Z" duration="129.156315" total="1" passed="1" failed="0" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="685344" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="PlayMode" />
+        <property name="EditorOnly" value="False" />
+      </properties>
+      <test-suite type="TestSuite" id="1020" name="Sleepwalking" fullname="Sleepwalking" runstate="Runnable" testcasecount="11" result="Passed" start-time="2026-11-14 11:07:53Z" end-time="2026-11-14 11:10:02Z" duration="129.155648" total="1" passed="1" failed="0" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <test-suite type="TestSuite" id="1021" name="Tests" fullname="Sleepwalking.Tests" runstate="Runnable" testcasecount="11" result="Passed" start-time="2026-11-14 11:07:53Z" end-time="2026-11-14 11:10:02Z" duration="129.155234" total="1" passed="1" failed="0" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <test-suite type="TestSuite" id="1022" name="PlayMode" fullname="Sleepwalking.Tests.PlayMode" runstate="Runnable" testcasecount="11" result="Passed" start-time="2026-11-14 11:07:53Z" end-time="2026-11-14 11:10:02Z" duration="129.154822" total="1" passed="1" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-suite type="TestFixture" id="1001" name="MovementTrajectoryTests" fullname="Sleepwalking.Tests.PlayMode.MovementTrajectoryTests" classname="Sleepwalking.Tests.PlayMode.MovementTrajectoryTests" runstate="Runnable" testcasecount="1" result="Passed" start-time="2026-11-14 11:07:53Z" end-time="2026-11-14 11:10:02Z" duration="129.153592" total="1" passed="1" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1002" name="MeasureThreeProfilesOnAuthoredRoutes" fullname="Sleepwalking.Tests.PlayMode.MovementTrajectoryTests.MeasureThreeProfilesOnAuthoredRoutes" methodname="MeasureThreeProfilesOnAuthoredRoutes" classname="Sleepwalking.Tests.PlayMode.MovementTrajectoryTests" runstate="Runnable" seed="1938973247" result="Passed" start-time="2026-11-14 11:07:53Z" end-time="2026-11-14 11:10:02Z" duration="129.143515" asserts="0">
+                <properties>
+                  <property name="_JOINTYPE" value="UnityCombinatorial" />
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[SW_MOVE 01_Controlled | L01 gap A | success=True | maxFeet=2,05 | maxX=7,01 | landingX=6,85 | margin=1,13 | died=False | elapsed=0,96 | wallJump=False | dash=False | events= jump@3,38 land@6,85
+SW_MOVE 01_Controlled | L01 gap B | success=True | maxFeet=2,05 | maxX=10,92 | landingX=10,92 | margin=0,66 | died=False | elapsed=0,97 | wallJump=False | dash=False | events= jump@7,98 land@10,92
+SW_MOVE 01_Controlled | L02 spike gap | success=True | maxFeet=2,05 | maxX=5,54 | landingX=5,52 | margin=0,20 | died=False | elapsed=0,93 | wallJump=False | dash=False | events= jump@3,14 land@5,52
+SW_MOVE 01_Controlled | L02 spike hop | success=True | maxFeet=2,05 | maxX=7,72 | landingX=7,72 | margin=0,05 | died=False | elapsed=0,75 | wallJump=False | dash=False | events= jump@5,47 land@7,72
+SW_MOVE 01_Controlled | L02 exit gap | success=True | maxFeet=2,05 | maxX=10,83 | landingX=10,83 | margin=0,75 | died=False | elapsed=0,79 | wallJump=False | dash=False | events= jump@7,95 land@10,83
+SW_MOVE 01_Controlled | L03 saw gap | success=True | maxFeet=2,05 | maxX=5,54 | landingX=5,52 | margin=0,13 | died=False | elapsed=0,93 | wallJump=False | dash=False | events= jump@3,14 land@5,52
+SW_MOVE 01_Controlled | L03 saw hop | success=True | maxFeet=2,05 | maxX=7,72 | landingX=7,70 | margin=0,28 | died=False | elapsed=0,75 | wallJump=False | dash=False | events= jump@5,47 land@7,70
+SW_MOVE 01_Controlled | L03 exit gap | success=True | maxFeet=2,05 | maxX=10,99 | landingX=10,99 | margin=0,59 | died=False | elapsed=0,81 | wallJump=False | dash=False | events= jump@8,07 land@10,99
+SW_MOVE 01_Controlled | L04 button laser | success=True | maxFeet=0,06 | maxX=10,16 | landingX=10,16 | margin=-10,16 | died=False | elapsed=1,31 | wallJump=False | dash=False | events= land@10,16
+SW_MOVE 01_Controlled | L05 timed A | success=True | maxFeet=2,05 | maxX=4,13 | landingX=4,07 | margin=0,21 | died=False | elapsed=0,91 | wallJump=False | dash=False | events= jump@2,79 land@4,07
+SW_MOVE 01_Controlled | L05 timed B | success=True | maxFeet=2,15 | maxX=5,87 | landingX=5,64 | margin=0,26 | died=False | elapsed=0,77 | wallJump=False | dash=False | events= jump@4,21 land@5,64
+SW_MOVE 01_Controlled | L05 timed C | success=True | maxFeet=2,35 | maxX=7,52 | landingX=7,29 | margin=0,26 | died=False | elapsed=0,81 | wallJump=False | dash=False | events= jump@5,86 land@7,29
+SW_MOVE 01_Controlled | L05 exit | success=True | maxFeet=2,15 | maxX=10,41 | landingX=10,25 | margin=1,32 | died=False | elapsed=0,83 | wallJump=False | dash=False | events= jump@7,72 land@10,25
+SW_MOVE 01_Controlled | L05 plain bypass | success=False | maxFeet=2,05 | maxX=8,21 | landingX=NaN | margin=NaN | died=True | elapsed=2,27 | wallJump=False | dash=False | events= jump@2,79
+SW_MOVE 01_Controlled | L06 moving A | success=True | maxFeet=2,05 | maxX=6,11 | landingX=6,11 | margin=-1,28 | died=False | elapsed=0,91 | wallJump=False | dash=False | events= jump@2,79 land@6,11
+SW_MOVE 01_Controlled | L06 plain bypass | success=True | maxFeet=2,05 | maxX=8,52 | landingX=8,52 | margin=0,10 | died=False | elapsed=0,97 | wallJump=False | dash=False | events= jump@2,64 land@8,52
+SW_MOVE 01_Controlled | L06 lift bypass | success=False | maxFeet=0,30 | maxX=11,19 | landingX=NaN | margin=NaN | died=False | elapsed=1,50 | wallJump=False | dash=False | events= jump@8,67
+SW_MOVE 01_Controlled | L07 wall | success=False | maxFeet=3,20 | maxX=3,90 | landingX=NaN | margin=NaN | died=False | elapsed=4,00 | wallJump=True | dash=False | events= jump@2,88 wall@3,41
+SW_MOVE 01_Controlled | L07 wall plain | success=False | maxFeet=1,17 | maxX=3,41 | landingX=NaN | margin=NaN | died=False | elapsed=0,99 | wallJump=False | dash=False | events= jump@2,88
+SW_MOVE 01_Controlled | L07 pit plain | success=False | maxFeet=4,50 | maxX=15,98 | landingX=NaN | margin=NaN | died=False | elapsed=1,05 | wallJump=False | dash=False | events= jump@9,29
+SW_MOVE 01_Controlled | L07 pit dash | success=True | maxFeet=4,50 | maxX=19,74 | landingX=19,74 | margin=0,81 | died=False | elapsed=1,11 | wallJump=False | dash=True | events= jump@9,29 dash@12,64 land@19,74
+SW_MOVE 01_Controlled | L07 full route | success=True | maxX=19,64 | landingX=19,64 | died=False | elapsed=2,79 | buttonA=True | buttonB=True | events= jump@2,85 wall@3,41 ledge@4,19 pitJump@9,32 dash@12,52 land@19,64
+SW_MOVE 02_Responsive | L01 gap A | success=True | maxFeet=2,19 | maxX=6,96 | landingX=6,83 | margin=1,14 | died=False | elapsed=0,97 | wallJump=False | dash=False | events= jump@3,37 land@6,83
+SW_MOVE 02_Responsive | L01 gap B | success=True | maxFeet=2,19 | maxX=10,91 | landingX=10,68 | margin=0,75 | died=False | elapsed=0,99 | wallJump=False | dash=False | events= jump@8,00 land@10,68
+SW_MOVE 02_Responsive | L02 spike gap | success=True | maxFeet=2,19 | maxX=5,50 | landingX=5,50 | margin=0,22 | died=False | elapsed=0,95 | wallJump=False | dash=False | events= jump@3,10 land@5,50
+SW_MOVE 02_Responsive | L02 spike hop | success=True | maxFeet=2,20 | maxX=7,72 | landingX=7,72 | margin=0,06 | died=False | elapsed=0,79 | wallJump=False | dash=False | events= jump@5,48 land@7,72
+SW_MOVE 02_Responsive | L02 exit gap | success=True | maxFeet=2,19 | maxX=10,82 | landingX=10,59 | margin=0,87 | died=False | elapsed=0,84 | wallJump=False | dash=False | events= jump@7,99 land@10,59
+SW_MOVE 02_Responsive | L03 saw gap | success=True | maxFeet=2,19 | maxX=5,67 | landingX=5,45 | margin=0,20 | died=False | elapsed=0,95 | wallJump=False | dash=False | events= jump@3,10 land@5,45
+SW_MOVE 02_Responsive | L03 saw hop | success=True | maxFeet=2,20 | maxX=7,72 | landingX=7,71 | margin=0,27 | died=False | elapsed=0,79 | wallJump=False | dash=False | events= jump@5,48 land@7,71
+SW_MOVE 02_Responsive | L03 exit gap | success=True | maxFeet=2,19 | maxX=10,83 | landingX=10,83 | margin=0,75 | died=False | elapsed=0,85 | wallJump=False | dash=False | events= jump@8,11 land@10,83
+SW_MOVE 02_Responsive | L04 button laser | success=True | maxFeet=0,06 | maxX=10,14 | landingX=10,14 | margin=-10,14 | died=False | elapsed=1,17 | wallJump=False | dash=False | events= land@10,14
+SW_MOVE 02_Responsive | L05 timed A | success=True | maxFeet=2,19 | maxX=4,12 | landingX=4,06 | margin=0,21 | died=False | elapsed=0,91 | wallJump=False | dash=False | events= jump@2,74 land@4,06
+SW_MOVE 02_Responsive | L05 timed B | success=True | maxFeet=2,29 | maxX=5,80 | landingX=5,68 | margin=0,25 | died=False | elapsed=0,81 | wallJump=False | dash=False | events= jump@4,23 land@5,68
+SW_MOVE 02_Responsive | L05 timed C | success=True | maxFeet=2,49 | maxX=7,45 | landingX=7,33 | margin=0,25 | died=False | elapsed=0,85 | wallJump=False | dash=False | events= jump@5,88 land@7,33
+SW_MOVE 02_Responsive | L05 exit | success=True | maxFeet=2,29 | maxX=10,48 | landingX=10,16 | margin=1,23 | died=False | elapsed=0,85 | wallJump=False | dash=False | events= jump@7,76 land@10,16
+SW_MOVE 02_Responsive | L05 plain bypass | success=True | maxFeet=2,19 | maxX=8,97 | landingX=8,97 | margin=0,05 | died=False | elapsed=0,91 | wallJump=False | dash=False | events= jump@2,74 land@8,97
+SW_MOVE 02_Responsive | L06 moving A | success=True | maxFeet=2,19 | maxX=5,98 | landingX=5,98 | margin=-1,16 | died=False | elapsed=0,93 | wallJump=False | dash=False | events= jump@2,90 land@5,98
+SW_MOVE 02_Responsive | L06 plain bypass | success=True | maxFeet=2,19 | maxX=8,56 | landingX=8,56 | margin=0,14 | died=False | elapsed=0,97 | wallJump=False | dash=False | events= jump@2,57 land@8,56
+SW_MOVE 02_Responsive | L06 lift bypass | success=False | maxFeet=0,30 | maxX=11,34 | landingX=NaN | margin=NaN | died=False | elapsed=1,49 | wallJump=False | dash=False | events= jump@8,69
+SW_MOVE 02_Responsive | L07 wall | success=True | maxFeet=3,31 | maxX=4,42 | landingX=4,42 | margin=0,30 | died=False | elapsed=1,05 | wallJump=True | dash=False | events= jump@2,87 wall@3,41 land@4,42
+SW_MOVE 02_Responsive | L07 wall plain | success=False | maxFeet=1,14 | maxX=3,41 | landingX=NaN | margin=NaN | died=False | elapsed=1,01 | wallJump=False | dash=False | events= jump@2,87
+SW_MOVE 02_Responsive | L07 pit plain | success=False | maxFeet=4,64 | maxX=17,21 | landingX=NaN | margin=NaN | died=False | elapsed=1,09 | wallJump=False | dash=False | events= jump@9,39
+SW_MOVE 02_Responsive | L07 pit dash | success=True | maxFeet=4,64 | maxX=20,29 | landingX=20,29 | margin=0,39 | died=False | elapsed=1,09 | wallJump=False | dash=True | events= jump@9,39 dash@12,62 land@20,29
+SW_MOVE 02_Responsive | L07 full route | success=True | maxX=20,33 | landingX=20,33 | died=False | elapsed=2,67 | buttonA=True | buttonB=True | events= jump@2,91 wall@3,41 ledge@4,55 pitJump@9,26 dash@12,66 land@20,33
+SW_MOVE 03_Aggressive | L01 gap A | success=True | maxFeet=2,14 | maxX=6,87 | landingX=6,87 | margin=1,10 | died=False | elapsed=0,93 | wallJump=False | dash=False | events= jump@3,41 land@6,87
+SW_MOVE 03_Aggressive | L01 gap B | success=True | maxFeet=2,14 | maxX=10,79 | landingX=10,79 | margin=0,79 | died=False | elapsed=0,95 | wallJump=False | dash=False | events= jump@8,08 land@10,79
+SW_MOVE 03_Aggressive | L02 spike gap | success=True | maxFeet=2,14 | maxX=5,46 | landingX=5,46 | margin=0,26 | died=False | elapsed=0,91 | wallJump=False | dash=False | events= jump@3,13 land@5,46
+SW_MOVE 03_Aggressive | L02 spike hop | success=True | maxFeet=2,15 | maxX=7,75 | landingX=7,72 | margin=0,06 | died=False | elapsed=0,77 | wallJump=False | dash=False | events= jump@5,50 land@7,72
+SW_MOVE 03_Aggressive | L02 exit gap | success=True | maxFeet=2,14 | maxX=10,75 | landingX=10,75 | margin=0,83 | died=False | elapsed=0,79 | wallJump=False | dash=False | events= jump@7,94 land@10,75
+SW_MOVE 03_Aggressive | L03 saw gap | success=True | maxFeet=2,14 | maxX=5,65 | landingX=5,45 | margin=0,20 | died=False | elapsed=0,91 | wallJump=False | dash=False | events= jump@3,13 land@5,45
+SW_MOVE 03_Aggressive | L03 saw hop | success=True | maxFeet=2,15 | maxX=7,75 | landingX=7,65 | margin=0,32 | died=False | elapsed=0,77 | wallJump=False | dash=False | events= jump@5,50 land@7,65
+SW_MOVE 03_Aggressive | L03 exit gap | success=True | maxFeet=2,14 | maxX=10,94 | landingX=10,53 | margin=0,61 | died=False | elapsed=0,81 | wallJump=False | dash=False | events= jump@8,07 land@10,53
+SW_MOVE 03_Aggressive | L04 button laser | success=True | maxFeet=0,06 | maxX=10,14 | landingX=10,14 | margin=-10,14 | died=False | elapsed=1,05 | wallJump=False | dash=False | events= land@10,14
+SW_MOVE 03_Aggressive | L05 timed A | success=True | maxFeet=2,14 | maxX=4,14 | landingX=4,04 | margin=0,23 | died=False | elapsed=0,87 | wallJump=False | dash=False | events= jump@2,75 land@4,04
+SW_MOVE 03_Aggressive | L05 timed B | success=True | maxFeet=2,24 | maxX=5,76 | landingX=5,73 | margin=0,19 | died=False | elapsed=0,77 | wallJump=False | dash=False | events= jump@4,18 land@5,73
+SW_MOVE 03_Aggressive | L05 timed C | success=True | maxFeet=2,44 | maxX=7,43 | landingX=7,33 | margin=0,24 | died=False | elapsed=0,81 | wallJump=False | dash=False | events= jump@5,94 land@7,33
+SW_MOVE 03_Aggressive | L05 exit | success=True | maxFeet=2,24 | maxX=10,41 | landingX=10,31 | margin=1,27 | died=False | elapsed=0,81 | wallJump=False | dash=False | events= jump@7,72 land@10,31
+SW_MOVE 03_Aggressive | L05 plain bypass | success=True | maxFeet=2,14 | maxX=9,44 | landingX=9,44 | margin=0,51 | died=False | elapsed=0,87 | wallJump=False | dash=False | events= jump@2,75 land@9,44
+SW_MOVE 03_Aggressive | L06 moving A | success=True | maxFeet=2,14 | maxX=6,02 | landingX=6,02 | margin=-1,19 | died=False | elapsed=0,89 | wallJump=False | dash=False | events= jump@2,93 land@6,02
+SW_MOVE 03_Aggressive | L06 plain bypass | success=True | maxFeet=2,14 | maxX=8,56 | landingX=8,56 | margin=0,14 | died=False | elapsed=1,03 | wallJump=False | dash=False | events= jump@2,57 land@8,56
+SW_MOVE 03_Aggressive | L06 lift bypass | success=False | maxFeet=0,30 | maxX=11,54 | landingX=NaN | margin=NaN | died=False | elapsed=1,46 | wallJump=False | dash=False | events= jump@8,72
+SW_MOVE 03_Aggressive | L07 wall | success=True | maxFeet=3,10 | maxX=4,51 | landingX=4,51 | margin=0,37 | died=False | elapsed=0,95 | wallJump=True | dash=False | events= jump@2,91 wall@3,41 land@4,51
+SW_MOVE 03_Aggressive | L07 wall plain | success=False | maxFeet=0,97 | maxX=3,41 | landingX=NaN | margin=NaN | died=False | elapsed=0,94 | wallJump=False | dash=False | events= jump@2,91
+SW_MOVE 03_Aggressive | L07 pit plain | success=False | maxFeet=4,59 | maxX=17,86 | landingX=NaN | margin=NaN | died=False | elapsed=1,05 | wallJump=False | dash=False | events= jump@9,40
+SW_MOVE 03_Aggressive | L07 pit dash | success=False | maxFeet=4,58 | maxX=22,11 | landingX=NaN | margin=NaN | died=False | elapsed=1,21 | wallJump=False | dash=True | events= jump@9,40 dash@12,60
+SW_MOVE 03_Aggressive | L07 full route | success=False | maxX=21,52 | landingX=NaN | died=False | elapsed=2,53 | buttonA=True | buttonB=True | events= jump@2,84 wall@3,41 ledge@4,75 pitJump@9,39 dash@12,59
+Saving results to: C:/Users/TIMBUHTUK/AppData/LocalLow/DefaultCompany/Sleepwalking\TestResults.xml
+]]></output>
+              </test-case>
+            </test-suite>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

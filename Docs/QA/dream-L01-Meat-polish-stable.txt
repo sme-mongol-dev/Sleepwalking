@@ -1,0 +1,1 @@
+Camera=(3.00, 1.80, -20.00) Size=5,85 Player=(1.00, 0.51, 0.00) PlayerViewport=(0.37, 0.39, 20.00) Target=320x240 TimeScale=1

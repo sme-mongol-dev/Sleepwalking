@@ -1,0 +1,6 @@
+firstJump X=2,907
+wallJump X=3,410
+ledgeContact X=4,578 margin=0,447
+pitJump X=9,289
+dash X=12,519
+dashLanding X=19,828 margin=0,997 sawReserve=6,940

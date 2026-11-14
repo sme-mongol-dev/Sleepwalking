@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="1" result="Passed" total="1" passed="1" failed="0" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-11-14 11:52:57Z" end-time="2026-11-14 11:53:18Z" duration="20,8053509">
+  <test-suite type="TestSuite" id="1031" name="Sleepwalking" fullname="Sleepwalking" runstate="Runnable" testcasecount="15" result="Passed" start-time="2026-11-14 11:52:57Z" end-time="2026-11-14 11:53:18Z" duration="20.805351" total="1" passed="1" failed="0" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="PlayMode" />
+    </properties>
+    <test-suite type="Assembly" id="1024" name="Sleepwalking.PlayMode.Tests.dll" fullname="T:/Sleepwalking/Library/ScriptAssemblies/Sleepwalking.PlayMode.Tests.dll" runstate="Runnable" testcasecount="15" result="Passed" start-time="2026-11-14 11:52:57Z" end-time="2026-11-14 11:53:18Z" duration="20.800189" total="1" passed="1" failed="0" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="755816" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="PlayMode" />
+        <property name="EditorOnly" value="False" />
+      </properties>
+      <test-suite type="TestSuite" id="1025" name="Sleepwalking" fullname="Sleepwalking" runstate="Runnable" testcasecount="15" result="Passed" start-time="2026-11-14 11:52:57Z" end-time="2026-11-14 11:53:18Z" duration="20.799749" total="1" passed="1" failed="0" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <test-suite type="TestSuite" id="1026" name="Tests" fullname="Sleepwalking.Tests" runstate="Runnable" testcasecount="15" result="Passed" start-time="2026-11-14 11:52:57Z" end-time="2026-11-14 11:53:18Z" duration="20.799434" total="1" passed="1" failed="0" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <test-suite type="TestSuite" id="1027" name="PlayMode" fullname="Sleepwalking.Tests.PlayMode" runstate="Runnable" testcasecount="15" result="Passed" start-time="2026-11-14 11:52:57Z" end-time="2026-11-14 11:53:18Z" duration="20.799118" total="1" passed="1" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-suite type="TestFixture" id="1001" name="MovementTrajectoryTests" fullname="Sleepwalking.Tests.PlayMode.MovementTrajectoryTests" classname="Sleepwalking.Tests.PlayMode.MovementTrajectoryTests" runstate="Runnable" testcasecount="3" result="Passed" start-time="2026-11-14 11:52:57Z" end-time="2026-11-14 11:53:18Z" duration="20.797979" total="1" passed="1" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1004" name="MeasureContinuousL05L06" fullname="Sleepwalking.Tests.PlayMode.MovementTrajectoryTests.MeasureContinuousL05L06" methodname="MeasureContinuousL05L06" classname="Sleepwalking.Tests.PlayMode.MovementTrajectoryTests" runstate="Runnable" seed="1995100678" result="Passed" start-time="2026-11-14 11:52:57Z" end-time="2026-11-14 11:53:18Z" duration="20.789289" asserts="0">
+                <properties>
+                  <property name="_JOINTYPE" value="UnityCombinatorial" />
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[SW_MOVE 01_Controlled | L05 full route | success=True | stage=4 | exitX=9,50 | cReserve=0,97 | bed=True | died=False | elapsed=2,41 | events= jump0@2,10 land0@4,07 jump1@4,07 land1@5,51 jump2@5,51 land2@7,38 jump3@7,38 land3@9,50
+SW_MOVE 01_Controlled | L06 full route | success=True | stage=6 | maxX=18,30 | maxFeet=5,76 | moverGap=0,01 | moverTouchFrames=207 | exitX=17,79 | bed=True | died=False | elapsed=5,69 | events= startJump@2,79 mover@6,25 dismount@13,13 landing@15,11 board@15,11 lift@15,74 exitJump@16,90 exit@17,79
+SW_MOVE 02_Responsive | L05 full route | success=True | stage=4 | exitX=9,49 | cReserve=0,85 | bed=True | died=False | elapsed=2,57 | events= jump0@2,14 land0@4,01 jump1@4,01 land1@5,75 jump2@5,75 land2@7,17 jump3@7,17 land3@9,49
+SW_MOVE 02_Responsive | L06 full route | success=True | stage=6 | maxX=18,33 | maxFeet=5,90 | moverGap=0,02 | moverTouchFrames=191 | exitX=17,68 | bed=True | died=False | elapsed=5,73 | events= startJump@2,90 mover@6,06 dismount@13,26 landing@15,19 board@15,19 lift@15,73 exitJump@16,85 exit@17,68
+Saving results to: C:/Users/TIMBUHTUK/AppData/LocalLow/DefaultCompany/Sleepwalking\TestResults.xml
+]]></output>
+              </test-case>
+            </test-suite>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

@@ -1,0 +1,29 @@
+VBCSCompilerServerWatchdog: watching VBCSCompiler (PID 692760)
+CreateDirectory 'C:/Users/TIMBUHTUK/AppData/Local/Unity/Caches' failed: Cannot create a file when that file already exists.
+ (current dir: )
+CreateDirectory 'C:/Users/TIMBUHTUK/AppData/Local/Unity/Caches' failed: Cannot create a file when that file already exists.
+ (current dir: )
+[Licensing::Module] Trying to connect to existing licensing client channel...
+Built from '6000.3/respin/6000.3.28f1-21f78c3e21d1' branch; Version is '6000.3.28f1 (8f082d2fe476) revision 9373741'; Using compiler version '194234433'; Build Type 'Release'
+[Licensing::IpcConnector] Connection to channel LicenseClient-TIMBUHTUK refused
+OS: 'Windows 11  (10.0.26200) Professional' Language: 'uk' Physical Memory: 31959 MB
+BatchMode: 1, IsHumanControllingUs: 0, StartBugReporterOnCrash: 0, Is64bit: 1
+System  architecture: x64
+Process architecture: x64
+Date: 2026-11-14T11:11:21Z
+Assertion failed on expression: 'SUCCEEDED(hr)'
+Assertion failed on expression: 'SUCCEEDED(hr)'
+
+COMMAND LINE ARGUMENTS:
+C:\Program Files\Unity\Hub\Editor\6000.3.28f1\Editor\Unity.exe
+-batchmode
+-projectPath
+T:\Sleepwalking
+-executeMethod
+SleepwalkingLevelBuilder.BuildFromCommandLine
+-quit
+-logFile
+T:\Sleepwalking\Docs\QA\LevelCalibrationBuild.log
+Successfully changed project path to: T:\Sleepwalking
+T:/Sleepwalking
+Exiting without the bug reporter. Application will terminate with return code 1

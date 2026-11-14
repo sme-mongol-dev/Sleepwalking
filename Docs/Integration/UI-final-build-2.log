@@ -1,0 +1,571 @@
+VBCSCompilerServerWatchdog: watching VBCSCompiler (PID 216580)
+[Licensing::Module] Trying to connect to existing licensing client channel...
+Built from '6000.3/respin/6000.3.28f1-21f78c3e21d1' branch; Version is '6000.3.28f1 (8f082d2fe476) revision 9373741'; Using compiler version '194234433'; Build Type 'Release'
+[Licensing::IpcConnector] Successfully connected to: "LicenseClient-TIMBUHTUK" at "2026-11-13T23:55:11.0738991Z"
+OS: 'Windows 11  (10.0.26200) Professional' Language: 'uk' Physical Memory: 31959 MB
+BatchMode: 1, IsHumanControllingUs: 0, StartBugReporterOnCrash: 0, Is64bit: 1
+System  architecture: x64
+Process architecture: x64
+Date: 2026-11-13T23:55:11Z
+[Licensing::Client] Code 10 while verifying Licensing Client signature (process Id: 39100, path: "C:/Program Files/WindowsApps/UnityTechnologies.UnityHub_4.0.0.65535_x64__2vrhnee42bhxm/app/UnityLicensingClient_V1/Unity.Licensing.Client.exe")
+[Licensing::Module] LicensingClient has failed validation; ignoring
+[Licensing::Client] Handshaking with LicensingClient:
+  Version:                 1.19.0+4cc3dda
+  Session Id:              f6e2e8f6d89a4a9eb9e4a4c726c4aece
+  Correlation Id:          1868dbaffe5977010af9e191ad6a8576
+  External correlation Id: 7321759857563021712
+  Machine Id:              pEWEbfH3Yx5ksa7oNXFl8HA4b+w=
+[Licensing::Module] Successfully connected to LicensingClient on channel: "LicenseClient-TIMBUHTUK" (connect: 0.00s, validation: 0.00s, handshake: 0.06s)
+[Licensing::IpcConnector] Successfully connected to: "LicenseClient-TIMBUHTUK-notifications" at "2026-11-13T23:55:11.1338938Z"
+[Licensing::Module] Error: Access token is unavailable; failed to update
+[Licensing::Client] Successfully resolved entitlement details
+[Licensing::Module] License group:
+  Id: 7972650386868-UnityPersXXXX
+  Product: Unity Personal
+  Type: Assigned
+  Expiration: Unlimited
+[Licensing::Client] Successfully updated license, isAsync: True, time: 0.00
+[Licensing::Client] Successfully resolved entitlement details
+[Licensing::Module] Licensing Background thread has ended after 0.07s
+
+COMMAND LINE ARGUMENTS:
+C:\Program Files\Unity\Hub\Editor\6000.3.28f1\Editor\Unity.exe
+-batchmode
+-nographics
+-quit
+-projectPath
+T:\Sleepwalking
+-executeMethod
+SleepwalkingSceneBuilder.Build
+-logFile
+T:\Sleepwalking\Docs\Integration\UI-final-build-2.log
+Successfully changed project path to: T:\Sleepwalking
+T:/Sleepwalking
+[UnityMemory] Configuration Parameters - Can be set up in boot.config
+    "memorysetup-temp-allocator-size-nav-mesh-worker=65536"
+    "memorysetup-temp-allocator-size-audio-worker=65536"
+    "memorysetup-temp-allocator-size-gfx=262144"
+    "memorysetup-allocator-temp-initial-block-size-main=262144"
+    "memorysetup-allocator-temp-initial-block-size-worker=262144"
+    "memorysetup-temp-allocator-size-background-worker=32768"
+    "memorysetup-temp-allocator-size-job-worker=262144"
+    "memorysetup-temp-allocator-size-preload-manager=33554432"
+    "memorysetup-remapper-allocator-initial-capacity=32768"
+    "memorysetup-temp-allocator-size-gi-baking-worker=262144"
+    "memorysetup-temp-allocator-size-gi-baking-worker=262144"
+    "memorysetup-temp-allocator-size-gi-baking-worker=262144"
+    "memorysetup-temp-allocator-size-gi-baking-worker=262144"
+    "memorysetup-temp-allocator-size-gi-baking-worker=262144"
+    "memorysetup-bucket-allocator-granularity=16"
+    "memorysetup-bucket-allocator-bucket-count=8"
+    "memorysetup-bucket-allocator-block-size=33554432"
+    "memorysetup-bucket-allocator-block-count=8"
+    "memorysetup-main-allocator-block-size=16777216"
+    "memorysetup-thread-allocator-block-size=16777216"
+    "memorysetup-gfx-main-allocator-block-size=16777216"
+    "memorysetup-gfx-thread-allocator-block-size=16777216"
+    "memorysetup-cache-allocator-block-size=4194304"
+    "memorysetup-typetree-allocator-block-size=2097152"
+    "memorysetup-profiler-bucket-allocator-granularity=16"
+    "memorysetup-profiler-bucket-allocator-bucket-count=8"
+    "memorysetup-profiler-bucket-allocator-block-size=33554432"
+    "memorysetup-profiler-bucket-allocator-block-count=8"
+    "memorysetup-profiler-allocator-block-size=16777216"
+    "memorysetup-profiler-editor-allocator-block-size=1048576"
+    "memorysetup-temp-allocator-size-main=16777216"
+    "memorysetup-job-temp-allocator-block-size=2097152"
+    "memorysetup-job-temp-allocator-block-size-background=1048576"
+    "memorysetup-job-temp-allocator-reduction-small-platforms=262144"
+    "memorysetup-temp-allocator-size-cloud-worker=32768"
+Player connection [190828]  Target information:
+
+Player connection [190828]  * "[IP] 172.30.224.1 [Port] 55504 [Flags] 2 [Guid] 3885600794 [EditorId] 3885600794 [Version] 1048832 [Id] WindowsEditor(7,DESKTOP-3CGSIM8) [Debug] 1 [PackageName] WindowsEditor [ProjectName] Editor" 
+
+Player connection [190828]  * "[IP] 192.168.56.1 [Port] 55504 [Flags] 2 [Guid] 3885600794 [EditorId] 3885600794 [Version] 1048832 [Id] WindowsEditor(7,DESKTOP-3CGSIM8) [Debug] 1 [PackageName] WindowsEditor [ProjectName] Editor" 
+
+Player connection [190828]  * "[IP] 192.168.1.100 [Port] 55504 [Flags] 2 [Guid] 3885600794 [EditorId] 3885600794 [Version] 1048832 [Id] WindowsEditor(7,DESKTOP-3CGSIM8) [Debug] 1 [PackageName] WindowsEditor [ProjectName] Editor" 
+
+Unable to join player connection multicast group (err: 10013).
+Player connection [190828] Host joined alternative multi-casting on [225.0.0.222:34997]...
+Input System module state changed to: Initialized.
+[Physics::Module] Initialized fallback backend.
+[Physics::Module] Id: 0xdecafbad
+[Package Manager] Connected to IPC stream "Upm-202540" after 0.2 seconds.
+[Licensing::Client] Successfully resolved entitlement details
+Library Redirect Path: Library/
+[Physics::Module] Selected backend.
+[Physics::Module] Name: PhysX
+[Physics::Module] Id: 0xf2b8ea05
+[Physics::Module] SDK Version: 4.1.2
+[Physics::Module] Integration Version: 1.0.0
+[Physics::Module] Threading Mode: Multi-Threaded
+Refreshing native plugins compatible for Editor in 0.15 ms, found 0 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Initialize engine version: 6000.3.28f1 (8f082d2fe476)
+[Subsystems] Discovering subsystems at path C:/Program Files/Unity/Hub/Editor/6000.3.28f1/Editor/Data/Resources/UnitySubsystems
+[Subsystems] Discovering subsystems at path T:/Sleepwalking/Assets
+Forcing GfxDevice: Null
+GfxDevice: creating device client; kGfxThreadingModeNonThreaded
+NullGfxDevice:
+    Version:  NULL 1.0 [1.0]
+    Renderer: Null Device
+    Vendor:   Unity Technologies
+Initialize mono
+Mono path[0] = 'C:/Program Files/Unity/Hub/Editor/6000.3.28f1/Editor/Data/Managed'
+Mono path[1] = 'C:/Program Files/Unity/Hub/Editor/6000.3.28f1/Editor/Data/MonoBleedingEdge/lib/mono/unityjit-win32'
+Mono config path = 'C:/Program Files/Unity/Hub/Editor/6000.3.28f1/Editor/Data/MonoBleedingEdge/etc'
+Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56540
+Using cacheserver namespaces - metadata:defaultmetadata, artifacts:defaultartifacts
+Using cacheserver namespaces - metadata:defaultmetadata, artifacts:defaultartifacts
+ImportWorker Server TCP listen port: 0
+AcceleratorClientConnectionCallback - disconnected - :0
+Begin MonoManager ReloadAssembly
+Registering precompiled unity dll's ...
+Register platform support module: C:/Program Files/Unity/Hub/Editor/6000.3.28f1/Editor/Data/PlaybackEngines/WebGLSupport/UnityEditor.WebGL.Extensions.dll
+Register platform support module: C:/Program Files/Unity/Hub/Editor/6000.3.28f1/Editor/Data/PlaybackEngines/MacStandaloneSupport/UnityEditor.OSXStandalone.Extensions.dll
+[Licensing::Client] Successfully resolved entitlement details
+Register platform support module: C:/Program Files/Unity/Hub/Editor/6000.3.28f1/Editor/Data/PlaybackEngines/VisionOSPlayer/UnityEditor.VisionOS.Extensions.dll
+Register platform support module: C:/Program Files/Unity/Hub/Editor/6000.3.28f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/UnityEditor.WindowsStandalone.Extensions.dll
+[Licensing::Client] Successfully resolved entitlement details
+Register platform support module: C:/Program Files/Unity/Hub/Editor/6000.3.28f1/Editor/Data/PlaybackEngines/MetroSupport/UnityEditor.UWP.Extensions.dll
+[Licensing::Client] Successfully resolved entitlement details
+Register platform support module: C:/Program Files/Unity/Hub/Editor/6000.3.28f1/Editor/Data/PlaybackEngines/AndroidPlayer/UnityEditor.Android.Extensions.dll
+Register platform support module: C:/Program Files/Unity/Hub/Editor/6000.3.28f1/Editor/Data/PlaybackEngines/iOSSupport/UnityEditor.iOS.Extensions.dll
+Register platform support module: C:/Program Files/Unity/Hub/Editor/6000.3.28f1/Editor/Data/PlaybackEngines/AppleTVSupport/UnityEditor.AppleTV.Extensions.dll
+Register platform support module: C:/Program Files/Unity/Hub/Editor/6000.3.28f1/Editor/Data/PlaybackEngines/LinuxStandaloneSupport/UnityEditor.LinuxStandalone.Extensions.dll
+Registered in 0.009308 seconds.
+- Loaded All Assemblies, in  0.343 seconds
+Native extension for LinuxStandalone target not found
+Native extension for AppleTV target not found
+Native extension for iOS target not found
+Native extension for Android target not found
+Native extension for UWP target not found
+Native extension for WindowsStandalone target not found
+Failed to load: C:/Program Files/Unity/Hub/Editor/6000.3.28f1/Editor/Data/PlaybackEngines/VisionOSPlayer\x64\UnityEditor.VisionOS.Native.dll
+Native extension for VisionOS target not found
+Native extension for OSXStandalone target not found
+Native extension for WebGL target not found
+Package Manager log level set to [2]
+[Licensing::Client] Successfully resolved entitlement details
+ScheduleIndexationOnStartup MainProcess:False IndexOnStartup:True
+Mono: successfully reloaded assembly
+- Finished resetting the current domain, in  2.213 seconds
+Domain Reload Profiling: 2554ms
+	BeginReloadAssembly (127ms)
+		ExecutionOrderSort (0ms)
+		DisableScriptedObjects (0ms)
+		BackupInstance (0ms)
+		ReleaseScriptingObjects (0ms)
+		CreateAndSetChildDomain (10ms)
+	RebuildCommonClasses (28ms)
+	RebuildNativeTypeToScriptingClass (11ms)
+	initialDomainReloadingComplete (45ms)
+	LoadAllAssembliesAndSetupDomain (130ms)
+		LoadAssemblies (115ms)
+		RebuildTransferFunctionScriptingTraits (0ms)
+		AnalyzeDomain (125ms)
+			TypeCache.Refresh (124ms)
+				TypeCache.ScanAssembly (114ms)
+			BuildScriptInfoCaches (0ms)
+			ResolveRequiredComponents (0ms)
+	FinalizeReload (2213ms)
+		ReleaseScriptCaches (0ms)
+		RebuildScriptCaches (0ms)
+		SetupLoadedEditorAssemblies (2186ms)
+			LogAssemblyErrors (0ms)
+			InitializePlatformSupportModulesInManaged (78ms)
+			SetLoadedEditorAssemblies (3ms)
+			BeforeProcessingInitializeOnLoad (60ms)
+			ProcessInitializeOnLoadAttributes (95ms)
+			ProcessInitializeOnLoadMethodAttributes (1949ms)
+			AfterProcessingInitializeOnLoad (0ms)
+			EditorAssembliesLoaded (0ms)
+		ExecutionOrderSort2 (0ms)
+		AwakeInstancesAfterBackupRestoration (0ms)
+[Licensing::Client] Successfully resolved entitlement details
+Application.AssetDatabase Initial Refresh Start
+[Package Manager] Restoring resolved packages state from cache
+[Licensing::Client] Successfully resolved entitlement details
+[Package Manager] Registered 59 packages:
+  Packages from [https://packages.unity.com]:
+    com.unity.ai.navigation@2.0.16 (location: T:\Sleepwalking\Library\PackageCache\com.unity.ai.navigation@d0cf77b009bb)
+    com.unity.collab-proxy@2.14.0 (location: T:\Sleepwalking\Library\PackageCache\com.unity.collab-proxy@ac5a9def1e96)
+    com.unity.ide.rider@3.1.0 (location: T:\Sleepwalking\Library\PackageCache\com.unity.ide.rider@570989d4a882)
+    com.unity.ide.visualstudio@2.0.26 (location: T:\Sleepwalking\Library\PackageCache\com.unity.ide.visualstudio@a99d56dec63f)
+    com.unity.inputsystem@1.20.1 (location: T:\Sleepwalking\Library\PackageCache\com.unity.inputsystem@2436e68c60c4)
+    com.unity.pipeline@1.0.0 (location: T:\Sleepwalking\Library\PackageCache\com.unity.pipeline@178b93997022)
+    com.unity.timeline@1.8.13 (location: T:\Sleepwalking\Library\PackageCache\com.unity.timeline@3a22918286f5)
+    com.unity.visualscripting@1.9.12 (location: T:\Sleepwalking\Library\PackageCache\com.unity.visualscripting@4edfcc09512f)
+    com.unity.nuget.mono-cecil@1.11.6 (location: T:\Sleepwalking\Library\PackageCache\com.unity.nuget.mono-cecil@ecb9724e46ff)
+    com.unity.nuget.newtonsoft-json@3.2.2 (location: T:\Sleepwalking\Library\PackageCache\com.unity.nuget.newtonsoft-json@4dfd81071c64)
+    com.unity.searcher@4.9.5 (location: T:\Sleepwalking\Library\PackageCache\com.unity.searcher@a463122f2c00)
+    com.unity.burst@1.8.31 (location: T:\Sleepwalking\Library\PackageCache\com.unity.burst@bfa84123c21a)
+    com.unity.mathematics@1.3.3 (location: T:\Sleepwalking\Library\PackageCache\com.unity.mathematics@19a9377c4ffa)
+    com.unity.collections@2.7.1 (location: T:\Sleepwalking\Library\PackageCache\com.unity.collections@88d5bf65ce66)
+    com.unity.test-framework.performance@3.5.0 (location: T:\Sleepwalking\Library\PackageCache\com.unity.test-framework.performance@8b56083ec0f0)
+  Built-in packages:
+    com.unity.multiplayer.center@1.0.1 (location: T:\Sleepwalking\Library\PackageCache\com.unity.multiplayer.center@f01f4ba8d00a)
+    com.unity.render-pipelines.universal@17.3.0 (location: T:\Sleepwalking\Library\PackageCache\com.unity.render-pipelines.universal@029be7ffa662)
+    com.unity.test-framework@1.6.0 (location: T:\Sleepwalking\Library\PackageCache\com.unity.test-framework@bd7f943e9647)
+    com.unity.ugui@2.0.0 (location: T:\Sleepwalking\Library\PackageCache\com.unity.ugui@44a561608371)
+    com.unity.modules.accessibility@1.0.0 (location: T:\Sleepwalking\Library\PackageCache\com.unity.modules.accessibility)
+    com.unity.modules.adaptiveperformance@1.0.0 (location: T:\Sleepwalking\Library\PackageCache\com.unity.modules.adaptiveperformance)
+    com.unity.modules.ai@1.0.0 (location: T:\Sleepwalking\Library\PackageCache\com.unity.modules.ai)
+    com.unity.modules.androidjni@1.0.0 (location: T:\Sleepwalking\Library\PackageCache\com.unity.modules.androidjni)
+    com.unity.modules.animation@1.0.0 (location: T:\Sleepwalking\Library\PackageCache\com.unity.modules.animation)
+    com.unity.modules.assetbundle@1.0.0 (location: T:\Sleepwalking\Library\PackageCache\com.unity.modules.assetbundle)
+    com.unity.modules.audio@1.0.0 (location: T:\Sleepwalking\Library\PackageCache\com.unity.modules.audio)
+    com.unity.modules.cloth@1.0.0 (location: T:\Sleepwalking\Library\PackageCache\com.unity.modules.cloth)
+    com.unity.modules.director@1.0.0 (location: T:\Sleepwalking\Library\PackageCache\com.unity.modules.director)
+    com.unity.modules.imageconversion@1.0.0 (location: T:\Sleepwalking\Library\PackageCache\com.unity.modules.imageconversion)
+    com.unity.modules.imgui@1.0.0 (location: T:\Sleepwalking\Library\PackageCache\com.unity.modules.imgui)
+    com.unity.modules.jsonserialize@1.0.0 (location: T:\Sleepwalking\Library\PackageCache\com.unity.modules.jsonserialize)
+    com.unity.modules.particlesystem@1.0.0 (location: T:\Sleepwalking\Library\PackageCache\com.unity.modules.particlesystem)
+    com.unity.modules.physics@1.0.0 (location: T:\Sleepwalking\Library\PackageCache\com.unity.modules.physics)
+    com.unity.modules.physics2d@1.0.0 (location: T:\Sleepwalking\Library\PackageCache\com.unity.modules.physics2d)
+    com.unity.modules.screencapture@1.0.0 (location: T:\Sleepwalking\Library\PackageCache\com.unity.modules.screencapture)
+    com.unity.modules.terrain@1.0.0 (location: T:\Sleepwalking\Library\PackageCache\com.unity.modules.terrain)
+    com.unity.modules.terrainphysics@1.0.0 (location: T:\Sleepwalking\Library\PackageCache\com.unity.modules.terrainphysics)
+    com.unity.modules.tilemap@1.0.0 (location: T:\Sleepwalking\Library\PackageCache\com.unity.modules.tilemap)
+    com.unity.modules.ui@1.0.0 (location: T:\Sleepwalking\Library\PackageCache\com.unity.modules.ui)
+    com.unity.modules.uielements@1.0.0 (location: T:\Sleepwalking\Library\PackageCache\com.unity.modules.uielements)
+    com.unity.modules.umbra@1.0.0 (location: T:\Sleepwalking\Library\PackageCache\com.unity.modules.umbra)
+    com.unity.modules.unityanalytics@1.0.0 (location: T:\Sleepwalking\Library\PackageCache\com.unity.modules.unityanalytics)
+    com.unity.modules.unitywebrequest@1.0.0 (location: T:\Sleepwalking\Library\PackageCache\com.unity.modules.unitywebrequest)
+    com.unity.modules.unitywebrequestassetbundle@1.0.0 (location: T:\Sleepwalking\Library\PackageCache\com.unity.modules.unitywebrequestassetbundle)
+    com.unity.modules.unitywebrequestaudio@1.0.0 (location: T:\Sleepwalking\Library\PackageCache\com.unity.modules.unitywebrequestaudio)
+    com.unity.modules.unitywebrequesttexture@1.0.0 (location: T:\Sleepwalking\Library\PackageCache\com.unity.modules.unitywebrequesttexture)
+    com.unity.modules.unitywebrequestwww@1.0.0 (location: T:\Sleepwalking\Library\PackageCache\com.unity.modules.unitywebrequestwww)
+    com.unity.modules.vectorgraphics@1.0.0 (location: T:\Sleepwalking\Library\PackageCache\com.unity.modules.vectorgraphics)
+    com.unity.modules.vehicles@1.0.0 (location: T:\Sleepwalking\Library\PackageCache\com.unity.modules.vehicles)
+    com.unity.modules.video@1.0.0 (location: T:\Sleepwalking\Library\PackageCache\com.unity.modules.video)
+    com.unity.modules.vr@1.0.0 (location: T:\Sleepwalking\Library\PackageCache\com.unity.modules.vr)
+    com.unity.modules.wind@1.0.0 (location: T:\Sleepwalking\Library\PackageCache\com.unity.modules.wind)
+    com.unity.modules.xr@1.0.0 (location: T:\Sleepwalking\Library\PackageCache\com.unity.modules.xr)
+    com.unity.modules.subsystems@1.0.0 (location: T:\Sleepwalking\Library\PackageCache\com.unity.modules.subsystems)
+    com.unity.modules.hierarchycore@1.0.0 (location: T:\Sleepwalking\Library\PackageCache\com.unity.modules.hierarchycore)
+    com.unity.ext.nunit@2.0.5 (location: T:\Sleepwalking\Library\PackageCache\com.unity.ext.nunit@d8c07649098d)
+    com.unity.render-pipelines.core@17.3.0 (location: T:\Sleepwalking\Library\PackageCache\com.unity.render-pipelines.core@3424017a4ec3)
+    com.unity.shadergraph@17.3.0 (location: T:\Sleepwalking\Library\PackageCache\com.unity.shadergraph@d526115bb944)
+    com.unity.render-pipelines.universal-config@17.0.3 (location: T:\Sleepwalking\Library\PackageCache\com.unity.render-pipelines.universal-config@8dc1aab4af1d)
+[Subsystems] No new subsystems found in resolved package list.
+[Package Manager] Done registering packages in 0.02 seconds
+[ScriptCompilation] Requested script compilation because: Assetdatabase observed changes in script compilation related files
+Starting: C:\Program Files\Unity\Hub\Editor\6000.3.28f1\Editor\Data\Tools\BuildPipeline\bee_backend.exe --ipc --defer-dag-verification --dagfile="Library/Bee/1900b0aE.dag" --continue-on-failure --profile="Library/Bee/backend1.traceevents" ScriptAssemblies
+WorkingDir: T:/Sleepwalking
+DisplayProgressbar: Compiling Scripts
+ExitCode: 0 Duration: 1s880ms
+[761/964    0s] ILPP-Configuration Library/ilpp-configuration.nevergeneratedoutput
+[960/964    1s] Csc Library/Bee/artifacts/1900b0aE.dag/Assembly-CSharp-Editor.dll (+2 others)
+[961/964    0s] ILPostProcess Library/Bee/artifacts/1900b0aE.dag/post-processed/Assembly-CSharp-Editor.dll (+pdb)
+Processing assembly Library/Bee/artifacts/1900b0aE.dag/Assembly-CSharp-Editor.dll, with 137 defines and 363 references
+
+processors: Unity.Jobs.CodeGen.JobsILPostProcessor, Unity.Pipeline.CodeGen.MethodReloadInPlaceILPostProcessor, zzzUnity.Burst.CodeGen.BurstILPostProcessor
+
+running Unity.Jobs.CodeGen.JobsILPostProcessor
+
+running Unity.Pipeline.CodeGen.MethodReloadInPlaceILPostProcessor
+
+running zzzUnity.Burst.CodeGen.BurstILPostProcessor
+[962/964    0s] CopyFiles Library/ScriptAssemblies/Assembly-CSharp-Editor.pdb
+[963/964    0s] CopyFiles Library/ScriptAssemblies/Assembly-CSharp-Editor.dll
+*** Tundra build success (1.82 seconds), 5 items updated, 964 evaluated
+AssetDatabase: script compilation time: 2.275234s
+[ScriptCompilation] Requested script compilation because: Assetdatabase observed changes in script compilation related files
+AssetDatabase: script compilation time: 0.000057s
+Total cache size 37064044
+Total cache size after purge 37064044, took 00:00:00.0377563
+Starting: C:\Program Files\Unity\Hub\Editor\6000.3.28f1\Editor\Data\Tools\BuildPipeline\bee_backend.exe --ipc --defer-dag-verification --dagfile="Library/Bee/1900b0aE.dag" --continue-on-failure --profile="Library/Bee/backend1.traceevents" ScriptAssemblies
+WorkingDir: T:/Sleepwalking
+ExitCode: 0 Duration: 0s590ms
+[761/964    0s] ILPP-Configuration Library/ilpp-configuration.nevergeneratedoutput
+[960/964    0s] Csc Library/Bee/artifacts/1900b0aE.dag/Assembly-CSharp-Editor.dll (+2 others)
+[961/964    0s] ILPostProcess Library/Bee/artifacts/1900b0aE.dag/post-processed/Assembly-CSharp-Editor.dll (+pdb)
+Processing assembly Library/Bee/artifacts/1900b0aE.dag/Assembly-CSharp-Editor.dll, with 137 defines and 363 references
+
+processors: Unity.Jobs.CodeGen.JobsILPostProcessor, Unity.Pipeline.CodeGen.MethodReloadInPlaceILPostProcessor, zzzUnity.Burst.CodeGen.BurstILPostProcessor
+
+running Unity.Jobs.CodeGen.JobsILPostProcessor
+
+running Unity.Pipeline.CodeGen.MethodReloadInPlaceILPostProcessor
+
+running zzzUnity.Burst.CodeGen.BurstILPostProcessor
+[962/964    0s] CopyFiles Library/ScriptAssemblies/Assembly-CSharp-Editor.pdb
+[963/964    0s] CopyFiles Library/ScriptAssemblies/Assembly-CSharp-Editor.dll
+*** Tundra build success (0.56 seconds), 5 items updated, 964 evaluated
+Begin MonoManager ReloadAssembly
+Total cache size 37064044
+Total cache size after purge 37064044, took 00:00:00.0289423
+- Loaded All Assemblies, in  0.942 seconds
+Refreshing native plugins compatible for Editor in 1.40 ms, found 4 plugins.
+Native extension for LinuxStandalone target not found
+Native extension for AppleTV target not found
+Native extension for iOS target not found
+Native extension for Android target not found
+Native extension for UWP target not found
+Native extension for WindowsStandalone target not found
+Failed to load: C:/Program Files/Unity/Hub/Editor/6000.3.28f1/Editor/Data/PlaybackEngines/VisionOSPlayer\x64\UnityEditor.VisionOS.Native.dll
+Native extension for VisionOS target not found
+Native extension for OSXStandalone target not found
+Native extension for WebGL target not found
+Refreshing native plugins compatible for Editor in 1.21 ms, found 4 plugins.
+Start HTTP server: port:7800
+Pipeline: Descriptor written to T:\Sleepwalking\Library\Pipeline\.unity-pipeline-port
+ScheduleIndexationOnStartup MainProcess:True IndexOnStartup:True
+Mono: successfully reloaded assembly
+- Finished resetting the current domain, in  2.975 seconds
+Domain Reload Profiling: 3913ms
+	BeginReloadAssembly (225ms)
+		ExecutionOrderSort (0ms)
+		DisableScriptedObjects (75ms)
+		BackupInstance (0ms)
+		ReleaseScriptingObjects (0ms)
+		CreateAndSetChildDomain (40ms)
+	RebuildCommonClasses (31ms)
+	RebuildNativeTypeToScriptingClass (12ms)
+	initialDomainReloadingComplete (47ms)
+	LoadAllAssembliesAndSetupDomain (623ms)
+		LoadAssemblies (425ms)
+		RebuildTransferFunctionScriptingTraits (0ms)
+		AnalyzeDomain (278ms)
+			TypeCache.Refresh (220ms)
+				TypeCache.ScanAssembly (206ms)
+			BuildScriptInfoCaches (44ms)
+			ResolveRequiredComponents (9ms)
+	FinalizeReload (2975ms)
+		ReleaseScriptCaches (0ms)
+		RebuildScriptCaches (0ms)
+		SetupLoadedEditorAssemblies (2800ms)
+			LogAssemblyErrors (0ms)
+			InitializePlatformSupportModulesInManaged (51ms)
+			SetLoadedEditorAssemblies (3ms)
+			BeforeProcessingInitializeOnLoad (129ms)
+			ProcessInitializeOnLoadAttributes (2375ms)
+			ProcessInitializeOnLoadMethodAttributes (232ms)
+			AfterProcessingInitializeOnLoad (10ms)
+			EditorAssembliesLoaded (0ms)
+		ExecutionOrderSort2 (0ms)
+		AwakeInstancesAfterBackupRestoration (15ms)
+Start importing Assets/SleepwalkingVisual/Preview/VisualBuildRetry.log using Guid(8f8dba86d03a1e946800589b428566f4) (DefaultImporter) -> (artifact id: '540b0ac07ae9fed1e1d4c0e22f701097') in 0.0387569 seconds
+Start importing Assets/SleepwalkingLevels/Materials/Mechanism.mat using Guid(a2808d8c22634bc88597821c15ef526f) (NativeFormatImporter) -> (artifact id: '885d924ebd6bf58e9ec9b4e1a31227e1') in 0.001245 seconds
+Start importing Assets/SleepwalkingVisual/Materials/GlitchBlue_229EDE.mat using Guid(b202a1ac7b7702a4b933238a5d80be75) (NativeFormatImporter) -> (artifact id: 'b55037c0c5ecb2b0a74ab3645acd8c01') in 0.001178 seconds
+Start importing Assets/SleepwalkingLevels/Materials/Exit.mat using Guid(d46c146ebae84b9ea11a89ae30004168) (NativeFormatImporter) -> (artifact id: '91d31afe654df9edc44793002026f251') in 0.0009943 seconds
+Start importing Assets/SleepwalkingVisual/Materials/Heaven_90DCC0.mat using Guid(468b8d0be53882c4689b4527ca45be09) (NativeFormatImporter) -> (artifact id: '5ab77009d46a5d3ee19822ef16d4accb') in 0.0010957 seconds
+Start importing Assets/SleepwalkingVisual/Materials/Secondary_B4B8D4.mat using Guid(b624ed4301d944d41b1d5c7b35ecc5e5) (NativeFormatImporter) -> (artifact id: '7b695df04588b642742a29b4c5a669c3') in 0.0010019 seconds
+Start importing Assets/SleepwalkingVisual/Materials/Accent_B4202A.mat using Guid(3730f1368aea2c9428cab9fc54bb579b) (NativeFormatImporter) -> (artifact id: '7874029de20323fbccf5ccc5346db5db') in 0.0008838 seconds
+Start importing Assets/SleepwalkingVisual/Materials/Pressed_6E1830.mat using Guid(087f18320c5382c4b842f2909488cf11) (NativeFormatImporter) -> (artifact id: '1cbb88ce7ca254023ddeb3b877b947a5') in 0.0008902 seconds
+Start importing Assets/SleepwalkingLevels/Materials/Floor.mat using Guid(29a9024f91e149b1a536749020705201) (NativeFormatImporter) -> (artifact id: '3ce2e0303d05e596b24238300e68f767') in 0.0009125 seconds
+Start importing Assets/SleepwalkingVisual/Materials/Panel_222036.mat using Guid(a90731aceda5b964284be737bc912af3) (NativeFormatImporter) -> (artifact id: '3bc8bee9e425fad90fe190794ce6ba9c') in 0.0011933 seconds
+Start importing Assets/SleepwalkingVisual/Materials/Background_161318.mat using Guid(3ae7524a87425414ea8fbec1daefb923) (NativeFormatImporter) -> (artifact id: '1427a45a63fd5b0819d8df956b2791a8') in 0.0009909 seconds
+Start importing Assets/SleepwalkingVisual/Materials/Text_F8D4B8.mat using Guid(5b0ad71fb361fea408336f89349c5823) (NativeFormatImporter) -> (artifact id: '9ca2e25ca781efc352d6823a6ed23f97') in 0.0010888 seconds
+Start importing Assets/SleepwalkingVisual/Materials/Frame_8C5050.mat using Guid(1d8823740b973804687cf83ec8d6a34e) (NativeFormatImporter) -> (artifact id: '57ec5ea05161a39edcfda0f85238e6b6') in 0.0012592 seconds
+Start importing Assets/SleepwalkingVisual/Materials/Shadow_3C2030.mat using Guid(cde17a018b04d894e9c88c74895c9b54) (NativeFormatImporter) -> (artifact id: '6ac4e94e61708b7dd2e1a6670cd92171') in 0.0013704 seconds
+Start importing Assets/SleepwalkingVisual/Materials/Hover_E04020.mat using Guid(ce4a99fdd8a596c45aa21b0ca86278c6) (NativeFormatImporter) -> (artifact id: '7b12f5a6e9eaf2c38bcbc616980b8b83') in 0.0008987 seconds
+Start importing Assets/SleepwalkingLevels/Materials/Hazard.mat using Guid(9fe261a8a79d4e2f8eb02453a16760ad) (NativeFormatImporter) -> (artifact id: '419383279b2dbaa6cdd3d7cd54d986b1') in 0.0009013 seconds
+Start importing Assets/SleepwalkingLevels/TrianglePrism.obj using Guid(c9d01e94b9ca4d87a2d12692cc8a0213) (FBXImporter)ImportFBX Warnings:
+Can't import normals, because mesh 'default' doesn't have any.
+Mesh 'default' has no normals. Recalculating normals.
+ -> (artifact id: '60e28e60064f0f80b1ba2072faff0fc1') in 0.0505123 seconds
+Start importing Assets/SleepwalkingLevels/README.md using Guid(160114e0819e4a2a8397cf2610cdb42c) (TextScriptImporter) -> (artifact id: 'af72d9f1955c3c25a7061a2d167ad26b') in 0.0019363 seconds
+Start importing Assets/SleepwalkingLevels/QA_REPORT.md using Guid(a881d034fb7f435d8beb72a173f067c4) (TextScriptImporter) -> (artifact id: '8fb1c35ad8a406bd42ec57662f315ed3') in 0.0013461 seconds
+Start importing Assets/SleepwalkingAudio/VALIDATION.md using Guid(8f3112d54fdd0644e93cfbf5fc180e05) (TextScriptImporter) -> (artifact id: 'b5c788db9cc60367d45d805e41f7bcc9') in 0.0357616 seconds
+Start importing Assets/SleepwalkingLevels/Prefabs/L01_DreamGeometry.prefab using Guid(a817f8341d864a068aa7410000000001) (PrefabImporter) -> (artifact id: '623867cef3fcd960b647789a8b7cc5a7') in 0.0079172 seconds
+Start importing Assets/SleepwalkingLevels/Prefabs/L02_DreamGeometry.prefab using Guid(a817f8341d864a068aa7410000000002) (PrefabImporter) -> (artifact id: 'e7f74f2af0cb081d077847dfca96065c') in 0.0050265 seconds
+Start importing Assets/SleepwalkingLevels/Prefabs/L03_DreamGeometry.prefab using Guid(a817f8341d864a068aa7410000000003) (PrefabImporter) -> (artifact id: '541d910de7f54bbabcd0f788b53e1fb7') in 0.0030719 seconds
+Start importing Assets/SleepwalkingLevels/Prefabs/L04_DreamGeometry.prefab using Guid(a817f8341d864a068aa7410000000004) (PrefabImporter) -> (artifact id: 'de92b3df3a097f530b2f1ceedfb98d3b') in 0.0029799 seconds
+Start importing Assets/SleepwalkingLevels/Prefabs/L05_DreamGeometry.prefab using Guid(a817f8341d864a068aa7410000000005) (PrefabImporter) -> (artifact id: '6da37d62099fdff9f2d9725156eca8f8') in 0.0059377 seconds
+Start importing Assets/SleepwalkingLevels/Prefabs/L06_DreamGeometry.prefab using Guid(a817f8341d864a068aa7410000000006) (PrefabImporter) -> (artifact id: 'f54688dd116a6202cd43c1d4e435f2a1') in 0.005016 seconds
+Start importing Assets/SleepwalkingLevels/Prefabs/L07_DreamGeometry.prefab using Guid(a817f8341d864a068aa7410000000007) (PrefabImporter) -> (artifact id: 'a7568982a0c345075013ed172ca7ec64') in 0.0095766 seconds
+Start importing Assets/SleepwalkingVisual/Prefabs/SleepwalkingRoom.prefab using Guid(fa4113bd7309c0b4ca8979639bd2c164) (PrefabImporter) -> (artifact id: 'c66fbe4aac8dbaba399d02c83316c30f') in 0.0191569 seconds
+Start importing Assets/SleepwalkingLevels/Materials/TrianglePrism-defaultMat.mat using Guid(ca8ae237d8f264f42a303d183e38dbbd) (NativeFormatImporter) -> (artifact id: '5e30b09b36af3db498416b03577ac361') in 0.0056036 seconds
+Start importing Assets/SleepwalkingLevels/TrianglePrism.obj using Guid(c9d01e94b9ca4d87a2d12692cc8a0213) (FBXImporter)ImportFBX Warnings:
+Can't import normals, because mesh 'default' doesn't have any.
+Mesh 'default' has no normals. Recalculating normals.
+ -> (artifact id: '5108e6573b2591a6af140e1846ebe736') in 0.0082127 seconds
+Refreshing native plugins compatible for Editor in 1.01 ms, found 4 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Asset Pipeline Refresh (id=8c9edc97b8c95a641b9d9a2ee9633c24): Total: 7.989 seconds - Initiated by InitialRefreshV2(ForceSynchronousImport)
+	Summary:
+		Imports: total=50 (actual=30, local cache=20, cache server=0)
+		Asset DB Process Time: managed=22 ms, native=3641 ms
+		Asset DB Callback time: managed=314 ms, native=33 ms
+		Scripting: domain reloads=1, domain reload time=943 ms, compile time=2988 ms, other=46 ms
+		Project Asset Count: scripts=1434, non-scripts=2496
+		Asset File Changes: new=1, changed=5, moved=0, deleted=0
+		Scan Filter Count: 5
+	InvokeCustomDependenciesCallbacks: 0.002ms
+	InvokePackagesCallback: 25.390ms
+	ApplyChangesToAssetFolders: 0.695ms
+	Scan: 121.729ms
+	OnSourceAssetsModified: 1.823ms
+	CategorizeAssetsWithTransientArtifact: 40.835ms
+	ProcessAssetsWithTransientArtifactChanges: 66.237ms
+	CategorizeAssets: 58.475ms
+	ImportOutOfDateAssets: 3223.211ms (-11.270ms without children)
+		ImportManagerImport: 236.293ms (11.686ms without children)
+			ImportInProcess: 224.380ms
+			UpdateCategorizedAssets: 0.227ms
+		CompileScripts: 2987.601ms
+		ReloadNativeAssets: 0.052ms
+		UnloadImportedAssets: 1.830ms
+		ReloadImportedAssets: 6.786ms
+		EnsureUptoDateAssetsAreRegisteredWithGuidPM: 1.259ms
+		InitializingProgressBar: 0.014ms
+		PostProcessAllAssetNotificationsAddChangedAssets: 0.002ms
+		OnDemandSchedulerStart: 0.644ms
+	PostProcessAllAssets: 375.000ms
+	Hotreload: 2.958ms
+	GatherAllCurrentPrimaryArtifactRevisions: 0.223ms
+	UnloadStreamsBegin: 1.931ms
+	PersistCurrentRevisions: 0.437ms
+	UnloadStreamsEnd: 0.002ms
+	GenerateScriptTypeHashes: 1.776ms
+	Untracked: 4070.471ms
+
+Application.AssetDatabase Initial Refresh End
+Scanning for USB devices : 7.844ms
+Initializing Unity extensions:
+[MODES] ModeService[none].Initialize
+[MODES] ModeService[none].LoadModes
+[MODES] Loading mode Default (0) for mode-current-id-Sleepwalking
+GetVirtualKey: Could not map char: n (110) to any virtual key
+GetVirtualKey: Could not map char: o (111) to any virtual key
+GetVirtualKey: Could not map char: s (115) to any virtual key
+GetVirtualKey: Could not map char: s (115) to any virtual key
+GetVirtualKey: Could not map char: b (98) to any virtual key
+GetVirtualKey: Could not map char: b (98) to any virtual key
+GetVirtualKey: Could not map char: z (122) to any virtual key
+GetVirtualKey: Could not map char: y (121) to any virtual key
+GetVirtualKey: Could not map char: x (120) to any virtual key
+GetVirtualKey: Could not map char: c (99) to any virtual key
+GetVirtualKey: Could not map char: v (118) to any virtual key
+GetVirtualKey: Could not map char: V (86) to any virtual key
+GetVirtualKey: Could not map char: d (100) to any virtual key
+GetVirtualKey: Could not map char: f (102) to any virtual key
+GetVirtualKey: Could not map char: f (102) to any virtual key
+GetVirtualKey: Could not map char: a (97) to any virtual key
+GetVirtualKey: Could not map char: d (100) to any virtual key
+GetVirtualKey: Could not map char: c (99) to any virtual key
+GetVirtualKey: Could not map char: r (114) to any virtual key
+GetVirtualKey: Could not map char: i (105) to any virtual key
+GetVirtualKey: Could not map char: l (108) to any virtual key
+GetVirtualKey: Could not map char: f (102) to any virtual key
+GetVirtualKey: Could not map char: k (107) to any virtual key
+GetVirtualKey: Could not map char: p (112) to any virtual key
+GetVirtualKey: Could not map char: p (112) to any virtual key
+GetVirtualKey: Could not map char: p (112) to any virtual key
+GetVirtualKey: Could not map char: c (99) to any virtual key
+GetVirtualKey: Could not map char: r (114) to any virtual key
+GetVirtualKey: Could not map char: P (80) to any virtual key
+GetVirtualKey: Could not map char: n (110) to any virtual key
+GetVirtualKey: Could not map char: n (110) to any virtual key
+GetVirtualKey: Could not map char: g (103) to any virtual key
+GetVirtualKey: Could not map char: f (102) to any virtual key
+GetVirtualKey: Could not map char: f (102) to any virtual key
+GetVirtualKey: Could not map char: a (97) to any virtual key
+GetVirtualKey: Could not map char: a (97) to any virtual key
+GetVirtualKey: Could not map char: c (99) to any virtual key
+GetVirtualKey: Could not map char: u (117) to any virtual key
+Unloading 53 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 7073 unused Assets / (3.0 MB). Loaded Objects now: 7918.
+Memory consumption went from 216.3 MB to 213.2 MB.
+Total: 13.427500 ms (FindLiveObjects: 0.726100 ms CreateObjectMapping: 0.819200 ms MarkObjects: 8.653500 ms  DeleteObjects: 3.227600 ms)
+
+GetVirtualKey: Could not map char: n (110) to any virtual key
+GetVirtualKey: Could not map char: o (111) to any virtual key
+GetVirtualKey: Could not map char: s (115) to any virtual key
+GetVirtualKey: Could not map char: s (115) to any virtual key
+GetVirtualKey: Could not map char: b (98) to any virtual key
+GetVirtualKey: Could not map char: b (98) to any virtual key
+GetVirtualKey: Could not map char: z (122) to any virtual key
+GetVirtualKey: Could not map char: y (121) to any virtual key
+GetVirtualKey: Could not map char: x (120) to any virtual key
+GetVirtualKey: Could not map char: c (99) to any virtual key
+GetVirtualKey: Could not map char: v (118) to any virtual key
+GetVirtualKey: Could not map char: V (86) to any virtual key
+GetVirtualKey: Could not map char: d (100) to any virtual key
+GetVirtualKey: Could not map char: f (102) to any virtual key
+GetVirtualKey: Could not map char: f (102) to any virtual key
+GetVirtualKey: Could not map char: a (97) to any virtual key
+GetVirtualKey: Could not map char: d (100) to any virtual key
+GetVirtualKey: Could not map char: c (99) to any virtual key
+GetVirtualKey: Could not map char: r (114) to any virtual key
+GetVirtualKey: Could not map char: i (105) to any virtual key
+GetVirtualKey: Could not map char: l (108) to any virtual key
+GetVirtualKey: Could not map char: f (102) to any virtual key
+GetVirtualKey: Could not map char: k (107) to any virtual key
+GetVirtualKey: Could not map char: p (112) to any virtual key
+GetVirtualKey: Could not map char: p (112) to any virtual key
+GetVirtualKey: Could not map char: p (112) to any virtual key
+GetVirtualKey: Could not map char: c (99) to any virtual key
+GetVirtualKey: Could not map char: r (114) to any virtual key
+GetVirtualKey: Could not map char: P (80) to any virtual key
+GetVirtualKey: Could not map char: n (110) to any virtual key
+GetVirtualKey: Could not map char: n (110) to any virtual key
+GetVirtualKey: Could not map char: g (103) to any virtual key
+GetVirtualKey: Could not map char: f (102) to any virtual key
+GetVirtualKey: Could not map char: f (102) to any virtual key
+GetVirtualKey: Could not map char: a (97) to any virtual key
+GetVirtualKey: Could not map char: a (97) to any virtual key
+GetVirtualKey: Could not map char: c (99) to any virtual key
+GetVirtualKey: Could not map char: u (117) to any virtual key
+Opening scene 'Assets/Scenes/SleepwalkingUI.unity'
+Unloading 2 Unused Serialized files (Serialized files now loaded: 0)
+Loaded scene 'Assets/Scenes/SleepwalkingUI.unity'
+	Deserialize:            21.842 ms
+	Integration:            499.925 ms
+	Integration of assets:  2.011 ms
+	Thread Wait Time:       0.017 ms
+	Total Operation Time:   523.795 ms
+Unloading 2 unused Assets / (1.0 KB). Loaded Objects now: 8539.
+Memory consumption went from 194.1 MB to 194.1 MB.
+Total: 12.984200 ms (FindLiveObjects: 0.534200 ms CreateObjectMapping: 0.322300 ms MarkObjects: 12.095600 ms  DeleteObjects: 0.031000 ms)
+
+Start importing Assets/SleepwalkingLevels/Materials/Mechanism.mat using Guid(a2808d8c22634bc88597821c15ef526f) (NativeFormatImporter) -> (artifact id: '3ea599ff4d6575e66f5e5776641d2032') in 0.0016296 seconds
+Start importing Assets/SleepwalkingVisual/Materials/GlitchBlue_229EDE.mat using Guid(b202a1ac7b7702a4b933238a5d80be75) (NativeFormatImporter) -> (artifact id: '9c7271aa45ca31725d44fb8000149e1b') in 0.0012035 seconds
+Start importing Assets/SleepwalkingLevels/Materials/Exit.mat using Guid(d46c146ebae84b9ea11a89ae30004168) (NativeFormatImporter) -> (artifact id: 'cac31a8c14585bbd3c7d16d7923bc034') in 0.0014033 seconds
+Start importing Assets/SleepwalkingVisual/Materials/Heaven_90DCC0.mat using Guid(468b8d0be53882c4689b4527ca45be09) (NativeFormatImporter) -> (artifact id: '05819e3389198fad53b21d7c7d8ef71c') in 0.0012031 seconds
+Start importing Assets/SleepwalkingVisual/Materials/Secondary_B4B8D4.mat using Guid(b624ed4301d944d41b1d5c7b35ecc5e5) (NativeFormatImporter) -> (artifact id: '61d0436894cdffef856b1afbcf0619b8') in 0.0012277 seconds
+Start importing Assets/SleepwalkingVisual/Materials/Accent_B4202A.mat using Guid(3730f1368aea2c9428cab9fc54bb579b) (NativeFormatImporter) -> (artifact id: 'a5c94a374c715be6b6f8d46cf662583f') in 0.0011253 seconds
+Start importing Assets/SleepwalkingVisual/Materials/Pressed_6E1830.mat using Guid(087f18320c5382c4b842f2909488cf11) (NativeFormatImporter) -> (artifact id: 'f746bda2fe02ff8cfd3f282ab37dd00b') in 0.0011361 seconds
+Start importing Assets/SleepwalkingLevels/Materials/Floor.mat using Guid(29a9024f91e149b1a536749020705201) (NativeFormatImporter) -> (artifact id: 'c1995352913ba5f6798a84486fe9ca75') in 0.0012804 seconds
+Start importing Assets/SleepwalkingVisual/Materials/Panel_222036.mat using Guid(a90731aceda5b964284be737bc912af3) (NativeFormatImporter) -> (artifact id: 'bf05dc141a42ebf5250d016d2c9c256a') in 0.0011789 seconds
+Start importing Assets/SleepwalkingVisual/Materials/Background_161318.mat using Guid(3ae7524a87425414ea8fbec1daefb923) (NativeFormatImporter) -> (artifact id: 'd2370c8bf4a3c67689b4a7a631fdb8f4') in 0.0012751 seconds
+Start importing Assets/SleepwalkingLevels/Materials/TrianglePrism-defaultMat.mat using Guid(ca8ae237d8f264f42a303d183e38dbbd) (NativeFormatImporter) -> (artifact id: '98463736b081be569358118cc31cc150') in 0.0011093 seconds
+Start importing Assets/SleepwalkingVisual/Materials/Text_F8D4B8.mat using Guid(5b0ad71fb361fea408336f89349c5823) (NativeFormatImporter) -> (artifact id: 'c54c8c8bbb0c75c4ade3b45fafa0e5e1') in 0.0012345 seconds
+Start importing Assets/SleepwalkingVisual/Materials/Frame_8C5050.mat using Guid(1d8823740b973804687cf83ec8d6a34e) (NativeFormatImporter) -> (artifact id: '7356fbad67cd968c7fd6d6d16247d1e4') in 0.0010532 seconds
+Start importing Assets/SleepwalkingVisual/Materials/Shadow_3C2030.mat using Guid(cde17a018b04d894e9c88c74895c9b54) (NativeFormatImporter) -> (artifact id: 'b168868ac1891588aafe9c6d783f4938') in 0.0014832 seconds
+Start importing Assets/SleepwalkingVisual/Materials/Hover_E04020.mat using Guid(ce4a99fdd8a596c45aa21b0ca86278c6) (NativeFormatImporter) -> (artifact id: 'b8439cafff789c693052ee5ccefcb522') in 0.0009421 seconds
+Start importing Assets/SleepwalkingLevels/Materials/Hazard.mat using Guid(9fe261a8a79d4e2f8eb02453a16760ad) (NativeFormatImporter) -> (artifact id: 'd3a4be2f7c570aac7f6e3d975b4b6a7b') in 0.0012146 seconds
+Refreshing native plugins compatible for Editor in 1.09 ms, found 4 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Asset Pipeline Refresh (id=61d36545c18ad4d4fa610068e4d4a857): Total: 0.079 seconds - Initiated by StopAssetImportingV2(NoUpdateAssetOptions)
+Start importing Assets/Scenes/SleepwalkingUI.unity using Guid(45ca139111f79144fa42ca951b888376) (DefaultImporter) -> (artifact id: 'cbd0a10f19e2226d72a41b5651da4b6a') in 0.0008888 seconds
+Refreshing native plugins compatible for Editor in 1.14 ms, found 4 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Asset Pipeline Refresh (id=3ecfcfaf7a4c0f743ae94324392e875a): Total: 0.036 seconds - Initiated by StopAssetImportingV2(NoUpdateAssetOptions)
+Sleepwalking UI showcase updated: Assets/Scenes/SleepwalkingUI.unity
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+SleepwalkingSceneBuilder:Build () (at Assets/SleepwalkingUI/Editor/SleepwalkingSceneBuilder.cs:25)
+
+(Filename: Assets/SleepwalkingUI/Editor/SleepwalkingSceneBuilder.cs Line: 25)
+
+Batchmode quit successfully invoked - shutting down!
+Pipeline Server stopped
+Killing ADB server in 2,0918991 seconds.
+[Physics::Module] Cleanup current backend.
+[Physics::Module] Id: 0xf2b8ea05
+Input System module state changed to: ShutdownInProgress.
+Input System polling thread exited.
+Input System module state changed to: Shutdown.
+[Licensing::IpcConnector] LicenseClient-TIMBUHTUK-notifications channel disconnected successfully.
+[Licensing::IpcConnector] LicenseClient-TIMBUHTUK channel disconnected successfully.
+AcceleratorClientConnectionCallback - disconnected - :0
+Cleanup mono
+Exiting batchmode successfully now!
+Exiting without the bug reporter. Application will terminate with return code 0
