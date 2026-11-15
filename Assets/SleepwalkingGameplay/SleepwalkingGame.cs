@@ -303,6 +303,7 @@ namespace Sleepwalking
             CreateLevel();
             inDream = true;
             FrameDreamCamera();
+            UpdateBeamWidths();
             cameraVelocity = Vector3.zero;
             GameCamera.transform.rotation = Quaternion.identity;
             activeTheme?.FrameBackdrop(GameCamera);
@@ -688,10 +689,9 @@ namespace Sleepwalking
 
         float BeamWidth()
         {
-            // Сохраняем прежнюю толщину луча в мире после отключения пикселизации камеры.
-            float aspect = DreamCameraAspect();
-            int referenceHeight = Mathf.Max(180, Mathf.CeilToInt(320 / aspect));
-            return 3.5f * GameCamera.orthographicSize * 2f / referenceHeight;
+            int pixelHeight = GameCamera.targetTexture != null ? GameCamera.targetTexture.height :
+                Mathf.Max(1, GameCamera.pixelHeight);
+            return 3.5f * GameCamera.orthographicSize * 2f / pixelHeight;
         }
 
         float BeamLocalWidth(Transform beam)

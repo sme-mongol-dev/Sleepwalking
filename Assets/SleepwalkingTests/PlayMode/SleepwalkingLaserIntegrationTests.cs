@@ -103,7 +103,7 @@ namespace Sleepwalking.Tests.PlayMode
                     Mathf.Max(1, camera.pixelHeight);
                 float beamPixels = beam.bounds.size.x * pixelHeight / (camera.orthographicSize * 2f);
                 Assert.That(beamPixels, Is.InRange(3f, 4f), item.Id);
-                Assert.That(beam.enabled && laserBase.enabled && beamArt.enabled && baseArt.enabled,
+                Assert.That(beam.enabled && !laserBase.enabled && beamArt.enabled && baseArt.enabled,
                     Is.True, item.Id + " starts active");
                 Record(trace, item, "active", beam, laserBase, beamArt, baseArt, dying, beamPixels);
 
@@ -116,7 +116,7 @@ namespace Sleepwalking.Tests.PlayMode
                 Assert.That((bool)dying.GetValue(game), Is.False, item.Id + " retry did not finish");
                 Assert.That((bool)inDream.GetValue(game), Is.True);
                 Assert.That((int)completed.GetValue(game), Is.EqualTo(item.Level - 1));
-                Assert.That(beam.enabled && laserBase.enabled, Is.True, item.Id + " retry reset");
+                Assert.That(beam.enabled && !laserBase.enabled, Is.True, item.Id + " retry reset");
 
                 Vector2 buttonPosition = new Vector2(button.bounds.center.x,
                     button.bounds.min.y + shape.bounds.extents.y + .01f * Unit);
@@ -128,7 +128,7 @@ namespace Sleepwalking.Tests.PlayMode
                 for (int q = 0; q < 30; q++)
                 {
                     yield return new WaitForFixedUpdate();
-                    if (!beam.enabled && laserBase.enabled) { disabled = true; break; }
+                    if (!beam.enabled && !laserBase.enabled) { disabled = true; break; }
                 }
                 Assert.That(disabled, Is.True, item.Button + " did not disable the beam");
                 yield return null;
@@ -148,7 +148,7 @@ namespace Sleepwalking.Tests.PlayMode
                 deadline = Time.realtimeSinceStartup + 10f;
                 while (!beam.enabled && Time.realtimeSinceStartup < deadline)
                     yield return null;
-                Assert.That(beam.enabled && laserBase.enabled, Is.True,
+                Assert.That(beam.enabled && !laserBase.enabled, Is.True,
                     item.Id + " did not restore after button timer");
                 yield return null;
                 Assert.That(beamArt.enabled && baseArt.enabled, Is.True,

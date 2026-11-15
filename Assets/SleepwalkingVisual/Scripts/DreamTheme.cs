@@ -33,6 +33,7 @@ namespace Sleepwalking.Visual
         readonly List<Renderer> tileBackings = new List<Renderer>();
         readonly List<Renderer> bedBackings = new List<Renderer>();
         readonly List<SpriteRenderer> bedSprites = new List<SpriteRenderer>();
+        Sprite laserBeamCore;
         public void FrameBackdrop(Camera camera)
         {
             if (camera == null) return;
@@ -321,7 +322,7 @@ namespace Sleepwalking.Visual
                 float laserBaseScale = 32f / (32f - laserBaseEmptyPixels) *
                     (1f + laserBaseSeat / laserBaseHeight);
                 float laserBeamPixels = Id == DreamThemeId.Meat ? 11f :
-                    Id == DreamThemeId.PostApocalypse ? 14f : 10f;
+                    Id == DreamThemeId.PostApocalypse ? 12f : 10f;
                 // Видимая кромка облачных потолков второго лазера выше физической грани блока.
                 float laserBeamReach = Id == DreamThemeId.Heaven &&
                     feature.FeatureId == "L04_SecondLaser" ? 13f :
@@ -342,9 +343,10 @@ namespace Sleepwalking.Visual
                     feature.Kind == LevelFeatureKind.LaserBase ?
                     new Vector3(1f, laserBaseScale, 1f) :
                     feature.Kind == LevelFeatureKind.LaserBeam ?
-                    new Vector3(1f + laserBeamExtension, 32f / laserBeamPixels, 1f) : Vector3.one;
+                    new Vector3(32f * (1f + laserBeamExtension), 32f / laserBeamPixels, 1f) : Vector3.one;
                 SpriteRenderer art = node.GetComponent<SpriteRenderer>();
-                art.sprite = sprite;
+                art.sprite = feature.Kind == LevelFeatureKind.LaserBeam ? GetLaserBeamCore() : sprite;
+                art.drawMode = SpriteDrawMode.Simple;
                 art.color = Color.white;
                 art.sortingOrder = feature.Kind == LevelFeatureKind.Saw ? -1 : 10;
 
@@ -356,6 +358,28 @@ namespace Sleepwalking.Visual
                     feature.Kind == LevelFeatureKind.LaserBase));
             }
             UpdateHazardArt();
+        }
+
+        Sprite GetLaserBeamCore()
+        {
+            if (laserBeamCore != null) return laserBeamCore;
+            // Целый 32px кадр при растяжении увеличивает изгибы; одна колонка даёт ровный луч.
+            int column = Id == DreamThemeId.Meat ? 18 :
+                Id == DreamThemeId.PostApocalypse ? 9 :
+                Id == DreamThemeId.DeepWater ? 12 : 14;
+            Rect source = LaserBeamArt.textureRect;
+            Rect core = new Rect(source.x + column, source.y, 1f, source.height);
+            laserBeamCore = Sprite.Create(LaserBeamArt.texture, core, new Vector2(.5f, .5f), 32f,
+                0, SpriteMeshType.FullRect);
+            laserBeamCore.name = LaserBeamArt.name + "_Core";
+            return laserBeamCore;
+        }
+
+        void OnDestroy()
+        {
+            if (laserBeamCore == null) return;
+            if (Application.isPlaying) Destroy(laserBeamCore);
+            else DestroyImmediate(laserBeamCore);
         }
 
         void ApplyButtonArt(Transform levelRoot)

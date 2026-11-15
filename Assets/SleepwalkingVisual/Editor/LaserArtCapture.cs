@@ -66,10 +66,12 @@ namespace Sleepwalking.Visual.Editor
             if (baseArt == null || beamArt == null)
                 throw new InvalidOperationException("Laser art missing: " + featureId + " " + name);
             string basePath = AssetDatabase.GetAssetPath(baseArt.sprite);
-            string beamPath = AssetDatabase.GetAssetPath(beamArt.sprite);
+            string beamPath = AssetDatabase.GetAssetPath(theme.LaserBeamArt);
             if (!basePath.EndsWith("/T_Lasers.png", StringComparison.Ordinal) ||
                 !beamPath.EndsWith("_environment.png", StringComparison.Ordinal) ||
-                !beamArt.sprite.name.EndsWith("_LaserBeam", StringComparison.Ordinal))
+                !beamArt.sprite.name.EndsWith("_LaserBeam_Core", StringComparison.Ordinal) ||
+                beamArt.sprite.texture != theme.LaserBeamArt.texture ||
+                beamArt.sprite.textureRect.width != 1f)
                 throw new InvalidOperationException("Wrong laser sprites: " + name + " " + basePath + " " + beamPath);
 
             BoxCollider2D beamShape = laserBeam.GetComponent<BoxCollider2D>();

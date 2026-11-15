@@ -85,7 +85,7 @@ namespace Sleepwalking.Tests.PlayMode
         }
 
         [UnityTest]
-        public IEnumerator BeamWidthPreservesReferenceThicknessWithoutPixelFilter()
+        public IEnumerator BeamWidthKeepsScreenThicknessWithoutPixelFilter()
         {
             yield return LoadScene();
             Camera camera = (Camera)gameType.GetField("GameCamera").GetValue(game);
@@ -95,8 +95,7 @@ namespace Sleepwalking.Tests.PlayMode
 
             Assert.That(camera.targetTexture, Is.Null);
             float width = (float)beamWidth.Invoke(game, null);
-            int referenceHeight = Mathf.Max(180, Mathf.CeilToInt(320f * Screen.height / Screen.width));
-            float pixels = width * referenceHeight / (camera.orthographicSize * 2f);
+            float pixels = width * camera.pixelHeight / (camera.orthographicSize * 2f);
             Assert.That(pixels, Is.InRange(3f, 4f));
             LogAssert.NoUnexpectedReceived();
         }
