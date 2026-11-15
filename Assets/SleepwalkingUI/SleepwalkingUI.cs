@@ -240,7 +240,7 @@ namespace Sleepwalking
             FitLogo(canvas);
             Fit(pause, canvas, 800, 990);
             Fit(settings, canvas, 1120, 810);
-            Fit(credits, canvas, 800, 540);
+            Fit(credits, canvas, 800, 620);
             Fit(confirm, canvas, 800, 470);
             if (inRoom) FitRoomCamera();
         }
@@ -431,10 +431,10 @@ namespace Sleepwalking
 
         void BuildCredits(Transform root)
         {
-            RectTransform panel = MakePanel((RectTransform)root, "Credits Panel", new Vector2(720, 500), FrameColor);
-            Title(panel, "CREDITS", new Vector2(0, 145), new Vector2(600, 100), 64);
+            RectTransform panel = MakePanel((RectTransform)root, "Credits Panel", new Vector2(720, 560), FrameColor);
+            Title(panel, "CREDITS", new Vector2(0, 187), new Vector2(600, 100), 64);
             PopulateCredits(panel);
-            ButtonAt(panel, "BACK", UICommand.Back, new Vector2(0, -170), true);
+            ButtonAt(panel, "BACK", UICommand.Back, new Vector2(0, -207), true, new Vector2(560, 80));
         }
 
         public void UpdateCreditsContent()
@@ -442,7 +442,33 @@ namespace Sleepwalking
             if (bodyFont == null) LoadFonts();
             if (credits == null) credits = transform.Find("Sleepwalking Canvas/Credits")?.gameObject;
             RectTransform panel = credits?.transform.Find("Credits Panel") as RectTransform;
-            if (panel != null) PopulateCredits(panel);
+            if (panel == null) return;
+            LayoutCredits(panel);
+            PopulateCredits(panel);
+        }
+
+        void LayoutCredits(RectTransform panel)
+        {
+            Vector2 size = new Vector2(720, 560);
+            panel.sizeDelta = size;
+            if (panel.Find("Interior") is RectTransform inside)
+                inside.sizeDelta = size - new Vector2(8, 8);
+            if (panel.parent.Find("Credits Panel Shadow") is RectTransform shadow)
+                shadow.sizeDelta = size;
+            if (panel.parent.Find("Credits Panel Glow") is RectTransform glow)
+                glow.sizeDelta = size + new Vector2(44, 44);
+            if (panel.Find("CREDITS Title") is RectTransform title)
+                title.anchoredPosition = new Vector2(0, 187);
+            if (panel.Find("BACK Button") is RectTransform back)
+            {
+                Vector2 buttonSize = new Vector2(560, 80);
+                back.anchoredPosition = new Vector2(0, -207);
+                back.sizeDelta = buttonSize;
+                if (back.Find("Fill") is RectTransform fill)
+                    fill.sizeDelta = buttonSize - new Vector2(8, 8);
+                if (back.Find("Label") is RectTransform label)
+                    label.sizeDelta = buttonSize;
+            }
         }
 
         void PopulateCredits(RectTransform panel)
@@ -454,9 +480,11 @@ namespace Sleepwalking
                 else DestroyImmediate(old.gameObject);
             }
 
-            if (panel.Find("Developers Label") == null)
-                MakeText(panel, "Developers Label", "Developers:", bodyFont, 26, SecondaryText,
-                    new Vector2(0, 80), new Vector2(620, 42));
+            Text developers = panel.Find("Developers Label")?.GetComponent<Text>();
+            if (developers == null)
+                developers = MakeText(panel, "Developers Label", "Developers:", bodyFont, 26, SecondaryText,
+                    new Vector2(0, 100), new Vector2(620, 42));
+            developers.rectTransform.anchoredPosition = new Vector2(0, 100);
 
             string[] names = { "Timbuhtuk", "Mongol-dev", "Raccoon-Reed", "StuarTTdesa" };
             string[] urls =
@@ -473,7 +501,9 @@ namespace Sleepwalking
                 Text label = panel.Find(name + " Link")?.GetComponent<Text>();
                 if (label == null)
                     label = MakeText(panel, name + " Link", name, bodyFont, 28, MainText,
-                        new Vector2(0, 30 - q * 47), new Vector2(620, 44));
+                        new Vector2(0, 43 - q * 48), new Vector2(620, 40));
+                label.rectTransform.anchoredPosition = new Vector2(0, 43 - q * 48);
+                label.rectTransform.sizeDelta = new Vector2(620, 40);
                 label.text = name;
                 label.raycastTarget = true;
                 Button button = label.GetComponent<Button>();
