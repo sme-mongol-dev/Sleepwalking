@@ -5,7 +5,7 @@ namespace Sleepwalking
     public sealed partial class SleepwalkingGame
     {
         [SerializeField, Range(1, 100)] int odradek = 1;
-        static readonly float[] OdradekParSeconds = { 12f, 14f, 16f, 18f, 28f, 35f, 32f, 40f };
+        static readonly float[] OdradekParSeconds = { 12f, 14f, 16f, 18f, 28f, 35f, 32f, 40f, 36f };
 
         float dreamElapsedSeconds;
         int dreamDeaths;

@@ -49,7 +49,8 @@ namespace Sleepwalking.Tests.Editor
                 new[] { LevelFeatureKind.Spikes, LevelFeatureKind.Saw, LevelFeatureKind.LaserBase,
                     LevelFeatureKind.LaserBeam, LevelFeatureKind.Button },
                 new[] { LevelFeatureKind.Saw, LevelFeatureKind.LaserBase, LevelFeatureKind.LaserBeam,
-                    LevelFeatureKind.Button, LevelFeatureKind.MovingPlatform }
+                    LevelFeatureKind.Button, LevelFeatureKind.MovingPlatform },
+                new[] { LevelFeatureKind.Saw, LevelFeatureKind.MovingPlatform, LevelFeatureKind.Spikes }
             };
 
             string[] prefabIds = AssetDatabase.FindAssets("t:Prefab", new[] { PrefabRoot });
