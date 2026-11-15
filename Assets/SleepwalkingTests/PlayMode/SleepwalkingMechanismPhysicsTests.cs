@@ -35,24 +35,25 @@ namespace Sleepwalking.Tests.PlayMode
             type.GetMethod("ResetMechanism").Invoke(platform, null);
             yield return null;
             Assert.That(shape.enabled, Is.True, "L05 timed platform must start active.");
-            Transform warning = platform.transform.Find("Dream Warning Art 0");
-            Assert.That(warning, Is.Not.Null, "The supplied warning tile must cover timed platforms.");
-            SpriteRenderer warningArt = warning.GetComponent<SpriteRenderer>();
-            Assert.That(warningArt.sprite, Is.Not.Null);
-            yield return new WaitForSecondsRealtime(activeSeconds - .7f);
-            bool flashed = false;
-            for (int q = 0; q < 15; q++)
-            {
-                flashed |= warningArt.enabled;
-                yield return null;
-            }
-            Assert.That(flashed, Is.True, "The warning tile must blink before collision disappears.");
-            yield return new WaitForSecondsRealtime(1f);
-            Assert.That(shape.enabled, Is.False, "L05 timed platform must be inactive after 5.5 seconds.");
+            Assert.That(platform.transform.Find("Dream Warning Art 0"), Is.Null,
+                "The striped warning texture must not cover timed platforms.");
             MeshRenderer tiles = platform.transform.Find("Dream Tiles")?.GetComponent<MeshRenderer>();
             Assert.That(tiles, Is.Not.Null);
-            Assert.That(tiles.enabled, Is.True, "Inactive platform must remain visible.");
+            yield return new WaitForSecondsRealtime(activeSeconds - .7f);
+            bool bright = false;
+            bool dim = false;
             var properties = new MaterialPropertyBlock();
+            float flashDeadline = Time.realtimeSinceStartup + .5f;
+            while (Time.realtimeSinceStartup < flashDeadline)
+            {
+                bright |= tiles.enabled;
+                dim |= !tiles.enabled;
+                yield return null;
+            }
+            Assert.That(bright && dim, Is.True, "The platform must blink before collision disappears.");
+            yield return new WaitForSecondsRealtime(1f);
+            Assert.That(shape.enabled, Is.False, "L05 timed platform must be inactive after 5.5 seconds.");
+            Assert.That(tiles.enabled, Is.True, "Inactive platform must remain visible.");
             tiles.GetPropertyBlock(properties);
             Assert.That(properties.GetFloat("_Opacity"), Is.EqualTo(.42f).Within(.01f));
             yield return new WaitForSecondsRealtime(cycleSeconds - activeSeconds + .5f);

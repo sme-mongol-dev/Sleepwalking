@@ -74,8 +74,8 @@ namespace Sleepwalking.Visual.Editor
 
             BoxCollider2D beamShape = laserBeam.GetComponent<BoxCollider2D>();
             PolygonCollider2D baseShape = laserBase.GetComponent<PolygonCollider2D>();
-            if (beamShape == null || baseShape == null ||
-                Mathf.Abs(beamShape.bounds.min.y - baseShape.bounds.max.y) > .01f)
+            if (beamShape == null || baseShape == null || baseShape.enabled ||
+                Mathf.Abs(beamShape.bounds.min.y - baseShape.transform.TransformPoint(baseShape.points[2]).y) > .01f)
                 throw new InvalidOperationException("Laser base and beam do not meet: " + featureId + " " + name);
             Transform ceiling = level.transform.Find("Geometry/" + ceilingName);
             Collider2D ceilingShape = ceiling != null ? ceiling.GetComponent<Collider2D>() : null;
@@ -86,12 +86,12 @@ namespace Sleepwalking.Visual.Editor
             Camera camera = cameraObject.GetComponent<Camera>();
             camera.orthographic = true;
             camera.orthographicSize = Mathf.Max(80f,
-                (ceilingShape.bounds.max.y - baseShape.bounds.min.y) * .5f + 24f);
+                (ceilingShape.bounds.max.y - baseShape.transform.TransformPoint(baseShape.points[0]).y) * .5f + 24f);
             camera.aspect = (float)Width / Height;
             camera.clearFlags = CameraClearFlags.SolidColor;
             camera.backgroundColor = new Color32(22, 19, 24, 255);
             camera.transform.position = new Vector3(laserBase.transform.position.x,
-                (baseShape.bounds.min.y + ceilingShape.bounds.max.y) * .5f, -100f);
+                (baseShape.transform.TransformPoint(baseShape.points[0]).y + ceilingShape.bounds.max.y) * .5f, -100f);
 
             float width = laserBeam.BeamPixelWidth * camera.orthographicSize * 2f / Height;
             Vector3 scale = laserBeam.transform.localScale;

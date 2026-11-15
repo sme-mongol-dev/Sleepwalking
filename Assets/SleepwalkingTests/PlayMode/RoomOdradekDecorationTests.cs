@@ -31,7 +31,7 @@ namespace Sleepwalking.Tests.PlayMode
             Assert.That(game, Is.Not.Null);
 
             IList decorations = (IList)environment.GetType().GetField("Decorations").GetValue(environment);
-            Assert.That(decorations.Count, Is.EqualTo(36));
+            Assert.That(decorations.Count, Is.EqualTo(38));
             var names = new HashSet<string>();
             var ids = new HashSet<string>();
             foreach (object decoration in decorations)
@@ -41,7 +41,7 @@ namespace Sleepwalking.Tests.PlayMode
                 Assert.That(ids.Add(id), Is.True, "Duplicate decoration id: " + id);
             }
             foreach (string required in new[] { "Window", "Nightstand", "Calendar", "Poster",
-                "Big Clock Arrow", "Small Clock Arrow", "Slippers", "Eye",
+                "Big Clock Arrow", "Small Clock Arrow", "Slippers", "Bookshelf 1", "Bookshelf 2", "Eye",
                 "Calendar 2", "Calendar 3", "Bed Look 08", "Crack 4 Stage 1", "Crack 5 Stage 3" })
                 Assert.That(names, Does.Contain(required));
             Assert.That(ids, Does.Not.Contain("eyeball"));
@@ -51,13 +51,15 @@ namespace Sleepwalking.Tests.PlayMode
             Assert.That(pupil, Is.Not.Null, "Eye and pupil must share one Odradek object.");
             MonoBehaviour tracker = FindComponent(eye.gameObject, "Sleepwalking.Visual.RoomEyeTracker");
             Assert.That(tracker, Is.Not.Null);
+            MeshRenderer shelf = room.transform.Find("Books")?.GetComponent<MeshRenderer>();
+            Assert.That(shelf, Is.Not.Null);
 
             FieldInfo odradek = game.GetType().GetField("odradek", BindingFlags.Instance | BindingFlags.NonPublic);
             Camera camera = (Camera)game.GetType().GetField("GameCamera").GetValue(game);
             Assert.That(odradek, Is.Not.Null);
             Assert.That(camera, Is.Not.Null);
 
-            foreach (int value in new[] { 1, 50, 75, 100 })
+            foreach (int value in new[] { 1, 50, 54, 55, 75, 100 })
             {
                 odradek.SetValue(game, value);
                 yield return null;
@@ -78,6 +80,18 @@ namespace Sleepwalking.Tests.PlayMode
                 AssertVariant(decorations, "poster", value, 1);
                 AssertVariant(decorations, "calendar", value, value == 1 ? 0 : 1);
                 AssertVariant(decorations, "bed", value, 1);
+                AssertVariant(decorations, "shelf", value, 1);
+                string shelfId = value < 55 ? "shelf.1" : "shelf.2";
+                foreach (object decoration in decorations)
+                {
+                    Type type = decoration.GetType();
+                    if ((string)type.GetField("Id").GetValue(decoration) != shelfId) continue;
+                    var properties = new MaterialPropertyBlock();
+                    shelf.GetPropertyBlock(properties);
+                    Assert.That(properties.GetTexture("_BaseMap"),
+                        Is.SameAs(type.GetField("Texture").GetValue(decoration)), shelfId);
+                    break;
+                }
                 AssertVariant(decorations, "crack.4", value, value == 100 ? 1 : 0);
                 AssertVariant(decorations, "crack.5", value, value == 100 ? 1 : 0);
 
@@ -89,8 +103,25 @@ namespace Sleepwalking.Tests.PlayMode
                     hotspots++;
                 }
                 Assert.That(hotspots, Is.EqualTo(4));
+                if (value == 50)
+                {
+                    float progress = (float)environment.GetType().GetField("clockProgress",
+                        BindingFlags.Instance | BindingFlags.NonPublic).GetValue(environment);
+                    Assert.That(progress, Is.GreaterThan(0f).And.LessThan(49f / 99f),
+                        "Clock hands should move gradually toward the new Odradek value.");
+                }
+                environment.GetType().GetMethod("UpdateClock", BindingFlags.Instance | BindingFlags.NonPublic)
+                    .Invoke(environment, new object[] { 4f });
                 CaptureRoom(camera, value);
             }
+
+            environment.GetType().GetMethod("UpdateClock", BindingFlags.Instance | BindingFlags.NonPublic)
+                .Invoke(environment, new object[] { 4f });
+            Transform hands = (Transform)environment.GetType().GetField("ClockHand").GetValue(environment);
+            Assert.That(Quaternion.Angle(hands.Find("Big Hand Pivot").localRotation, Quaternion.identity),
+                Is.LessThan(.01f), "Minute hand should indicate 12:00 at Odradek 100.");
+            Assert.That(Quaternion.Angle(hands.Find("Small Hand Pivot").localRotation, Quaternion.identity),
+                Is.LessThan(.01f), "Hour hand should indicate 12:00 at Odradek 100.");
 
             foreach (var growth in new[] { (80, .3f, "Crack 4"), (85, .6f, "Crack 4"),
                 (90, 1f, "Crack 4"), (94, 1f, "Crack 4"), (95, .3f, "Crack 5"), (97, .6f, "Crack 5"),

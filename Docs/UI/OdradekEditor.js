@@ -13,6 +13,8 @@ add("nightstand", "Тумба", "Tymba.png", "props", 1, 100, "menu.nightstand")
 add("clock.big", "Большая стрелка часов", "ClockArrowBig.png", "props", 1, 100);
 add("clock.small", "Малая стрелка часов", "ClockArrowSmall.png", "props", 1, 100);
 add("slippers", "Тапочки", "Slippers.png", "props", 35, 100);
+add("shelf.1", "Полка 1", "Books.png", "shelf", 1, 54);
+add("shelf.2", "Полка 2", "Books02.png", "shelf", 55, 100);
 add("calendar.1", "Календарь 1", "Calendar.png", "calendar", 25, 49);
 add("calendar.2", "Календарь 2", "Calendar2.png", "calendar", 50, 74);
 add("calendar.3", "Календарь 3", "Calendar3.png", "calendar", 75, 100);
@@ -39,7 +41,7 @@ const retiredIds = new Set(["eyeball", "crack.1", "crack.2", "crack.3", "crack.4
 
 const byId = new Map(catalogue.map(item => [item.id, item]));
 const byAsset = new Map(catalogue.map(item => [item.asset, item]));
-const variants = new Set(["poster", "calendar", "bed", "crack.4", "crack.5"]);
+const variants = new Set(["poster", "calendar", "bed", "shelf", "crack.4", "crack.5"]);
 const nodes = {
     rows:document.getElementById("rows"), groupSummary:document.getElementById("groupSummary"),
     issues:document.getElementById("issues"), groupFilter:document.getElementById("groupFilter"),
@@ -121,7 +123,7 @@ function validate(input) {
             counts:new Array(101).fill(0), gaps:[], overlaps:[]});
         for (let value = row.min; value <= row.max; value++) groups.get(name).counts[value]++;
     }
-    for (const name of ["poster", "calendar", "bed", "crack.4", "crack.5", "props"])
+    for (const name of ["poster", "calendar", "bed", "shelf", "crack.4", "crack.5", "props"])
         if (!groups.has(name)) groups.set(name, {mode:variants.has(name) ? "replace" : "cumulative",
             counts:new Array(101).fill(0), gaps:[], overlaps:[]});
     for (const [name, group] of groups) {
@@ -131,7 +133,7 @@ function validate(input) {
         }
         if (variants.has(name) && group.overlaps.length)
             errors.push(name + ": пересечения при " + segments(group.overlaps) + ".");
-        if ((name === "poster" || name === "bed") && group.gaps.length)
+        if ((name === "poster" || name === "bed" || name === "shelf") && group.gaps.length)
             errors.push(name + ": нет варианта при " + segments(group.gaps) + ".");
         if (name === "calendar" && group.gaps.length)
             warnings.push("calendar: нет календаря при " + segments(group.gaps) + " (допустимо).");
@@ -257,7 +259,7 @@ function renderGroups(result) {
     const fragment = document.createDocumentFragment();
     for (const [name, group] of result.groups) {
         const bad = variants.has(name) && (group.overlaps.length > 0 ||
-            ((name === "poster" || name === "bed") && group.gaps.length > 0));
+            ((name === "poster" || name === "bed" || name === "shelf") && group.gaps.length > 0));
         const card = el("div", "group-card" + (bad ? " error" : ""));
         card.append(el("strong", "", name), el("small", "", group.mode === "replace" ? "Заменяющий" : "Накопительный"),
             el("small", bad ? "bad" : "", "Пусто: " + segments(group.gaps)),

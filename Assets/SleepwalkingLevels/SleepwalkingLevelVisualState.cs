@@ -21,7 +21,7 @@ namespace Sleepwalking.Levels
         {
             if (shape == null) return;
             if (mechanism == null) mechanism = GetComponent<SleepwalkingMechanism>();
-            bool visible = shape.enabled;
+            bool visible = mechanism != null && mechanism.Kind == "LaserBase" || shape.enabled;
             if (mechanism != null && mechanism.Kind == "TimedPlatform")
             {
                 bool warning = visible && mechanism.TimedSecondsUntilFade <= 1f &&
@@ -30,11 +30,11 @@ namespace Sleepwalking.Levels
                 {
                     if (renderer.name.StartsWith("Dream Warning Art"))
                     {
-                        renderer.enabled = warning;
+                        renderer.enabled = false;
                         continue;
                     }
                     if (renderer.name != "Dream Tiles") continue;
-                    renderer.enabled = true;
+                    renderer.enabled = !warning;
                     properties ??= new MaterialPropertyBlock();
                     renderer.GetPropertyBlock(properties);
                     properties.SetFloat(Opacity, visible ? 1f : .42f);

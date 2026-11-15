@@ -52,7 +52,7 @@ namespace Sleepwalking.Tests.PlayMode
                         "Sleepwalking.Levels.SleepwalkingLevelFeature") continue;
                     string kind = component.GetType().GetProperty("Kind").GetValue(component).ToString();
                     Assert.That(kind, Is.Not.EqualTo("FallReset"), component.name);
-                    if (kind != "Spikes" && kind != "Saw" && kind != "LaserBase" &&
+                    if (kind != "Spikes" && kind != "Saw" &&
                         kind != "LaserBeam") continue;
 
                     lethalCount++;

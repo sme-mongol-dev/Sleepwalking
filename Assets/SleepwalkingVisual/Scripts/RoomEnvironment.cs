@@ -58,7 +58,7 @@ namespace Sleepwalking.Visual
         public List<RoomOdradekDecoration> Decorations = new List<RoomOdradekDecoration>();
         public int CurrentOdradek { get; private set; } = -1;
 
-        Quaternion clockStart;
+        float clockProgress = -1f;
         Quaternion pictureStart;
         Quaternion bookStart;
         Vector3 curtainStart;
@@ -101,6 +101,21 @@ namespace Sleepwalking.Visual
         {
             int odradek = SleepwalkingGame.Instance != null ? SleepwalkingGame.Instance.Odradek : 1;
             if (odradek != CurrentOdradek) SetOdradek(odradek);
+            UpdateClock(Time.deltaTime);
+        }
+
+        void UpdateClock(float seconds)
+        {
+            if (ClockHand == null) return;
+            // Игровой минимум равен 1: он соответствует нулю на циферблате.
+            float target = (Mathf.Clamp(CurrentOdradek, 1, 100) - 1f) / 99f;
+            clockProgress = clockProgress < 0f ? target :
+                Mathf.MoveTowards(clockProgress, target, seconds * .25f);
+            Transform big = ClockHand.Find("Big Hand Pivot");
+            Transform small = ClockHand.Find("Small Hand Pivot");
+            // Полный оборот часовой и двенадцать оборотов минутной стрелки дают 12:00 при 0 и 100.
+            if (big != null) big.localRotation = Quaternion.Euler(0f, 0f, -4320f * clockProgress);
+            if (small != null) small.localRotation = Quaternion.Euler(0f, 0f, -360f * clockProgress);
         }
 
         void OnValidate()
@@ -191,6 +206,7 @@ namespace Sleepwalking.Visual
                     ApplyTexture(active, selected.Asset);
                 }
             }
+            UpdateClock(0f);
         }
 
         void ApplyTexture(GameObject target, string asset)
@@ -253,7 +269,7 @@ namespace Sleepwalking.Visual
                 overrides.Add(item.id, item);
             }
 
-            foreach (string group in new[] { "poster", "calendar", "bed", "crack.4", "crack.5" })
+            foreach (string group in new[] { "poster", "calendar", "bed", "shelf", "crack.4", "crack.5" })
             {
                 for (int value = 1; value <= 100; value++)
                 {
@@ -266,7 +282,7 @@ namespace Sleepwalking.Visual
                         int maximum = selected != null ? selected.max : row.MaxOdradek;
                         if (value >= minimum && value <= maximum) count++;
                     }
-                    bool required = group == "poster" || group == "bed";
+                    bool required = group == "poster" || group == "bed" || group == "shelf";
                     if (count > 1 || (required && count != 1))
                     { error = "Overlapping or missing " + group + " variant at Odradek " + value; return false; }
                 }
@@ -287,7 +303,6 @@ namespace Sleepwalking.Visual
         void CaptureInitialState()
         {
             if (captured) return;
-            if (ClockHand != null) clockStart = ClockHand.localRotation;
             if (Picture != null) pictureStart = Picture.localRotation;
             if (LooseBook != null) bookStart = LooseBook.localRotation;
             if (Curtain != null) curtainStart = Curtain.localPosition;
@@ -298,7 +313,7 @@ namespace Sleepwalking.Visual
         {
             CaptureInitialState();
             int phase = Mathf.Max(0, completedDreams) % 4;
-            if (ClockHand != null) ClockHand.localRotation = clockStart * Quaternion.Euler(0, 0, phase * 35f);
+            if (ClockHand != null) ClockHand.localRotation = Quaternion.identity;
             if (Picture != null) Picture.localRotation = pictureStart * Quaternion.Euler(0, 0, phase == 0 ? 0 : -3f - phase * 2f);
             if (LooseBook != null) LooseBook.localRotation = bookStart * Quaternion.Euler(0, 0, phase == 0 ? 0 : phase * 8f);
             if (Curtain != null) Curtain.localPosition = curtainStart + Vector3.right * (phase * .09f);

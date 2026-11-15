@@ -143,7 +143,7 @@ namespace Sleepwalking.Tests.PlayMode
                         if (stable >= 3 && laserPressed && !beam.enabled)
                         {
                             Assert.That(beam.enabled, Is.False, "Minus must disable the laser beam.");
-                            Assert.That(emitter.enabled, Is.True, "The imported emitter contract stays lethal.");
+                            Assert.That(emitter.enabled, Is.False, "The emitter must remain intangible.");
                             stage = 6; stable = 0;
                         }
                     }

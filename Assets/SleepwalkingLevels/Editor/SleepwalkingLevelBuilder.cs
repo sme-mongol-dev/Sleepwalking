@@ -58,6 +58,42 @@ namespace Sleepwalking.Levels.Editor
             BuildSevenPrefabs();
         }
 
+        [MenuItem("Sleepwalking/Levels/Disable Laser Base Colliders")]
+        public static void DisableLaserBaseColliders()
+        {
+            for (int q = 1; q <= SleepwalkingGame.AuthoredDreamCount; q++)
+            {
+                string path = Prefabs + "/L" + q.ToString("00") + "_DreamGeometry.prefab";
+                GameObject root = PrefabUtility.LoadPrefabContents(path);
+                try
+                {
+                    bool changed = false;
+                    foreach (SleepwalkingLevelFeature feature in root.GetComponentsInChildren<SleepwalkingLevelFeature>(true))
+                    {
+                        if (feature.Kind != LevelFeatureKind.LaserBase) continue;
+                        Collider2D shape2D = feature.GetComponent<Collider2D>();
+                        if (shape2D != null && shape2D.enabled)
+                        {
+                            shape2D.enabled = false;
+                            changed = true;
+                        }
+                        foreach (Collider shape3D in feature.GetComponentsInChildren<Collider>(true))
+                            if (shape3D.enabled)
+                            {
+                                shape3D.enabled = false;
+                                changed = true;
+                            }
+                    }
+                    if (changed) PrefabUtility.SaveAsPrefabAsset(root, path);
+                }
+                finally
+                {
+                    PrefabUtility.UnloadPrefabContents(root);
+                }
+            }
+            AssetDatabase.SaveAssets();
+        }
+
         private static Material Material(string name, Color color)
         {
             string path = Materials + "/" + name + ".mat";
@@ -356,6 +392,8 @@ namespace Sleepwalking.Levels.Editor
         {
             GameObject baseObj = Triangle(parent, id + "_Base", x, baseBottom, 0.8f, 0.65f);
             baseObj.AddComponent<SleepwalkingLevelFeature>().Configure(LevelFeatureKind.LaserBase, id);
+            baseObj.GetComponent<Collider2D>().enabled = false;
+            foreach (Collider collider in baseObj.GetComponentsInChildren<Collider>(true)) collider.enabled = false;
             float beamBottom = baseBottom + 0.65f;
             GameObject beam = Cube(parent, id + "_Beam", x, (beamBottom + beamTop) / 2, 0.2f,
                 beamTop - beamBottom, hazardMaterial, true);

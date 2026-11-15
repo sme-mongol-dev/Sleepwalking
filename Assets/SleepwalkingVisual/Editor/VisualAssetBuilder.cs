@@ -26,8 +26,34 @@ namespace Sleepwalking.Visual.Editor
         public static void BuildCurrentWindows()
         {
             AssetDatabase.Refresh();
-            ApplyTimedWarningArt();
             SleepwalkingGameplayBuilder.BuildWindows();
+        }
+
+        [MenuItem("Sleepwalking/Visual/Install Shelf Variant")]
+        public static void InstallShelfVariant()
+        {
+            string path = Root + "/Textures/Menu/Books02.png";
+            AssetDatabase.ImportAsset(path, ImportAssetOptions.ForceSynchronousImport);
+            Texture2D variant = LoadMenuTexture(path);
+            GameObject prefab = PrefabUtility.LoadPrefabContents(MenuRoomPrefab);
+            try
+            {
+                RoomEnvironment environment = prefab.GetComponent<RoomEnvironment>();
+                Transform books = prefab.transform.Find("Books");
+                if (environment == null || books == null || variant == null)
+                    throw new System.InvalidOperationException("Menu shelf or its variant is missing.");
+                Texture2D original = AssetDatabase.LoadAssetAtPath<Texture2D>(Root + "/Textures/Menu/Books.png");
+                environment.Decorations.RemoveAll(row => row != null && row.Group == "shelf");
+                AddOdradekDecoration(environment, "Bookshelf 1", books.gameObject, 1,
+                    id: "shelf.1", group: "shelf", maxOdradek: 54, asset: "shelf.1",
+                    mode: RoomDecorationMode.Variant, texture: original);
+                AddOdradekDecoration(environment, "Bookshelf 2", books.gameObject, 55,
+                    id: "shelf.2", group: "shelf", asset: "shelf.2",
+                    mode: RoomDecorationMode.Variant, texture: variant);
+                PrefabUtility.SaveAsPrefabAsset(prefab, MenuRoomPrefab);
+            }
+            finally { PrefabUtility.UnloadPrefabContents(prefab); }
+            AssetDatabase.SaveAssets();
         }
 
         [MenuItem("Sleepwalking/Build Visual Assets")]
@@ -451,6 +477,13 @@ namespace Sleepwalking.Visual.Editor
                     id: "window", group: "props", asset: "menu.window");
                 AddOdradekDecoration(environment, "Nightstand", nightstand.gameObject, 1,
                     id: "nightstand", group: "props", asset: "menu.nightstand");
+                AddOdradekDecoration(environment, "Bookshelf 1", books.gameObject, 1,
+                    id: "shelf.1", group: "shelf", maxOdradek: 54, asset: "shelf.1",
+                    mode: RoomDecorationMode.Variant);
+                AddOdradekDecoration(environment, "Bookshelf 2", books.gameObject, 55,
+                    id: "shelf.2", group: "shelf", asset: "shelf.2",
+                    mode: RoomDecorationMode.Variant,
+                    texture: LoadMenuTexture(Root + "/Textures/Menu/Books02.png"));
                 AddOdradekDecoration(environment, "Calendar", calendar.gameObject, 25,
                     id: "calendar.1", group: "calendar", maxOdradek: 49, asset: "calendar.1",
                     mode: RoomDecorationMode.Variant);

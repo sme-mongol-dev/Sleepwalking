@@ -21,6 +21,8 @@
     { "id": "clock.big", "group": "props", "min": 1, "max": 100, "asset": "clock.big" },
     { "id": "clock.small", "group": "props", "min": 1, "max": 100, "asset": "clock.small" },
     { "id": "slippers", "group": "props", "min": 35, "max": 100, "asset": "slippers" },
+    { "id": "shelf.1", "group": "shelf", "min": 1, "max": 54, "asset": "shelf.1" },
+    { "id": "shelf.2", "group": "shelf", "min": 55, "max": 100, "asset": "shelf.2" },
     { "id": "eye", "group": "crack.4", "min": 95, "max": 100, "asset": "eye" },
     { "id": "bed.base", "group": "bed", "min": 1, "max": 12, "asset": "bed.base" },
     { "id": "bed.look.1", "group": "bed", "min": 13, "max": 23, "asset": "bed.look.1" },

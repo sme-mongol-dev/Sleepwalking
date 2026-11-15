@@ -26,8 +26,8 @@ namespace Sleepwalking.Visual
             Id == DreamThemeId.PostApocalypse ? 2f :
             Id == DreamThemeId.DeepWater ? 8f : 6f;
 
-        readonly List<(Collider2D shape, Renderer[] oldRenderers, SpriteRenderer art)> hazardArt =
-            new List<(Collider2D, Renderer[], SpriteRenderer)>();
+        readonly List<(Collider2D shape, Renderer[] oldRenderers, SpriteRenderer art, bool alwaysVisible)> hazardArt =
+            new List<(Collider2D, Renderer[], SpriteRenderer, bool)>();
         readonly List<(SleepwalkingMechanism mechanism, Renderer[] oldRenderers, SpriteRenderer art)> buttonArt =
             new List<(SleepwalkingMechanism, Renderer[], SpriteRenderer)>();
         readonly List<Renderer> tileBackings = new List<Renderer>();
@@ -81,7 +81,6 @@ namespace Sleepwalking.Visual
 
             ApplyHazardArt(geometryRoot.parent);
             ApplyButtonArt(geometryRoot.parent);
-            ApplyTimedWarningArt(geometryRoot.parent);
             ApplyBedArt(geometryRoot);
             Transform oldWallCue = geometryRoot.parent.Find("Readability/WallGrip_Cue");
             if (oldWallCue != null)
@@ -353,7 +352,8 @@ namespace Sleepwalking.Visual
                 // Состояние ловушки может снова включить renderer; старый примитив не должен проступить сквозь спрайт.
                 foreach (Renderer renderer in oldRenderers)
                     if (renderer != null && renderer != art) renderer.forceRenderingOff = true;
-                hazardArt.Add((feature.GetComponent<Collider2D>(), oldRenderers, art));
+                hazardArt.Add((feature.GetComponent<Collider2D>(), oldRenderers, art,
+                    feature.Kind == LevelFeatureKind.LaserBase));
             }
             UpdateHazardArt();
         }
@@ -388,32 +388,6 @@ namespace Sleepwalking.Visual
                     feature.GetComponentsInChildren<Renderer>(true), art));
             }
             UpdateButtonArt();
-        }
-
-        void ApplyTimedWarningArt(Transform levelRoot)
-        {
-            if (WarningArt == null) return;
-            foreach (SleepwalkingLevelFeature feature in levelRoot.GetComponentsInChildren<SleepwalkingLevelFeature>(true))
-            {
-                if (feature.Kind != LevelFeatureKind.TimedPlatform) continue;
-                float widthScale = Mathf.Max(.001f, Mathf.Abs(feature.transform.lossyScale.x));
-                float heightScale = Mathf.Max(.001f, Mathf.Abs(feature.transform.lossyScale.y));
-                float cellScale = Mathf.Max(.001f, Mathf.Abs(levelRoot.lossyScale.x));
-                for (int q = 0; q < 2; q++)
-                {
-                    string name = "Dream Warning Art " + q;
-                    Transform existing = feature.transform.Find(name);
-                    GameObject node = existing != null ? existing.gameObject : new GameObject(name, typeof(SpriteRenderer));
-                    if (existing == null) node.transform.SetParent(feature.transform, false);
-                    node.transform.localPosition = new Vector3(q == 0 ? -.25f : .25f, 0f, -.92f);
-                    node.transform.localRotation = Quaternion.identity;
-                    node.transform.localScale = new Vector3(cellScale / widthScale, cellScale / heightScale, 1f);
-                    SpriteRenderer art = node.GetComponent<SpriteRenderer>();
-                    art.sprite = WarningArt;
-                    art.sortingOrder = 12;
-                    art.enabled = false;
-                }
-            }
         }
 
         void ApplyBedArt(Transform geometryRoot)
@@ -509,7 +483,7 @@ namespace Sleepwalking.Visual
                 foreach (Renderer renderer in item.oldRenderers)
                     if (renderer != null && renderer != item.art) renderer.enabled = false;
                 item.art.color = Color.white;
-                item.art.enabled = item.shape == null || item.shape.enabled;
+                item.art.enabled = item.alwaysVisible || item.shape == null || item.shape.enabled;
             }
         }
 

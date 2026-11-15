@@ -111,7 +111,9 @@ namespace Sleepwalking
                     shape.sharedMaterial = movingMaterial;
                 }
             }
-            if (shape != null) shape.enabled = initialEnabled;
+            if (shape != null) shape.enabled = Kind != "LaserBase" && initialEnabled;
+            if (Kind == "LaserBase")
+                foreach (Collider collider in GetComponentsInChildren<Collider>(true)) collider.enabled = false;
             SetVisible(true);
         }
 
@@ -149,8 +151,7 @@ namespace Sleepwalking
             foreach (Renderer renderer in visuals) renderer.enabled = visible;
         }
 
-        public bool IsHazard() => Kind == "Spikes" || Kind == "Saw" || Kind == "LaserBase" ||
-            Kind == "LaserBeam";
+        public bool IsHazard() => Kind == "Spikes" || Kind == "Saw" || Kind == "LaserBeam";
 
         void OnTriggerEnter2D(Collider2D other) { Touch(other); }
         void OnTriggerExit2D(Collider2D other)

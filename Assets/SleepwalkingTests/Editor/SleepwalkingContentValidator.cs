@@ -105,8 +105,16 @@ namespace Sleepwalking.Tests.Editor
                         if (collider == null || !collider.isTrigger)
                             errors.Add(path + ": exit has no 2D trigger");
                     }
-                    if (IsHazard(feature.Kind) && (collider == null || !collider.isTrigger))
+                    if (IsHazard(feature.Kind) && (collider == null || !collider.enabled || !collider.isTrigger))
                         errors.Add(path + ": hazard " + feature.name + " has no 2D trigger");
+                    if (feature.Kind == LevelFeatureKind.LaserBase)
+                    {
+                        if (collider == null || collider.enabled)
+                            errors.Add(path + ": laser base " + feature.name + " needs a disabled 2D collider");
+                        foreach (Collider shape in feature.GetComponentsInChildren<Collider>(true))
+                            if (shape.enabled)
+                                errors.Add(path + ": laser base " + feature.name + " needs disabled 3D colliders");
+                    }
                     if (feature.Kind == LevelFeatureKind.MovingPlatform || feature.Kind == LevelFeatureKind.TimedPlatform)
                         ValidatePlatform(path, feature.transform, errors);
                     if (feature.Kind == LevelFeatureKind.Button)
@@ -176,7 +184,7 @@ namespace Sleepwalking.Tests.Editor
             bool matchedOtherHazard = false;
             foreach (SleepwalkingLevelFeature feature in features)
             {
-                if (!IsHazard(feature.Kind)) continue;
+                if (!IsHazard(feature.Kind) && feature.Kind != LevelFeatureKind.LaserBase) continue;
                 if (feature.FeatureId == button.LinkedFeatureId ||
                     feature.FeatureId.StartsWith(button.LinkedFeatureId + "_", StringComparison.Ordinal))
                 {
@@ -211,7 +219,7 @@ namespace Sleepwalking.Tests.Editor
         private static bool IsHazard(LevelFeatureKind kind)
         {
             return kind == LevelFeatureKind.Spikes || kind == LevelFeatureKind.Saw ||
-                kind == LevelFeatureKind.LaserBase || kind == LevelFeatureKind.LaserBeam;
+                kind == LevelFeatureKind.LaserBeam;
         }
     }
 }

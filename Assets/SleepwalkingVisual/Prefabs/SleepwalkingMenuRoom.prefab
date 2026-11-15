@@ -1394,6 +1394,36 @@ MonoBehaviour:
     LocalEulerAngles: {x: -0, y: 0, z: 0}
     LocalScale: {x: 1.92, y: 1.92, z: 1}
     SortingOrder: 0
+  - Name: Bookshelf 1
+    Id: shelf.1
+    Group: shelf
+    MinOdradek: 1
+    MaxOdradek: 54
+    Asset: shelf.1
+    Texture: {fileID: 2800000, guid: c2c0acf2b412d1045a0832b08686233b, type: 3}
+    Mode: 1
+    RoomObject: {fileID: 8091691523470330958}
+    Prefab: {fileID: 0}
+    Parent: {fileID: 0}
+    LocalPosition: {x: -4.9, y: 2.52, z: 0}
+    LocalEulerAngles: {x: -0, y: 0, z: 0}
+    LocalScale: {x: 4.096, y: 2.048, z: 1}
+    SortingOrder: 0
+  - Name: Bookshelf 2
+    Id: shelf.2
+    Group: shelf
+    MinOdradek: 55
+    MaxOdradek: 100
+    Asset: shelf.2
+    Texture: {fileID: 2800000, guid: b8643cfa80b3707449c9c291b524913d, type: 3}
+    Mode: 1
+    RoomObject: {fileID: 8091691523470330958}
+    Prefab: {fileID: 0}
+    Parent: {fileID: 0}
+    LocalPosition: {x: -4.9, y: 2.52, z: 0}
+    LocalEulerAngles: {x: -0, y: 0, z: 0}
+    LocalScale: {x: 4.096, y: 2.048, z: 1}
+    SortingOrder: 0
 --- !u!1 &3637396417369837857
 GameObject:
   m_ObjectHideFlags: 0

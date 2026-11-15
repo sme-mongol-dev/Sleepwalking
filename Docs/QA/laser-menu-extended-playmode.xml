@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="6" result="Passed" total="6" passed="6" failed="0" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-11-15 12:29:46Z" end-time="2026-11-15 12:30:59Z" duration="73,1048884">
+  <test-suite type="TestSuite" id="1163" name="Sleepwalking" fullname="Sleepwalking" runstate="Runnable" testcasecount="110" result="Passed" start-time="2026-11-15 12:29:46Z" end-time="2026-11-15 12:30:59Z" duration="73.104888" total="6" passed="6" failed="0" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="PlayMode" />
+    </properties>
+    <test-suite type="Assembly" id="1156" name="Sleepwalking.PlayMode.Tests.dll" fullname="T:/Sleepwalking/Library/ScriptAssemblies/Sleepwalking.PlayMode.Tests.dll" runstate="Runnable" testcasecount="110" result="Passed" start-time="2026-11-15 12:29:46Z" end-time="2026-11-15 12:30:59Z" duration="73.096873" total="6" passed="6" failed="0" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="517960" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="PlayMode" />
+        <property name="EditorOnly" value="False" />
+      </properties>
+      <test-suite type="TestSuite" id="1157" name="Sleepwalking" fullname="Sleepwalking" runstate="Runnable" testcasecount="110" result="Passed" start-time="2026-11-15 12:29:46Z" end-time="2026-11-15 12:30:59Z" duration="73.095380" total="6" passed="6" failed="0" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <test-suite type="TestSuite" id="1158" name="Tests" fullname="Sleepwalking.Tests" runstate="Runnable" testcasecount="110" result="Passed" start-time="2026-11-15 12:29:46Z" end-time="2026-11-15 12:30:59Z" duration="73.093593" total="6" passed="6" failed="0" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <test-suite type="TestSuite" id="1159" name="PlayMode" fullname="Sleepwalking.Tests.PlayMode" runstate="Runnable" testcasecount="110" result="Passed" start-time="2026-11-15 12:29:46Z" end-time="2026-11-15 12:30:59Z" duration="73.092161" total="6" passed="6" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-suite type="TestFixture" id="1035" name="RoomOdradekDecorationTests" fullname="Sleepwalking.Tests.PlayMode.RoomOdradekDecorationTests" classname="Sleepwalking.Tests.PlayMode.RoomOdradekDecorationTests" runstate="Runnable" testcasecount="1" result="Passed" start-time="2026-11-15 12:29:46Z" end-time="2026-11-15 12:29:47Z" duration="1.273985" total="1" passed="1" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1036" name="DecorationsFollowOdradekAndHotspotsStayAvailable" fullname="Sleepwalking.Tests.PlayMode.RoomOdradekDecorationTests.DecorationsFollowOdradekAndHotspotsStayAvailable" methodname="DecorationsFollowOdradekAndHotspotsStayAvailable" classname="Sleepwalking.Tests.PlayMode.RoomOdradekDecorationTests" runstate="Runnable" seed="1125266460" result="Passed" start-time="2026-11-15 12:29:46Z" end-time="2026-11-15 12:29:47Z" duration="1.262618" asserts="0">
+                <properties>
+                  <property name="_JOINTYPE" value="UnityCombinatorial" />
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedFixture" id="1061" name="SleepwalkingEighthLevelTests" fullname="Sleepwalking.Tests.PlayMode.SleepwalkingEighthLevelTests" runstate="Runnable" testcasecount="4" result="Passed" start-time="2026-11-15 12:29:47Z" end-time="2026-11-15 12:30:50Z" duration="62.742692" total="4" passed="4" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-suite type="TestFixture" id="1053" name="SleepwalkingEighthLevelTests(0,1)" fullname="Sleepwalking.Tests.PlayMode.SleepwalkingEighthLevelTests(0,1)" classname="Sleepwalking.Tests.PlayMode.SleepwalkingEighthLevelTests" runstate="Runnable" testcasecount="1" result="Passed" start-time="2026-11-15 12:29:47Z" end-time="2026-11-15 12:30:03Z" duration="15.701045" total="1" passed="1" failed="0" inconclusive="0" skipped="0" asserts="0">
+                <properties />
+                <test-case id="1054" name="SwitchesShuttleAndExitAreReachableWithoutDeaths" fullname="Sleepwalking.Tests.PlayMode.SleepwalkingEighthLevelTests(0,1).SwitchesShuttleAndExitAreReachableWithoutDeaths" methodname="SwitchesShuttleAndExitAreReachableWithoutDeaths" classname="Sleepwalking.Tests.PlayMode.SleepwalkingEighthLevelTests" runstate="Runnable" seed="986387415" result="Passed" start-time="2026-11-15 12:29:47Z" end-time="2026-11-15 12:30:03Z" duration="15.700268" asserts="0">
+                  <properties>
+                    <property name="_JOINTYPE" value="UnityCombinatorial" />
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+              </test-suite>
+              <test-suite type="TestFixture" id="1055" name="SleepwalkingEighthLevelTests(0,100)" fullname="Sleepwalking.Tests.PlayMode.SleepwalkingEighthLevelTests(0,100)" classname="Sleepwalking.Tests.PlayMode.SleepwalkingEighthLevelTests" runstate="Runnable" testcasecount="1" result="Passed" start-time="2026-11-15 12:30:03Z" end-time="2026-11-15 12:30:18Z" duration="15.687081" total="1" passed="1" failed="0" inconclusive="0" skipped="0" asserts="0">
+                <properties />
+                <test-case id="1056" name="SwitchesShuttleAndExitAreReachableWithoutDeaths" fullname="Sleepwalking.Tests.PlayMode.SleepwalkingEighthLevelTests(0,100).SwitchesShuttleAndExitAreReachableWithoutDeaths" methodname="SwitchesShuttleAndExitAreReachableWithoutDeaths" classname="Sleepwalking.Tests.PlayMode.SleepwalkingEighthLevelTests" runstate="Runnable" seed="336502357" result="Passed" start-time="2026-11-15 12:30:03Z" end-time="2026-11-15 12:30:18Z" duration="15.686267" asserts="0">
+                  <properties>
+                    <property name="_JOINTYPE" value="UnityCombinatorial" />
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+              </test-suite>
+              <test-suite type="TestFixture" id="1057" name="SleepwalkingEighthLevelTests(1,1)" fullname="Sleepwalking.Tests.PlayMode.SleepwalkingEighthLevelTests(1,1)" classname="Sleepwalking.Tests.PlayMode.SleepwalkingEighthLevelTests" runstate="Runnable" testcasecount="1" result="Passed" start-time="2026-11-15 12:30:18Z" end-time="2026-11-15 12:30:34Z" duration="15.655649" total="1" passed="1" failed="0" inconclusive="0" skipped="0" asserts="0">
+                <properties />
+                <test-case id="1058" name="SwitchesShuttleAndExitAreReachableWithoutDeaths" fullname="Sleepwalking.Tests.PlayMode.SleepwalkingEighthLevelTests(1,1).SwitchesShuttleAndExitAreReachableWithoutDeaths" methodname="SwitchesShuttleAndExitAreReachableWithoutDeaths" classname="Sleepwalking.Tests.PlayMode.SleepwalkingEighthLevelTests" runstate="Runnable" seed="182620616" result="Passed" start-time="2026-11-15 12:30:18Z" end-time="2026-11-15 12:30:34Z" duration="15.654957" asserts="0">
+                  <properties>
+                    <property name="_JOINTYPE" value="UnityCombinatorial" />
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+              </test-suite>
+              <test-suite type="TestFixture" id="1059" name="SleepwalkingEighthLevelTests(1,100)" fullname="Sleepwalking.Tests.PlayMode.SleepwalkingEighthLevelTests(1,100)" classname="Sleepwalking.Tests.PlayMode.SleepwalkingEighthLevelTests" runstate="Runnable" testcasecount="1" result="Passed" start-time="2026-11-15 12:30:34Z" end-time="2026-11-15 12:30:50Z" duration="15.697899" total="1" passed="1" failed="0" inconclusive="0" skipped="0" asserts="0">
+                <properties />
+                <test-case id="1060" name="SwitchesShuttleAndExitAreReachableWithoutDeaths" fullname="Sleepwalking.Tests.PlayMode.SleepwalkingEighthLevelTests(1,100).SwitchesShuttleAndExitAreReachableWithoutDeaths" methodname="SwitchesShuttleAndExitAreReachableWithoutDeaths" classname="Sleepwalking.Tests.PlayMode.SleepwalkingEighthLevelTests" runstate="Runnable" seed="641308680" result="Passed" start-time="2026-11-15 12:30:34Z" end-time="2026-11-15 12:30:50Z" duration="15.696909" asserts="0">
+                  <properties>
+                    <property name="_JOINTYPE" value="UnityCombinatorial" />
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+              </test-suite>
+            </test-suite>
+            <test-suite type="TestFixture" id="1079" name="SleepwalkingGridHazardRetryTests" fullname="Sleepwalking.Tests.PlayMode.SleepwalkingGridHazardRetryTests" classname="Sleepwalking.Tests.PlayMode.SleepwalkingGridHazardRetryTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-11-15 12:30:50Z" end-time="2026-11-15 12:30:59Z" duration="9.065925" total="1" passed="1" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1080" name="EveryLethalColliderHasVisibleArt" fullname="Sleepwalking.Tests.PlayMode.SleepwalkingGridHazardRetryTests.EveryLethalColliderHasVisibleArt" methodname="EveryLethalColliderHasVisibleArt" classname="Sleepwalking.Tests.PlayMode.SleepwalkingGridHazardRetryTests" runstate="Runnable" seed="1506817490" result="Passed" start-time="2026-11-15 12:30:50Z" end-time="2026-11-15 12:30:59Z" duration="9.064818" asserts="0">
+                <properties>
+                  <property name="_JOINTYPE" value="UnityCombinatorial" />
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[Saving results to: C:/Users/TIMBUHTUK/AppData/LocalLow/DefaultCompany/Sleepwalking\TestResults.xml
+]]></output>
+              </test-case>
+            </test-suite>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

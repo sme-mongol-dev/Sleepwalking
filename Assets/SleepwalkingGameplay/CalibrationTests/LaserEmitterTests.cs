@@ -11,7 +11,7 @@ namespace Sleepwalking.Tests.PlayMode
     public sealed class LaserEmitterTests
     {
         [UnityTest]
-        public IEnumerator ButtonDisablesOnlyBeamWhileEmitterRemainsLethal()
+        public IEnumerator OnlyBeamKillsWhileEmitterRemainsVisibleAndIntangible()
         {
             AsyncOperation loading = SceneManager.LoadSceneAsync("Assets/Scenes/Sleepwalking.unity");
             while (!loading.isDone) yield return null;
@@ -43,9 +43,12 @@ namespace Sleepwalking.Tests.PlayMode
             Assert.That(dreamer, Is.Not.Null);
             Collider2D emitterShape = emitter.GetComponent<Collider2D>();
             Collider2D beamShape = beam.GetComponent<Collider2D>();
-            Renderer emitterVisual = emitter.GetComponent<Renderer>();
-            Renderer beamVisual = beam.GetComponent<Renderer>();
-            Assert.That(emitterShape.enabled && emitterVisual.enabled, Is.True);
+            SpriteRenderer emitterVisual = emitter.transform.Find("Dream Hazard Art").GetComponent<SpriteRenderer>();
+            SpriteRenderer beamVisual = beam.transform.Find("Dream Hazard Art").GetComponent<SpriteRenderer>();
+            Assert.That(emitterShape.enabled, Is.False);
+            Assert.That(emitterVisual.enabled, Is.True);
+            foreach (Collider shape in emitter.GetComponentsInChildren<Collider>(true))
+                Assert.That(shape.enabled, Is.False, "The emitter has an active 3D collider.");
             Assert.That(beamShape.enabled && beamVisual.enabled, Is.True);
             Vector2 beamCenter = beamShape.bounds.center;
 
@@ -56,10 +59,11 @@ namespace Sleepwalking.Tests.PlayMode
             mechanismType.GetField("ActiveSeconds").SetValue(buttonMechanism, .3f);
             gameType.GetMethod("PressButton").Invoke(game, new object[] { buttonMechanism });
             yield return null;
-            Assert.That(emitterShape.enabled && emitterVisual.enabled, Is.True,
-                "The linked laser button hid its emitter.");
-            Assert.That(beamShape.enabled || beamVisual.enabled, Is.False,
-                "The beam must disappear and stop colliding while disabled.");
+            yield return null;
+            Assert.That(emitterShape.enabled, Is.False);
+            Assert.That(emitterVisual.enabled, Is.True, "The linked laser button hid its emitter.");
+            Assert.That(beamShape.enabled, Is.False, "The beam collider remained active.");
+            Assert.That(beamVisual.enabled, Is.False, "The beam art remained visible.");
 
             MonoBehaviour player = null;
             foreach (MonoBehaviour component in dreamer.GetComponents<MonoBehaviour>())
@@ -76,25 +80,28 @@ namespace Sleepwalking.Tests.PlayMode
             Assert.That((int)gameType.GetProperty("DreamDeaths").GetValue(game), Is.EqualTo(deaths),
                 "The disabled beam remained lethal.");
 
+            reset.Invoke(player, new object[] { (Vector2)emitter.transform.position });
+            body.gravityScale = 0f;
+            Physics2D.SyncTransforms();
+            yield return new WaitForFixedUpdate();
+            Assert.That((int)gameType.GetProperty("DreamDeaths").GetValue(game), Is.EqualTo(deaths),
+                "The emitter killed the player while its beam was disabled.");
+
             Transform start = GameObject.Find("PlayerStart").transform;
             reset.Invoke(player, new object[] { (Vector2)(start.position + Vector3.up * 16f) });
             deadline = Time.realtimeSinceStartup + 2f;
             while (!beamShape.enabled && Time.realtimeSinceStartup < deadline) yield return null;
+            yield return null;
             Assert.That(beamShape.enabled && beamVisual.enabled, Is.True,
                 "The beam did not return after the button expired.");
-
-            gameType.GetMethod("PressButton").Invoke(game, new object[] { buttonMechanism });
-            yield return null;
-            Assert.That(beamShape.enabled, Is.False);
-            Assert.That(emitterShape.enabled && emitterVisual.enabled, Is.True);
-            reset.Invoke(player, new object[] { (Vector2)emitterShape.bounds.center });
-            body.gravityScale = 0f;
+            Assert.That(emitterShape.enabled, Is.False);
+            reset.Invoke(player, new object[] { beamCenter });
             Physics2D.SyncTransforms();
             deadline = Time.realtimeSinceStartup + 2f;
             while ((int)gameType.GetProperty("DreamDeaths").GetValue(game) == deaths &&
                 Time.realtimeSinceStartup < deadline) yield return new WaitForFixedUpdate();
             Assert.That((int)gameType.GetProperty("DreamDeaths").GetValue(game), Is.GreaterThan(deaths),
-                "The emitter was no longer lethal while its beam was disabled.");
+                "The active beam did not kill the player.");
         }
     }
 }

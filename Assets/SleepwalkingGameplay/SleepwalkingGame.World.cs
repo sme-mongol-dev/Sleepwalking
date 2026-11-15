@@ -127,7 +127,7 @@ namespace Sleepwalking
                     new Vector2(-.5f, -.5f), new Vector2(.5f, -.5f), new Vector2(0f, .5f)
                 };
             collider.isTrigger = trigger;
-            collider.enabled = trigger || solid;
+            collider.enabled = kind != "LaserBase" && (trigger || solid);
             SleepwalkingMechanism mechanism = obj.AddComponent<SleepwalkingMechanism>();
             mechanism.FeatureId = name;
             mechanism.Kind = kind;
