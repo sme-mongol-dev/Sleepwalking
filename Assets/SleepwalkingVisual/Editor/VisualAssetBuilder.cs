@@ -421,7 +421,7 @@ namespace Sleepwalking.Visual.Editor
 
                 MeshRenderer bed = MenuArtwork(root, "Bed", "BoyAndBed", new Vector3(-3.2f, -.18f, 0), .032f, true);
                 MeshRenderer books = MenuArtwork(root, "Books", "Books", new Vector3(-4.9f, 2.52f, 0), .032f, true);
-                MeshRenderer clock = MenuArtwork(root, "Clock", "Clock", new Vector3(.15f, 3.4f, 0), .024f, true);
+                MeshRenderer clock = MenuArtwork(root, "Clock", "Clock", new Vector3(.15f, 4.7963f, 0), .024f, true);
                 MeshRenderer door = MenuArtwork(root, "Door", "Door", new Vector3(6.48f, .9f, 0), .020f, true);
                 MeshRenderer calendar = MenuArtwork(root, "Calendar", "Calendar", new Vector3(6.45f, 2.75f, -.03f), .013f);
                 MeshRenderer window = MenuArtwork(root, "Window", "Window", new Vector3(3.05f, 2.03f, .5f), .027f);

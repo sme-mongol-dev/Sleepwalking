@@ -286,7 +286,8 @@ namespace Sleepwalking
             if (logoFrame == null) return;
             float wide = Mathf.InverseLerp(4f / 3f, 16f / 9f, canvas.width / canvas.height);
             logoFrame.localScale = Vector3.one * .81f;
-            float leftAligned = -canvas.width * .5f + 48f + logoFrame.rect.width * .81f * .5f;
+            float leftAligned = -canvas.width * .5f + 48f + logoFrame.rect.width * .81f * .5f -
+                canvas.width * .05f;
             logoFrame.anchoredPosition = new Vector2(leftAligned, Mathf.Lerp(465f, 422f, wide));
         }
 

@@ -9,7 +9,7 @@ namespace Sleepwalking.Visual
         public Texture2D[] Frames;
         public Texture2D[] SleepingFrames;
         public float AwakeFrameSeconds = .22f;
-        public float SleepingFrameSeconds = .1f;
+        public float SleepingFrameSeconds = .4f;
         public int CurrentFrameIndex { get; private set; }
         public bool IsSleeping { get; private set; }
 
