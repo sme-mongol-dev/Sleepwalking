@@ -250,7 +250,7 @@ namespace Sleepwalking.Visual
                 overrides.Add(item.id, item);
             }
 
-            foreach (string group in new[] { "poster", "calendar", "bed" })
+            foreach (string group in new[] { "poster", "calendar", "bed", "crack.4", "crack.5" })
             {
                 for (int value = 1; value <= 100; value++)
                 {
@@ -263,7 +263,7 @@ namespace Sleepwalking.Visual
                         int maximum = selected != null ? selected.max : row.MaxOdradek;
                         if (value >= minimum && value <= maximum) count++;
                     }
-                    bool required = group != "calendar";
+                    bool required = group == "poster" || group == "bed";
                     if (count > 1 || (required && count != 1))
                     { error = "Overlapping or missing " + group + " variant at Odradek " + value; return false; }
                 }

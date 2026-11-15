@@ -480,7 +480,13 @@ namespace Sleepwalking.Tests.PlayMode
                 Assert.That(renderer, Is.Not.Null, surface.name);
                 Assert.That(filter.sharedMesh.vertexCount, Is.EqualTo(8),
                     surface.name + " must cover its two authored cells");
-                Assert.That(renderer.enabled, Is.EqualTo(shape.enabled), surface.name);
+                Assert.That(renderer.enabled, Is.True, surface.name + " must remain visible without collision");
+                if (!shape.enabled)
+                {
+                    var properties = new MaterialPropertyBlock();
+                    renderer.GetPropertyBlock(properties);
+                    Assert.That(properties.GetFloat("_Opacity"), Is.EqualTo(.42f).Within(.01f), surface.name);
+                }
                 Bounds art = renderer.bounds;
                 Bounds solid = shape.bounds;
                 Assert.That(Mathf.Abs(art.min.x - solid.min.x), Is.LessThan(2f), surface.name + " left");

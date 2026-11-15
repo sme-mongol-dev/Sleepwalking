@@ -285,8 +285,9 @@ namespace Sleepwalking
         {
             if (logoFrame == null) return;
             float wide = Mathf.InverseLerp(4f / 3f, 16f / 9f, canvas.width / canvas.height);
-            logoFrame.anchoredPosition = new Vector2(-100f, Mathf.Lerp(465f, 422f, wide));
             logoFrame.localScale = Vector3.one * .81f;
+            float leftAligned = -canvas.width * .5f + 48f + logoFrame.rect.width * .81f * .5f;
+            logoFrame.anchoredPosition = new Vector2(leftAligned, Mathf.Lerp(465f, 422f, wide));
         }
 
         public void Build()
@@ -382,10 +383,8 @@ namespace Sleepwalking
         void BuildMenu(Transform root)
         {
             RectTransform parent = (RectTransform)root;
-            Text logo = Title(parent, "Sleepwalking", new Vector2(-100, 422), new Vector2(1300, 180), 144, true);
+            Text logo = Title(parent, "Sleepwalking", new Vector2(-380, 422), new Vector2(1300, 180), 144, true);
             logoFrame = (RectTransform)logo.transform.parent;
-            Text subtitle = MakeText(parent, "Subtitle", "Full Circle of your dream", bodyFont, 26, SecondaryText, new Vector2(-100, 354), new Vector2(900, 52));
-            subtitle.fontStyle = FontStyle.Normal;
             roomHint = MakeText(parent, "Room Hint", "HOVER AN OBJECT  /  TAB TO FOCUS", bodyFont, 26, SecondaryText, new Vector2(0, -380), new Vector2(900, 52));
             Text version = MakeText(parent, "Version", "v0.1", bodyFont, 26, SecondaryText, Vector2.zero, new Vector2(250, 50));
             version.alignment = TextAnchor.MiddleLeft;

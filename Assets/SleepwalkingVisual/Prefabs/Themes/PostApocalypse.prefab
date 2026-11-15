@@ -329,6 +329,7 @@ MonoBehaviour:
   SawArt: {fileID: -171075915544627694, guid: 7d96b66e1b7ef3a4583924c56ed447e8, type: 3}
   ButtonUpArt: {fileID: -4063462992388984672, guid: 9b53f738fe8c73d4a82b5e1fc3708ca1, type: 3}
   ButtonDownArt: {fileID: 4019158706363881454, guid: 9b53f738fe8c73d4a82b5e1fc3708ca1, type: 3}
+  WarningArt: {fileID: 21300000, guid: 73fece47f96445b1b5b319b94dff4b34, type: 3}
   BedArt: {fileID: 21300000, guid: 2826d406fdba59c4eb130cbeb6d5338f, type: 3}
 --- !u!114 &972604400724771880
 MonoBehaviour:

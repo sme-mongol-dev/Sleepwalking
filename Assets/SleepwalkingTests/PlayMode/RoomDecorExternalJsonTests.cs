@@ -20,7 +20,7 @@ namespace Sleepwalking.Tests.PlayMode
             try
             {
                 File.WriteAllText(external,
-                    "{\"version\":1,\"decorations\":[{\"id\":\"crack.1\",\"group\":\"cracks\",\"min\":95,\"max\":100,\"asset\":\"crack.1\"}]}");
+                    "{\"version\":1,\"decorations\":[{\"id\":\"crack.4.stage1\",\"group\":\"crack.4\",\"min\":81,\"max\":84,\"asset\":\"crack.4\"}]}");
 
                 AsyncOperation loading = SceneManager.LoadSceneAsync("Assets/Scenes/Sleepwalking.unity");
                 Assert.That(loading, Is.Not.Null);
@@ -40,9 +40,9 @@ namespace Sleepwalking.Tests.PlayMode
                 IList rows = (IList)environment.GetType().GetField("Decorations").GetValue(environment);
                 object crack = null;
                 foreach (object row in rows)
-                    if ((string)row.GetType().GetField("Id").GetValue(row) == "crack.1") crack = row;
+                    if ((string)row.GetType().GetField("Id").GetValue(row) == "crack.4.stage1") crack = row;
                 Assert.That(crack, Is.Not.Null);
-                Assert.That((int)crack.GetType().GetField("MinOdradek").GetValue(crack), Is.EqualTo(95));
+                Assert.That((int)crack.GetType().GetField("MinOdradek").GetValue(crack), Is.EqualTo(81));
 
                 FieldInfo odradek = game.GetType().GetField("odradek", BindingFlags.Instance | BindingFlags.NonPublic);
                 Assert.That(odradek, Is.Not.Null);
@@ -50,7 +50,7 @@ namespace Sleepwalking.Tests.PlayMode
                 yield return null;
                 GameObject instance = (GameObject)crack.GetType().GetField("Instance").GetValue(crack);
                 Assert.That(instance.activeSelf, Is.False, "The external file must override the bundled threshold.");
-                odradek.SetValue(game, 100);
+                odradek.SetValue(game, 81);
                 yield return null;
                 Assert.That(instance.activeSelf, Is.True);
             }

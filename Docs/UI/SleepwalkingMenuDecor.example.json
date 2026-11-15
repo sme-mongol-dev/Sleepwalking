@@ -2,11 +2,11 @@
   "version": 1,
   "decorations": [
     {
-      "id": "crack.1",
-      "group": "cracks",
-      "min": 36,
-      "max": 100,
-      "asset": "crack.1"
+      "id": "crack.4.stage1",
+      "group": "crack.4",
+      "min": 80,
+      "max": 84,
+      "asset": "crack.4"
     }
   ]
 }

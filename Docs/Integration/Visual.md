@@ -31,7 +31,7 @@ The window is grouped under `Moon Window` and offset left by 0.9 world units, le
 
 ## Regeneration and preview
 
-Run `Sleepwalking/Build Visual Assets` in the Unity Editor to regenerate materials, the room prefab, four theme prefabs and `Assets/SleepwalkingVisual/Preview/RoomPreview.unity`. The preview scene is isolated and remains outside build settings; generation checks its prefab instance and scene roots before saving. The room composition follows the saved reference frames: wall shelf on the upper left, clock and calendar near the centre, curtained moon window on the right, nightstand behind a wide bed. The required quit door sits at the far right edge. Every furniture, prop and shell piece remains a separate Unity object.
+The current room prefab contains hand-positioned decorations. `Sleepwalking/Build Visual Assets` retains an existing textured room prefab; `Sleepwalking/Build Textured Menu` generates it only when missing. The Windows build path also retains the room. The preview scene is isolated and remains outside build settings. Every furniture, prop and shell piece remains a separate Unity object.
 
 This document records the module API. Integration and end-to-end testing belong to the shared assembly scene.
 
@@ -39,7 +39,7 @@ This document records the module API. Integration and end-to-end testing belong 
 
 The editable source of menu rows is `Assets/SleepwalkingVisual/Prefabs/SleepwalkingMenuRoom.prefab` (`RoomEnvironment.Decorations`). The HTML editor can export a UTF-8 file named `SleepwalkingMenuDecor.json` with this schema:
 
-The bed's `RoomBedAwakeAnimation` plays the eight supplied frames backward from closed eyes to awake once on each room entry, then loops frames 3–7 with open eyes. This animation controls the visible bed texture while the menu is active; Odradek `bed` rows remain static fallback values. The existing bed hotspot and hover highlight work during animation.
+The bed's `RoomBedAwakeAnimation` loops the supplied sleeping frames before the first dream. After entering a dream, the looking frames play forward and backward, excluding the final eyes-closing frame. This animation controls the visible bed texture while the menu is active; Odradek `bed` rows remain static fallback values. The existing bed hotspot and hover highlight work during animation.
 
 ```json
 {
@@ -47,11 +47,11 @@ The bed's `RoomBedAwakeAnimation` plays the eight supplied frames backward from 
   "decorations": [
     { "id": "poster.01", "group": "poster", "min": 1, "max": 8, "asset": "poster.01" },
     { "id": "calendar.2", "group": "calendar", "min": 50, "max": 74, "asset": "calendar.2" },
-    { "id": "crack.1", "group": "cracks", "min": 35, "max": 100, "asset": "crack.1" }
+    { "id": "crack.4.stage1", "group": "crack.4", "min": 80, "max": 84, "asset": "crack.4" }
   ]
 }
 ```
 
-Each `id` identifies one prefab row; `group` must match that row. `min` and `max` are inclusive integers from 1 to 100. `asset` is a key for an imported texture in the room's catalog, not a disk path, and must belong to the same group. JSON may contain only edited rows; omitted rows keep their prefab values. The `poster` and `bed` groups must cover 1–100 exactly once. The `calendar` group can be absent at any value, but its variant ranges cannot overlap. The default calendar appears at 25; an export may set a different first appearance threshold. Rows in `cracks` can overlap and accumulate. The complete default table and allowed asset keys are in `Assets/StreamingAssets/SleepwalkingMenuDecor.json`; the HTML editor should load or mirror that file for its selectors.
+Each `id` identifies one prefab row; `group` must match that row. `min` and `max` are inclusive integers from 1 to 100. `asset` is a key for an imported texture in the room's catalog, not a disk path, and must belong to the same group. JSON may contain only edited rows; omitted rows keep their prefab values. The `poster` and `bed` groups must cover 1–100 exactly once. The `calendar` group can be absent at any value, but its variant ranges cannot overlap. The default calendar appears at 25; an export may set a different first appearance threshold. Crack 4 and crack 5 have three exclusive stages each, with scales 0.3, 0.6, and 1. Their current thresholds are placeholders. The eye and pupil share one `eye` row. The complete default table and allowed asset keys are in `Assets/StreamingAssets/SleepwalkingMenuDecor.json`; the HTML editor should load or mirror that file for its selectors.
 
 Place the export at `Assets/StreamingAssets/SleepwalkingMenuDecor.json` for the Unity project or next to `Sleepwalking.exe` for an installed Windows build. The game loads the external file on room creation; a valid external file overrides the StreamingAssets default, so changing thresholds does not require editing or rebuilding C#. Unknown IDs/assets, invalid ranges, or overlaps reject the file and leave prefab defaults active. The four menu hotspots remain available at every value.

@@ -21,6 +21,7 @@ namespace Sleepwalking
         public int DreamCount => LevelPrefabs != null && LevelPrefabs.Length > 0 ? LevelPrefabs.Length : AuthoredDreamCount;
         public int TutorialStage => tutorialStage;
         public bool InDream => inDream;
+        public bool HasEnteredDream { get; private set; }
 
         readonly Color[] backgrounds = { Hex("582C30"), Hex("3C2030"), Hex("222036"), Hex("B4B8D4") };
         readonly Color[] solids = { Hex("8C5050"), Hex("6E1830"), Hex("229EDE"), Hex("90DCC0") };
@@ -279,6 +280,7 @@ namespace Sleepwalking
         public void StartDream()
         {
             if (inDream || transitioning) return;
+            HasEnteredDream = true;
             StartCoroutine(DreamTransition());
         }
 
@@ -458,9 +460,16 @@ namespace Sleepwalking
             dreamCameraPosition = cameraTo;
             GameCamera.transform.position = cameraTo;
             dreamCameraVelocityX = 0f;
+            Sleepwalking.Visual.DreamPlayerAppearance appearance =
+                activeTheme != null ? activeTheme.GetComponent<Sleepwalking.Visual.DreamPlayerAppearance>() : null;
+            appearance?.BeginDeathReverse();
             RestartAttempt(false);
             player.ControlsEnabled = false;
-            yield return new WaitForSecondsRealtime(.15f);
+            Rigidbody2D body = player.GetComponent<Rigidbody2D>();
+            if (body != null) body.simulated = false;
+            while (appearance != null && !appearance.DeathReverseComplete)
+                yield return null;
+            if (body != null) body.simulated = true;
             player.ControlsEnabled = true;
             retryReturning = false;
             dying = false;

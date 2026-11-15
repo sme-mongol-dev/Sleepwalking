@@ -7,11 +7,11 @@ namespace Sleepwalking.Visual
     {
         public MeshRenderer Artwork;
         public Texture2D[] Frames;
-        public float IntroFrameSeconds = .22f;
-        public float LoopFrameSeconds = .32f;
-        public int LoopStartFrame = 2;
-        public int LoopEndFrame = 6;
+        public Texture2D[] SleepingFrames;
+        public float AwakeFrameSeconds = .22f;
+        public float SleepingFrameSeconds = .1f;
         public int CurrentFrameIndex { get; private set; }
+        public bool IsSleeping { get; private set; }
 
         static readonly int MainTex = Shader.PropertyToID("_MainTex");
         static readonly int BaseMap = Shader.PropertyToID("_BaseMap");
@@ -19,7 +19,7 @@ namespace Sleepwalking.Visual
 
         MaterialPropertyBlock properties;
         float elapsed;
-        bool intro;
+        int direction;
 
         void OnEnable()
         {
@@ -34,39 +34,40 @@ namespace Sleepwalking.Visual
         public void RestartAnimation()
         {
             elapsed = 0f;
-            intro = true;
-            CurrentFrameIndex = Frames != null && Frames.Length > 0 ? Frames.Length - 1 : 0;
+            IsSleeping = SleepwalkingGame.Instance == null || !SleepwalkingGame.Instance.HasEnteredDream;
+            CurrentFrameIndex = 0;
+            direction = 1;
             ApplyFrame();
         }
 
         public void Advance(float seconds)
         {
-            if (Frames == null || Frames.Length == 0 || Artwork == null) return;
-            int loopStart = Mathf.Clamp(LoopStartFrame, 0, Frames.Length - 1);
-            int loopEnd = Mathf.Clamp(LoopEndFrame, loopStart, Frames.Length - 1);
+            Texture2D[] sequence = IsSleeping ? SleepingFrames : Frames;
+            if (sequence == null || sequence.Length == 0 || Artwork == null) return;
             elapsed += Mathf.Max(0f, seconds);
-            float frameSeconds = intro ? IntroFrameSeconds : LoopFrameSeconds;
-            frameSeconds = Mathf.Max(.01f, frameSeconds);
+            float frameSeconds = Mathf.Max(.01f, IsSleeping ? SleepingFrameSeconds : AwakeFrameSeconds);
             while (elapsed >= frameSeconds)
             {
                 elapsed -= frameSeconds;
-                if (intro && CurrentFrameIndex > 0)
-                    CurrentFrameIndex--;
+                if (IsSleeping)
+                    CurrentFrameIndex = (CurrentFrameIndex + 1) % sequence.Length;
                 else
                 {
-                    intro = false;
-                    CurrentFrameIndex = CurrentFrameIndex < loopStart || CurrentFrameIndex >= loopEnd ?
-                        loopStart : CurrentFrameIndex + 1;
+                    // Финальный кадр закрывает глаза; цикл доходит только до предпоследнего.
+                    int lastOpenFrame = Mathf.Max(0, sequence.Length - 2);
+                    if (CurrentFrameIndex >= lastOpenFrame) direction = -1;
+                    else if (CurrentFrameIndex <= 0) direction = 1;
+                    CurrentFrameIndex = Mathf.Clamp(CurrentFrameIndex + direction, 0, lastOpenFrame);
                 }
-                frameSeconds = Mathf.Max(.01f, intro ? IntroFrameSeconds : LoopFrameSeconds);
             }
             ApplyFrame();
         }
 
         void ApplyFrame()
         {
-            if (Artwork == null || Frames == null || Frames.Length == 0) return;
-            Texture2D frame = Frames[Mathf.Clamp(CurrentFrameIndex, 0, Frames.Length - 1)];
+            Texture2D[] sequence = IsSleeping ? SleepingFrames : Frames;
+            if (Artwork == null || sequence == null || sequence.Length == 0) return;
+            Texture2D frame = sequence[Mathf.Clamp(CurrentFrameIndex, 0, sequence.Length - 1)];
             if (frame == null) return;
             properties ??= new MaterialPropertyBlock();
             Artwork.GetPropertyBlock(properties);

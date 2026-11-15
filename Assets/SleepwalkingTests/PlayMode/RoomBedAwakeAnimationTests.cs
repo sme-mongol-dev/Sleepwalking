@@ -12,7 +12,7 @@ namespace Sleepwalking.Tests.PlayMode
     public sealed class RoomBedAwakeAnimationTests
     {
         [UnityTest]
-        public IEnumerator WakingIntroLeadsIntoOpenEyeLoopAndRestartsOnReturn()
+        public IEnumerator BedBreathesBeforeFirstDreamThenLooksBackAndForth()
         {
             AsyncOperation loading = SceneManager.LoadSceneAsync("Assets/Scenes/Sleepwalking.unity");
             while (!loading.isDone) yield return null;
@@ -32,12 +32,14 @@ namespace Sleepwalking.Tests.PlayMode
             Type type = animation.GetType();
             Texture2D[] frames = (Texture2D[])type.GetField("Frames").GetValue(animation);
             MeshRenderer artwork = (MeshRenderer)type.GetField("Artwork").GetValue(animation);
-            float introSeconds = (float)type.GetField("IntroFrameSeconds").GetValue(animation);
-            float loopSeconds = (float)type.GetField("LoopFrameSeconds").GetValue(animation);
+            Texture2D[] sleeping = (Texture2D[])type.GetField("SleepingFrames").GetValue(animation);
+            float sleepingSeconds = (float)type.GetField("SleepingFrameSeconds").GetValue(animation);
+            float awakeSeconds = (float)type.GetField("AwakeFrameSeconds").GetValue(animation);
             MethodInfo restart = type.GetMethod("RestartAnimation");
             MethodInfo advance = type.GetMethod("Advance");
             PropertyInfo current = type.GetProperty("CurrentFrameIndex");
             Assert.That(frames.Length, Is.EqualTo(8));
+            Assert.That(sleeping.Length, Is.EqualTo(8));
             Assert.That(artwork, Is.Not.Null);
             Assert.That(restart, Is.Not.Null);
             Assert.That(advance, Is.Not.Null);
@@ -45,23 +47,37 @@ namespace Sleepwalking.Tests.PlayMode
 
             animation.enabled = false;
             restart.Invoke(animation, null);
-            AssertFrame(artwork, frames, current, animation, 7);
+            Assert.That((bool)type.GetProperty("IsSleeping").GetValue(animation), Is.True);
+            AssertFrame(artwork, sleeping, current, animation, 0);
+            CaptureRoom("MenuBedSleeping.png");
+
+            for (int q = 1; q < 8; q++)
+            {
+                advance.Invoke(animation, new object[] { sleepingSeconds });
+                AssertFrame(artwork, sleeping, current, animation, q);
+            }
+            advance.Invoke(animation, new object[] { sleepingSeconds });
+            AssertFrame(artwork, sleeping, current, animation, 0);
+
+            GameObject game = GameObject.Find("Sleepwalking Game");
+            Assert.That(game, Is.Not.Null);
+            MonoBehaviour controller = null;
+            foreach (MonoBehaviour component in game.GetComponents<MonoBehaviour>())
+                if (component != null && component.GetType().Name == "SleepwalkingGame") controller = component;
+            Assert.That(controller, Is.Not.Null);
+            controller.GetType().GetMethod("StartDream").Invoke(controller, null);
+            controller.GetType().GetMethod("ReturnToRoom").Invoke(controller, null);
+            restart.Invoke(animation, null);
+            Assert.That((bool)type.GetProperty("IsSleeping").GetValue(animation), Is.False);
+            AssertFrame(artwork, frames, current, animation, 0);
             CaptureRoom("MenuBedAwakeStart.png");
 
-            for (int q = 6; q >= 0; q--)
+            foreach (int frame in new[] { 1, 2, 3, 4, 5, 6, 5, 4, 3, 2, 1, 0, 1 })
             {
-                advance.Invoke(animation, new object[] { introSeconds });
-                AssertFrame(artwork, frames, current, animation, q);
-            }
-            advance.Invoke(animation, new object[] { introSeconds });
-            AssertFrame(artwork, frames, current, animation, 2);
-            CaptureRoom("MenuBedAwakeLoop.png");
-
-            foreach (int frame in new[] { 3, 4, 5, 6, 2, 3 })
-            {
-                advance.Invoke(animation, new object[] { loopSeconds });
+                advance.Invoke(animation, new object[] { awakeSeconds });
                 AssertFrame(artwork, frames, current, animation, frame);
             }
+            CaptureRoom("MenuBedAwakeLoop.png");
 
             MonoBehaviour hotspot = null;
             foreach (MonoBehaviour component in bed.GetComponents<MonoBehaviour>())
@@ -70,7 +86,7 @@ namespace Sleepwalking.Tests.PlayMode
             Assert.That(hotspot, Is.Not.Null);
             MethodInfo highlight = hotspot.GetType().GetMethod("SetHighlighted");
             highlight.Invoke(hotspot, new object[] { true });
-            advance.Invoke(animation, new object[] { loopSeconds });
+            advance.Invoke(animation, new object[] { awakeSeconds });
             var highlighted = new MaterialPropertyBlock();
             artwork.GetPropertyBlock(highlighted);
             Assert.That(highlighted.GetFloat("_Highlight"), Is.EqualTo(.14f).Within(.005f));
@@ -84,13 +100,13 @@ namespace Sleepwalking.Tests.PlayMode
             Assert.That(environment, Is.Not.Null);
             environment.GetType().GetMethod("SetOdradek").Invoke(environment, new object[] { 100 });
             advance.Invoke(animation, new object[] { 0f });
-            AssertFrame(artwork, frames, current, animation, 4);
+            AssertFrame(artwork, frames, current, animation, 2);
 
             animation.enabled = true;
-            advance.Invoke(animation, new object[] { introSeconds * 8f });
+            advance.Invoke(animation, new object[] { awakeSeconds * 4f });
             room.SetActive(false);
             room.SetActive(true);
-            AssertFrame(artwork, frames, current, animation, 7);
+            AssertFrame(artwork, frames, current, animation, 0);
         }
 
         static void AssertFrame(MeshRenderer artwork, Texture2D[] frames, PropertyInfo current,

@@ -4,6 +4,7 @@ Shader "Sleepwalking/PixelCutout"
     {
         _MainTex ("Pixel Art", 2D) = "white" {}
         _Highlight ("Highlight", Range(0, 1)) = 0
+        _Opacity ("Opacity", Range(0, 1)) = 1
     }
     SubShader
     {
@@ -14,6 +15,7 @@ Shader "Sleepwalking/PixelCutout"
             Tags { "LightMode" = "UniversalForward" }
             Cull Off
             ZWrite On
+            Blend SrcAlpha OneMinusSrcAlpha
 
             HLSLPROGRAM
             #pragma vertex Vert
@@ -25,6 +27,7 @@ Shader "Sleepwalking/PixelCutout"
             CBUFFER_START(UnityPerMaterial)
                 float4 _MainTex_ST;
                 float _Highlight;
+                float _Opacity;
             CBUFFER_END
 
             struct Attributes
@@ -52,6 +55,7 @@ Shader "Sleepwalking/PixelCutout"
                 half4 color = SAMPLE_TEXTURE2D(_MainTex, sampler_MainTex, input.uv);
                 clip(color.a - 0.5h);
                 color.rgb = lerp(color.rgb, half3(1, 1, 1), _Highlight);
+                color.a *= _Opacity;
                 return color;
             }
             ENDHLSL

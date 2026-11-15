@@ -13,8 +13,7 @@ add("nightstand", "Тумба", "Tymba.png", "props", 1, 100, "menu.nightstand")
 add("clock.big", "Большая стрелка часов", "ClockArrowBig.png", "props", 1, 100);
 add("clock.small", "Малая стрелка часов", "ClockArrowSmall.png", "props", 1, 100);
 add("slippers", "Тапочки", "Slippers.png", "props", 35, 100);
-add("eye", "Глаз", "Eye.png", "props", 55, 100);
-add("eyeball", "Глазное яблоко", "Eyeball.png", "props", 75, 100);
+add("eye", "Глаз со зрачком", "Eye.png", "props", 55, 100);
 add("calendar.1", "Календарь 1", "Calendar.png", "calendar", 25, 49);
 add("calendar.2", "Календарь 2", "Calendar2.png", "calendar", 50, 74);
 add("calendar.3", "Календарь 3", "Calendar3.png", "calendar", 75, 100);
@@ -28,12 +27,19 @@ add("bed.base", "Кровать / герой — резервный кадр", "
 for (let q = 1; q <= 8; q++)
     add("bed.look." + q, "Кровать / герой — резервный кадр " + q, "bedframe:" + (q - 1),
         "bed", q === 1 ? 13 : q * 11 + 2, q === 8 ? 100 : (q + 1) * 11 + 1);
-for (let q = 1; q <= 5; q++)
-    add("crack." + q, "Трещина " + q, "Crack" + q + ".png", "cracks", 35 + (q - 1) * 15, 100);
+for (const crack of [{number:4, steps:[80,85,90]}, {number:5, steps:[95,97,99]}])
+    for (let q = 0; q < 3; q++)
+        add("crack." + crack.number + ".stage" + (q + 1),
+            "Трещина " + crack.number + " — " + ["30%", "60%", "100%"][q],
+            "Crack" + crack.number + ".png", "crack." + crack.number,
+            crack.steps[q], q === 2 ? 100 : crack.steps[q + 1] - 1,
+            "crack." + crack.number);
+
+const retiredIds = new Set(["eyeball", "crack.1", "crack.2", "crack.3", "crack.4", "crack.5"]);
 
 const byId = new Map(catalogue.map(item => [item.id, item]));
 const byAsset = new Map(catalogue.map(item => [item.asset, item]));
-const variants = new Set(["poster", "calendar", "bed"]);
+const variants = new Set(["poster", "calendar", "bed", "crack.4", "crack.5"]);
 const nodes = {
     rows:document.getElementById("rows"), groupSummary:document.getElementById("groupSummary"),
     issues:document.getElementById("issues"), groupFilter:document.getElementById("groupFilter"),
@@ -115,7 +121,7 @@ function validate(input) {
             counts:new Array(101).fill(0), gaps:[], overlaps:[]});
         for (let value = row.min; value <= row.max; value++) groups.get(name).counts[value]++;
     }
-    for (const name of ["poster", "calendar", "bed", "cracks", "props"])
+    for (const name of ["poster", "calendar", "bed", "crack.4", "crack.5", "props"])
         if (!groups.has(name)) groups.set(name, {mode:variants.has(name) ? "replace" : "cumulative",
             counts:new Array(101).fill(0), gaps:[], overlaps:[]});
     for (const [name, group] of groups) {
@@ -157,6 +163,14 @@ function preview(item) {
         image.loading = "lazy";
         image.onerror = function() { image.replaceWith(el("span", "missing", "Нет изображения")); };
         box.append(image);
+        if (item.id === "eye") {
+            box.classList.add("eye-preview");
+            const pupil = el("img");
+            pupil.src = ASSET_ROOT + "Eyeball.png";
+            pupil.alt = "";
+            pupil.loading = "lazy";
+            box.append(pupil);
+        }
     }
     return box;
 }
@@ -172,6 +186,12 @@ function field(type, value, label, onChange) {
 function update(index, key, value) {
     const row = doc.decorations[index];
     row[key] = key === "min" || key === "max" ? (value === "" ? null : Number(value)) : value;
+    if (key === "min" && (row.group === "crack.4" || row.group === "crack.5")) {
+        const stages = doc.decorations.filter(item => item.group === row.group)
+            .sort((a, b) => a.id.localeCompare(b.id));
+        for (let q = 0; q < stages.length; q++)
+            stages[q].max = q + 1 < stages.length ? stages[q + 1].min - 1 : 100;
+    }
     message = "";
     persist();
     render();
@@ -206,8 +226,10 @@ function renderRows(result) {
         tr.append(el("td", "mode", mode));
         const minCell = el("td"); minCell.append(field("number", row.min, "Min " + row.id,
             value => update(index, "min", value))); tr.append(minCell);
-        const maxCell = el("td"); maxCell.append(field("number", row.max, "Max " + row.id,
-            value => update(index, "max", value))); tr.append(maxCell);
+        const maxCell = el("td"), maxInput = field("number", row.max, "Max " + row.id,
+            value => update(index, "max", value));
+        maxInput.disabled = row.group === "crack.4" || row.group === "crack.5";
+        maxCell.append(maxInput); tr.append(maxCell);
         const assetCell = el("td");
         const assetInput = field("text", row.asset, "Asset " + row.id, value => update(index, "asset", value));
         assetInput.className = "asset-field"; assetInput.setAttribute("list", "assetKeys"); assetCell.append(assetInput);
@@ -235,7 +257,7 @@ function renderGroups(result) {
     const fragment = document.createDocumentFragment();
     for (const [name, group] of result.groups) {
         const bad = variants.has(name) && (group.overlaps.length > 0 ||
-            (name !== "calendar" && group.gaps.length > 0));
+            ((name === "poster" || name === "bed") && group.gaps.length > 0));
         const card = el("div", "group-card" + (bad ? " error" : ""));
         card.append(el("strong", "", name), el("small", "", group.mode === "replace" ? "Заменяющий" : "Накопительный"),
             el("small", bad ? "bad" : "", "Пусто: " + segments(group.gaps)),
@@ -312,7 +334,8 @@ async function saveFile(name, allowInvalid) {
 function partition() {
     const name = nodes.partitionGroup.value, rows = doc.decorations.filter(row => row.group === name);
     if (!rows.length) return;
-    const start = name === "calendar" ? Math.min(...rows.map(row => row.min)) : 1;
+    const start = name === "calendar" || name.startsWith("crack.") ?
+        Math.min(...rows.map(row => row.min)) : 1;
     if (!integer(start) || 101 - start < rows.length) {
         message = "Для разбиения оставьте хотя бы одно значение на каждый вариант.";
         render(); return;
@@ -331,7 +354,7 @@ function loadDraft() {
         if (!value) return;
         const parsed = JSON.parse(value);
         if (parsed && parsed.version === 1 && Array.isArray(parsed.decorations)) {
-            doc = parsed; exported = false;
+            doc = importDocument(parsed); exported = false;
             message = "Восстановлен локальный черновик; Unity его ещё не читает.";
         }
     } catch (error) { message = "Не удалось восстановить черновик."; }
@@ -346,6 +369,7 @@ function importDocument(input) {
     for (const row of input.decorations) {
         if (!row || typeof row !== "object" || Array.isArray(row))
             throw new Error("Каждая строка decorations должна быть объектом.");
+        if (retiredIds.has(row.id)) continue;
         if (seen.has(row.id)) { full.decorations.push(row); continue; }
         seen.add(row.id);
         const index = full.decorations.findIndex(item => item.id === row.id);

@@ -76,6 +76,9 @@ namespace Sleepwalking
         }
 
         public bool IsPressed => Kind == "Button" && Time.time < pressedUntil;
+        public float TimedSecondsUntilFade => Kind == "TimedPlatform" ?
+            Mathf.Max(0f, Mathf.Clamp(ActiveSeconds, 0f, Mathf.Max(.3f, CycleSeconds)) -
+            Mathf.Repeat(elapsed, Mathf.Max(.3f, CycleSeconds))) : 0f;
 
         public void MarkPressed()
         {

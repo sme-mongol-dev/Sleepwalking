@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="3" result="Failed(Child)" total="3" passed="2" failed="1" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-11-15 10:50:34Z" end-time="2026-11-15 10:50:45Z" duration="11,5736874">
+  <test-suite type="TestSuite" id="1163" name="Sleepwalking" fullname="Sleepwalking" runstate="Runnable" testcasecount="110" result="Failed" site="Child" start-time="2026-11-15 10:50:34Z" end-time="2026-11-15 10:50:45Z" duration="11.573687" total="3" passed="2" failed="1" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="PlayMode" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="Assembly" id="1156" name="Sleepwalking.PlayMode.Tests.dll" fullname="T:/Sleepwalking/Library/ScriptAssemblies/Sleepwalking.PlayMode.Tests.dll" runstate="Runnable" testcasecount="110" result="Failed" site="Child" start-time="2026-11-15 10:50:34Z" end-time="2026-11-15 10:50:45Z" duration="11.567136" total="3" passed="2" failed="1" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="398748" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="PlayMode" />
+        <property name="EditorOnly" value="False" />
+      </properties>
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="1157" name="Sleepwalking" fullname="Sleepwalking" runstate="Runnable" testcasecount="110" result="Failed" site="Child" start-time="2026-11-15 10:50:34Z" end-time="2026-11-15 10:50:45Z" duration="11.565995" total="3" passed="2" failed="1" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestSuite" id="1158" name="Tests" fullname="Sleepwalking.Tests" runstate="Runnable" testcasecount="110" result="Failed" site="Child" start-time="2026-11-15 10:50:34Z" end-time="2026-11-15 10:50:45Z" duration="11.565037" total="3" passed="2" failed="1" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="TestSuite" id="1159" name="PlayMode" fullname="Sleepwalking.Tests.PlayMode" runstate="Runnable" testcasecount="110" result="Failed" site="Child" start-time="2026-11-15 10:50:34Z" end-time="2026-11-15 10:50:45Z" duration="11.564081" total="3" passed="2" failed="1" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-suite type="TestFixture" id="1001" name="DeathReturnTests" fullname="Sleepwalking.Tests.PlayMode.DeathReturnTests" classname="Sleepwalking.Tests.PlayMode.DeathReturnTests" runstate="Runnable" testcasecount="1" result="Passed" start-time="2026-11-15 10:50:34Z" end-time="2026-11-15 10:50:39Z" duration="5.160884" total="1" passed="1" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1002" name="DashAndDeathFramesPlayBeforeSmoothProtectedReturn" fullname="Sleepwalking.Tests.PlayMode.DeathReturnTests.DashAndDeathFramesPlayBeforeSmoothProtectedReturn" methodname="DashAndDeathFramesPlayBeforeSmoothProtectedReturn" classname="Sleepwalking.Tests.PlayMode.DeathReturnTests" runstate="Runnable" seed="1676157052" result="Passed" start-time="2026-11-15 10:50:34Z" end-time="2026-11-15 10:50:39Z" duration="5.151715" asserts="0">
+                <properties>
+                  <property name="_JOINTYPE" value="UnityCombinatorial" />
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-suite type="TestFixture" id="1031" name="RoomBedAwakeAnimationTests" fullname="Sleepwalking.Tests.PlayMode.RoomBedAwakeAnimationTests" classname="Sleepwalking.Tests.PlayMode.RoomBedAwakeAnimationTests" runstate="Runnable" testcasecount="1" result="Passed" start-time="2026-11-15 10:50:39Z" end-time="2026-11-15 10:50:39Z" duration="0.430538" total="1" passed="1" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1032" name="BedBreathesBeforeFirstDreamThenLooksBackAndForth" fullname="Sleepwalking.Tests.PlayMode.RoomBedAwakeAnimationTests.BedBreathesBeforeFirstDreamThenLooksBackAndForth" methodname="BedBreathesBeforeFirstDreamThenLooksBackAndForth" classname="Sleepwalking.Tests.PlayMode.RoomBedAwakeAnimationTests" runstate="Runnable" seed="823100120" result="Passed" start-time="2026-11-15 10:50:39Z" end-time="2026-11-15 10:50:39Z" duration="0.429303" asserts="0">
+                <properties>
+                  <property name="_JOINTYPE" value="UnityCombinatorial" />
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-suite type="TestFixture" id="1091" name="SleepwalkingMechanismPhysicsTests" fullname="Sleepwalking.Tests.PlayMode.SleepwalkingMechanismPhysicsTests" classname="Sleepwalking.Tests.PlayMode.SleepwalkingMechanismPhysicsTests" runstate="Runnable" testcasecount="4" result="Failed" site="Child" start-time="2026-11-15 10:50:39Z" end-time="2026-11-15 10:50:45Z" duration="5.964476" total="1" passed="0" failed="1" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="1092" name="L05TimedPlatformAlternatesCollision" fullname="Sleepwalking.Tests.PlayMode.SleepwalkingMechanismPhysicsTests.L05TimedPlatformAlternatesCollision" methodname="L05TimedPlatformAlternatesCollision" classname="Sleepwalking.Tests.PlayMode.SleepwalkingMechanismPhysicsTests" runstate="Runnable" seed="484940661" result="Failed" start-time="2026-11-15 10:50:39Z" end-time="2026-11-15 10:50:45Z" duration="5.959700" asserts="0">
+                <properties>
+                  <property name="_JOINTYPE" value="UnityCombinatorial" />
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  The warning tile must blink before collision disappears.
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at Sleepwalking.Tests.PlayMode.SleepwalkingMechanismPhysicsTests+<L05TimedPlatformAlternatesCollision>d__7.MoveNext () [0x0026d] in T:\Sleepwalking\Assets\SleepwalkingTests\PlayMode\SleepwalkingMechanismPhysicsTests.cs:49
+at UnityEngine.TestTools.TestEnumerator+<Execute>d__7.MoveNext () [0x0003a] in .\Library\PackageCache\com.unity.test-framework@bd7f943e9647\UnityEngine.TestRunner\NUnitExtensions\Attributes\TestEnumerator.cs:44
+]]></stack-trace>
+                </failure>
+                <output><![CDATA[Saving results to: C:/Users/TIMBUHTUK/AppData/LocalLow/DefaultCompany/Sleepwalking\TestResults.xml
+]]></output>
+              </test-case>
+            </test-suite>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

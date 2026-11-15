@@ -120,7 +120,8 @@ namespace Sleepwalking.Tests.PlayMode
             Assert.That((bool)playerType.GetProperty("IsReturning").GetValue(player), Is.True);
             Assert.That((bool)playerType.GetField("ControlsEnabled").GetValue(player), Is.False);
             Assert.That(body.simulated, Is.False);
-            Assert.That(animated.sprite.name, Does.Contain("S_PizdukIdle_"));
+            Assert.That(animated.sprite.name, Does.EndWith("S_Pizduk_Death_8"),
+                "The last death frame must remain visible during the return.");
             Assert.That(dreamer.transform.position.x, Is.LessThan(impactPosition.x - .2f * unit));
             Assert.That(dreamer.transform.position.x, Is.GreaterThan(spawn.x + .2f * unit));
             Assert.That(camera.transform.position.x, Is.LessThan(farCameraX - .2f * unit));
@@ -129,13 +130,17 @@ namespace Sleepwalking.Tests.PlayMode
                 "A second death was counted during the return.");
             Capture(camera, "death-return-playmode");
 
+            bool sawReverseAtSpawn = false;
             deadline = Time.realtimeSinceStartup + 3f;
             while ((bool)gameType.GetField("dying", privateInstance).GetValue(game) &&
                 Time.realtimeSinceStartup < deadline)
             {
+                if (Vector3.Distance(dreamer.transform.position, spawn) < .15f * unit &&
+                    animated.sprite.name.EndsWith("S_Pizduk_Death_7")) sawReverseAtSpawn = true;
                 Record(timeline, deathStarted, dreamer, camera);
                 yield return null;
             }
+            Assert.That(sawReverseAtSpawn, Is.True, "Death must rewind only after arrival at spawn.");
             Record(timeline, deathStarted, dreamer, camera);
             string project = Path.GetFullPath(Path.Combine(Application.dataPath, ".."));
             File.WriteAllLines(Path.Combine(project, "Docs", "QA", "death-return-timeline.csv"), timeline);

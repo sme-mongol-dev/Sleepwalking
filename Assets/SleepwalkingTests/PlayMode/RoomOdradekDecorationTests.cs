@@ -41,9 +41,16 @@ namespace Sleepwalking.Tests.PlayMode
                 Assert.That(ids.Add(id), Is.True, "Duplicate decoration id: " + id);
             }
             foreach (string required in new[] { "Window", "Nightstand", "Calendar", "Poster",
-                "Big Clock Arrow", "Small Clock Arrow", "Slippers", "Eye", "Eyeball",
-                "Calendar 2", "Calendar 3", "Bed Look 08", "Crack 5" })
+                "Big Clock Arrow", "Small Clock Arrow", "Slippers", "Eye",
+                "Calendar 2", "Calendar 3", "Bed Look 08", "Crack 4 Stage 1", "Crack 5 Stage 3" })
                 Assert.That(names, Does.Contain(required));
+            Assert.That(ids, Does.Not.Contain("eyeball"));
+            Assert.That(ids, Does.Not.Contain("crack.1"));
+            Transform eye = room.transform.Find("Eye");
+            Transform pupil = eye?.Find("Eyeball");
+            Assert.That(pupil, Is.Not.Null, "Eye and pupil must share one Odradek object.");
+            MonoBehaviour tracker = FindComponent(eye.gameObject, "Sleepwalking.Visual.RoomEyeTracker");
+            Assert.That(tracker, Is.Not.Null);
 
             FieldInfo odradek = game.GetType().GetField("odradek", BindingFlags.Instance | BindingFlags.NonPublic);
             Camera camera = (Camera)game.GetType().GetField("GameCamera").GetValue(game);
@@ -55,7 +62,6 @@ namespace Sleepwalking.Tests.PlayMode
                 odradek.SetValue(game, value);
                 yield return null;
                 Assert.That((int)environment.GetType().GetProperty("CurrentOdradek").GetValue(environment), Is.EqualTo(value));
-                int cracks = 0;
                 foreach (object decoration in decorations)
                 {
                     Type type = decoration.GetType();
@@ -68,12 +74,12 @@ namespace Sleepwalking.Tests.PlayMode
                     if (Convert.ToInt32(type.GetField("Mode").GetValue(decoration)) != 0) continue;
                     bool active = value >= minimum && value <= maximum;
                     Assert.That(instance.activeSelf, Is.EqualTo(active), name + " at " + value);
-                    if (group == "cracks" && active) cracks++;
                 }
-                Assert.That(cracks, Is.EqualTo(value == 1 ? 0 : value == 50 ? 2 : value == 75 ? 3 : 5));
                 AssertVariant(decorations, "poster", value, 1);
                 AssertVariant(decorations, "calendar", value, value == 1 ? 0 : 1);
                 AssertVariant(decorations, "bed", value, 1);
+                AssertVariant(decorations, "crack.4", value, value == 100 ? 1 : 0);
+                AssertVariant(decorations, "crack.5", value, value == 100 ? 1 : 0);
 
                 int hotspots = 0;
                 foreach (MonoBehaviour component in room.GetComponentsInChildren<MonoBehaviour>(true))
@@ -86,17 +92,36 @@ namespace Sleepwalking.Tests.PlayMode
                 CaptureRoom(camera, value);
             }
 
+            foreach (var growth in new[] { (80, .3f, "Crack 4"), (85, .6f, "Crack 4"),
+                (90, 1f, "Crack 4"), (95, .3f, "Crack 5"), (97, .6f, "Crack 5"),
+                (99, 1f, "Crack 5") })
+            {
+                odradek.SetValue(game, growth.Item1);
+                yield return null;
+                Transform crack = room.transform.Find(growth.Item3);
+                Assert.That(crack.gameObject.activeSelf, Is.True);
+                Assert.That(crack.localScale.x, Is.EqualTo(1.92f * growth.Item2).Within(.001f));
+            }
+            odradek.SetValue(game, 100);
+            yield return null;
+            Vector3 pupilStart = pupil.localPosition;
+            MethodInfo look = tracker.GetType().GetMethod("LookAtWorld");
+            for (int q = 0; q < 12; q++) look.Invoke(tracker, new object[] { (Vector2)(eye.position + Vector3.right * 10f) });
+            Assert.That(pupil.localPosition.x, Is.GreaterThan(pupilStart.x + .01f));
+            for (int q = 0; q < 24; q++) look.Invoke(tracker, new object[] { (Vector2)(eye.position + Vector3.left * 10f) });
+            Assert.That(pupil.localPosition.x, Is.LessThan(pupilStart.x - .01f));
+
             MethodInfo applyJson = environment.GetType().GetMethod("TryApplyJson");
             object[] invalid = { "{\"version\":1,\"decorations\":[{\"id\":\"bed.base\",\"group\":\"bed\",\"min\":1,\"max\":12,\"asset\":\"crack.1\"}]}", null };
             Assert.That((bool)applyJson.Invoke(environment, invalid), Is.False);
             Assert.That((string)invalid[1], Does.Contain("asset"));
 
-            object[] update = { "{\"version\":1,\"decorations\":[{\"id\":\"crack.1\",\"group\":\"cracks\",\"min\":95,\"max\":100,\"asset\":\"crack.1\"}]}", null };
+            object[] update = { "{\"version\":1,\"decorations\":[{\"id\":\"crack.4.stage1\",\"group\":\"crack.4\",\"min\":81,\"max\":84,\"asset\":\"crack.4\"}]}", null };
             Assert.That((bool)applyJson.Invoke(environment, update), Is.True, update[1]?.ToString());
-            odradek.SetValue(game, 50);
+            odradek.SetValue(game, 80);
             yield return null;
             foreach (object decoration in decorations)
-                if ((string)decoration.GetType().GetField("Id").GetValue(decoration) == "crack.1")
+                if ((string)decoration.GetType().GetField("Id").GetValue(decoration) == "crack.4.stage1")
                     Assert.That(((GameObject)decoration.GetType().GetField("Instance").GetValue(decoration)).activeSelf,
                         Is.False, "JSON threshold must apply without rebuilding C#.");
 

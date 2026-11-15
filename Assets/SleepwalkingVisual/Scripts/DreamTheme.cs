@@ -20,13 +20,16 @@ namespace Sleepwalking.Visual
         public Sprite SawArt;
         public Sprite ButtonUpArt;
         public Sprite ButtonDownArt;
+        public Sprite WarningArt;
         public Sprite BedArt;
+        public float FloorSeatPixels => Id == DreamThemeId.Meat ? 3f :
+            Id == DreamThemeId.PostApocalypse ? 2f :
+            Id == DreamThemeId.DeepWater ? 8f : 6f;
 
         readonly List<(Collider2D shape, Renderer[] oldRenderers, SpriteRenderer art)> hazardArt =
             new List<(Collider2D, Renderer[], SpriteRenderer)>();
-        readonly List<(SleepwalkingMechanism mechanism, Renderer[] oldRenderers, SpriteRenderer art,
-            SpriteRenderer outline)> buttonArt =
-            new List<(SleepwalkingMechanism, Renderer[], SpriteRenderer, SpriteRenderer)>();
+        readonly List<(SleepwalkingMechanism mechanism, Renderer[] oldRenderers, SpriteRenderer art)> buttonArt =
+            new List<(SleepwalkingMechanism, Renderer[], SpriteRenderer)>();
         readonly List<Renderer> tileBackings = new List<Renderer>();
         readonly List<Renderer> bedBackings = new List<Renderer>();
         readonly List<SpriteRenderer> bedSprites = new List<SpriteRenderer>();
@@ -54,7 +57,6 @@ namespace Sleepwalking.Visual
         }
 
         static readonly Mesh[] tileMeshes = new Mesh[9];
-        static Sprite buttonOutlineSprite;
         static readonly Dictionary<(Vector2, Vector2, int, int), Mesh> shellMeshes =
             new Dictionary<(Vector2, Vector2, int, int), Mesh>();
         const float GridPitch = 32f;
@@ -79,6 +81,7 @@ namespace Sleepwalking.Visual
 
             ApplyHazardArt(geometryRoot.parent);
             ApplyButtonArt(geometryRoot.parent);
+            ApplyTimedWarningArt(geometryRoot.parent);
             ApplyBedArt(geometryRoot);
             Transform oldWallCue = geometryRoot.parent.Find("Readability/WallGrip_Cue");
             if (oldWallCue != null)
@@ -370,7 +373,8 @@ namespace Sleepwalking.Visual
                 float heightScale = Mathf.Max(.001f, Mathf.Abs(feature.transform.lossyScale.y));
                 // В исходном кадре кнопка занимает лишь нижние 9 из 32 пикселей.
                 // Увеличиваем рисунок, оставляя его нижнюю кромку на прежнем полу.
-                node.transform.localPosition = new Vector3(0f, .63f * cellScale / heightScale, -.9f);
+                node.transform.localPosition = new Vector3(0f,
+                    (.63f - FloorSeatPixels / 32f) * cellScale / heightScale, -.9f);
                 node.transform.localRotation = Quaternion.identity;
                 node.transform.localScale = new Vector3(.9f * cellScale / widthScale,
                     1.5f * cellScale / heightScale, 1f);
@@ -379,36 +383,37 @@ namespace Sleepwalking.Visual
                 art.color = Color.white;
                 art.sortingOrder = 10;
                 Transform existingOutline = feature.transform.Find("Dream Button Outline");
-                GameObject outlineNode = existingOutline != null ? existingOutline.gameObject :
-                    new GameObject("Dream Button Outline", typeof(SpriteRenderer));
-                if (existingOutline == null) outlineNode.transform.SetParent(feature.transform, false);
-                outlineNode.transform.localPosition = new Vector3(0f, .13f * cellScale / heightScale, -.88f);
-                outlineNode.transform.localRotation = Quaternion.identity;
-                outlineNode.transform.localScale = new Vector3(.95f * cellScale / widthScale,
-                    .50f * cellScale / heightScale, 1f);
-                SpriteRenderer outline = outlineNode.GetComponent<SpriteRenderer>();
-                outline.sprite = ButtonOutlineSprite();
-                outline.sortingOrder = 9;
+                if (existingOutline != null) existingOutline.gameObject.SetActive(false);
                 buttonArt.Add((feature.GetComponent<SleepwalkingMechanism>(),
-                    feature.GetComponentsInChildren<Renderer>(true), art, outline));
+                    feature.GetComponentsInChildren<Renderer>(true), art));
             }
             UpdateButtonArt();
         }
 
-        static Sprite ButtonOutlineSprite()
+        void ApplyTimedWarningArt(Transform levelRoot)
         {
-            if (buttonOutlineSprite != null) return buttonOutlineSprite;
-            Texture2D texture = new Texture2D(16, 16, TextureFormat.RGBA32, false);
-            texture.name = "Dream Button Outline";
-            texture.filterMode = FilterMode.Point;
-            for (int y = 0; y < 16; y++)
-                for (int x = 0; x < 16; x++)
-                    texture.SetPixel(x, y, x == 0 || x == 15 || y == 0 || y == 15 ? Color.white : Color.clear);
-            texture.Apply();
-            buttonOutlineSprite = Sprite.Create(texture, new Rect(0, 0, 16, 16),
-                new Vector2(.5f, .5f), 16f);
-            buttonOutlineSprite.name = "Dream Button Outline";
-            return buttonOutlineSprite;
+            if (WarningArt == null) return;
+            foreach (SleepwalkingLevelFeature feature in levelRoot.GetComponentsInChildren<SleepwalkingLevelFeature>(true))
+            {
+                if (feature.Kind != LevelFeatureKind.TimedPlatform) continue;
+                float widthScale = Mathf.Max(.001f, Mathf.Abs(feature.transform.lossyScale.x));
+                float heightScale = Mathf.Max(.001f, Mathf.Abs(feature.transform.lossyScale.y));
+                float cellScale = Mathf.Max(.001f, Mathf.Abs(levelRoot.lossyScale.x));
+                for (int q = 0; q < 2; q++)
+                {
+                    string name = "Dream Warning Art " + q;
+                    Transform existing = feature.transform.Find(name);
+                    GameObject node = existing != null ? existing.gameObject : new GameObject(name, typeof(SpriteRenderer));
+                    if (existing == null) node.transform.SetParent(feature.transform, false);
+                    node.transform.localPosition = new Vector3(q == 0 ? -.25f : .25f, 0f, -.92f);
+                    node.transform.localRotation = Quaternion.identity;
+                    node.transform.localScale = new Vector3(cellScale / widthScale, cellScale / heightScale, 1f);
+                    SpriteRenderer art = node.GetComponent<SpriteRenderer>();
+                    art.sprite = WarningArt;
+                    art.sortingOrder = 12;
+                    art.enabled = false;
+                }
+            }
         }
 
         void ApplyBedArt(Transform geometryRoot)
@@ -452,10 +457,7 @@ namespace Sleepwalking.Visual
                     float left = support.min.x + halfWidth;
                     float right = support.max.x - halfWidth;
                     if (left <= right) bedX = Mathf.Clamp(bedX, left, right);
-                    float insetPixels = Id == DreamThemeId.Meat ? 3f :
-                        Id == DreamThemeId.PostApocalypse ? 2f :
-                        Id == DreamThemeId.DeepWater ? 8f : 6f;
-                    floorY = support.max.y - insetPixels * Mathf.Abs(bed.lossyScale.y) / 32f;
+                    floorY = support.max.y - FloorSeatPixels * Mathf.Abs(bed.lossyScale.y) / 32f;
                 }
                 Vector3 center = bed.InverseTransformPoint(new Vector3(bedX, floorY + halfHeight, bed.position.z));
                 node.transform.localPosition = new Vector3(center.x, center.y, -.9f);
@@ -491,19 +493,11 @@ namespace Sleepwalking.Visual
             {
                 if (item.art == null) continue;
                 foreach (Renderer renderer in item.oldRenderers)
-                    if (renderer != null && renderer != item.art && renderer != item.outline)
+                    if (renderer != null && renderer != item.art)
                         renderer.enabled = false;
                 bool pressed = item.mechanism != null && item.mechanism.IsPressed;
                 item.art.sprite = pressed ? ButtonDownArt : ButtonUpArt;
                 item.art.color = Color.white;
-                if (item.outline != null)
-                {
-                    item.outline.enabled = true;
-                    item.outline.color = pressed ? new Color(1f, .88f, .42f, 1f) :
-                        Id == DreamThemeId.Heaven ? new Color(.26f, .35f, .53f, 1f) :
-                        Id == DreamThemeId.DeepWater ? new Color(.58f, .84f, .87f, 1f) :
-                        new Color(.94f, .83f, .71f, 1f);
-                }
             }
         }
 

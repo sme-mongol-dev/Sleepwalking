@@ -32,6 +32,16 @@ namespace Sleepwalking.Visual
         Motion motion;
         int frame;
         float elapsed;
+        bool reversingDeath;
+        public bool DeathReverseComplete => !reversingDeath;
+
+        public void BeginDeathReverse()
+        {
+            reversingDeath = true;
+            motion = Motion.Death;
+            frame = FrameCounts[(int)Motion.Death] - 1;
+            elapsed = 0f;
+        }
 
         void LateUpdate()
         {
@@ -52,16 +62,21 @@ namespace Sleepwalking.Visual
                 {
                     elapsed -= interval;
                     int count = FrameCounts[(int)motion];
-                    frame = motion == Motion.Jump || motion == Motion.Dash || motion == Motion.Death ?
-                        Mathf.Min(frame + 1, count - 1) : (frame + 1) % count;
+                    if (reversingDeath)
+                    {
+                        frame = Mathf.Max(0, frame - 1);
+                        if (frame == 0) { reversingDeath = false; break; }
+                    }
+                    else
+                        frame = motion == Motion.Jump || motion == Motion.Dash || motion == Motion.Death ?
+                            Mathf.Min(frame + 1, count - 1) : (frame + 1) % count;
                 }
             }
 
             Sprite[] sequence = frames[(int)motion];
             visual.sprite = sequence != null ? sequence[frame] : TemporarySprite;
             visual.flipX = original.flipX;
-            visual.color = player.IsReturning ? new Color(1f, 1f, 1f, .65f) :
-                motion != Motion.Death && !player.ControlsEnabled && original.color.g < .4f
+            visual.color = motion != Motion.Death && !player.ControlsEnabled && original.color.g < .4f
                 ? new Color(1f, .25f, .25f)
                 : Color.white;
         }
@@ -81,7 +96,9 @@ namespace Sleepwalking.Visual
 
             GameObject child = new GameObject("Dreamer Animation", typeof(SpriteRenderer));
             child.transform.SetParent(dreamer.transform, false);
-            child.transform.localPosition = new Vector3(0f, 0f, -.05f);
+            DreamTheme theme = GetComponent<DreamTheme>();
+            child.transform.localPosition = new Vector3(0f,
+                theme != null ? -theme.FloorSeatPixels / 32f : 0f, -.05f);
             // The collider is .55 cells wide. The art occupies about half of each 64 px frame.
             child.transform.localScale = new Vector3(1.7f, 1f, 1f);
             visual = child.GetComponent<SpriteRenderer>();
@@ -94,8 +111,7 @@ namespace Sleepwalking.Visual
 
         Motion CurrentMotion()
         {
-            if (player.IsImpact) return Motion.Death;
-            if (player.IsReturning) return Motion.Idle;
+            if (reversingDeath || player.IsImpact || player.IsReturning) return Motion.Death;
             if (player.IsDashing) return Motion.Dash;
             if (!player.ControlsEnabled) return Motion.Idle;
             Vector2 velocity = body.linearVelocity;

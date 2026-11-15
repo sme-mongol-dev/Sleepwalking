@@ -27,18 +27,36 @@ namespace Sleepwalking.Tests.PlayMode
             Type type = platform.GetType();
             float activeSeconds = (float)type.GetField("ActiveSeconds").GetValue(platform);
             float cycleSeconds = (float)type.GetField("CycleSeconds").GetValue(platform);
-            Assert.That(activeSeconds, Is.EqualTo(2.8f).Within(.001f));
-            Assert.That(cycleSeconds, Is.EqualTo(4f).Within(.001f));
+            Assert.That(activeSeconds, Is.EqualTo(5.5f).Within(.001f));
+            Assert.That(cycleSeconds, Is.EqualTo(7f).Within(.001f));
 
             Collider2D shape = platform.GetComponent<Collider2D>();
             Assert.That(shape, Is.Not.Null);
             type.GetMethod("ResetMechanism").Invoke(platform, null);
             yield return null;
             Assert.That(shape.enabled, Is.True, "L05 timed platform must start active.");
-            yield return new WaitForSecondsRealtime(3f);
-            Assert.That(shape.enabled, Is.False, "L05 timed platform must be inactive after 2.8 seconds.");
-            yield return new WaitForSecondsRealtime(1.2f);
-            Assert.That(shape.enabled, Is.True, "L05 timed platform must reactivate in the next 4-second cycle.");
+            Transform warning = platform.transform.Find("Dream Warning Art 0");
+            Assert.That(warning, Is.Not.Null, "The supplied warning tile must cover timed platforms.");
+            SpriteRenderer warningArt = warning.GetComponent<SpriteRenderer>();
+            Assert.That(warningArt.sprite, Is.Not.Null);
+            yield return new WaitForSecondsRealtime(activeSeconds - .7f);
+            bool flashed = false;
+            for (int q = 0; q < 15; q++)
+            {
+                flashed |= warningArt.enabled;
+                yield return null;
+            }
+            Assert.That(flashed, Is.True, "The warning tile must blink before collision disappears.");
+            yield return new WaitForSecondsRealtime(1f);
+            Assert.That(shape.enabled, Is.False, "L05 timed platform must be inactive after 5.5 seconds.");
+            MeshRenderer tiles = platform.transform.Find("Dream Tiles")?.GetComponent<MeshRenderer>();
+            Assert.That(tiles, Is.Not.Null);
+            Assert.That(tiles.enabled, Is.True, "Inactive platform must remain visible.");
+            var properties = new MaterialPropertyBlock();
+            tiles.GetPropertyBlock(properties);
+            Assert.That(properties.GetFloat("_Opacity"), Is.EqualTo(.42f).Within(.01f));
+            yield return new WaitForSecondsRealtime(cycleSeconds - activeSeconds + .5f);
+            Assert.That(shape.enabled, Is.True, "L05 timed platform must reactivate in the next 7-second cycle.");
             LogAssert.NoUnexpectedReceived();
         }
 
@@ -151,15 +169,13 @@ namespace Sleepwalking.Tests.PlayMode
         IEnumerator OpenLevel(int number)
         {
             yield return LoadScene();
-            for (int q = 1; q <= number; q++)
-            {
-                startDream.Invoke(game, null);
-                yield return WaitForDream(true);
-                Assert.That(GameObject.Find("Dream L" + q.ToString("00")), Is.Not.Null);
-                if (q == number) yield break;
-                completeDream.Invoke(game, null);
-                yield return WaitForDream(false);
-            }
+            gameType.GetField("completedDreams", BindingFlags.Instance | BindingFlags.NonPublic)
+                .SetValue(game, number - 1);
+            gameType.GetField("tutorialStage", BindingFlags.Instance | BindingFlags.NonPublic)
+                .SetValue(game, 2);
+            startDream.Invoke(game, null);
+            yield return WaitForDream(true);
+            Assert.That(GameObject.Find("Dream L" + number.ToString("00")), Is.Not.Null);
         }
 
         IEnumerator LoadScene()

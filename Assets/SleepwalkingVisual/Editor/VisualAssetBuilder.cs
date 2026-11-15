@@ -22,6 +22,14 @@ namespace Sleepwalking.Visual.Editor
         public const string MenuRoomPrefab = Root + "/Prefabs/SleepwalkingMenuRoom.prefab";
         static Material background, panel, frame, shadow, text, secondary, accent, hover, pressed, blue, heaven;
 
+        [MenuItem("Sleepwalking/Build Current Windows Player")]
+        public static void BuildCurrentWindows()
+        {
+            AssetDatabase.Refresh();
+            ApplyTimedWarningArt();
+            SleepwalkingGameplayBuilder.BuildWindows();
+        }
+
         [MenuItem("Sleepwalking/Build Visual Assets")]
         public static void Build()
         {
@@ -32,6 +40,7 @@ namespace Sleepwalking.Visual.Editor
             ImportEnvironmentSprites();
             ImportLaserSprites();
             ImportButtonSprites();
+            ImportWarningSprite();
             ImportBedSprites();
             BuildTemporaryDreamerSprite();
             LoadMaterials();
@@ -54,6 +63,7 @@ namespace Sleepwalking.Visual.Editor
             ImportEnvironmentSprites();
             ImportLaserSprites();
             ImportButtonSprites();
+            ImportWarningSprite();
             ImportBedSprites();
             BuildTemporaryDreamerSprite();
             LoadMaterials();
@@ -111,6 +121,25 @@ namespace Sleepwalking.Visual.Editor
             }
             AssetDatabase.SaveAssets();
             Debug.Log("Button sprites assigned to four dream themes.");
+        }
+
+        [MenuItem("Sleepwalking/Visual/Apply Timed Warning Art")]
+        public static void ApplyTimedWarningArt()
+        {
+            ImportWarningSprite();
+            foreach (DreamThemeId id in new[] { DreamThemeId.Meat, DreamThemeId.PostApocalypse,
+                DreamThemeId.DeepWater, DreamThemeId.Heaven })
+            {
+                string path = Root + "/Prefabs/Themes/" + id + ".prefab";
+                GameObject prefab = PrefabUtility.LoadPrefabContents(path);
+                try
+                {
+                    AssignWarningSprite(prefab.GetComponent<DreamTheme>());
+                    PrefabUtility.SaveAsPrefabAsset(prefab, path);
+                }
+                finally { PrefabUtility.UnloadPrefabContents(prefab); }
+            }
+            AssetDatabase.SaveAssets();
         }
 
         [MenuItem("Sleepwalking/Visual/Apply Dream Beds")]
@@ -202,6 +231,32 @@ namespace Sleepwalking.Visual.Editor
             }
             if (theme.ButtonUpArt == null || theme.ButtonDownArt == null)
                 throw new System.InvalidOperationException("Button sprites incomplete: " + path);
+            EditorUtility.SetDirty(theme);
+        }
+
+        static void ImportWarningSprite()
+        {
+            string path = Root + "/Textures/Environment/TL_Warning.png";
+            TextureImporter importer = AssetImporter.GetAtPath(path) as TextureImporter;
+            if (importer == null) throw new System.InvalidOperationException("Timed warning texture missing: " + path);
+            importer.textureType = TextureImporterType.Sprite;
+            importer.spriteImportMode = SpriteImportMode.Single;
+            importer.spritePixelsPerUnit = 32;
+            importer.filterMode = FilterMode.Point;
+            importer.mipmapEnabled = false;
+            importer.textureCompression = TextureImporterCompression.Uncompressed;
+            importer.npotScale = TextureImporterNPOTScale.None;
+            importer.wrapMode = TextureWrapMode.Clamp;
+            importer.alphaIsTransparency = true;
+            importer.SaveAndReimport();
+        }
+
+        static void AssignWarningSprite(DreamTheme theme)
+        {
+            if (theme == null) throw new System.InvalidOperationException("DreamTheme component missing.");
+            string path = Root + "/Textures/Environment/TL_Warning.png";
+            theme.WarningArt = AssetDatabase.LoadAssetAtPath<Sprite>(path);
+            if (theme.WarningArt == null) throw new System.InvalidOperationException("Timed warning sprite missing: " + path);
             EditorUtility.SetDirty(theme);
         }
 
@@ -347,6 +402,11 @@ namespace Sleepwalking.Visual.Editor
         [MenuItem("Sleepwalking/Build Textured Menu")]
         public static void BuildTexturedMenu()
         {
+            if (AssetDatabase.LoadAssetAtPath<GameObject>(MenuRoomPrefab) != null)
+            {
+                Debug.Log("Saved menu room retained; textured menu generation only creates a missing prefab.");
+                return;
+            }
             List<RoomOdradekDecoration> previousDecorations = GetPreviousMenuDecorations();
             LoadMaterials();
             GameObject room = new GameObject("Sleepwalking Menu Room");
@@ -361,9 +421,9 @@ namespace Sleepwalking.Visual.Editor
 
                 MeshRenderer bed = MenuArtwork(root, "Bed", "BoyAndBed", new Vector3(-3.2f, -.18f, 0), .032f, true);
                 MeshRenderer books = MenuArtwork(root, "Books", "Books", new Vector3(-4.9f, 2.52f, 0), .032f, true);
-                MeshRenderer clock = MenuArtwork(root, "Clock", "Clock", new Vector3(.15f, 2.65f, 0), .024f, true);
+                MeshRenderer clock = MenuArtwork(root, "Clock", "Clock", new Vector3(.15f, 3.4f, 0), .024f, true);
                 MeshRenderer door = MenuArtwork(root, "Door", "Door", new Vector3(6.48f, .9f, 0), .020f, true);
-                MeshRenderer calendar = MenuArtwork(root, "Calendar", "Calendar", new Vector3(5.18f, 4.62f, .4f), .013f);
+                MeshRenderer calendar = MenuArtwork(root, "Calendar", "Calendar", new Vector3(6.45f, 2.75f, -.03f), .013f);
                 MeshRenderer window = MenuArtwork(root, "Window", "Window", new Vector3(3.05f, 2.03f, .5f), .027f);
                 MeshRenderer nightstand = MenuArtwork(root, "Nightstand", "Tymba", new Vector3(3.05f, .32f, .3f), .022f);
                 GameObject clockHands = Group(clock.transform, "Clock Hands", new Vector3(0, 0, -.02f));
@@ -384,6 +444,8 @@ namespace Sleepwalking.Visual.Editor
                     new Vector3(2.5f, 2.75f, .35f), .017f);
                 MeshRenderer eyeball = MenuDecorArtwork(root, "Eyeball", "Eyeball",
                     new Vector3(2.5f, 2.75f, .32f), .017f);
+                eyeball.transform.SetParent(eye.transform, true);
+                eye.gameObject.AddComponent<RoomEyeTracker>().Pupil = eyeball.transform;
 
                 AddOdradekDecoration(environment, "Window", window.gameObject, 1,
                     id: "window", group: "props", asset: "menu.window");
@@ -420,8 +482,6 @@ namespace Sleepwalking.Visual.Editor
                     id: "slippers", group: "props", asset: "slippers");
                 AddOdradekDecoration(environment, "Eye", eye.gameObject, 55, 1,
                     id: "eye", group: "props", asset: "eye");
-                AddOdradekDecoration(environment, "Eyeball", eyeball.gameObject, 75, 2,
-                    id: "eyeball", group: "props", asset: "eyeball");
 
                 AddOdradekDecoration(environment, "Bed", bed.gameObject, 1,
                     id: "bed.base", group: "bed", maxOdradek: 12, asset: "bed.base",
@@ -442,24 +502,28 @@ namespace Sleepwalking.Visual.Editor
                 RoomBedAwakeAnimation bedAnimation = bed.gameObject.AddComponent<RoomBedAwakeAnimation>();
                 bedAnimation.Artwork = bed;
                 bedAnimation.Frames = bedFrames;
-                // Последний кадр спит; проигрываем пробуждение назад, затем повторяем открытые глаза.
-                bedAnimation.LoopStartFrame = 2;
-                bedAnimation.LoopEndFrame = 6;
+                bedAnimation.SleepingFrames = new Texture2D[8];
+                for (int q = 0; q < bedAnimation.SleepingFrames.Length; q++)
+                    bedAnimation.SleepingFrames[q] = LoadMenuTexture(Root + "/Textures/MenuDecor/BedBreath" +
+                        (q + 1).ToString("00") + ".png");
 
-                Vector3[] crackPositions =
+                for (int number = 4; number <= 5; number++)
                 {
-                    new Vector3(-6.2f, 4.25f, 1.2f), new Vector3(-3.1f, 4.55f, 1.2f),
-                    new Vector3(1.65f, 4.45f, 1.2f), new Vector3(4.75f, 4.35f, 1.2f),
-                    new Vector3(6.5f, 4.75f, 1.2f)
-                };
-                for (int q = 0; q < crackPositions.Length; q++)
-                {
-                    int number = q + 1;
                     MeshRenderer crack = MenuDecorArtwork(root, "Crack " + number, "Crack" + number,
-                        crackPositions[q], .03f);
-                    string id = "crack." + number;
-                    AddOdradekDecoration(environment, "Crack " + number, crack.gameObject,
-                        35 + q * 15, id: id, group: "cracks", asset: id);
+                        number == 4 ? new Vector3(4.75f, 4.35f, 1.2f) :
+                            new Vector3(6.5f, 4.75f, 1.2f), .03f);
+                    Vector3 fullScale = crack.transform.localScale;
+                    int[] minimums = number == 4 ? new[] { 80, 85, 90 } : new[] { 95, 97, 99 };
+                    float[] scaleFactors = { .3f, .6f, 1f };
+                    for (int stage = 0; stage < 3; stage++)
+                    {
+                        AddOdradekDecoration(environment, "Crack " + number + " Stage " + (stage + 1),
+                            crack.gameObject, minimums[stage], id: "crack." + number + ".stage" + (stage + 1),
+                            group: "crack." + number, maxOdradek: stage == 2 ? 100 : minimums[stage + 1] - 1,
+                            asset: "crack." + number, mode: RoomDecorationMode.Variant);
+                        environment.Decorations[environment.Decorations.Count - 1].LocalScale =
+                            fullScale * scaleFactors[stage];
+                    }
                 }
                 RestoreMenuDecorations(environment, previousDecorations);
                 RoomDynamicLighting.Apply(room);
@@ -501,7 +565,9 @@ namespace Sleepwalking.Visual.Editor
         static MeshRenderer MenuDecorArtwork(Transform parent, string name, string textureName,
             Vector3 position, float unitsPerPixel)
         {
-            Texture2D texture = LoadMenuTexture(Root + "/Textures/MenuDecor/" + textureName + ".png");
+            string folder = textureName == "Crack4" || textureName == "Crack5" ?
+                "/Textures/Source/MenuDecor/" : "/Textures/MenuDecor/";
+            Texture2D texture = LoadMenuTexture(Root + folder + textureName + ".png");
             Material material = AtlasMaterial("MenuDecor_" + textureName, Shader.Find("Sleepwalking/PixelCutout"),
                 texture, Vector2.one, Vector2.zero);
             return TexturedQuad(parent, name, position,
@@ -584,7 +650,7 @@ namespace Sleepwalking.Visual.Editor
                     current.Texture = row.Texture;
                     current.Mode = row.Mode;
                 }
-                current.LocalPosition = row.LocalPosition;
+                if (row.Group != "calendar") current.LocalPosition = row.LocalPosition;
                 current.LocalEulerAngles = row.LocalEulerAngles;
                 current.LocalScale = row.LocalScale;
                 current.SortingOrder = row.SortingOrder;
@@ -1441,6 +1507,7 @@ namespace Sleepwalking.Visual.Editor
             theme.Tiles = AtlasMaterial("DreamTiles_" + id, tileShader, atlas, Vector2.one, Vector2.zero);
             AssignEnvironmentSprites(theme, id);
             AssignButtonSprites(theme);
+            AssignWarningSprite(theme);
             AssignBedSprite(theme, id);
             Sprite dreamerSprite = AssetDatabase.LoadAssetAtPath<Sprite>(Root + "/Textures/Processed/Dreamer_TempSilhouette.png");
             if (dreamerSprite == null) throw new System.InvalidOperationException("Temporary dreamer sprite is missing.");
