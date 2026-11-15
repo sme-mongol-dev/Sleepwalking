@@ -13,6 +13,29 @@ namespace Sleepwalking.Tests.PlayMode
     public sealed class SleepwalkingCycleTests
     {
         [UnityTest]
+        public IEnumerator CreditsShowsDeveloperLinks()
+        {
+            yield return SceneManager.LoadSceneAsync("Assets/Scenes/Sleepwalking.unity");
+            yield return null;
+
+            Transform panel = GameObject.Find("Sleepwalking UI").transform
+                .Find("Sleepwalking Canvas/Credits/Credits Panel");
+            Assert.That(panel, Is.Not.Null);
+            Assert.That(panel.Find("Credits Body"), Is.Null);
+            Assert.That(panel.Find("Developers Label").GetComponent<Text>().text, Is.EqualTo("Developers:"));
+
+            string[] names = { "Timbuhtuk", "Mongol-dev", "Raccoon-Reed", "StuarTTdesa" };
+            foreach (string name in names)
+            {
+                Transform link = panel.Find(name + " Link");
+                Assert.That(link, Is.Not.Null, name);
+                Assert.That(link.GetComponent<Text>().text, Is.EqualTo(name));
+                Assert.That(link.GetComponent<Text>().raycastTarget, Is.True);
+                Assert.That(link.GetComponent<Button>().interactable, Is.True);
+            }
+        }
+
+        [UnityTest]
         public IEnumerator TexturedRoomHighlightsAndOpensEachMenuAction()
         {
             yield return SceneManager.LoadSceneAsync("Assets/Scenes/Sleepwalking.unity");

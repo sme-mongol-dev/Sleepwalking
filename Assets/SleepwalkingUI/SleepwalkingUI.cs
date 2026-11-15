@@ -146,6 +146,7 @@ namespace Sleepwalking
                 BindSettings();
                 LoadFonts();
                 ApplyFonts(savedCanvas);
+                UpdateCreditsContent();
             }
             AudioListener.volume = PlayerPrefs.GetFloat("Sleepwalking.Master", 80f) / 100f;
             UpdateAudioVolumes();
@@ -432,8 +433,62 @@ namespace Sleepwalking
         {
             RectTransform panel = MakePanel((RectTransform)root, "Credits Panel", new Vector2(720, 500), FrameColor);
             Title(panel, "CREDITS", new Vector2(0, 145), new Vector2(600, 100), 64);
-            MakeText(panel, "Credits Body", "SLEEPWALKING GAME JAM PROJECT\n\nAUDIO SOURCES\ntechiew, bart, rubberduck\nSketchMan3, Cleyton Kauffman", bodyFont, 24, SecondaryText, new Vector2(0, 3), new Vector2(620, 230));
+            PopulateCredits(panel);
             ButtonAt(panel, "BACK", UICommand.Back, new Vector2(0, -170), true);
+        }
+
+        public void UpdateCreditsContent()
+        {
+            if (bodyFont == null) LoadFonts();
+            if (credits == null) credits = transform.Find("Sleepwalking Canvas/Credits")?.gameObject;
+            RectTransform panel = credits?.transform.Find("Credits Panel") as RectTransform;
+            if (panel != null) PopulateCredits(panel);
+        }
+
+        void PopulateCredits(RectTransform panel)
+        {
+            Transform old = panel.Find("Credits Body");
+            if (old != null)
+            {
+                if (Application.isPlaying) Destroy(old.gameObject);
+                else DestroyImmediate(old.gameObject);
+            }
+
+            if (panel.Find("Developers Label") == null)
+                MakeText(panel, "Developers Label", "Developers:", bodyFont, 26, SecondaryText,
+                    new Vector2(0, 80), new Vector2(620, 42));
+
+            string[] names = { "Timbuhtuk", "Mongol-dev", "Raccoon-Reed", "StuarTTdesa" };
+            string[] urls =
+            {
+                "https://timbuhtuk.itch.io/",
+                "https://mongol-dev.itch.io/",
+                "https://raccoon-reed.itch.io/",
+                "https://stuarttdesa.itch.io/"
+            };
+            for (int q = 0; q < names.Length; q++)
+            {
+                string name = names[q];
+                string url = urls[q];
+                Text label = panel.Find(name + " Link")?.GetComponent<Text>();
+                if (label == null)
+                    label = MakeText(panel, name + " Link", name, bodyFont, 28, MainText,
+                        new Vector2(0, 30 - q * 47), new Vector2(620, 44));
+                label.text = name;
+                label.raycastTarget = true;
+                Button button = label.GetComponent<Button>();
+                if (button == null) button = label.gameObject.AddComponent<Button>();
+                button.targetGraphic = label;
+                button.transition = Selectable.Transition.ColorTint;
+                ColorBlock colors = ColorBlock.defaultColorBlock;
+                colors.normalColor = Color.white;
+                colors.highlightedColor = Hover;
+                colors.selectedColor = Hover;
+                colors.pressedColor = Pressed;
+                button.colors = colors;
+                button.onClick.RemoveAllListeners();
+                button.onClick.AddListener(() => Application.OpenURL(url));
+            }
         }
 
         void BuildConfirmation(Transform root)

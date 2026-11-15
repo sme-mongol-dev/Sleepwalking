@@ -5,6 +5,19 @@ using UnityEngine;
 
 public static class SleepwalkingSceneBuilder
 {
+    [MenuItem("Sleepwalking/Update Credits Scene")]
+    public static void UpdateCreditsScene()
+    {
+        const string path = "Assets/Scenes/SleepwalkingUI.unity";
+        EditorSceneManager.OpenScene(path);
+        GameObject root = GameObject.Find("Sleepwalking UI");
+        if (root == null || root.GetComponent<SleepwalkingUI>() == null)
+            throw new System.InvalidOperationException("Sleepwalking UI scene is missing its controller.");
+        root.GetComponent<SleepwalkingUI>().UpdateCreditsContent();
+        EditorSceneManager.SaveScene(EditorSceneManager.GetActiveScene(), path);
+        AssetDatabase.SaveAssets();
+    }
+
     [MenuItem("Sleepwalking/Build UI Scene")]
     public static void Build()
     {
