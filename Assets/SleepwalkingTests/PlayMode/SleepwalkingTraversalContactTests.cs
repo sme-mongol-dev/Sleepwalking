@@ -13,6 +13,9 @@ namespace Sleepwalking.Tests.PlayMode
 {
     public sealed class SleepwalkingTraversalContactTests
     {
+        const float Unit = 32f;
+        static float C(float cells) => cells * Unit;
+
         [UnityTest]
         public IEnumerator L01FirstGapLandsOnTheAuthoredCollider()
         {
@@ -61,8 +64,8 @@ namespace Sleepwalking.Tests.PlayMode
             Assert.That(clearInput, Is.Not.Null);
 
             List<string> trace = new List<string> { "launchX,brakeX,step,time,x,y,vx,vy,horizontal,jump,dash,targetContact,stable,margin" };
-            float[] launches = { 2.4f, 2.8f, 3.2f };
-            float[] brakes = { 5.2f, 6.0f, 6.8f };
+            float[] launches = { C(2.4f), C(2.8f), C(3.2f) };
+            float[] brakes = { C(5.2f), C(6.0f), C(6.8f) };
             bool found = false;
             float bestMargin = float.NegativeInfinity;
             int attempt = 0;
@@ -72,7 +75,7 @@ namespace Sleepwalking.Tests.PlayMode
                 float brakeX = brakes[scenario % brakes.Length];
                 attempt++;
                 clearInput.Invoke(player, null);
-                resetAt.Invoke(player, new object[] { new Vector2(1.4f, .56f) });
+                resetAt.Invoke(player, new object[] { new Vector2(C(1.4f), C(.56f)) });
                 Physics2D.SyncTransforms();
                 for (int q = 0; q < 5; q++)
                     yield return new WaitForFixedUpdate();
@@ -94,8 +97,8 @@ namespace Sleepwalking.Tests.PlayMode
                     Bounds targetBounds = targetShape.bounds;
                     bool contact = playerShape.IsTouching(targetShape);
                     float feet = bodyBounds.min.y;
-                    bool landed = contact && Mathf.Abs(feet - targetBounds.max.y) < .12f &&
-                        body.linearVelocity.y <= .15f;
+                    bool landed = contact && Mathf.Abs(feet - targetBounds.max.y) < C(.12f) &&
+                        body.linearVelocity.y <= C(.15f);
                     stable = landed ? stable + 1 : 0;
                     float margin = Mathf.Min(bodyBounds.min.x - targetBounds.min.x,
                         targetBounds.max.x - bodyBounds.max.x);
@@ -104,13 +107,13 @@ namespace Sleepwalking.Tests.PlayMode
                         launchX, brakeX, q, Time.fixedTime, body.position.x, body.position.y,
                         body.linearVelocity.x, body.linearVelocity.y, direction, jumpNow, false,
                         contact, stable, margin));
-                    if (stable >= 3 && margin >= .15f)
+                    if (stable >= 3 && margin >= C(.15f))
                     {
                         found = true;
                         bestMargin = Mathf.Max(bestMargin, margin);
                         break;
                     }
-                    if (body.position.x > targetBounds.max.x + 1f || body.position.y < -2f)
+                    if (body.position.x > targetBounds.max.x + C(1f) || body.position.y < C(-2f))
                         break;
                 }
                 clearInput.Invoke(player, null);
@@ -123,7 +126,7 @@ namespace Sleepwalking.Tests.PlayMode
             Assert.That(attempt, Is.GreaterThan(0));
             if (!found)
                 Assert.Inconclusive("No stable L01 first-gap landing found in nine QA input schedules; see " + path);
-            Assert.That(bestMargin, Is.GreaterThanOrEqualTo(.15f));
+            Assert.That(bestMargin, Is.GreaterThanOrEqualTo(C(.15f)));
             LogAssert.NoUnexpectedReceived();
         }
 

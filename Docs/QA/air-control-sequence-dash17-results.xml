@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="8" result="Failed(Child)" total="8" passed="7" failed="1" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-11-14 22:35:21Z" end-time="2026-11-14 22:37:31Z" duration="129,6861735">
+  <test-suite type="TestSuite" id="1133" name="Sleepwalking" fullname="Sleepwalking" runstate="Runnable" testcasecount="93" result="Failed" site="Child" start-time="2026-11-14 22:35:21Z" end-time="2026-11-14 22:37:31Z" duration="129.686174" total="8" passed="7" failed="1" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="PlayMode" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="Assembly" id="1126" name="Sleepwalking.PlayMode.Tests.dll" fullname="T:/Sleepwalking/Library/ScriptAssemblies/Sleepwalking.PlayMode.Tests.dll" runstate="Runnable" testcasecount="93" result="Failed" site="Child" start-time="2026-11-14 22:35:21Z" end-time="2026-11-14 22:37:31Z" duration="129.679014" total="8" passed="7" failed="1" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="1098084" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="PlayMode" />
+        <property name="EditorOnly" value="False" />
+      </properties>
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="1127" name="Sleepwalking" fullname="Sleepwalking" runstate="Runnable" testcasecount="93" result="Failed" site="Child" start-time="2026-11-14 22:35:21Z" end-time="2026-11-14 22:37:31Z" duration="129.677323" total="8" passed="7" failed="1" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestSuite" id="1128" name="Tests" fullname="Sleepwalking.Tests" runstate="Runnable" testcasecount="93" result="Failed" site="Child" start-time="2026-11-14 22:35:21Z" end-time="2026-11-14 22:37:31Z" duration="129.675824" total="8" passed="7" failed="1" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="TestSuite" id="1129" name="PlayMode" fullname="Sleepwalking.Tests.PlayMode" runstate="Runnable" testcasecount="93" result="Failed" site="Child" start-time="2026-11-14 22:35:21Z" end-time="2026-11-14 22:37:31Z" duration="129.674473" total="8" passed="7" failed="1" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-suite type="ParameterizedFixture" id="1115" name="SleepwalkingTraversalSequenceTests" fullname="Sleepwalking.Tests.PlayMode.SleepwalkingTraversalSequenceTests" runstate="Runnable" testcasecount="8" result="Failed" site="Child" start-time="2026-11-14 22:35:21Z" end-time="2026-11-14 22:37:31Z" duration="129.672545" total="8" passed="7" failed="1" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-suite type="TestFixture" id="1105" name="SleepwalkingTraversalSequenceTests(1)" fullname="Sleepwalking.Tests.PlayMode.SleepwalkingTraversalSequenceTests(1)" classname="Sleepwalking.Tests.PlayMode.SleepwalkingTraversalSequenceTests" runstate="Runnable" testcasecount="4" result="Passed" start-time="2026-11-14 22:35:21Z" end-time="2026-11-14 22:36:27Z" duration="65.432954" total="4" passed="4" failed="0" inconclusive="0" skipped="0" asserts="0">
+                <properties />
+                <test-case id="1106" name="L05ControlledTimedStaircaseReachesExitInSequence" fullname="Sleepwalking.Tests.PlayMode.SleepwalkingTraversalSequenceTests(1).L05ControlledTimedStaircaseReachesExitInSequence" methodname="L05ControlledTimedStaircaseReachesExitInSequence" classname="Sleepwalking.Tests.PlayMode.SleepwalkingTraversalSequenceTests" runstate="Runnable" seed="1472145207" result="Passed" start-time="2026-11-14 22:35:21Z" end-time="2026-11-14 22:35:35Z" duration="13.531541" asserts="0">
+                  <properties>
+                    <property name="_JOINTYPE" value="UnityCombinatorial" />
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1107" name="L05ResponsiveTimedStaircaseReachesExitInSequence" fullname="Sleepwalking.Tests.PlayMode.SleepwalkingTraversalSequenceTests(1).L05ResponsiveTimedStaircaseReachesExitInSequence" methodname="L05ResponsiveTimedStaircaseReachesExitInSequence" classname="Sleepwalking.Tests.PlayMode.SleepwalkingTraversalSequenceTests" runstate="Runnable" seed="1562993695" result="Passed" start-time="2026-11-14 22:35:35Z" end-time="2026-11-14 22:35:48Z" duration="13.103356" asserts="0">
+                  <properties>
+                    <property name="_JOINTYPE" value="UnityCombinatorial" />
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1108" name="L06ControlledBothMoversCarryPlayerToHighExit" fullname="Sleepwalking.Tests.PlayMode.SleepwalkingTraversalSequenceTests(1).L06ControlledBothMoversCarryPlayerToHighExit" methodname="L06ControlledBothMoversCarryPlayerToHighExit" classname="Sleepwalking.Tests.PlayMode.SleepwalkingTraversalSequenceTests" runstate="Runnable" seed="1459580421" result="Passed" start-time="2026-11-14 22:35:48Z" end-time="2026-11-14 22:36:07Z" duration="19.422737" asserts="0">
+                  <properties>
+                    <property name="_JOINTYPE" value="UnityCombinatorial" />
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1109" name="L06ResponsiveBothMoversCarryPlayerToHighExit" fullname="Sleepwalking.Tests.PlayMode.SleepwalkingTraversalSequenceTests(1).L06ResponsiveBothMoversCarryPlayerToHighExit" methodname="L06ResponsiveBothMoversCarryPlayerToHighExit" classname="Sleepwalking.Tests.PlayMode.SleepwalkingTraversalSequenceTests" runstate="Runnable" seed="593285114" result="Passed" start-time="2026-11-14 22:36:07Z" end-time="2026-11-14 22:36:27Z" duration="19.364935" asserts="0">
+                  <properties>
+                    <property name="_JOINTYPE" value="UnityCombinatorial" />
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+              </test-suite>
+              <test-suite type="TestFixture" id="1110" name="SleepwalkingTraversalSequenceTests(100)" fullname="Sleepwalking.Tests.PlayMode.SleepwalkingTraversalSequenceTests(100)" classname="Sleepwalking.Tests.PlayMode.SleepwalkingTraversalSequenceTests" runstate="Runnable" testcasecount="4" result="Failed" site="Child" start-time="2026-11-14 22:36:27Z" end-time="2026-11-14 22:37:31Z" duration="64.238421" total="4" passed="3" failed="1" inconclusive="0" skipped="0" asserts="0">
+                <properties />
+                <failure>
+                  <message><![CDATA[One or more child tests had errors]]></message>
+                </failure>
+                <test-case id="1111" name="L05ControlledTimedStaircaseReachesExitInSequence" fullname="Sleepwalking.Tests.PlayMode.SleepwalkingTraversalSequenceTests(100).L05ControlledTimedStaircaseReachesExitInSequence" methodname="L05ControlledTimedStaircaseReachesExitInSequence" classname="Sleepwalking.Tests.PlayMode.SleepwalkingTraversalSequenceTests" runstate="Runnable" seed="1007944899" result="Failed" start-time="2026-11-14 22:36:27Z" end-time="2026-11-14 22:36:39Z" duration="12.216909" asserts="0">
+                  <properties>
+                    <property name="_JOINTYPE" value="UnityCombinatorial" />
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                  <failure>
+                    <message><![CDATA[  No safe staged launch near the right side of L05_TimedC; see T:\Sleepwalking\Builds\QA\traversal-sequence-L05-odradek-100-controlled.csv
+  Expected: null
+  But was:  "No safe staged launch near the right side of L05_TimedC"
+]]></message>
+                    <stack-trace><![CDATA[at Sleepwalking.Tests.PlayMode.SleepwalkingTraversalSequenceTests.Finish (Sleepwalking.Tests.PlayMode.SleepwalkingTraversalSequenceTests+Route route) [0x000e3] in T:\Sleepwalking\Assets\SleepwalkingTests\PlayMode\SleepwalkingTraversalSequenceTests.cs:672
+at Sleepwalking.Tests.PlayMode.SleepwalkingTraversalSequenceTests+<RunL05>d__8.MoveNext () [0x002c8] in T:\Sleepwalking\Assets\SleepwalkingTests\PlayMode\SleepwalkingTraversalSequenceTests.cs:87
+at UnityEngine.TestTools.TestEnumerator+<Execute>d__7.MoveNext () [0x0003a] in .\Library\PackageCache\com.unity.test-framework@bd7f943e9647\UnityEngine.TestRunner\NUnitExtensions\Attributes\TestEnumerator.cs:44
+]]></stack-trace>
+                  </failure>
+                </test-case>
+                <test-case id="1112" name="L05ResponsiveTimedStaircaseReachesExitInSequence" fullname="Sleepwalking.Tests.PlayMode.SleepwalkingTraversalSequenceTests(100).L05ResponsiveTimedStaircaseReachesExitInSequence" methodname="L05ResponsiveTimedStaircaseReachesExitInSequence" classname="Sleepwalking.Tests.PlayMode.SleepwalkingTraversalSequenceTests" runstate="Runnable" seed="1905661344" result="Passed" start-time="2026-11-14 22:36:39Z" end-time="2026-11-14 22:36:52Z" duration="13.191353" asserts="0">
+                  <properties>
+                    <property name="_JOINTYPE" value="UnityCombinatorial" />
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1113" name="L06ControlledBothMoversCarryPlayerToHighExit" fullname="Sleepwalking.Tests.PlayMode.SleepwalkingTraversalSequenceTests(100).L06ControlledBothMoversCarryPlayerToHighExit" methodname="L06ControlledBothMoversCarryPlayerToHighExit" classname="Sleepwalking.Tests.PlayMode.SleepwalkingTraversalSequenceTests" runstate="Runnable" seed="1145905244" result="Passed" start-time="2026-11-14 22:36:52Z" end-time="2026-11-14 22:37:11Z" duration="19.412518" asserts="0">
+                  <properties>
+                    <property name="_JOINTYPE" value="UnityCombinatorial" />
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1114" name="L06ResponsiveBothMoversCarryPlayerToHighExit" fullname="Sleepwalking.Tests.PlayMode.SleepwalkingTraversalSequenceTests(100).L06ResponsiveBothMoversCarryPlayerToHighExit" methodname="L06ResponsiveBothMoversCarryPlayerToHighExit" classname="Sleepwalking.Tests.PlayMode.SleepwalkingTraversalSequenceTests" runstate="Runnable" seed="1968042921" result="Passed" start-time="2026-11-14 22:37:11Z" end-time="2026-11-14 22:37:31Z" duration="19.416237" asserts="0">
+                  <properties>
+                    <property name="_JOINTYPE" value="UnityCombinatorial" />
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                  <output><![CDATA[Saving results to: C:/Users/TIMBUHTUK/AppData/LocalLow/DefaultCompany/Sleepwalking\TestResults.xml
+]]></output>
+                </test-case>
+              </test-suite>
+            </test-suite>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

@@ -8,6 +8,7 @@ namespace Sleepwalking
     public sealed partial class SleepwalkingGame : MonoBehaviour
     {
         public static SleepwalkingGame Instance { get; private set; }
+        public GameObject[] TutorialPrefabs = new GameObject[2];
         public GameObject[] LevelPrefabs = new GameObject[7];
         public GameObject[] ThemePrefabs = new GameObject[4];
         public SleepwalkingMovementProfile[] MovementProfiles = new SleepwalkingMovementProfile[3];
@@ -16,6 +17,7 @@ namespace Sleepwalking
         public SleepwalkingUI UI;
         public Camera GameCamera;
         public int CompletedDreams => completedDreams;
+        public int TutorialStage => tutorialStage;
         public bool InDream => inDream;
 
         readonly Color[] backgrounds = { Hex("582C30"), Hex("3C2030"), Hex("222036"), Hex("B4B8D4") };
@@ -24,16 +26,26 @@ namespace Sleepwalking
         GameObject level;
         GameObject paint;
         SleepwalkingPlayer player;
+        Sleepwalking.Visual.DreamTheme activeTheme;
         Transform start;
         Vector3 cameraVelocity;
+        Vector3 dreamCameraPosition;
+        float dreamCameraMinX;
+        float dreamCameraMaxX;
+        float dreamCameraY;
+        float dreamCameraSize;
+        float dreamCameraVerticalSize;
         Vector3 roomCameraPosition = new Vector3(0f, 1f, -20f);
         Quaternion roomCameraRotation = Quaternion.identity;
         bool roomOrthographic = true;
         float roomOrthographicSize = 5f;
         int completedDreams;
+        int tutorialStage;
+        bool activeTutorial;
         int style;
         int roomChange;
         bool inDream;
+        float LevelUnit => level == null ? 1f : Mathf.Abs(level.transform.lossyScale.x);
         bool transitioning;
         bool dying;
         bool uiEventsBound;
@@ -81,7 +93,6 @@ namespace Sleepwalking
             UpdateAudioVolumes();
             if (inDream && !transitioning) dreamElapsedSeconds += Time.deltaTime;
             if (inDream) UpdateBeamWidths();
-            if (inDream && player != null && player.transform.position.y < -8f) KillPlayer(player.transform.position);
 #if ENABLE_INPUT_SYSTEM
             UnityEngine.InputSystem.Keyboard k = UnityEngine.InputSystem.Keyboard.current;
             if (!inDream && !transitioning && RoomMenuOpen() && k != null && k.eKey.wasPressedThisFrame) StartDream();
@@ -113,12 +124,72 @@ namespace Sleepwalking
         void LateUpdate()
         {
             if (transitioning) return;
-            Vector3 target = inDream && player != null
-                ? new Vector3(Mathf.Max(3f, player.transform.position.x + 1.5f), 1.8f, -20f)
-                : roomCameraPosition;
-            GameCamera.transform.position = Vector3.SmoothDamp(GameCamera.transform.position, target,
-                ref cameraVelocity, inDream ? .35f : .5f);
-            GameCamera.transform.rotation = Quaternion.Slerp(GameCamera.transform.rotation, inDream ? Quaternion.identity : roomCameraRotation, Time.deltaTime * 6f);
+            if (inDream)
+            {
+                ResetDreamCamera();
+                GameCamera.transform.rotation = Quaternion.identity;
+                activeTheme?.FrameBackdrop(GameCamera);
+                return;
+            }
+            GameCamera.transform.position = Vector3.SmoothDamp(GameCamera.transform.position,
+                roomCameraPosition, ref cameraVelocity, .5f);
+            GameCamera.transform.rotation = Quaternion.Slerp(GameCamera.transform.rotation, roomCameraRotation, Time.deltaTime * 6f);
+        }
+
+        float DreamCameraAspect()
+        {
+            RenderTexture target = GameCamera.targetTexture;
+            return target != null ? (float)target.width / Mathf.Max(1, target.height) :
+                (float)Mathf.Max(1, Screen.width) / Mathf.Max(1, Screen.height);
+        }
+
+        void FrameDreamCamera()
+        {
+            Transform geometry = level.transform.Find("Geometry");
+            Transform shell = geometry != null ? geometry.Find("CaveShell") : null;
+            Collider2D left = shell != null ? shell.Find("Cave_LeftWall")?.GetComponent<Collider2D>() : null;
+            Collider2D right = shell != null ? shell.Find("Cave_RightWall")?.GetComponent<Collider2D>() : null;
+            if (left == null || right == null)
+            {
+                dreamCameraMinX = 0f;
+                dreamCameraMaxX = 14f * LevelUnit;
+                dreamCameraY = 2f * LevelUnit;
+                dreamCameraVerticalSize = 3f * LevelUnit;
+                ResetDreamCamera();
+                return;
+            }
+
+            float unit = LevelUnit;
+            float minX = left.bounds.max.x - .6f * unit;
+            float maxX = right.bounds.min.x + .6f * unit;
+            float maxY = start.position.y + 2f * unit;
+            foreach (BoxCollider2D roof in shell.GetComponentsInChildren<BoxCollider2D>())
+                if (roof.name.StartsWith("Cave_Roof_")) maxY = Mathf.Max(maxY, roof.bounds.min.y);
+
+            float minY = start.position.y - 1.5f * unit;
+            if (geometry != null)
+                foreach (Collider2D block in geometry.GetComponentsInChildren<Collider2D>())
+                    if (!block.isTrigger && !block.transform.IsChildOf(shell))
+                        minY = Mathf.Min(minY, block.bounds.min.y);
+
+            minY -= .6f * unit;
+            maxY += .5f * unit;
+            dreamCameraMinX = minX;
+            dreamCameraMaxX = maxX;
+            dreamCameraY = (minY + maxY) * .5f;
+            dreamCameraVerticalSize = Mathf.Max(6.5f * unit, (maxY - minY) * .5f);
+            ResetDreamCamera();
+        }
+
+        void ResetDreamCamera()
+        {
+            float halfWidth = (dreamCameraMaxX - dreamCameraMinX + LevelUnit) * .5f;
+            dreamCameraSize = Mathf.Max(dreamCameraVerticalSize,
+                halfWidth / Mathf.Max(.01f, DreamCameraAspect()));
+            GameCamera.orthographicSize = dreamCameraSize;
+            dreamCameraPosition = new Vector3((dreamCameraMinX + dreamCameraMaxX) * .5f,
+                dreamCameraY, -20f);
+            GameCamera.transform.position = dreamCameraPosition;
         }
 
         bool RoomMenuOpen()
@@ -201,13 +272,15 @@ namespace Sleepwalking
             }
             if (room != null) room.SetActive(false);
             GameCamera.orthographic = true;
+            GameCamera.GetComponent<Sleepwalking.Visual.PixelRoomView>()?.SetDirectRendering(true);
             GameCamera.orthographicSize = 5f;
             BeginDreamPerformance();
             CreateLevel();
             inDream = true;
-            GameCamera.transform.position = new Vector3(Mathf.Max(3f, player.transform.position.x + 1.5f), 1.8f, -20f);
+            FrameDreamCamera();
             cameraVelocity = Vector3.zero;
             GameCamera.transform.rotation = Quaternion.identity;
+            activeTheme?.FrameBackdrop(GameCamera);
             Sleepwalking.Audio.SleepwalkingAudioDirector audio = Sleepwalking.Audio.SleepwalkingAudioDirector.CreateOrGet();
             if (audio != null) audio.EnterDream((Sleepwalking.Audio.DreamTheme)style);
             CallUi("EnterDream");
@@ -238,11 +311,16 @@ namespace Sleepwalking
                 yield return null;
             }
             inDream = false;
-            RewardDreamPerformance();
-            completedDreams++;
+            if (activeTutorial) tutorialStage = Mathf.Min(2, tutorialStage + 1);
+            else
+            {
+                RewardDreamPerformance();
+                completedDreams++;
+            }
             DestroyLevel();
             roomChange++;
             ApplyRoomChange();
+            GameCamera.GetComponent<Sleepwalking.Visual.PixelRoomView>()?.SetDirectRendering(false);
             room.SetActive(true);
             GameCamera.transform.position = roomCameraPosition;
             GameCamera.transform.rotation = roomCameraRotation;
@@ -271,14 +349,18 @@ namespace Sleepwalking
             StopAllCoroutines();
             transitioning = dying = inDream = false;
             fade = 0f;
-            completedDreams = roomChange = 0;
+            completedDreams = tutorialStage = roomChange = 0;
+            activeTutorial = false;
             ResetOdradek();
             PlayerPrefs.SetInt("Sleepwalking.DreamStarted", 0);
             DestroyLevel();
+            GameCamera.GetComponent<Sleepwalking.Visual.PixelRoomView>()?.SetDirectRendering(false);
             room.SetActive(true);
             ApplyRoomChange();
             GameCamera.orthographic = roomOrthographic;
             GameCamera.orthographicSize = roomOrthographicSize;
+            GameCamera.transform.position = roomCameraPosition;
+            GameCamera.transform.rotation = roomCameraRotation;
             CallUi("EnterRoom");
         }
 
@@ -286,23 +368,56 @@ namespace Sleepwalking
         {
             if (!inDream || transitioning || dying || player == null) return;
             dreamDeaths++;
-            StartCoroutine(ImpactAndRetry(contact));
+            Collider2D surface = FindImpactSurface(contact, out Vector2 point, out Vector2 normal);
+            StartCoroutine(ImpactAndRetry(point, normal, surface));
         }
 
-        IEnumerator ImpactAndRetry(Vector2 contact)
+        Collider2D FindImpactSurface(Vector2 contact, out Vector2 point, out Vector2 normal)
+        {
+            point = contact;
+            normal = Vector2.up;
+            Collider2D playerShape = player.GetComponent<Collider2D>();
+            if (playerShape == null || level == null) return null;
+
+            Collider2D selected = null;
+            float best = float.PositiveInfinity;
+            foreach (Collider2D surface in level.GetComponentsInChildren<Collider2D>())
+            {
+                if (!surface.enabled) continue;
+                SleepwalkingMechanism mechanism = surface.GetComponent<SleepwalkingMechanism>();
+                if (surface.isTrigger && (mechanism == null || !mechanism.IsHazard())) continue;
+                ColliderDistance2D distance = surface.Distance(playerShape);
+                if (!distance.isValid || distance.distance > .12f * LevelUnit) continue;
+                float score = Vector2.Distance(distance.pointA, contact);
+                if (mechanism != null && mechanism.IsHazard()) score -= 2f * LevelUnit;
+                if (score >= best) continue;
+                best = score;
+                selected = surface;
+                point = distance.pointA;
+                Vector2 fromSurface = surface.OverlapPoint(player.transform.position) ?
+                    point - (Vector2)surface.bounds.center : (Vector2)player.transform.position - point;
+                normal = fromSurface.normalized;
+                if (normal.sqrMagnitude < .01f) normal = -distance.normal;
+            }
+            return selected;
+        }
+
+        IEnumerator ImpactAndRetry(Vector2 point, Vector2 normal, Collider2D surface)
         {
             dying = true;
             player.SetImpact();
-            PaintAt(contact);
+            if (surface != null) PaintAt(point, normal, surface);
             PlayCue("Impact");
             for (float elapsed = 0f; elapsed < .28f; elapsed += Time.unscaledDeltaTime)
             {
                 float fraction = elapsed / .28f;
-                player.transform.localScale = new Vector3(.55f * (1f + fraction * .7f), 1f - fraction * .65f, 1f);
+                float unit = LevelUnit;
+                player.transform.localScale = new Vector3(.55f * unit * (1f + fraction * .7f),
+                    unit * (1f - fraction * .65f), 1f);
                 player.transform.rotation = Quaternion.Euler(0, 0, fraction * 45f);
                 yield return null;
             }
-            player.transform.localScale = new Vector3(.55f, 1f, 1f);
+            player.transform.localScale = new Vector3(.55f * LevelUnit, LevelUnit, 1f);
             player.transform.rotation = Quaternion.identity;
             RestartAttempt();
             yield return new WaitForSecondsRealtime(.25f);
@@ -313,22 +428,35 @@ namespace Sleepwalking
         {
             if (level == null || player == null || start == null) return;
             foreach (SleepwalkingMechanism mechanism in level.GetComponentsInChildren<SleepwalkingMechanism>()) mechanism.ResetMechanism();
-            player.ResetAt(start.position + Vector3.up * .5f);
+            player.ResetAt(start.position + Vector3.up * (.5f * LevelUnit));
+            ResetDreamCamera();
         }
 
         public void PressButton(SleepwalkingMechanism button)
         {
             if (level == null || string.IsNullOrEmpty(button.LinkedFeatureId)) return;
+            button.MarkPressed();
             foreach (SleepwalkingMechanism mechanism in level.GetComponentsInChildren<SleepwalkingMechanism>())
-                if (mechanism.FeatureId == button.LinkedFeatureId || mechanism.FeatureId.StartsWith(button.LinkedFeatureId + "_"))
+                if (mechanism.Kind != "LaserBase" &&
+                    (mechanism.FeatureId == button.LinkedFeatureId ||
+                    mechanism.FeatureId.StartsWith(button.LinkedFeatureId + "_")))
                     mechanism.DisableFor(button.ActiveSeconds);
             PlayCue("Button");
         }
 
         void CreateLevel()
         {
+            activeTutorial = completedDreams == 0 && tutorialStage < 2 &&
+                TutorialPrefabs != null && tutorialStage < TutorialPrefabs.Length &&
+                TutorialPrefabs[tutorialStage] != null;
             int index = completedDreams % 7;
-            if (LevelPrefabs != null && index < LevelPrefabs.Length && LevelPrefabs[index] != null)
+            if (activeTutorial)
+            {
+                level = Instantiate(TutorialPrefabs[tutorialStage]);
+                level.name = "Tutorial " + (tutorialStage + 1);
+                ConnectAuthoredLevel();
+            }
+            else if (LevelPrefabs != null && index < LevelPrefabs.Length && LevelPrefabs[index] != null)
             {
                 level = Instantiate(LevelPrefabs[index]);
                 level.name = "Dream L" + (index + 1).ToString("00");
@@ -339,7 +467,8 @@ namespace Sleepwalking
             ApplyStyle();
             paint = new GameObject("Paint marks (current dream)");
             paint.transform.SetParent(level.transform);
-            CreatePlayer(start.position + Vector3.up * .5f);
+            CreatePlayer(start.position + Vector3.up * (.5f * LevelUnit));
+            player.DashEnabled = !activeTutorial || tutorialStage > 0;
         }
 
         void ConnectAuthoredLevel()
@@ -364,7 +493,7 @@ namespace Sleepwalking
                     if (mechanism.Kind == "LaserBeam")
                     {
                         Vector3 beamScale = child.localScale;
-                        beamScale.x = BeamWidth();
+                        beamScale.x = BeamLocalWidth(child);
                         child.localScale = beamScale;
                     }
                     if (mechanism.Kind == "Exit" && child.GetComponent<Collider2D>() == null)
@@ -404,16 +533,21 @@ namespace Sleepwalking
         void ApplyStyle()
         {
             GameCamera.backgroundColor = backgrounds[style];
+            activeTheme = null;
             if (ThemePrefabs != null && style < ThemePrefabs.Length && ThemePrefabs[style] != null)
             {
                 GameObject theme = Instantiate(ThemePrefabs[style], level.transform);
                 theme.name = "Dream style";
                 Sleepwalking.Visual.DreamTheme visual = theme.GetComponent<Sleepwalking.Visual.DreamTheme>();
+                activeTheme = visual;
                 Transform geometry = level.transform.Find("Geometry");
                 if (visual != null && geometry != null) visual.ApplyTo(geometry);
+                if (inDream) visual?.FrameBackdrop(GameCamera);
             }
+            Transform tutorialHints = level.transform.Find("Readability/TutorialHints");
             foreach (SpriteRenderer renderer in level.GetComponentsInChildren<SpriteRenderer>())
             {
+                if (tutorialHints != null && renderer.transform.IsChildOf(tutorialHints)) continue;
                 SleepwalkingMechanism mechanism = renderer.GetComponent<SleepwalkingMechanism>();
                 if (mechanism == null || mechanism.Kind == "Solid" || mechanism.Kind == "MovingPlatform" ||
                     mechanism.Kind == "TimedPlatform")
@@ -429,6 +563,7 @@ namespace Sleepwalking
             player = null;
             paint = null;
             start = null;
+            activeTheme = null;
         }
 
         void CreatePlayer(Vector3 position)
@@ -439,23 +574,46 @@ namespace Sleepwalking
             actor.GetComponent<SpriteRenderer>().color = Hex("F8D4B8");
             actor.GetComponent<SpriteRenderer>().sortingOrder = 20;
             actor.GetComponent<BoxCollider2D>().size = Vector2.one;
-            actor.transform.localScale = new Vector3(.55f, 1f, 1f);
+            actor.transform.localScale = new Vector3(.55f * LevelUnit, LevelUnit, 1f);
             player = actor.GetComponent<SleepwalkingPlayer>();
+            player.WorldUnitsPerCell = LevelUnit;
             player.Profile = MovementProfile;
             player.ApplyProfile();
         }
 
-        public void PaintAt(Vector2 position)
+        public void PaintAt(Vector2 position, Vector2 normal, Collider2D surface)
         {
-            if (paint == null) return;
-            GameObject mark = new GameObject("Paint splat", typeof(SpriteRenderer));
-            mark.transform.SetParent(paint.transform);
-            mark.transform.position = new Vector3(position.x, position.y, -.2f);
-            mark.transform.localScale = new Vector3(.42f, .28f, 1f);
+            if (paint == null || surface == null || !surface.enabled ||
+                !surface.transform.IsChildOf(level.transform)) return;
+            normal = normal.sqrMagnitude < .01f ? Vector2.up : normal.normalized;
+            Vector2 edge = position;
+            float thickness = Mathf.Min(.2f * LevelUnit,
+                Mathf.Min(surface.bounds.size.x, surface.bounds.size.y) * .8f);
+            if (thickness < .015f * LevelUnit) return;
+            float width = Mathf.Min(.44f * LevelUnit,
+                Mathf.Max(surface.bounds.size.x, surface.bounds.size.y) * .8f);
+            if (surface is CircleCollider2D || surface is PolygonCollider2D)
+            {
+                width = Mathf.Min(width, .24f * LevelUnit);
+                thickness = Mathf.Min(thickness, .12f * LevelUnit);
+            }
+            Vector2 center = surface is CircleCollider2D ?
+                Vector2.Lerp(edge, surface.bounds.center, .75f) :
+                edge - normal * (thickness * .42f);
+            if (!(surface is PolygonCollider2D))
+                center += new Vector2(-normal.y, normal.x) *
+                    (Mathf.Sin((paint.transform.childCount + 1) * 2.4f) * .08f * LevelUnit);
+            GameObject mark = new GameObject("Paint splat", typeof(SpriteRenderer), typeof(SleepwalkingSurfaceMark));
+            mark.transform.SetParent(paint.transform, false);
+            mark.transform.position = new Vector3(center.x, center.y, surface.transform.position.z - 1.1f);
+            mark.transform.rotation = Quaternion.FromToRotation(Vector3.up, -normal);
+            mark.transform.localScale = new Vector3(width, thickness, 1f);
             SpriteRenderer renderer = mark.GetComponent<SpriteRenderer>();
-            renderer.sprite = SquareSprite();
-            renderer.color = Hex("B4202A");
-            renderer.sortingOrder = 15;
+            renderer.sprite = ClippedPaintSprite(paint.transform.childCount % 3, mark.transform, surface);
+            renderer.color = style == 0 ? Hex("F8D4B8") :
+                style == 3 ? Hex("B4202A") : Hex("E04020");
+            renderer.sortingOrder = 16;
+            mark.GetComponent<SleepwalkingSurfaceMark>().Attach(surface.transform, renderer.sprite);
         }
 
         public void PlayCue(string cue)
@@ -481,17 +639,23 @@ namespace Sleepwalking
         float BeamWidth()
         {
             // Сохраняем прежнюю толщину луча в мире после отключения пикселизации камеры.
-            float aspect = (float)Mathf.Max(1, Screen.width) / Mathf.Max(1, Screen.height);
+            float aspect = DreamCameraAspect();
             int referenceHeight = Mathf.Max(180, Mathf.CeilToInt(320 / aspect));
             return 3.5f * GameCamera.orthographicSize * 2f / referenceHeight;
+        }
+
+        float BeamLocalWidth(Transform beam)
+        {
+            float parentScale = beam.parent == null ? 1f : Mathf.Abs(beam.parent.lossyScale.x);
+            return BeamWidth() / Mathf.Max(.001f, parentScale);
         }
 
         void UpdateBeamWidths()
         {
             if (level == null) return;
-            float width = BeamWidth();
             foreach (SleepwalkingMechanism mechanism in level.GetComponentsInChildren<SleepwalkingMechanism>())
             {
+                float width = BeamLocalWidth(mechanism.transform);
                 if (mechanism.Kind != "LaserBeam" || Mathf.Abs(mechanism.transform.localScale.x - width) < .001f) continue;
                 Vector3 scale = mechanism.transform.localScale;
                 scale.x = width;
@@ -500,6 +664,54 @@ namespace Sleepwalking
         }
 
         static Sprite square;
+        static readonly Sprite[] paintSprites = new Sprite[3];
+        static Sprite ClippedPaintSprite(int variant, Transform mark, Collider2D surface)
+        {
+            Sprite source = PaintSprite(variant);
+            const int pixels = 24;
+            Texture2D texture = new Texture2D(pixels, pixels, TextureFormat.RGBA32, false);
+            texture.filterMode = FilterMode.Point;
+            texture.wrapMode = TextureWrapMode.Clamp;
+            for (int y = 0; y < pixels; y++)
+            for (int x = 0; x < pixels; x++)
+            {
+                Color color = source.texture.GetPixel(x, y);
+                Vector3 local = new Vector3((x + .5f) / pixels - .5f,
+                    (y + .5f) / pixels - .5f, 0f);
+                if (color.a > 0f && !surface.OverlapPoint(mark.TransformPoint(local)))
+                    color = Color.clear;
+                texture.SetPixel(x, y, color);
+            }
+            texture.Apply();
+            return Sprite.Create(texture, new Rect(0, 0, pixels, pixels),
+                new Vector2(.5f, .5f), pixels);
+        }
+
+        static Sprite PaintSprite(int variant)
+        {
+            if (paintSprites[variant] != null) return paintSprites[variant];
+            const int pixels = 24;
+            Texture2D texture = new Texture2D(pixels, pixels, TextureFormat.RGBA32, false);
+            texture.filterMode = FilterMode.Point;
+            texture.wrapMode = TextureWrapMode.Clamp;
+            for (int y = 0; y < pixels; y++)
+            for (int x = 0; x < pixels; x++)
+            {
+                float u = (x + .5f - pixels * .5f) / (pixels * .5f);
+                float v = (y + .5f - pixels * .5f) / (pixels * .5f);
+                float ripple = .10f * Mathf.Sin(x * 2.1f + variant * 3f) +
+                    .08f * Mathf.Sin(y * 1.7f + variant * 5f);
+                bool body = u * u / (.75f + ripple) + v * v / (.48f + ripple) < 1f;
+                bool lobe = (u + .48f) * (u + .48f) + (v - .16f) * (v - .16f) < .12f;
+                bool drop = (u - .59f) * (u - .59f) + (v + .51f) * (v + .51f) < .025f;
+                texture.SetPixel(x, y, body || lobe || drop ? Color.white : Color.clear);
+            }
+            texture.Apply();
+            paintSprites[variant] = Sprite.Create(texture, new Rect(0, 0, pixels, pixels),
+                new Vector2(.5f, .5f), pixels);
+            return paintSprites[variant];
+        }
+
         static Sprite SquareSprite()
         {
             if (square != null) return square;

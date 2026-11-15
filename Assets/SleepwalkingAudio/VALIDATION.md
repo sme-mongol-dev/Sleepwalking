@@ -27,3 +27,11 @@ SHA-256 spot checks of selected included files: `meat_horror.ogg` `70943868CD7DF
 - Hear each theme and each cue variant in Play Mode or the Windows build. Check transitions for clicks and the actual balance against the game's visuals and device volume.
 - Check simultaneous effects at high user volume; per-source gains are deliberately low, but eight sources can sum above a single-source level. The listed gains do not constitute a master limiter.
 - Current Gameplay and UI source files call the API at room/dream transitions, player actions, menu actions, and volume changes. Their shared-scene and Windows-build behavior still needs the owning teams' end-to-end run. The audio module does not edit their scenes or code.
+
+## Owner-supplied replacement clips — later on 14 November 2026
+
+Six MP3 files were copied into `Clips/User/` and assigned to Jump, TrapHit, MenuHover, MenuBack, Meat landing, and PostApocalypse landing. DeepWater and Heaven landings retain the earlier CC0 clips. The catalog now selects landings by active dream theme; the four replacement cues have one clip each. The old OpenGameArt clips remain in the project but are no longer assigned to those cues.
+
+The owner subsequently supplied `jump.wav` and clarified that it is the jump sound, not a landing sound. `Jump` now uses `Clips/User/jump.wav`; the earlier `jump_start.mp3` copy was removed from the project. Meat and PostApocalypse landings remain assigned to their separate clips. Unity imported the WAV and rebuilt the catalog successfully; see `Docs/QA/user-jump-audio-rebuild.log`.
+
+Unity 6000.3.28f1 imported the MP3 files and ran `SleepwalkingAudioBuilder.Rebuild`, including its catalog validation, successfully (`Exiting batchmode successfully now!`). The six new clip GUIDs were also checked against the serialized catalog. This confirms import and references, not audible quality or balance. The existing Windows Player has not been rebuilt with these replacements.

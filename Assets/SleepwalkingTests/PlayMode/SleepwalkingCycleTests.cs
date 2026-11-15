@@ -361,7 +361,7 @@ namespace Sleepwalking.Tests.PlayMode
             {
                 if (child.name != "Dream Tiles") continue;
                 tiledPlatforms++;
-                BoxCollider2D collider = child.parent.GetComponent<BoxCollider2D>();
+                Collider2D collider = child.parent.GetComponent<Collider2D>();
                 string platform = level.name + "/" + child.parent.name;
                 Assert.That(collider, Is.Not.Null, platform);
                 Assert.That(collider.isTrigger, Is.False, platform);
@@ -373,8 +373,25 @@ namespace Sleepwalking.Tests.PlayMode
                     visual.Encapsulate(tile.bounds);
 
                 // Timed platforms can be inactive, so compare with their authored shape.
-                Vector2 center = child.parent.TransformPoint(collider.offset);
-                Vector2 size = Vector2.Scale(collider.size, child.parent.lossyScale);
+                Vector2 localMin = new Vector2(float.PositiveInfinity, float.PositiveInfinity);
+                Vector2 localMax = new Vector2(float.NegativeInfinity, float.NegativeInfinity);
+                if (collider is BoxCollider2D box)
+                {
+                    localMin = box.offset - box.size * .5f;
+                    localMax = box.offset + box.size * .5f;
+                }
+                else if (collider is PolygonCollider2D polygon)
+                {
+                    for (int q = 0; q < polygon.pathCount; q++)
+                        foreach (Vector2 point in polygon.GetPath(q))
+                        {
+                            localMin = Vector2.Min(localMin, point + polygon.offset);
+                            localMax = Vector2.Max(localMax, point + polygon.offset);
+                        }
+                }
+                else Assert.Fail(platform + " has unsupported solid collider");
+                Vector2 center = child.parent.TransformPoint((localMin + localMax) * .5f);
+                Vector2 size = Vector2.Scale(localMax - localMin, child.parent.lossyScale);
                 Assert.That(visual.center.x, Is.EqualTo(center.x).Within(.001f), platform);
                 Assert.That(visual.center.y, Is.EqualTo(center.y).Within(.001f), platform);
                 Assert.That(visual.size.x, Is.EqualTo(size.x).Within(.001f), platform);

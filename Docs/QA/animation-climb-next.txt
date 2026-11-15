@@ -1,0 +1,1 @@
+S_Pizduk_Climb_1 FlipX=False Bounds=Center: (407.19, 67.97, -0.05), Extents: (14.96, 16.00, 0.10) Camera=(208.00, 56.00, -20.00) Player=(407.19, 67.97, -0.05) PlayerViewport=(0.83, 0.54, 19.95)

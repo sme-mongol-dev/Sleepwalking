@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="10" result="Failed(Child)" total="10" passed="9" failed="1" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-11-14 22:26:43Z" end-time="2026-11-14 22:27:25Z" duration="42,0169352">
+  <test-suite type="TestSuite" id="1133" name="Sleepwalking" fullname="Sleepwalking" runstate="Runnable" testcasecount="93" result="Failed" site="Child" start-time="2026-11-14 22:26:43Z" end-time="2026-11-14 22:27:25Z" duration="42.016935" total="10" passed="9" failed="1" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="PlayMode" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="Assembly" id="1126" name="Sleepwalking.PlayMode.Tests.dll" fullname="T:/Sleepwalking/Library/ScriptAssemblies/Sleepwalking.PlayMode.Tests.dll" runstate="Runnable" testcasecount="93" result="Failed" site="Child" start-time="2026-11-14 22:26:43Z" end-time="2026-11-14 22:27:25Z" duration="42.009301" total="10" passed="9" failed="1" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="1088464" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="PlayMode" />
+        <property name="EditorOnly" value="False" />
+      </properties>
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="1127" name="Sleepwalking" fullname="Sleepwalking" runstate="Runnable" testcasecount="93" result="Failed" site="Child" start-time="2026-11-14 22:26:43Z" end-time="2026-11-14 22:27:25Z" duration="42.007688" total="10" passed="9" failed="1" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestSuite" id="1128" name="Tests" fullname="Sleepwalking.Tests" runstate="Runnable" testcasecount="93" result="Failed" site="Child" start-time="2026-11-14 22:26:43Z" end-time="2026-11-14 22:27:25Z" duration="42.006229" total="10" passed="9" failed="1" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="TestSuite" id="1129" name="PlayMode" fullname="Sleepwalking.Tests.PlayMode" runstate="Runnable" testcasecount="93" result="Failed" site="Child" start-time="2026-11-14 22:26:43Z" end-time="2026-11-14 22:27:25Z" duration="42.004756" total="10" passed="9" failed="1" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-suite type="ParameterizedFixture" id="1094" name="SleepwalkingRemainingRouteTests" fullname="Sleepwalking.Tests.PlayMode.SleepwalkingRemainingRouteTests" runstate="Runnable" testcasecount="10" result="Failed" site="Child" start-time="2026-11-14 22:26:43Z" end-time="2026-11-14 22:27:25Z" duration="42.002575" total="10" passed="9" failed="1" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-suite type="TestFixture" id="1082" name="SleepwalkingRemainingRouteTests(1)" fullname="Sleepwalking.Tests.PlayMode.SleepwalkingRemainingRouteTests(1)" classname="Sleepwalking.Tests.PlayMode.SleepwalkingRemainingRouteTests" runstate="Runnable" testcasecount="5" result="Passed" start-time="2026-11-14 22:26:43Z" end-time="2026-11-14 22:27:03Z" duration="20.526942" total="5" passed="5" failed="0" inconclusive="0" skipped="0" asserts="0">
+                <properties />
+                <test-case id="1083" name="L01BothGapsReachExitRun" fullname="Sleepwalking.Tests.PlayMode.SleepwalkingRemainingRouteTests(1).L01BothGapsReachExitRun" methodname="L01BothGapsReachExitRun" classname="Sleepwalking.Tests.PlayMode.SleepwalkingRemainingRouteTests" runstate="Runnable" seed="1727116151" result="Passed" start-time="2026-11-14 22:26:43Z" end-time="2026-11-14 22:26:47Z" duration="4.066507" asserts="0">
+                  <properties>
+                    <property name="_JOINTYPE" value="UnityCombinatorial" />
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1084" name="L02PitAndFloorSpikesReachExitRun" fullname="Sleepwalking.Tests.PlayMode.SleepwalkingRemainingRouteTests(1).L02PitAndFloorSpikesReachExitRun" methodname="L02PitAndFloorSpikesReachExitRun" classname="Sleepwalking.Tests.PlayMode.SleepwalkingRemainingRouteTests" runstate="Runnable" seed="1962645402" result="Passed" start-time="2026-11-14 22:26:47Z" end-time="2026-11-14 22:26:51Z" duration="4.250162" asserts="0">
+                  <properties>
+                    <property name="_JOINTYPE" value="UnityCombinatorial" />
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1085" name="L03SawHopReachesExitRun" fullname="Sleepwalking.Tests.PlayMode.SleepwalkingRemainingRouteTests(1).L03SawHopReachesExitRun" methodname="L03SawHopReachesExitRun" classname="Sleepwalking.Tests.PlayMode.SleepwalkingRemainingRouteTests" runstate="Runnable" seed="1297986635" result="Passed" start-time="2026-11-14 22:26:51Z" end-time="2026-11-14 22:26:55Z" duration="4.287072" asserts="0">
+                  <properties>
+                    <property name="_JOINTYPE" value="UnityCombinatorial" />
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1086" name="L04RealButtonLaserReachesLaserRun" fullname="Sleepwalking.Tests.PlayMode.SleepwalkingRemainingRouteTests(1).L04RealButtonLaserReachesLaserRun" methodname="L04RealButtonLaserReachesLaserRun" classname="Sleepwalking.Tests.PlayMode.SleepwalkingRemainingRouteTests" runstate="Runnable" seed="1556140259" result="Passed" start-time="2026-11-14 22:26:55Z" end-time="2026-11-14 22:26:58Z" duration="2.849551" asserts="0">
+                  <properties>
+                    <property name="_JOINTYPE" value="UnityCombinatorial" />
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1087" name="L07WallButtonsDashSawReachDashLanding" fullname="Sleepwalking.Tests.PlayMode.SleepwalkingRemainingRouteTests(1).L07WallButtonsDashSawReachDashLanding" methodname="L07WallButtonsDashSawReachDashLanding" classname="Sleepwalking.Tests.PlayMode.SleepwalkingRemainingRouteTests" runstate="Runnable" seed="1662131426" result="Passed" start-time="2026-11-14 22:26:58Z" end-time="2026-11-14 22:27:03Z" duration="5.061920" asserts="0">
+                  <properties>
+                    <property name="_JOINTYPE" value="UnityCombinatorial" />
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+              </test-suite>
+              <test-suite type="TestFixture" id="1088" name="SleepwalkingRemainingRouteTests(100)" fullname="Sleepwalking.Tests.PlayMode.SleepwalkingRemainingRouteTests(100)" classname="Sleepwalking.Tests.PlayMode.SleepwalkingRemainingRouteTests" runstate="Runnable" testcasecount="5" result="Failed" site="Child" start-time="2026-11-14 22:27:03Z" end-time="2026-11-14 22:27:25Z" duration="21.474444" total="5" passed="4" failed="1" inconclusive="0" skipped="0" asserts="0">
+                <properties />
+                <failure>
+                  <message><![CDATA[One or more child tests had errors]]></message>
+                </failure>
+                <test-case id="1089" name="L01BothGapsReachExitRun" fullname="Sleepwalking.Tests.PlayMode.SleepwalkingRemainingRouteTests(100).L01BothGapsReachExitRun" methodname="L01BothGapsReachExitRun" classname="Sleepwalking.Tests.PlayMode.SleepwalkingRemainingRouteTests" runstate="Runnable" seed="128447232" result="Passed" start-time="2026-11-14 22:27:03Z" end-time="2026-11-14 22:27:07Z" duration="3.694209" asserts="0">
+                  <properties>
+                    <property name="_JOINTYPE" value="UnityCombinatorial" />
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1090" name="L02PitAndFloorSpikesReachExitRun" fullname="Sleepwalking.Tests.PlayMode.SleepwalkingRemainingRouteTests(100).L02PitAndFloorSpikesReachExitRun" methodname="L02PitAndFloorSpikesReachExitRun" classname="Sleepwalking.Tests.PlayMode.SleepwalkingRemainingRouteTests" runstate="Runnable" seed="1471092943" result="Passed" start-time="2026-11-14 22:27:07Z" end-time="2026-11-14 22:27:11Z" duration="4.276325" asserts="0">
+                  <properties>
+                    <property name="_JOINTYPE" value="UnityCombinatorial" />
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1091" name="L03SawHopReachesExitRun" fullname="Sleepwalking.Tests.PlayMode.SleepwalkingRemainingRouteTests(100).L03SawHopReachesExitRun" methodname="L03SawHopReachesExitRun" classname="Sleepwalking.Tests.PlayMode.SleepwalkingRemainingRouteTests" runstate="Runnable" seed="398760348" result="Passed" start-time="2026-11-14 22:27:11Z" end-time="2026-11-14 22:27:15Z" duration="4.297959" asserts="0">
+                  <properties>
+                    <property name="_JOINTYPE" value="UnityCombinatorial" />
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1092" name="L04RealButtonLaserReachesLaserRun" fullname="Sleepwalking.Tests.PlayMode.SleepwalkingRemainingRouteTests(100).L04RealButtonLaserReachesLaserRun" methodname="L04RealButtonLaserReachesLaserRun" classname="Sleepwalking.Tests.PlayMode.SleepwalkingRemainingRouteTests" runstate="Runnable" seed="959348133" result="Passed" start-time="2026-11-14 22:27:15Z" end-time="2026-11-14 22:27:18Z" duration="2.831654" asserts="0">
+                  <properties>
+                    <property name="_JOINTYPE" value="UnityCombinatorial" />
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1093" name="L07WallButtonsDashSawReachDashLanding" fullname="Sleepwalking.Tests.PlayMode.SleepwalkingRemainingRouteTests(100).L07WallButtonsDashSawReachDashLanding" methodname="L07WallButtonsDashSawReachDashLanding" classname="Sleepwalking.Tests.PlayMode.SleepwalkingRemainingRouteTests" runstate="Runnable" seed="1205109506" result="Failed" start-time="2026-11-14 22:27:18Z" end-time="2026-11-14 22:27:25Z" duration="6.372869" asserts="0">
+                  <properties>
+                    <property name="_JOINTYPE" value="UnityCombinatorial" />
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                  <failure>
+                    <message><![CDATA[  L07 hazard/death after WallGrabLedge X=172,079; last support WallGrabLedge X=172,079; see T:\Sleepwalking\Builds\QA\traversal-remaining-L07-odradek-100.csv
+  Expected: null
+  But was:  "L07 hazard/death after WallGrabLedge X=172,079"
+]]></message>
+                    <stack-trace><![CDATA[at Sleepwalking.Tests.PlayMode.SleepwalkingRemainingRouteTests.Finish (Sleepwalking.Tests.PlayMode.SleepwalkingRemainingRouteTests+Route route) [0x0010a] in T:\Sleepwalking\Assets\SleepwalkingTests\PlayMode\SleepwalkingRemainingRouteTests.cs:544
+at Sleepwalking.Tests.PlayMode.SleepwalkingRemainingRouteTests+<L07WallButtonsDashSawReachDashLanding>d__10.MoveNext () [0x0008c] in T:\Sleepwalking\Assets\SleepwalkingTests\PlayMode\SleepwalkingRemainingRouteTests.cs:107
+at UnityEngine.TestTools.TestEnumerator+<Execute>d__7.MoveNext () [0x0003a] in .\Library\PackageCache\com.unity.test-framework@bd7f943e9647\UnityEngine.TestRunner\NUnitExtensions\Attributes\TestEnumerator.cs:44
+]]></stack-trace>
+                  </failure>
+                  <output><![CDATA[Saving results to: C:/Users/TIMBUHTUK/AppData/LocalLow/DefaultCompany/Sleepwalking\TestResults.xml
+]]></output>
+                </test-case>
+              </test-suite>
+            </test-suite>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

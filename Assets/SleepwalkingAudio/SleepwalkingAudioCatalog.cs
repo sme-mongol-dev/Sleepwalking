@@ -32,12 +32,19 @@ namespace Sleepwalking.Audio
     {
         public AudioClip MenuMusic;
         public AudioClip[] DreamAmbience = new AudioClip[4];
+        public AudioClip[] LandingByTheme = new AudioClip[4];
         public SoundCueEntry[] Cues;
 
         public AudioClip GetAmbience(DreamTheme theme)
         {
             int index = (int)theme;
             return DreamAmbience != null && index >= 0 && index < DreamAmbience.Length ? DreamAmbience[index] : null;
+        }
+
+        public AudioClip GetLanding(DreamTheme theme)
+        {
+            int index = (int)theme;
+            return LandingByTheme != null && index >= 0 && index < LandingByTheme.Length ? LandingByTheme[index] : null;
         }
 
         public SoundCueEntry GetCue(SoundCue cue)

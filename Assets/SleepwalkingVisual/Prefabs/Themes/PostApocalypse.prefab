@@ -323,6 +323,13 @@ MonoBehaviour:
   Accent: {fileID: 2100000, guid: b624ed4301d944d41b1d5c7b35ecc5e5, type: 2}
   Shadow: {fileID: 2100000, guid: cde17a018b04d894e9c88c74895c9b54, type: 2}
   Tiles: {fileID: 2100000, guid: b7e19f0dc49e2314086fcb9e096abe26, type: 2}
+  SpikesArt: {fileID: -7439721223842798443, guid: 7d96b66e1b7ef3a4583924c56ed447e8, type: 3}
+  LaserBaseArt: {fileID: -8700877934768606090, guid: 422df8ec733b4034ba98ecd983c31bd3, type: 3}
+  LaserBeamArt: {fileID: -4619982156776939172, guid: 7d96b66e1b7ef3a4583924c56ed447e8, type: 3}
+  SawArt: {fileID: -171075915544627694, guid: 7d96b66e1b7ef3a4583924c56ed447e8, type: 3}
+  ButtonUpArt: {fileID: -4063462992388984672, guid: 9b53f738fe8c73d4a82b5e1fc3708ca1, type: 3}
+  ButtonDownArt: {fileID: 4019158706363881454, guid: 9b53f738fe8c73d4a82b5e1fc3708ca1, type: 3}
+  BedArt: {fileID: 21300000, guid: 2826d406fdba59c4eb130cbeb6d5338f, type: 3}
 --- !u!114 &972604400724771880
 MonoBehaviour:
   m_ObjectHideFlags: 0

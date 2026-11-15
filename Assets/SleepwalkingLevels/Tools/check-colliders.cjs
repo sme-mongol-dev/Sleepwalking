@@ -5,6 +5,8 @@ const crypto = require('crypto');
 const root = path.resolve(__dirname, '..');
 const baselineFile = path.join(__dirname, 'collider-baseline.json');
 const kinds = new Set(['BoxCollider2D', 'PolygonCollider2D', 'CircleCollider2D']);
+const levels = ['Tutorial01', 'Tutorial02', ...Array.from({ length: 7 }, (_, q) =>
+  `L${String(q + 1).padStart(2, '0')}`)];
 
 function field(text, name) {
   return text.match(new RegExp(`^  ${name}: (.+)$`, 'm'))?.[1] || '';
@@ -68,8 +70,7 @@ function signature(file) {
 
 const values = {};
 const details = {};
-for (let q = 1; q <= 7; q++) {
-  const level = `L${String(q).padStart(2, '0')}`;
+for (const level of levels) {
   const result = signature(path.join(root, 'Prefabs', `${level}_DreamGeometry.prefab`));
   values[level] = { count: result.count, sha256: result.sha256 };
   details[level] = result.colliders;

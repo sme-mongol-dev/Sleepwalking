@@ -1,6 +1,11 @@
-firstJump X=2,907
-wallJump X=3,410
-ledgeContact X=4,578 margin=0,447
-pitJump X=9,289
-dash X=12,519
-dashLanding X=19,828 margin=0,997 sawReserve=6,940
+firstJump X=88,192
+wallJump X=119,185
+ledgeDash X=95,336
+ledgeContact X=167,439 margin=15,761
+laserBaseJump X=235,535
+laserBaseDash X=248,335
+laserRecovered X=354,502
+laserStaged X=301,874
+pitJump X=337,970
+dash X=433,971
+dashLanding X=571,571 margin=18,771 sawReserve=6,680

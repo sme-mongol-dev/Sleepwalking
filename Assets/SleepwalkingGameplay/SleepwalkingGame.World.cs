@@ -49,6 +49,7 @@ namespace Sleepwalking
         void EnterRoom()
         {
             inDream = false;
+            GameCamera.GetComponent<Sleepwalking.Visual.PixelRoomView>()?.SetDirectRendering(false);
             if (room != null) room.SetActive(true);
             GameCamera.orthographic = roomOrthographic;
             GameCamera.orthographicSize = roomOrthographicSize;

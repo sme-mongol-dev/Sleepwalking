@@ -119,7 +119,7 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!1 &616542067
+--- !u!1 &313624743
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -127,8 +127,53 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 616542069}
-  - component: {fileID: 616542068}
+  - component: {fileID: 313624745}
+  - component: {fileID: 313624744}
+  m_Layer: 0
+  m_Name: Sleepwalking UI
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &313624744
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 313624743}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3ef67de19bad0044a86d390329174b0d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Sleepwalking.SleepwalkingUI
+  roomCamera: {fileID: 0}
+--- !u!4 &313624745
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 313624743}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &2115854970
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2115854972}
+  - component: {fileID: 2115854971}
   m_Layer: 0
   m_Name: Sleepwalking Game
   m_TagString: Untagged
@@ -136,18 +181,22 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &616542068
+--- !u!114 &2115854971
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 616542067}
+  m_GameObject: {fileID: 2115854970}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e0de77bf07fb3a64398e353f0feeb402, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Sleepwalking.SleepwalkingGame
+  odradek: 1
+  TutorialPrefabs:
+  - {fileID: 8453590445340337615, guid: 4c34e64c187cfc248b4455717d240ea5, type: 3}
+  - {fileID: 8293235191402305752, guid: e2b6239cbe3b771429fbf93b12625ae7, type: 3}
   LevelPrefabs:
   - {fileID: 100000001001, guid: a817f8341d864a068aa7410000000001, type: 3}
   - {fileID: 200000001001, guid: a817f8341d864a068aa7410000000002, type: 3}
@@ -167,60 +216,15 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 4f4c5a430e760774c9e9e466342ebf6d, type: 2}
   MovementProfile: {fileID: 11400000, guid: 64a8630dd59dba74fa5e0e56e029b23b, type: 2}
   RoomPrefab: {fileID: 3387149823977496480, guid: 735b53709a49f7e46a535019da99a217, type: 3}
-  UI: {fileID: 984960090}
+  UI: {fileID: 313624744}
   GameCamera: {fileID: 0}
---- !u!4 &616542069
+--- !u!4 &2115854972
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 616542067}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &984960089
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 984960091}
-  - component: {fileID: 984960090}
-  m_Layer: 0
-  m_Name: Sleepwalking UI
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &984960090
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 984960089}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3ef67de19bad0044a86d390329174b0d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Sleepwalking.SleepwalkingUI
-  roomCamera: {fileID: 0}
---- !u!4 &984960091
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 984960089}
+  m_GameObject: {fileID: 2115854970}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
@@ -233,5 +237,5 @@ Transform:
 SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
-  - {fileID: 616542069}
-  - {fileID: 984960091}
+  - {fileID: 2115854972}
+  - {fileID: 313624745}

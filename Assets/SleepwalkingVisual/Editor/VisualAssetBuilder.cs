@@ -1,4 +1,5 @@
 using System.IO;
+using System.Collections.Generic;
 using Sleepwalking.Visual;
 using UnityEditor;
 using UnityEditor.SceneManagement;
@@ -28,6 +29,10 @@ namespace Sleepwalking.Visual.Editor
             Directory.CreateDirectory(Root + "/Prefabs/Themes");
             Directory.CreateDirectory(Root + "/Preview");
             ImportDreamTilesets();
+            ImportEnvironmentSprites();
+            ImportLaserSprites();
+            ImportButtonSprites();
+            ImportBedSprites();
             BuildTemporaryDreamerSprite();
             LoadMaterials();
             PreserveFlatThemes();
@@ -46,12 +51,244 @@ namespace Sleepwalking.Visual.Editor
             Directory.CreateDirectory(Root + "/Materials");
             Directory.CreateDirectory(Root + "/Prefabs/Themes");
             ImportDreamTilesets();
+            ImportEnvironmentSprites();
+            ImportLaserSprites();
+            ImportButtonSprites();
+            ImportBedSprites();
             BuildTemporaryDreamerSprite();
             LoadMaterials();
             PreserveFlatThemes();
             BuildThemes();
             AssetDatabase.SaveAssets();
             Debug.Log("Four dream themes ready.");
+        }
+
+        [MenuItem("Sleepwalking/Visual/Apply Supplied Backdrops")]
+        public static void ApplySuppliedBackdrops()
+        {
+            ConfigureBackdropMaterial(DreamThemeId.Meat);
+            ConfigureBackdropMaterial(DreamThemeId.PostApocalypse);
+            AssetDatabase.SaveAssets();
+            Debug.Log("Supplied Meat and PostApocalypse backdrops ready.");
+        }
+
+        [MenuItem("Sleepwalking/Visual/Apply Environment Traps")]
+        public static void ApplyEnvironmentTraps()
+        {
+            ImportEnvironmentSprites();
+            ImportLaserSprites();
+            foreach (DreamThemeId id in new[] { DreamThemeId.Meat, DreamThemeId.PostApocalypse,
+                DreamThemeId.DeepWater, DreamThemeId.Heaven })
+            {
+                string path = Root + "/Prefabs/Themes/" + id + ".prefab";
+                GameObject prefab = PrefabUtility.LoadPrefabContents(path);
+                try
+                {
+                    AssignEnvironmentSprites(prefab.GetComponent<DreamTheme>(), id);
+                    PrefabUtility.SaveAsPrefabAsset(prefab, path);
+                }
+                finally { PrefabUtility.UnloadPrefabContents(prefab); }
+            }
+            AssetDatabase.SaveAssets();
+            Debug.Log("Four environment trap atlases assigned to dream themes.");
+        }
+
+        [MenuItem("Sleepwalking/Visual/Apply Button Art")]
+        public static void ApplyButtonArt()
+        {
+            ImportButtonSprites();
+            foreach (DreamThemeId id in new[] { DreamThemeId.Meat, DreamThemeId.PostApocalypse,
+                DreamThemeId.DeepWater, DreamThemeId.Heaven })
+            {
+                string path = Root + "/Prefabs/Themes/" + id + ".prefab";
+                GameObject prefab = PrefabUtility.LoadPrefabContents(path);
+                try
+                {
+                    AssignButtonSprites(prefab.GetComponent<DreamTheme>());
+                    PrefabUtility.SaveAsPrefabAsset(prefab, path);
+                }
+                finally { PrefabUtility.UnloadPrefabContents(prefab); }
+            }
+            AssetDatabase.SaveAssets();
+            Debug.Log("Button sprites assigned to four dream themes.");
+        }
+
+        [MenuItem("Sleepwalking/Visual/Apply Dream Beds")]
+        public static void ApplyDreamBeds()
+        {
+            ImportBedSprites();
+            foreach (DreamThemeId id in new[] { DreamThemeId.Meat, DreamThemeId.PostApocalypse,
+                DreamThemeId.DeepWater, DreamThemeId.Heaven })
+            {
+                string path = Root + "/Prefabs/Themes/" + id + ".prefab";
+                GameObject prefab = PrefabUtility.LoadPrefabContents(path);
+                try
+                {
+                    AssignBedSprite(prefab.GetComponent<DreamTheme>(), id);
+                    PrefabUtility.SaveAsPrefabAsset(prefab, path);
+                }
+                finally { PrefabUtility.UnloadPrefabContents(prefab); }
+            }
+            AssetDatabase.SaveAssets();
+            Debug.Log("Four dream bed sprites assigned to dream themes.");
+        }
+
+        static void ImportBedSprites()
+        {
+            foreach (string name in new[] { "Meat", "PostApoc", "DarkWater", "Heaven" })
+            {
+                string path = Root + "/Textures/Beds/T_" + name + "Bed.png";
+                TextureImporter importer = AssetImporter.GetAtPath(path) as TextureImporter;
+                if (importer == null) throw new System.InvalidOperationException("Dream bed sprite missing: " + path);
+                importer.textureType = TextureImporterType.Sprite;
+                importer.spriteImportMode = SpriteImportMode.Single;
+                importer.spritePixelsPerUnit = 32;
+                importer.filterMode = FilterMode.Point;
+                importer.mipmapEnabled = false;
+                importer.textureCompression = TextureImporterCompression.Uncompressed;
+                importer.npotScale = TextureImporterNPOTScale.None;
+                importer.wrapMode = TextureWrapMode.Clamp;
+                importer.alphaIsTransparency = true;
+                importer.maxTextureSize = 64;
+                importer.SaveAndReimport();
+            }
+        }
+
+        static void AssignBedSprite(DreamTheme theme, DreamThemeId id)
+        {
+            if (theme == null) throw new System.InvalidOperationException("DreamTheme component missing: " + id);
+            string name = id == DreamThemeId.PostApocalypse ? "PostApoc" :
+                id == DreamThemeId.DeepWater ? "DarkWater" : id.ToString();
+            string path = Root + "/Textures/Beds/T_" + name + "Bed.png";
+            theme.BedArt = AssetDatabase.LoadAssetAtPath<Sprite>(path);
+            if (theme.BedArt == null) throw new System.InvalidOperationException("Dream bed sprite not imported: " + path);
+            EditorUtility.SetDirty(theme);
+        }
+
+        static void ImportButtonSprites()
+        {
+            string path = Root + "/Textures/Environment/TL_Button.png";
+            TextureImporter importer = AssetImporter.GetAtPath(path) as TextureImporter;
+            if (importer == null) throw new System.InvalidOperationException("Button atlas missing: " + path);
+            importer.textureType = TextureImporterType.Sprite;
+            importer.spriteImportMode = SpriteImportMode.Multiple;
+            importer.spritePixelsPerUnit = 32;
+            importer.filterMode = FilterMode.Point;
+            importer.mipmapEnabled = false;
+            importer.textureCompression = TextureImporterCompression.Uncompressed;
+            importer.npotScale = TextureImporterNPOTScale.None;
+            importer.wrapMode = TextureWrapMode.Clamp;
+            importer.alphaIsTransparency = true;
+            importer.maxTextureSize = 64;
+            importer.spritesheet = new[]
+            {
+                new SpriteMetaData { name = "Button_Up", rect = new Rect(0, 0, 32, 32),
+                    alignment = (int)SpriteAlignment.Center, pivot = new Vector2(.5f, .5f) },
+                new SpriteMetaData { name = "Button_Down", rect = new Rect(32, 0, 32, 32),
+                    alignment = (int)SpriteAlignment.Center, pivot = new Vector2(.5f, .5f) }
+            };
+            importer.SaveAndReimport();
+        }
+
+        static void AssignButtonSprites(DreamTheme theme)
+        {
+            if (theme == null) throw new System.InvalidOperationException("DreamTheme component missing.");
+            string path = Root + "/Textures/Environment/TL_Button.png";
+            foreach (Object asset in AssetDatabase.LoadAllAssetsAtPath(path))
+            {
+                if (!(asset is Sprite sprite)) continue;
+                if (sprite.name == "Button_Up") theme.ButtonUpArt = sprite;
+                if (sprite.name == "Button_Down") theme.ButtonDownArt = sprite;
+            }
+            if (theme.ButtonUpArt == null || theme.ButtonDownArt == null)
+                throw new System.InvalidOperationException("Button sprites incomplete: " + path);
+            EditorUtility.SetDirty(theme);
+        }
+
+        static void ImportEnvironmentSprites()
+        {
+            string[] names = { "Meat", "PostApoc", "DarkWater", "Heaven" };
+            string[] parts = { "Spikes", "LaserBase", "LaserBeam", "Saw" };
+            foreach (string name in names)
+            {
+                string path = Root + "/Textures/Environment/TL_" + name + "_environment.png";
+                TextureImporter importer = AssetImporter.GetAtPath(path) as TextureImporter;
+                if (importer == null) throw new System.InvalidOperationException("Environment atlas missing: " + path);
+                importer.textureType = TextureImporterType.Sprite;
+                importer.spriteImportMode = SpriteImportMode.Multiple;
+                importer.spritePixelsPerUnit = 32;
+                importer.filterMode = FilterMode.Point;
+                importer.mipmapEnabled = false;
+                importer.textureCompression = TextureImporterCompression.Uncompressed;
+                importer.npotScale = TextureImporterNPOTScale.None;
+                importer.wrapMode = TextureWrapMode.Clamp;
+                importer.alphaIsTransparency = true;
+                importer.maxTextureSize = 128;
+                SpriteMetaData[] sprites = new SpriteMetaData[parts.Length];
+                for (int q = 0; q < parts.Length; q++)
+                    sprites[q] = new SpriteMetaData
+                    {
+                        name = name + "_" + parts[q],
+                        rect = new Rect(q * 32, 0, 32, 32),
+                        alignment = (int)SpriteAlignment.Center,
+                        pivot = new Vector2(.5f, .5f)
+                    };
+                importer.spritesheet = sprites;
+                importer.SaveAndReimport();
+            }
+        }
+
+        static void ImportLaserSprites()
+        {
+            string path = Root + "/Textures/Environment/T_Lasers.png";
+            TextureImporter importer = AssetImporter.GetAtPath(path) as TextureImporter;
+            if (importer == null) throw new System.InvalidOperationException("Laser atlas missing: " + path);
+            importer.textureType = TextureImporterType.Sprite;
+            importer.spriteImportMode = SpriteImportMode.Multiple;
+            importer.spritePixelsPerUnit = 32;
+            importer.filterMode = FilterMode.Point;
+            importer.mipmapEnabled = false;
+            importer.textureCompression = TextureImporterCompression.Uncompressed;
+            importer.npotScale = TextureImporterNPOTScale.None;
+            importer.wrapMode = TextureWrapMode.Clamp;
+            importer.alphaIsTransparency = true;
+            importer.maxTextureSize = 128;
+            string[] names = { "Meat", "DarkWater", "Heaven", "PostApoc" };
+            SpriteMetaData[] sprites = new SpriteMetaData[names.Length];
+            for (int q = 0; q < names.Length; q++)
+                sprites[q] = new SpriteMetaData
+                {
+                    name = names[q] + "_LaserBase",
+                    rect = new Rect(q * 32, 0, 32, 32),
+                    alignment = (int)SpriteAlignment.Center,
+                    pivot = new Vector2(.5f, .5f)
+                };
+            importer.spritesheet = sprites;
+            importer.SaveAndReimport();
+        }
+
+        static void AssignEnvironmentSprites(DreamTheme theme, DreamThemeId id)
+        {
+            if (theme == null) throw new System.InvalidOperationException("DreamTheme component missing: " + id);
+            string name = id == DreamThemeId.PostApocalypse ? "PostApoc" :
+                id == DreamThemeId.DeepWater ? "DarkWater" : id.ToString();
+            string path = Root + "/Textures/Environment/TL_" + name + "_environment.png";
+            foreach (Object asset in AssetDatabase.LoadAllAssetsAtPath(path))
+            {
+                if (!(asset is Sprite sprite)) continue;
+                if (sprite.name == name + "_Spikes") theme.SpikesArt = sprite;
+                if (sprite.name == name + "_LaserBeam") theme.LaserBeamArt = sprite;
+                if (sprite.name == name + "_Saw") theme.SawArt = sprite;
+            }
+            string laserPath = Root + "/Textures/Environment/T_Lasers.png";
+            foreach (Object asset in AssetDatabase.LoadAllAssetsAtPath(laserPath))
+            {
+                if (asset is Sprite sprite && sprite.name == name + "_LaserBase")
+                    theme.LaserBaseArt = sprite;
+            }
+            if (theme.SpikesArt == null || theme.LaserBaseArt == null || theme.LaserBeamArt == null || theme.SawArt == null)
+                throw new System.InvalidOperationException("Environment sprites incomplete: " + path + " / " + laserPath);
+            EditorUtility.SetDirty(theme);
         }
 
         [MenuItem("Sleepwalking/Build Room Composition")]
@@ -110,6 +347,7 @@ namespace Sleepwalking.Visual.Editor
         [MenuItem("Sleepwalking/Build Textured Menu")]
         public static void BuildTexturedMenu()
         {
+            List<RoomOdradekDecoration> previousDecorations = GetPreviousMenuDecorations();
             LoadMaterials();
             GameObject room = new GameObject("Sleepwalking Menu Room");
             try
@@ -126,12 +364,37 @@ namespace Sleepwalking.Visual.Editor
                 MeshRenderer clock = MenuArtwork(root, "Clock", "Clock", new Vector3(.15f, 2.65f, 0), .024f, true);
                 MeshRenderer door = MenuArtwork(root, "Door", "Door", new Vector3(6.48f, .9f, 0), .020f, true);
                 MeshRenderer calendar = MenuArtwork(root, "Calendar", "Calendar", new Vector3(5.18f, 4.62f, .4f), .013f);
-                MenuArtwork(root, "Window", "Window", new Vector3(3.05f, 2.03f, .5f), .027f);
-                MenuArtwork(root, "Nightstand", "Tymba", new Vector3(3.05f, .32f, .3f), .022f);
-                environment.ClockHand = MenuArtwork(clock.transform, "Clock Hands", "ClockArrows",
-                    new Vector3(0, 0, -.02f), 1f / 128).transform;
+                MeshRenderer window = MenuArtwork(root, "Window", "Window", new Vector3(3.05f, 2.03f, .5f), .027f);
+                MeshRenderer nightstand = MenuArtwork(root, "Nightstand", "Tymba", new Vector3(3.05f, .32f, .3f), .022f);
+                GameObject clockHands = Group(clock.transform, "Clock Hands", new Vector3(0, 0, -.02f));
+                environment.ClockHand = clockHands.transform;
+                GameObject bigPivot = Group(clockHands.transform, "Big Hand Pivot", new Vector3(0, 0, -.003f));
+                bigPivot.transform.localEulerAngles = new Vector3(0, 0, -48f);
+                MenuDecorArtwork(bigPivot.transform, "Big Clock Arrow", "ClockArrowBig",
+                    new Vector3(0, .117f, 0), 1f / 128);
+                GameObject smallPivot = Group(clockHands.transform, "Small Hand Pivot", new Vector3(0, 0, -.006f));
+                smallPivot.transform.localEulerAngles = new Vector3(0, 0, 48f);
+                MenuDecorArtwork(smallPivot.transform, "Small Clock Arrow", "ClockArrowSmall",
+                    new Vector3(0, .117f, 0), 1f / 128);
                 environment.Picture = calendar.transform;
                 AddMenuPoster(environment);
+                MeshRenderer slippers = MenuDecorArtwork(root, "Slippers", "Slippers",
+                    new Vector3(-4.9f, -2.1f, -.5f), .024f);
+                MeshRenderer eye = MenuDecorArtwork(root, "Eye", "Eye",
+                    new Vector3(2.5f, 2.75f, .35f), .017f);
+                MeshRenderer eyeball = MenuDecorArtwork(root, "Eyeball", "Eyeball",
+                    new Vector3(2.5f, 2.75f, .32f), .017f);
+
+                AddOdradekDecoration(environment, "Window", window.gameObject, 1);
+                AddOdradekDecoration(environment, "Nightstand", nightstand.gameObject, 1);
+                AddOdradekDecoration(environment, "Calendar", calendar.gameObject, 25);
+                AddOdradekDecoration(environment, "Poster", environment.Poster.gameObject, 1);
+                AddOdradekDecoration(environment, "Big Clock Arrow", bigPivot, 1);
+                AddOdradekDecoration(environment, "Small Clock Arrow", smallPivot, 1);
+                AddOdradekDecoration(environment, "Slippers", slippers.gameObject, 35);
+                AddOdradekDecoration(environment, "Eye", eye.gameObject, 55, 1);
+                AddOdradekDecoration(environment, "Eyeball", eyeball.gameObject, 75, 2);
+                RestoreMenuDecorations(environment, previousDecorations);
                 RoomDynamicLighting.Apply(room);
 
                 AddMenuHotspot(bed, RoomAction.Dream, "New Game");
@@ -168,6 +431,83 @@ namespace Sleepwalking.Visual.Editor
                 .GetComponent<MeshRenderer>();
         }
 
+        static MeshRenderer MenuDecorArtwork(Transform parent, string name, string textureName,
+            Vector3 position, float unitsPerPixel)
+        {
+            Texture2D texture = LoadMenuTexture(Root + "/Textures/MenuDecor/" + textureName + ".png");
+            Material material = AtlasMaterial("MenuDecor_" + textureName, Shader.Find("Sleepwalking/PixelCutout"),
+                texture, Vector2.one, Vector2.zero);
+            return TexturedQuad(parent, name, position,
+                new Vector3(texture.width * unitsPerPixel, texture.height * unitsPerPixel, 1), material)
+                .GetComponent<MeshRenderer>();
+        }
+
+        static void AddOdradekDecoration(RoomEnvironment environment, string name, GameObject roomObject,
+            int minOdradek, int sortingOrder = 0)
+        {
+            Transform item = roomObject.transform;
+            environment.Decorations.Add(new RoomOdradekDecoration
+            {
+                Name = name,
+                MinOdradek = minOdradek,
+                RoomObject = roomObject,
+                LocalPosition = item.localPosition,
+                LocalEulerAngles = item.localEulerAngles,
+                LocalScale = item.localScale,
+                SortingOrder = sortingOrder
+            });
+        }
+
+        static List<RoomOdradekDecoration> GetPreviousMenuDecorations()
+        {
+            var result = new List<RoomOdradekDecoration>();
+            GameObject prefab = AssetDatabase.LoadAssetAtPath<GameObject>(MenuRoomPrefab);
+            RoomEnvironment previous = prefab != null ? prefab.GetComponent<RoomEnvironment>() : null;
+            if (previous == null || previous.Decorations == null) return result;
+
+            foreach (RoomOdradekDecoration row in previous.Decorations)
+            {
+                if (row == null) continue;
+                result.Add(new RoomOdradekDecoration
+                {
+                    Name = row.Name,
+                    MinOdradek = row.MinOdradek,
+                    Prefab = row.Prefab,
+                    LocalPosition = row.LocalPosition,
+                    LocalEulerAngles = row.LocalEulerAngles,
+                    LocalScale = row.LocalScale,
+                    SortingOrder = row.SortingOrder
+                });
+            }
+            return result;
+        }
+
+        static void RestoreMenuDecorations(RoomEnvironment environment, List<RoomOdradekDecoration> previous)
+        {
+            foreach (RoomOdradekDecoration row in previous)
+            {
+                RoomOdradekDecoration current = environment.Decorations.Find(item => item.Name == row.Name);
+                if (current == null)
+                {
+                    if (row.Prefab != null) environment.Decorations.Add(row);
+                    continue;
+                }
+
+                current.MinOdradek = row.MinOdradek;
+                current.LocalPosition = row.LocalPosition;
+                current.LocalEulerAngles = row.LocalEulerAngles;
+                current.LocalScale = row.LocalScale;
+                current.SortingOrder = row.SortingOrder;
+                if (current.RoomObject == null) continue;
+                Transform item = current.RoomObject.transform;
+                item.localPosition = current.LocalPosition;
+                item.localEulerAngles = current.LocalEulerAngles;
+                item.localScale = current.LocalScale;
+                foreach (Renderer renderer in current.RoomObject.GetComponentsInChildren<Renderer>(true))
+                    renderer.sortingOrder = current.SortingOrder;
+            }
+        }
+
         static Texture2D LoadMenuTexture(string path, bool readable = false)
         {
             if (AssetImporter.GetAtPath(path) is not TextureImporter importer)
@@ -185,7 +525,7 @@ namespace Sleepwalking.Visual.Editor
 
         static void AddMenuPoster(RoomEnvironment environment)
         {
-            string[] files = Directory.GetFiles(Root + "/Textures/Posters", "*.png");
+            string[] files = Directory.GetFiles(Root + "/Textures/Posters/Masked", "*.png");
             System.Array.Sort(files, System.StringComparer.Ordinal);
             if (files.Length != 12) throw new System.InvalidOperationException("Expected twelve menu poster textures.");
             environment.Posters = System.Array.ConvertAll(files, path => LoadMenuTexture(path.Replace('\\', '/')));
@@ -956,16 +1296,26 @@ namespace Sleepwalking.Visual.Editor
 
         static void BuildGeneratedBackdrop(Transform parent, DreamThemeId id)
         {
+            Material material = ConfigureBackdropMaterial(id);
+            TexturedQuad(parent, "Distant Background Left", new Vector3(-1f, 1.8f, 3.84f), new Vector3(22f, 14f, 1), material);
+            TexturedQuad(parent, "Distant Background Right", new Vector3(21f, 1.8f, 3.84f), new Vector3(22f, 14f, 1), material);
+        }
+
+        static Material ConfigureBackdropMaterial(DreamThemeId id)
+        {
             string imageName = id == DreamThemeId.PostApocalypse ? "PostApoc" : id.ToString();
-            string texturePath = Root + "/Textures/Generated/" + imageName + "Backdrop_320.png";
+            string texturePath = id == DreamThemeId.Meat ? Root + "/Textures/Source/BloodBgnew.png" :
+                id == DreamThemeId.PostApocalypse ? Root + "/Textures/Source/WarBG.png" :
+                Root + "/Textures/Generated/" + imageName + "Backdrop_320.png";
             TextureImporter importer = AssetImporter.GetAtPath(texturePath) as TextureImporter;
-            if (importer == null) throw new System.InvalidOperationException("Generated backdrop missing: " + texturePath);
+            if (importer == null) throw new System.InvalidOperationException("Dream backdrop missing: " + texturePath);
             importer.textureType = TextureImporterType.Default;
             importer.filterMode = FilterMode.Point;
             importer.mipmapEnabled = false;
             importer.textureCompression = TextureImporterCompression.Uncompressed;
             importer.npotScale = TextureImporterNPOTScale.None;
             importer.wrapMode = TextureWrapMode.Clamp;
+            importer.maxTextureSize = 2048;
             importer.SaveAndReimport();
             Texture2D texture = AssetDatabase.LoadAssetAtPath<Texture2D>(texturePath);
             Shader shader = Shader.Find("Sleepwalking/PixelBackdrop");
@@ -979,10 +1329,10 @@ namespace Sleepwalking.Visual.Editor
             }
             material.shader = shader;
             material.SetTexture("_MainTex", texture);
-            material.SetColor("_Tint", id == DreamThemeId.Heaven ? new Color(.58f, .62f, .72f, 1) : Color.white);
+            material.SetColor("_Tint", id == DreamThemeId.Heaven ? new Color(.50f, .53f, .62f, 1) :
+                new Color(.85f, .85f, .85f, 1));
             EditorUtility.SetDirty(material);
-            TexturedQuad(parent, "Distant Background Left", new Vector3(-1f, 1.8f, 3.84f), new Vector3(22f, 14f, 1), material);
-            TexturedQuad(parent, "Distant Background Right", new Vector3(21f, 1.8f, 3.84f), new Vector3(22f, 14f, 1), material);
+            return material;
         }
 
         static void BuildTheme(DreamThemeId id, Material main, Material highlight, Material dark)
@@ -999,6 +1349,9 @@ namespace Sleepwalking.Visual.Editor
             Shader tileShader = Shader.Find("Sleepwalking/PixelCutout");
             if (atlas == null || tileShader == null) throw new System.InvalidOperationException("Dream tileset import failed: " + sheetPath);
             theme.Tiles = AtlasMaterial("DreamTiles_" + id, tileShader, atlas, Vector2.one, Vector2.zero);
+            AssignEnvironmentSprites(theme, id);
+            AssignButtonSprites(theme);
+            AssignBedSprite(theme, id);
             Sprite dreamerSprite = AssetDatabase.LoadAssetAtPath<Sprite>(Root + "/Textures/Processed/Dreamer_TempSilhouette.png");
             if (dreamerSprite == null) throw new System.InvalidOperationException("Temporary dreamer sprite is missing.");
             root.AddComponent<DreamPlayerAppearance>().TemporarySprite = dreamerSprite;

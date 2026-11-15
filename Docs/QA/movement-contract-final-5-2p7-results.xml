@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="2" result="Failed(Child)" total="2" passed="1" failed="1" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-11-14 21:47:51Z" end-time="2026-11-14 21:47:55Z" duration="4,6449128">
+  <test-suite type="TestSuite" id="1131" name="Sleepwalking" fullname="Sleepwalking" runstate="Runnable" testcasecount="92" result="Failed" site="Child" start-time="2026-11-14 21:47:51Z" end-time="2026-11-14 21:47:55Z" duration="4.644913" total="2" passed="1" failed="1" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="PlayMode" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="Assembly" id="1124" name="Sleepwalking.PlayMode.Tests.dll" fullname="T:/Sleepwalking/Library/ScriptAssemblies/Sleepwalking.PlayMode.Tests.dll" runstate="Runnable" testcasecount="92" result="Failed" site="Child" start-time="2026-11-14 21:47:51Z" end-time="2026-11-14 21:47:55Z" duration="4.637035" total="2" passed="1" failed="1" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="1008716" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="PlayMode" />
+        <property name="EditorOnly" value="False" />
+      </properties>
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="1125" name="Sleepwalking" fullname="Sleepwalking" runstate="Runnable" testcasecount="92" result="Failed" site="Child" start-time="2026-11-14 21:47:51Z" end-time="2026-11-14 21:47:55Z" duration="4.635743" total="2" passed="1" failed="1" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestSuite" id="1126" name="Tests" fullname="Sleepwalking.Tests" runstate="Runnable" testcasecount="92" result="Failed" site="Child" start-time="2026-11-14 21:47:51Z" end-time="2026-11-14 21:47:55Z" duration="4.634915" total="2" passed="1" failed="1" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="TestSuite" id="1127" name="PlayMode" fullname="Sleepwalking.Tests.PlayMode" runstate="Runnable" testcasecount="92" result="Failed" site="Child" start-time="2026-11-14 21:47:51Z" end-time="2026-11-14 21:47:55Z" duration="4.634002" total="2" passed="1" failed="1" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-suite type="TestFixture" id="1011" name="MovementContractTests" fullname="Sleepwalking.Tests.PlayMode.MovementContractTests" classname="Sleepwalking.Tests.PlayMode.MovementContractTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-11-14 21:47:51Z" end-time="2026-11-14 21:47:55Z" duration="4.630181" total="2" passed="1" failed="1" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="1012" name="AuthoredProfilesKeepFiveCellRunAndTwoPointSevenCellDash" fullname="Sleepwalking.Tests.PlayMode.MovementContractTests.AuthoredProfilesKeepFiveCellRunAndTwoPointSevenCellDash" methodname="AuthoredProfilesKeepFiveCellRunAndTwoPointSevenCellDash" classname="Sleepwalking.Tests.PlayMode.MovementContractTests" runstate="Runnable" seed="1792313766" result="Passed" start-time="2026-11-14 21:47:51Z" end-time="2026-11-14 21:47:55Z" duration="4.218154" asserts="0">
+                <properties>
+                  <property name="_JOINTYPE" value="UnityCombinatorial" />
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[SW_MOVEMENT profile=0 odradek=1 runCellsPerSecond=5,000 dashCells=2,700
+SW_MOVEMENT profile=1 odradek=1 runCellsPerSecond=5,000 dashCells=2,700
+SW_MOVEMENT profile=2 odradek=1 runCellsPerSecond=5,000 dashCells=2,700
+SW_MOVEMENT profile=0 odradek=100 runCellsPerSecond=4,750 dashCells=2,700
+SW_MOVEMENT profile=1 odradek=100 runCellsPerSecond=4,750 dashCells=2,700
+SW_MOVEMENT profile=2 odradek=100 runCellsPerSecond=4,750 dashCells=2,700
+]]></output>
+              </test-case>
+              <test-case id="1013" name="RunAirDashAndWallJumpRespectCellContract" fullname="Sleepwalking.Tests.PlayMode.MovementContractTests.RunAirDashAndWallJumpRespectCellContract" methodname="RunAirDashAndWallJumpRespectCellContract" classname="Sleepwalking.Tests.PlayMode.MovementContractTests" runstate="Runnable" seed="461174930" result="Failed" start-time="2026-11-14 21:47:55Z" end-time="2026-11-14 21:47:55Z" duration="0.398802" asserts="0">
+                <properties>
+                  <property name="_JOINTYPE" value="UnityCombinatorial" />
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Running must reach 5 cells per second.
+  Expected: 5.0f +/- 0.0199999996f
+  But was:  4.75f
+]]></message>
+                  <stack-trace><![CDATA[at Sleepwalking.Tests.PlayMode.MovementContractTests+<RunAirDashAndWallJumpRespectCellContract>d__1.MoveNext () [0x003af] in T:\Sleepwalking\Assets\SleepwalkingGameplay\CalibrationTests\MovementContractTests.cs:135
+at UnityEngine.TestTools.TestEnumerator+<Execute>d__7.MoveNext () [0x0003a] in .\Library\PackageCache\com.unity.test-framework@bd7f943e9647\UnityEngine.TestRunner\NUnitExtensions\Attributes\TestEnumerator.cs:44
+]]></stack-trace>
+                </failure>
+                <output><![CDATA[SW_MOVEMENT groundSpeed=4,750 grounded=True
+Saving results to: C:/Users/TIMBUHTUK/AppData/LocalLow/DefaultCompany/Sleepwalking\TestResults.xml
+]]></output>
+              </test-case>
+            </test-suite>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

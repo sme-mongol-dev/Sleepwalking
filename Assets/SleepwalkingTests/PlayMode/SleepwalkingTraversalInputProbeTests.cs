@@ -10,6 +10,8 @@ namespace Sleepwalking.Tests.PlayMode
 {
     public sealed class SleepwalkingTraversalInputProbeTests
     {
+        const float Unit = 32f;
+
         [UnityTest]
         public IEnumerator SimulatedCommandsDriveTheLiveL01Controller()
         {
@@ -44,8 +46,10 @@ namespace Sleepwalking.Tests.PlayMode
             Assert.That(dreamer, Is.Not.Null);
             MonoBehaviour player = FindComponent(dreamer, "Sleepwalking.SleepwalkingPlayer");
             Rigidbody2D body = dreamer.GetComponent<Rigidbody2D>();
+            Collider2D shape = dreamer.GetComponent<Collider2D>();
             Assert.That(player, Is.Not.Null);
             Assert.That(body, Is.Not.Null);
+            Assert.That(shape, Is.Not.Null);
             Type playerType = player.GetType();
             MethodInfo setInput = playerType.GetMethod("SetSimulatedInput", BindingFlags.Instance | BindingFlags.Public);
             MethodInfo clearInput = playerType.GetMethod("ClearSimulatedInput", BindingFlags.Instance | BindingFlags.Public);
@@ -57,6 +61,8 @@ namespace Sleepwalking.Tests.PlayMode
             Assert.That(dashRemaining, Is.Not.Null);
 
             Vector2 start = body.position;
+            float cameraY = camera.transform.position.y;
+            float cameraSize = camera.orthographicSize;
             try
             {
                 yield return ResetAndSettle(resetAt, player, start);
@@ -68,20 +74,32 @@ namespace Sleepwalking.Tests.PlayMode
                     yield return new WaitForFixedUpdate();
                     peakY = Mathf.Max(peakY, body.position.y);
                 }
-                Assert.That(peakY - initialY, Is.GreaterThan(.2f), "Jump command did not lift the live body.");
+                Assert.That(peakY - initialY, Is.GreaterThan(.2f * Unit),
+                    "Jump command did not lift the live body.");
+                Assert.That(camera.transform.position.y, Is.EqualTo(cameraY).Within(.01f),
+                    "Horizontal follow camera moved vertically during the jump.");
 
                 yield return ResetAndSettle(resetAt, player, start);
                 float initialX = body.position.x;
                 setInput.Invoke(player, new object[] { 1f, false, false });
                 for (int q = 0; q < 10; q++)
                     yield return new WaitForFixedUpdate();
-                Assert.That(body.position.x - initialX, Is.GreaterThan(.15f),
+                Assert.That(body.position.x - initialX, Is.GreaterThan(.15f * Unit),
                     "Horizontal command did not move the live body.");
 
-                float initialCameraX = camera.transform.position.x;
-                for (int q = 0; q < 8; q++)
-                    yield return new WaitForFixedUpdate();
-                Assert.That(camera.transform.position.x, Is.GreaterThan(initialCameraX));
+                Collider2D middleSupport = GameObject.Find("RiseA")?.GetComponent<Collider2D>();
+                Assert.That(middleSupport, Is.Not.Null);
+                Vector3 cameraBeforeFollow = camera.transform.position;
+                Vector2 middle = new Vector2(15.2f * Unit,
+                    middleSupport.bounds.max.y + shape.bounds.extents.y + .015f * Unit);
+                yield return ResetAndSettle(resetAt, player, middle);
+                for (int q = 0; q < 30; q++) yield return null;
+                Assert.That(camera.transform.position.x - cameraBeforeFollow.x,
+                    Is.GreaterThan(.25f * Unit), "Dream camera did not follow the player along X.");
+                Assert.That(camera.transform.position.y, Is.EqualTo(cameraY).Within(.01f),
+                    "Dream camera must keep a fixed Y while following horizontally.");
+                Assert.That(camera.orthographicSize, Is.EqualTo(cameraSize).Within(.01f),
+                    "Dream camera changed its vertical scale while following.");
 
                 yield return ResetAndSettle(resetAt, player, start);
                 initialX = body.position.x;
@@ -91,7 +109,7 @@ namespace Sleepwalking.Tests.PlayMode
                     "Dash command did not enter the live dash state.");
                 for (int q = 0; q < 3; q++)
                     yield return new WaitForFixedUpdate();
-                Assert.That(body.position.x - initialX, Is.GreaterThan(.15f),
+                Assert.That(body.position.x - initialX, Is.GreaterThan(.15f * Unit),
                     "Dash command did not move the live body.");
             }
             finally

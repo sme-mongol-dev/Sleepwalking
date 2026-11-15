@@ -8,20 +8,28 @@ namespace Sleepwalking
     [RequireComponent(typeof(Rigidbody2D), typeof(BoxCollider2D))]
     public sealed class SleepwalkingPlayer : MonoBehaviour
     {
+        static PhysicsMaterial2D playerMaterial;
         public SleepwalkingMovementProfile Profile;
-        public float RunSpeed = 8.5f;
+        public float WorldUnitsPerCell = 1f;
+        public const float MaxRunCellsPerSecond = 5f;
+        public const float DashDistanceCells = 2.7f;
+        public const float AirControlRatio = .27f;
+        public float RunSpeed = MaxRunCellsPerSecond;
         public float GroundAcceleration = 65f;
-        public float AirAcceleration = 38f;
+        public float AirAcceleration => GroundAcceleration * AirControlRatio;
         public float JumpSpeed = 12f;
         public float GravityScale = 3.2f;
-        public float DashSpeed = 18f;
+        public float DashSpeed = DashDistanceCells / .18f;
+        public float DashDistance = DashDistanceCells;
         public float DashSeconds = .18f;
         public float WallSlideSpeed = 2f;
         public float CoyoteSeconds = .11f;
         public float JumpBufferSeconds = .13f;
         public float DashCooldownSeconds = .35f;
         public bool ControlsEnabled = true;
-        public float EffectiveRunSpeed => RunSpeed * (SleepwalkingGame.Instance?.OdradekRunMultiplier ?? 1f);
+        public bool DashEnabled = true;
+        public float EffectiveRunSpeed => Mathf.Min(RunSpeed, MaxRunCellsPerSecond * WorldUnitsPerCell) *
+            (SleepwalkingGame.Instance?.OdradekRunMultiplier ?? 1f);
         public float EffectiveJumpSpeed => JumpSpeed * (SleepwalkingGame.Instance?.OdradekJumpMultiplier ?? 1f);
 
         Rigidbody2D body;
@@ -30,9 +38,13 @@ namespace Sleepwalking
         float jumpBuffer;
         float coyote;
         float dashRemaining;
+        float dashDistanceRemaining;
+        float preDashVelocityX;
         float dashReady;
+        bool restoreDashMomentum;
         int dashCharges = 1;
         int facing = 1;
+        int dashDirection = 1;
         int wall;
         bool grounded;
         bool wasGrounded;
@@ -48,7 +60,7 @@ namespace Sleepwalking
         public bool IsGrounded => grounded;
         public bool CanUseExit(float bedX)
         {
-            if (!grounded || body == null || shape == null || Mathf.Abs(body.linearVelocity.y) >= .3f)
+            if (!grounded || body == null || shape == null || Mathf.Abs(body.linearVelocity.y) >= .3f * WorldUnitsPerCell)
                 return false;
             Collider2D[] contacts = new Collider2D[8];
             int count = shape.GetContacts(contacts);
@@ -56,10 +68,10 @@ namespace Sleepwalking
             {
                 Collider2D support = contacts[q];
                 if (support == null || support.isTrigger ||
-                    Mathf.Abs(shape.bounds.min.y - support.bounds.max.y) >= .15f)
+                    Mathf.Abs(shape.bounds.min.y - support.bounds.max.y) >= .15f * WorldUnitsPerCell)
                     continue;
                 Bounds surface = support.bounds;
-                float inset = shape.bounds.extents.x + .15f;
+                float inset = shape.bounds.extents.x + .15f * WorldUnitsPerCell;
                 if (bedX >= surface.min.x && bedX <= surface.max.x &&
                     body.position.x >= surface.min.x + inset && body.position.x <= surface.max.x - inset)
                     return true;
@@ -72,6 +84,9 @@ namespace Sleepwalking
             body = GetComponent<Rigidbody2D>();
             shape = GetComponent<BoxCollider2D>();
             sprite = GetComponent<SpriteRenderer>();
+            if (playerMaterial == null)
+                playerMaterial = new PhysicsMaterial2D("Dreamer surface") { friction = 0f };
+            shape.sharedMaterial = playerMaterial;
             ApplyProfile();
             body.freezeRotation = true;
             body.collisionDetectionMode = CollisionDetectionMode2D.Continuous;
@@ -83,9 +98,16 @@ namespace Sleepwalking
             if (!ControlsEnabled) return;
             if (PressedJump()) jumpBuffer = JumpBufferSeconds;
             else jumpBuffer -= Time.deltaTime;
-            if (PressedDash() && dashReady <= 0f && dashCharges > 0)
+            if (DashEnabled && PressedDash() && dashReady <= 0f && dashCharges > 0)
             {
+                float horizontal = Horizontal();
+                dashDirection = grounded && Mathf.Abs(horizontal) > .01f ?
+                    (int)Mathf.Sign(horizontal) : facing;
+                facing = dashDirection;
                 dashRemaining = DashSeconds;
+                dashDistanceRemaining = DashDistance;
+                preDashVelocityX = body.linearVelocity.x;
+                restoreDashMomentum = false;
                 dashReady = DashCooldownSeconds;
                 dashCharges--;
                 body.gravityScale = 0f;
@@ -100,7 +122,7 @@ namespace Sleepwalking
             ContactFilter2D filter = new ContactFilter2D();
             filter.useTriggers = false;
             RaycastHit2D[] hits = new RaycastHit2D[4];
-            grounded = shape.Cast(Vector2.down, filter, hits, .09f) > 0;
+            grounded = shape.Cast(Vector2.down, filter, hits, .09f * WorldUnitsPerCell) > 0;
             wall = WallDirection(filter, hits);
             if (grounded && !wasGrounded) SleepwalkingGame.Instance?.PlayCue("Landing");
             wasGrounded = grounded;
@@ -113,21 +135,34 @@ namespace Sleepwalking
             if (!grounded && standingPlatform != null) ClearPlatformVelocity(standingPlatform);
 
             float horizontal = Horizontal();
-            if (horizontal > .01f) facing = 1;
-            if (horizontal < -.01f) facing = -1;
+            if (dashRemaining <= 0f && grounded && horizontal > .01f) facing = 1;
+            if (dashRemaining <= 0f && grounded && horizontal < -.01f) facing = -1;
             if (sprite != null) sprite.flipX = facing < 0;
 
             if (dashRemaining > 0f)
             {
+                float distance = Mathf.Min(DashSpeed * Time.fixedDeltaTime, dashDistanceRemaining);
+                dashDistanceRemaining -= distance;
                 dashRemaining -= Time.fixedDeltaTime;
-                body.linearVelocity = new Vector2(facing * DashSpeed + platformVelocity.x, 0);
-                if (dashRemaining <= 0f) body.gravityScale = GravityScale;
+                body.linearVelocity = new Vector2(dashDirection * distance / Time.fixedDeltaTime, 0f);
+                if (dashRemaining <= 0f || dashDistanceRemaining <= .0001f)
+                {
+                    dashRemaining = 0f;
+                    body.gravityScale = GravityScale;
+                    restoreDashMomentum = true;
+                }
                 return;
             }
 
             Vector2 velocity = body.linearVelocity;
-            // При отсутствии ввода игрок следует за платформой, но может бежать в любую сторону.
-            velocity.x = Mathf.MoveTowards(velocity.x, horizontal * EffectiveRunSpeed + platformVelocity.x,
+            if (restoreDashMomentum)
+            {
+                velocity.x = preDashVelocityX;
+                restoreDashMomentum = false;
+            }
+            // Воздушное управление слабее наземного; платформа добавляет скорость только при контакте.
+            velocity.x = Mathf.MoveTowards(velocity.x,
+                horizontal * EffectiveRunSpeed + platformVelocity.x,
                 (grounded ? GroundAcceleration : AirAcceleration) * Time.fixedDeltaTime);
             if (grounded && platformVelocity.y < 0f) velocity.y = Mathf.Min(velocity.y, platformVelocity.y);
             bool sliding = wall != 0 && !grounded && velocity.y < -WallSlideSpeed && horizontal * wall > 0f;
@@ -137,12 +172,19 @@ namespace Sleepwalking
                 velocity.y = -WallSlideSpeed;
             if (jumpBuffer > 0f && (coyote > 0f || wall != 0))
             {
-                if (wall != 0 && !grounded) velocity.x = -wall * EffectiveRunSpeed;
+                if (wall != 0 && !grounded)
+                {
+                    facing = -wall;
+                    velocity.x = facing * EffectiveRunSpeed;
+                }
                 velocity.y = EffectiveJumpSpeed;
                 jumpBuffer = 0f;
                 coyote = 0f;
                 SleepwalkingGame.Instance?.PlayCue("Jump");
             }
+            else if (!grounded && Mathf.Abs(velocity.x) > .01f * WorldUnitsPerCell)
+                facing = velocity.x > 0f ? 1 : -1;
+            if (sprite != null) sprite.flipX = facing < 0;
             body.linearVelocity = velocity;
         }
 
@@ -152,8 +194,11 @@ namespace Sleepwalking
             body.position = position;
             body.linearVelocity = Vector2.zero;
             body.gravityScale = GravityScale;
-            dashRemaining = dashReady = jumpBuffer = coyote = 0f;
+            dashRemaining = dashDistanceRemaining = dashReady = jumpBuffer = coyote = 0f;
+            preDashVelocityX = 0f;
+            restoreDashMomentum = false;
             dashCharges = 1;
+            facing = dashDirection = 1;
             simulatedHorizontal = 0f;
             simulatedJump = simulatedDash = false;
             wasGrounded = wasSliding = false;
@@ -188,18 +233,28 @@ namespace Sleepwalking
         {
             if (Profile != null)
             {
-                RunSpeed = Profile.RunSpeed;
-                GroundAcceleration = Profile.GroundAcceleration;
-                AirAcceleration = Profile.AirAcceleration;
-                JumpSpeed = Profile.JumpSpeed;
-                GravityScale = Profile.GravityScale;
-                DashSpeed = Profile.DashSpeed;
+                RunSpeed = Mathf.Min(Profile.RunSpeed, MaxRunCellsPerSecond) * WorldUnitsPerCell;
+                GroundAcceleration = Profile.GroundAcceleration * WorldUnitsPerCell;
+                JumpSpeed = Profile.JumpSpeed * WorldUnitsPerCell;
+                GravityScale = Profile.GravityScale * WorldUnitsPerCell;
+                DashDistance = Mathf.Min(Profile.DashDistance, DashDistanceCells) * WorldUnitsPerCell;
                 DashSeconds = Profile.DashSeconds;
-                WallSlideSpeed = Profile.WallSlideSpeed;
+                WallSlideSpeed = Profile.WallSlideSpeed * WorldUnitsPerCell;
                 CoyoteSeconds = Profile.CoyoteSeconds;
                 JumpBufferSeconds = Profile.JumpBufferSeconds;
                 DashCooldownSeconds = Profile.DashCooldownSeconds;
             }
+            else
+            {
+                RunSpeed = MaxRunCellsPerSecond * WorldUnitsPerCell;
+                GroundAcceleration = 65f * WorldUnitsPerCell;
+                JumpSpeed = 12f * WorldUnitsPerCell;
+                GravityScale = 3.2f * WorldUnitsPerCell;
+                DashDistance = DashDistanceCells * WorldUnitsPerCell;
+                WallSlideSpeed = 2f * WorldUnitsPerCell;
+            }
+            DashDistance = Mathf.Min(DashDistance, DashDistanceCells * WorldUnitsPerCell);
+            DashSpeed = DashDistance / Mathf.Max(.01f, DashSeconds);
             if (body == null) body = GetComponent<Rigidbody2D>();
             body.gravityScale = GravityScale;
         }
@@ -226,7 +281,8 @@ namespace Sleepwalking
             foreach (ContactPoint2D contact in collision.contacts)
             {
                 if (Mathf.Abs(contact.normal.x) < .6f) continue;
-                SleepwalkingGame.Instance?.PaintAt(contact.point);
+                Collider2D surface = contact.collider == shape ? contact.otherCollider : contact.collider;
+                SleepwalkingGame.Instance?.PaintAt(contact.point, contact.normal, surface);
                 lastWallMark = Time.time;
                 break;
             }
@@ -234,17 +290,14 @@ namespace Sleepwalking
 
         int WallDirection(ContactFilter2D filter, RaycastHit2D[] hits)
         {
-            int count = shape.Cast(Vector2.right, filter, hits, .07f);
+            int count = shape.Cast(Vector2.right, filter, hits, .07f * WorldUnitsPerCell);
             for (int q = 0; q < count; q++)
-                if (!OneWaySurface(hits[q].collider)) return 1;
-            count = shape.Cast(Vector2.left, filter, hits, .07f);
+                if (hits[q].collider != null) return 1;
+            count = shape.Cast(Vector2.left, filter, hits, .07f * WorldUnitsPerCell);
             for (int q = 0; q < count; q++)
-                if (!OneWaySurface(hits[q].collider)) return -1;
+                if (hits[q].collider != null) return -1;
             return 0;
         }
-
-        static bool OneWaySurface(Collider2D collider) => collider != null &&
-            collider.usedByEffector && collider.GetComponent<PlatformEffector2D>() != null;
 
         float Horizontal()
         {

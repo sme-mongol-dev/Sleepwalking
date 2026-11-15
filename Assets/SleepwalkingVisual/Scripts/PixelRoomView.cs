@@ -19,6 +19,24 @@ namespace Sleepwalking.Visual
         int screenHeight;
         float originalOrthographicSize;
         Vector3 originalRoomPosition;
+        bool directRendering;
+
+        public bool DirectRendering => directRendering;
+
+        public void SetDirectRendering(bool enabled)
+        {
+            if (roomCamera == null) roomCamera = GetComponent<Camera>();
+            if (directRendering == enabled) return;
+            directRendering = enabled;
+            if (outputCanvas != null) outputCanvas.enabled = !enabled;
+            if (enabled)
+            {
+                roomCamera.targetTexture = null;
+                return;
+            }
+            Refresh();
+            roomCamera.targetTexture = target;
+        }
 
         void OnEnable()
         {
@@ -46,6 +64,7 @@ namespace Sleepwalking.Visual
         void Update()
         {
             if (!Application.isPlaying) return;
+            if (directRendering) return;
             if (screenWidth != Screen.width || screenHeight != Screen.height) Refresh();
             ApplyFraming();
         }

@@ -13,6 +13,10 @@ namespace Sleepwalking.Tests.PlayMode
 {
     public sealed class SleepwalkingTraversalBypassTests
     {
+        const float Unit = 32f;
+        const float Margin = .15f * Unit;
+        static float C(float cells) => cells * Unit;
+
         sealed class Case
         {
             public string Name;
@@ -42,16 +46,16 @@ namespace Sleepwalking.Tests.PlayMode
                 new Case
                 {
                     Name = "L05_Aggressive_Start_to_ExitRun", Level = 5, ProfileIndex = 2,
-                    StartX = 1.8f, LaunchX = 2.7f, TargetName = "ExitRun",
+                    StartX = C(1.8f), LaunchX = C(2.7f), TargetName = "ExitRun",
                     Forbidden = new[] { "L05_TimedA", "L05_TimedB", "L05_TimedC" },
-                    BrakeX = new[] { 100f }
+                    BrakeX = new[] { C(100f) }
                 },
                 new Case
                 {
                     Name = "L06_Responsive_Start_to_LiftLanding", Level = 6, ProfileIndex = 1,
-                    StartX = 1.8f, LaunchX = 2.5f, TargetName = "LiftLanding",
+                    StartX = C(1.8f), LaunchX = C(2.5f), TargetName = "LiftLanding",
                     Forbidden = new[] { "L06_Horizontal" },
-                    BrakeX = new[] { 100f, 13.0f, 13.6f, 14.0f }
+                    BrakeX = new[] { C(100f), C(16f), C(16.6f), C(17f) }
                 }
             };
 
@@ -79,24 +83,24 @@ namespace Sleepwalking.Tests.PlayMode
                 new Case
                 {
                     Name = "L05_Aggressive_Dash_SkipA_to_TimedB", Level = 5, ProfileIndex = 2,
-                    StartX = 1.8f, LaunchX = 2.7f, TargetName = "L05_TimedB",
-                    Forbidden = new[] { "L05_TimedA" }, BrakeX = new[] { 100f },
-                    DashX = 3.8f, DashAgainAfterSteps = 21
+                    StartX = C(1.8f), LaunchX = C(2.7f), TargetName = "L05_TimedB",
+                    Forbidden = new[] { "L05_TimedA" }, BrakeX = new[] { C(100f) },
+                    DashX = C(3.8f), DashAgainAfterSteps = 21
                 },
                 new Case
                 {
                     Name = "L06_Responsive_Dash_SkipHorizontal_to_LiftLanding", Level = 6,
-                    ProfileIndex = 1, StartX = 1.8f, LaunchX = 2.75f,
+                    ProfileIndex = 1, StartX = C(1.8f), LaunchX = C(2.7f),
                     TargetName = "LiftLanding", Forbidden = new[] { "L06_Horizontal" },
-                    BrakeX = new[] { 100f }, DashX = 5f, DashAgainAfterSteps = 21
+                    BrakeX = new[] { C(100f) }, DashX = C(5f), DashAgainAfterSteps = 21
                 },
                 new Case
                 {
                     Name = "L06_Responsive_Dash_SkipVertical_to_HighExit", Level = 6,
-                    ProfileIndex = 1, StartX = 15f, StartSupportName = "LiftLanding",
-                    LaunchX = 15.4f, TargetName = "HighExit",
-                    Forbidden = new[] { "L06_Vertical" }, BrakeX = new[] { 100f },
-                    DashX = 16f, DashAgainAfterSteps = 21
+                    ProfileIndex = 1, StartX = C(17f), StartSupportName = "LiftLanding",
+                    LaunchX = C(17.5f), TargetName = "HighExit",
+                    Forbidden = new[] { "L06_Vertical" }, BrakeX = new[] { C(100f) },
+                    DashX = C(19f), DashAgainAfterSteps = 21
                 }
             };
             List<string> defects = new List<string>();
@@ -192,7 +196,7 @@ namespace Sleepwalking.Tests.PlayMode
             foreach (float brakeX in item.BrakeX)
             {
                 clear.Invoke(player, null);
-                float startY = startShape.bounds.max.y + playerShape.bounds.extents.y + .06f;
+                float startY = startShape.bounds.max.y + playerShape.bounds.extents.y + C(.06f);
                 reset.Invoke(player, new object[] { new Vector2(item.StartX, startY) });
                 Physics2D.SyncTransforms();
                 for (int q = 0; q < 5; q++)
@@ -236,13 +240,13 @@ namespace Sleepwalking.Tests.PlayMode
                     Bounds targetBounds = target.bounds;
                     bool contact = playerShape.IsTouching(target);
                     targetContactFound |= contact && !touchedForbidden;
-                    bool supported = contact && Mathf.Abs(playerBounds.min.y - targetBounds.max.y) < .12f &&
-                        body.linearVelocity.y <= .15f;
+                    bool supported = contact && Mathf.Abs(playerBounds.min.y - targetBounds.max.y) < C(.12f) &&
+                        body.linearVelocity.y <= C(.15f);
                     stable = supported ? stable + 1 : 0;
                     float margin = Mathf.Min(playerBounds.min.x - targetBounds.min.x,
                         targetBounds.max.x - playerBounds.max.x);
                     bool died = (bool)dying.GetValue(game);
-                    bool stableBypass = stable >= 3 && margin >= .15f && !touchedForbidden && !died;
+                    bool stableBypass = stable >= 3 && margin >= Margin && !touchedForbidden && !died;
                     bool exited = (bool)transitioning.GetValue(game);
                     exitBeforeForbidden |= exited && !touchedForbidden;
                     string terminal = stableBypass ? "bypass" : died ? "death" :

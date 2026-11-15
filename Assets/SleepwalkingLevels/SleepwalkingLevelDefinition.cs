@@ -11,8 +11,7 @@ namespace Sleepwalking.Levels
         TimedPlatform,
         MovingPlatform,
         Button,
-        Exit,
-        FallReset
+        Exit
     }
 
     public enum DreamStyle

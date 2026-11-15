@@ -13,12 +13,11 @@ MonoBehaviour:
   m_Name: 01_Controlled
   m_EditorClassIdentifier: Assembly-CSharp::Sleepwalking.SleepwalkingMovementProfile
   Description: 'Candidate: deliberate takeoff and narrow dash window.'
-  RunSpeed: 7.6
+  RunSpeed: 5
   GroundAcceleration: 60
-  AirAcceleration: 30
-  JumpSpeed: 11.8
+  JumpSpeed: 12.15
   GravityScale: 3.3
-  DashSpeed: 17.5
+  DashDistance: 2.7
   DashSeconds: 0.17
   WallSlideSpeed: 2.2
   CoyoteSeconds: 0.1

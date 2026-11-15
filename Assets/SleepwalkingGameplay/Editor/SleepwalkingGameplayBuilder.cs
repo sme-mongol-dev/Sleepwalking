@@ -15,16 +15,16 @@ public static class SleepwalkingGameplayBuilder
         Directory.CreateDirectory(ProfilesPath);
         AssetDatabase.Refresh();
         CreateProfile("01_Controlled", "Candidate: deliberate takeoff and narrow dash window.",
-            7.6f, 60f, 30f, 11.8f, 3.3f, 17.5f, .17f, 2.2f, .10f, .12f, .36f);
+            5f, 60f, 12.15f, 3.3f, 2.7f, .17f, 2.2f, .10f, .12f, .36f);
         CreateProfile("02_Responsive", "Default movement after L01-L07 PlayMode calibration.",
-            8.5f, 65f, 38f, 12f, 3.2f, 18f, .18f, 2f, .11f, .13f, .35f);
+            5f, 65f, 12f, 3.2f, 2.7f, .18f, 2f, .11f, .13f, .35f);
         CreateProfile("03_Aggressive", "Candidate: faster run and stronger dash, with firm gravity.",
-            9.4f, 80f, 48f, 12.15f, 3.35f, 20f, .19f, 1.8f, .12f, .14f, .30f);
+            5f, 80f, 12.15f, 3.35f, 2.7f, .19f, 1.8f, .12f, .14f, .30f);
         AssetDatabase.SaveAssets();
     }
 
     static void CreateProfile(string fileName, string description, float run, float groundAccel,
-        float airAccel, float jump, float gravity, float dash, float dashSeconds, float wallSlide,
+        float jump, float gravity, float dashDistance, float dashSeconds, float wallSlide,
         float coyote, float jumpBuffer, float dashCooldown)
     {
         string path = ProfilesPath + "/" + fileName + ".asset";
@@ -33,10 +33,9 @@ public static class SleepwalkingGameplayBuilder
         profile.Description = description;
         profile.RunSpeed = run;
         profile.GroundAcceleration = groundAccel;
-        profile.AirAcceleration = airAccel;
         profile.JumpSpeed = jump;
         profile.GravityScale = gravity;
-        profile.DashSpeed = dash;
+        profile.DashDistance = dashDistance;
         profile.DashSeconds = dashSeconds;
         profile.WallSlideSpeed = wallSlide;
         profile.CoyoteSeconds = coyote;
@@ -62,6 +61,9 @@ public static class SleepwalkingGameplayBuilder
         game.MovementProfiles[1] = AssetDatabase.LoadAssetAtPath<SleepwalkingMovementProfile>(ProfilesPath + "/02_Responsive.asset");
         game.MovementProfiles[2] = AssetDatabase.LoadAssetAtPath<SleepwalkingMovementProfile>(ProfilesPath + "/03_Aggressive.asset");
         game.MovementProfile = AssetDatabase.LoadAssetAtPath<SleepwalkingMovementProfile>(ProfilesPath + "/02_Responsive.asset");
+        for (int q = 0; q < 2; q++)
+            game.TutorialPrefabs[q] = AssetDatabase.LoadAssetAtPath<GameObject>(
+                "Assets/SleepwalkingLevels/Prefabs/Tutorial" + (q + 1).ToString("00") + "_DreamGeometry.prefab");
         for (int q = 0; q < 7; q++)
             game.LevelPrefabs[q] = AssetDatabase.LoadAssetAtPath<GameObject>(
                 "Assets/SleepwalkingLevels/Prefabs/L" + (q + 1).ToString("00") + "_DreamGeometry.prefab");

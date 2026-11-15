@@ -1,0 +1,8 @@
+level,check,value,unit,source
+L04,grid_player_camera_laser,passed,result,grid-physics-results.xml
+L05,TimedA_apex_feet,2.175,cells,grid-l05-step.log
+L05,TimedA_landing_x,4.704,cells,grid-l05-step.log
+L05,timed_platform_cycle,passed,result,grid-mechanism-results.xml
+L06,both_movers_carry_and_reset,passed,result,grid-mechanism-results.xml
+L07,wall_jump_button_B_dash_bed,passed,result,grid-l07-bed-results.xml
+L07,dash_landing_x,20.443,cells,grid-l07-bed.log

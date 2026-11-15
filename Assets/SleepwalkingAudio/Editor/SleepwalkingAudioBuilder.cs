@@ -29,18 +29,25 @@ namespace Sleepwalking.Audio.Editor
                 Clip("Ambience/sfx100v2_loop_water_01.ogg"),
                 Clip("Ambience/heaven_wind.ogg")
             };
+            catalog.LandingByTheme = new[]
+            {
+                Clip("User/landing_meat.mp3"),
+                Clip("User/landing_postapocalypse.mp3"),
+                Clip("Actions/sfx100v2_footstep_wet_01.ogg"),
+                Clip("Actions/sfx100v2_footstep_01.ogg")
+            };
             catalog.Cues = new[]
             {
-                Entry(SoundCue.Jump, 0.38f, "Actions/sfx100v2_air_01.ogg", "Actions/sfx100v2_air_02.ogg"),
+                Entry(SoundCue.Jump, 0.38f, "User/jump.wav"),
                 Entry(SoundCue.Dash, 0.48f, "Actions/sfx100v2_air_03.ogg", "Actions/sfx100v2_air_02.ogg"),
                 Entry(SoundCue.WallGrab, 0.45f, "Actions/sfx100v2_stones_01.ogg", "Actions/sfx100v2_stones_02.ogg"),
-                Entry(SoundCue.Landing, 0.43f, "Actions/sfx100v2_footstep_01.ogg", "Actions/sfx100v2_footstep_02.ogg", "Actions/sfx100v2_footstep_wet_01.ogg", "Actions/sfx100v2_footstep_wet_02.ogg"),
-                Entry(SoundCue.TrapHit, 0.58f, "Actions/sfx100v2_hit_01.ogg", "Actions/sfx100v2_hit_02.ogg", "Actions/sfx100v2_hit_03.ogg"),
+                Entry(SoundCue.Landing, 0.43f, "Actions/sfx100v2_footstep_01.ogg"),
+                Entry(SoundCue.TrapHit, 0.58f, "User/trap_hit.mp3"),
                 Entry(SoundCue.Collision, 0.45f, "Actions/sfx100v2_metal_hit_01.ogg", "Actions/sfx100v2_metal_hit_02.ogg", "Actions/sfx100v2_wood_hit_01.ogg", "Actions/sfx100v2_wood_hit_02.ogg"),
                 Entry(SoundCue.Button, 0.45f, "Menu/sfx100v2_switch_01.ogg", "Menu/sfx100v2_switch_02.ogg"),
-                Entry(SoundCue.MenuHover, 0.22f, "Menu/sfx100v2_items_01.ogg", "Menu/sfx100v2_items_02.ogg"),
+                Entry(SoundCue.MenuHover, 0.22f, "User/menu_hover.mp3"),
                 Entry(SoundCue.MenuConfirm, 0.38f, "Menu/sfx100v2_switch_01.ogg", "Menu/sfx100v2_switch_02.ogg"),
-                Entry(SoundCue.MenuBack, 0.3f, "Menu/sfx100v2_items_02.ogg", "Menu/sfx100v2_items_01.ogg")
+                Entry(SoundCue.MenuBack, 0.3f, "User/menu_back.mp3")
             };
             EditorUtility.SetDirty(catalog);
 
@@ -73,17 +80,19 @@ namespace Sleepwalking.Audio.Editor
             {
                 AudioClip clip = catalog.GetAmbience(theme);
                 if (clip == null || clip.length <= 0f) throw new Exception("Missing ambience: " + theme);
+                clip = catalog.GetLanding(theme);
+                if (clip == null || clip.length <= 0f) throw new Exception("Missing landing: " + theme);
             }
             foreach (SoundCue cue in Enum.GetValues(typeof(SoundCue)))
             {
                 SoundCueEntry entry = catalog.GetCue(cue);
-                if (entry == null || entry.Variants == null || entry.Variants.Length < 2)
-                    throw new Exception("Fewer than two variants: " + cue);
+                if (entry == null || entry.Variants == null || entry.Variants.Length == 0)
+                    throw new Exception("Missing variants: " + cue);
                 foreach (AudioClip clip in entry.Variants)
                     if (clip == null || clip.length <= 0f) throw new Exception("Invalid audio clip: " + cue);
             }
 
-            Debug.Log("Sleepwalking audio: catalog, prefab, four ambiences, and cue variants validated.");
+            Debug.Log("Sleepwalking audio: catalog, prefab, four ambiences, theme landings, and cue variants validated.");
         }
 
         static AudioClip Clip(string relative)

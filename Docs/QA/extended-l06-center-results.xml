@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="2" result="Failed(Child)" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-11-14 19:22:59Z" end-time="2026-11-14 19:23:37Z" duration="37,2124796">
+  <test-suite type="TestSuite" id="1093" name="Sleepwalking" fullname="Sleepwalking" runstate="Runnable" testcasecount="65" result="Failed" site="Child" start-time="2026-11-14 19:22:59Z" end-time="2026-11-14 19:23:37Z" duration="37.212480" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="PlayMode" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="Assembly" id="1086" name="Sleepwalking.PlayMode.Tests.dll" fullname="T:/Sleepwalking/Library/ScriptAssemblies/Sleepwalking.PlayMode.Tests.dll" runstate="Runnable" testcasecount="65" result="Failed" site="Child" start-time="2026-11-14 19:22:59Z" end-time="2026-11-14 19:23:37Z" duration="37.204311" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="754576" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="PlayMode" />
+        <property name="EditorOnly" value="False" />
+      </properties>
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="1087" name="Sleepwalking" fullname="Sleepwalking" runstate="Runnable" testcasecount="65" result="Failed" site="Child" start-time="2026-11-14 19:22:59Z" end-time="2026-11-14 19:23:37Z" duration="37.202917" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestSuite" id="1088" name="Tests" fullname="Sleepwalking.Tests" runstate="Runnable" testcasecount="65" result="Failed" site="Child" start-time="2026-11-14 19:22:59Z" end-time="2026-11-14 19:23:37Z" duration="37.201187" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="TestSuite" id="1089" name="PlayMode" fullname="Sleepwalking.Tests.PlayMode" runstate="Runnable" testcasecount="65" result="Failed" site="Child" start-time="2026-11-14 19:22:59Z" end-time="2026-11-14 19:23:37Z" duration="37.200013" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-suite type="TestFixture" id="1029" name="SleepwalkingExtendedRouteTests" fullname="Sleepwalking.Tests.PlayMode.SleepwalkingExtendedRouteTests" classname="Sleepwalking.Tests.PlayMode.SleepwalkingExtendedRouteTests" runstate="Runnable" testcasecount="14" result="Failed" site="Child" start-time="2026-11-14 19:22:59Z" end-time="2026-11-14 19:23:37Z" duration="37.196755" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="1040" name="L06Controlled" fullname="Sleepwalking.Tests.PlayMode.SleepwalkingExtendedRouteTests.L06Controlled" methodname="L06Controlled" classname="Sleepwalking.Tests.PlayMode.SleepwalkingExtendedRouteTests" runstate="Runnable" seed="1563947972" result="Failed" start-time="2026-11-14 19:22:59Z" end-time="2026-11-14 19:23:18Z" duration="18.869349" asserts="0">
+                <properties>
+                  <property name="_JOINTYPE" value="UnityCombinatorial" />
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  No stable FinalRun landing after L06_FinalBridge; see T:\Sleepwalking\Docs\QA\extended-L06-controlled.csv
+  Expected: null
+  But was:  "No stable FinalRun landing after L06_FinalBridge"
+]]></message>
+                  <stack-trace><![CDATA[at Sleepwalking.Tests.PlayMode.SleepwalkingExtendedRouteTests+<Run>d__18.MoveNext () [0x002f6] in T:\Sleepwalking\Assets\SleepwalkingTests\PlayMode\SleepwalkingExtendedRouteTests.cs:85
+at UnityEngine.TestTools.TestEnumerator+<Execute>d__7.MoveNext () [0x0003a] in .\Library\PackageCache\com.unity.test-framework@bd7f943e9647\UnityEngine.TestRunner\NUnitExtensions\Attributes\TestEnumerator.cs:44
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1041" name="L06Responsive" fullname="Sleepwalking.Tests.PlayMode.SleepwalkingExtendedRouteTests.L06Responsive" methodname="L06Responsive" classname="Sleepwalking.Tests.PlayMode.SleepwalkingExtendedRouteTests" runstate="Runnable" seed="1482742947" result="Failed" start-time="2026-11-14 19:23:18Z" end-time="2026-11-14 19:23:37Z" duration="18.314519" asserts="0">
+                <properties>
+                  <property name="_JOINTYPE" value="UnityCombinatorial" />
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  No stable FinalRun landing after L06_FinalBridge; see T:\Sleepwalking\Docs\QA\extended-L06-responsive.csv
+  Expected: null
+  But was:  "No stable FinalRun landing after L06_FinalBridge"
+]]></message>
+                  <stack-trace><![CDATA[at Sleepwalking.Tests.PlayMode.SleepwalkingExtendedRouteTests+<Run>d__18.MoveNext () [0x002f6] in T:\Sleepwalking\Assets\SleepwalkingTests\PlayMode\SleepwalkingExtendedRouteTests.cs:85
+at UnityEngine.TestTools.TestEnumerator+<Execute>d__7.MoveNext () [0x0003a] in .\Library\PackageCache\com.unity.test-framework@bd7f943e9647\UnityEngine.TestRunner\NUnitExtensions\Attributes\TestEnumerator.cs:44
+]]></stack-trace>
+                </failure>
+                <output><![CDATA[Saving results to: C:/Users/TIMBUHTUK/AppData/LocalLow/DefaultCompany/Sleepwalking\TestResults.xml
+]]></output>
+              </test-case>
+            </test-suite>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

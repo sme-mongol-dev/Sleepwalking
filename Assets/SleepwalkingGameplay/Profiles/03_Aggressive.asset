@@ -13,12 +13,11 @@ MonoBehaviour:
   m_Name: 03_Aggressive
   m_EditorClassIdentifier: Assembly-CSharp::Sleepwalking.SleepwalkingMovementProfile
   Description: 'Candidate: faster run and stronger dash, with firm gravity.'
-  RunSpeed: 9.4
+  RunSpeed: 5
   GroundAcceleration: 80
-  AirAcceleration: 48
   JumpSpeed: 12.15
   GravityScale: 3.35
-  DashSpeed: 20
+  DashDistance: 2.7
   DashSeconds: 0.19
   WallSlideSpeed: 1.8
   CoyoteSeconds: 0.12

@@ -1,12 +1,41 @@
 # Movement calibration
 
+## 32-unit grid migration
+
+Level prefabs now use 32 Unity world units per cell. The profile assets below retain speeds and accelerations in cells per second and cells per second squared; `SleepwalkingPlayer.ApplyProfile` converts them to world units using the instantiated level root scale. Gravity scale is multiplied by the same factor because the project gravity remains −9.81 world units/s². Durations remain in seconds. The player collider and sprite are 0.55 × 1 cell (17.6 × 32 world units on authored levels), spawn is half a cell above `PlayerStart`, and contact probes/insets scale with the cell. `Physics2DSettings.asset` raises the translation speed limit from 100 to 1024 world units/s so the scaled dash is not capped. The dream camera follows on X with a fixed vertical frame and is clamped to the authored shell bounds; the beam width is computed from rendered camera pixels and converted back through its scaled parent.
+
+The post-build PlayMode checks are recorded separately:
+
+| Check | Result |
+| --- | --- |
+| `Docs/QA/grid-physics-results.xml` | 1/1 passed: L04 player collider 17.6 × 32, scaled run motion, fixed camera, and 3.5 rendered-pixel laser. |
+| `Docs/QA/grid-l05-step-results.xml` | 1/1 passed: a physical L05 jump lands stably on TimedA, with apex feet Y=2.175 cells and landing X=4.704 cells. |
+| `Docs/QA/grid-mechanism-results.xml` | 3 passed, 1 skipped: L05 timed collision cycle, both L06 moving platforms carrying the player and resetting, beam width at 180/240 target pixels. L07 mover check is skipped because the level has no mover. |
+| `Docs/QA/grid-l07-bed-results.xml` | 1/1 passed: wall jump from a solid wall, physical button B contact, jump/dash across the gap to DashLanding X=20.443, and supported bed exit. |
+
+The later grid revision uses `01_Controlled.JumpSpeed = 12.15` and three L05 timed pads with 5.5 s active in a 7 s cycle (phases 0/0.3/0). Results on that revision:
+
+| Check | Result |
+| --- | --- |
+| `Docs/QA/grid-mechanics-physics-results.xml` | 5/5 passed: actual Controlled feet apex Y=2.160 cells, L05 5.5/7 cycle including its off interval, L04 fixed camera and 3.5 rendered-pixel beam, L05 first step, and L07 wall/button B/dash/bed. |
+| `Docs/QA/grid-final-sequence-results.xml` | 4/4 passed: complete L05 A/B/C/ExitRun/bed and L06 both movers/HighExit/bed for Controlled and Responsive. |
+| `Docs/QA/grid-final-session-results.xml` | 1/1 passed: seven dreams reached their beds in one physical PlayMode session. |
+| `Docs/QA/grid-final-bypass-results.xml` | 4/4 passed: sampled plain/dash L05/L06 bypasses and shell/direct L07 bypasses failed. |
+| `Docs/QA/grid-final-contact-results.xml` | 9/9 passed: L01–L04 and L07 physical routes, hazards/retry, CaveShell wall jump, fall reset before bedrock, and cave shell capture. |
+
+These are automated PlayMode results. They do not establish exhaustive bypass resistance, manual keyboard feel, or final rendered visual acceptance. Earlier PlayMode results below were measured on unscaled prefabs and remain historical evidence for profile selection only.
+
+`Docs/QA/grid-controlled-exit.log` records a Unity startup failure from an overlapping Editor process; it produced no test XML and is excluded from the results above. The independent `grid-final-sequence-results.xml` is the valid Controlled end-to-end result.
+
 The three movement profiles are assets in `Assets/SleepwalkingGameplay/Profiles/`. `SleepwalkingGame.MovementProfile` selects the active profile; `MovementProfiles` exposes all three candidates. The controller applies the chosen asset when it creates the Dreamer.
 
 | Profile | Run | Jump impulse | Gravity scale | Dash speed × seconds | Air acceleration |
 | --- | ---: | ---: | ---: | ---: | ---: |
-| `01_Controlled` | 7.6 | 11.8 | 3.3 | 17.5 × 0.17 | 30 |
+| `01_Controlled` | 7.6 | 12.15 | 3.3 | 17.5 × 0.17 | 30 |
 | `02_Responsive` | 8.5 | 12.0 | 3.2 | 18.0 × 0.18 | 38 |
 | `03_Aggressive` | 9.4 | 12.15 | 3.35 | 20.0 × 0.19 | 48 |
+
+`01_Controlled` jump impulse was raised from 11.8 to 12.15 after the first grid QA showed side collisions on the required two-cell L05/L06 rises. The first four grid XML rows above predate this adjustment; the final grid revision is verified by the later four XML rows.
 
 ## PlayMode method
 

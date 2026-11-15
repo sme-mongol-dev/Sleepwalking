@@ -115,6 +115,8 @@ namespace Sleepwalking.Audio
 
         public int GetVariantCount(SoundCue cue)
         {
+            if (cue == SoundCue.Landing && state == AudioState.Dream && catalog?.GetLanding(currentTheme) != null)
+                return 1;
             SoundCueEntry entry = catalog != null ? catalog.GetCue(cue) : null;
             return entry != null && entry.Variants != null ? entry.Variants.Length : 0;
         }
@@ -132,8 +134,18 @@ namespace Sleepwalking.Audio
         public bool Play(SoundCue cue, int variant)
         {
             SoundCueEntry entry = catalog != null ? catalog.GetCue(cue) : null;
-            if (entry == null || entry.Variants == null || variant < 0 || variant >= entry.Variants.Length) return false;
-            AudioClip clip = entry.Variants[variant];
+            if (entry == null) return false;
+            AudioClip clip;
+            if (cue == SoundCue.Landing && state == AudioState.Dream && catalog.GetLanding(currentTheme) != null)
+            {
+                if (variant != 0) return false;
+                clip = catalog.GetLanding(currentTheme);
+            }
+            else
+            {
+                if (entry.Variants == null || variant < 0 || variant >= entry.Variants.Length) return false;
+                clip = entry.Variants[variant];
+            }
             if (clip == null) return false;
 
             int sourceIndex = nextEffect;

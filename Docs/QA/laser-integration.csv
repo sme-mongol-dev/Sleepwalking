@@ -1,0 +1,13 @@
+level,laser,phase,time,beamCollider,baseCollider,beamArt,baseArt,dying,beamPixels
+4,L04_SecondLaser,active,0.985,True,True,True,True,False,3.500
+4,L04_SecondLaser,beamHit,1.000,True,True,True,True,True,3.500
+4,L04_SecondLaser,buttonOff,1.561,False,False,False,False,False,3.500
+4,L04_SecondLaser,safeBeamContact,1.620,False,False,False,False,False,3.500
+4,L04_SecondLaser,restored,8.541,True,True,True,True,False,3.500
+4,L04_SecondLaser,restoredBeamHit,8.560,True,True,True,True,True,3.500
+7,L07_SecondLaser,active,9.408,True,True,True,True,False,3.500
+7,L07_SecondLaser,beamHit,9.420,True,True,True,True,True,3.500
+7,L07_SecondLaser,buttonOff,9.981,False,False,False,False,False,3.500
+7,L07_SecondLaser,safeBeamContact,10.040,False,False,False,False,False,3.500
+7,L07_SecondLaser,restored,17.961,True,True,True,True,False,3.500
+7,L07_SecondLaser,restoredBeamHit,17.980,True,True,True,True,True,3.500

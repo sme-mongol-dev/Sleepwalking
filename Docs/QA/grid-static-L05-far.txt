@@ -1,0 +1,1 @@
+Camera=(432.00, 280.00, -20.00) Size=344 Player=(464.00, 272.00, 0.00) PlayerViewport=(0.53, 0.49, 20.00) Target=640x480 Style=0 Direct=True ForcedCamera=False PositionedActor=True TimeScale=1

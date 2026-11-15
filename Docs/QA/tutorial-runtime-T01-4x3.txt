@@ -1,0 +1,1 @@
+Theme=Dream style Tiles=1 Bed=T_MeatBed Camera=(288.00, 9.60, -20.00) Size=242,4 Resolution=(1024, 768)

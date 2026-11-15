@@ -11,6 +11,7 @@ namespace Sleepwalking.Levels.Editor
         private const string Prefabs = Root + "/Prefabs";
         private const string Materials = Root + "/Materials";
         private const float Depth = 0.8f;
+        private const float CellSize = 32f;
 
         private static Material floorMaterial;
         private static Material hazardMaterial;
@@ -91,6 +92,7 @@ namespace Sleepwalking.Levels.Editor
         private static void Build(int index)
         {
             GameObject root = new GameObject("L" + index.ToString("00") + "_DreamGeometry");
+            root.transform.localScale = new Vector3(CellSize, CellSize, 1f);
             Transform geometry = Group(root.transform, "Geometry");
             Transform hazards = Group(root.transform, "Hazards");
             Transform mechanisms = Group(root.transform, "Mechanisms");
@@ -107,23 +109,16 @@ namespace Sleepwalking.Levels.Editor
                 case 6: Layout6(geometry, hazards, mechanisms); break;
                 case 7: Layout7(geometry, hazards, mechanisms); break;
             }
+            CaveShell(geometry, hazards, index);
 
-            float resetWidth = index == 6 || index == 7 ? 23 : 13;
-            GameObject fallReset = new GameObject("FallReset");
-            fallReset.transform.SetParent(hazards, false);
-            fallReset.transform.localPosition = new Vector3(resetWidth / 2, -3.2f, 0);
-            fallReset.transform.localScale = new Vector3(resetWidth, 0.3f, Depth);
-            fallReset.AddComponent<BoxCollider2D>().isTrigger = true;
-            GameObject reset3D = new GameObject("Collision3D");
-            reset3D.transform.SetParent(fallReset.transform, false);
-            reset3D.AddComponent<BoxCollider>().isTrigger = true;
-            fallReset.AddComponent<SleepwalkingLevelFeature>().Configure(LevelFeatureKind.FallReset, "FallReset");
-
-            Transform start = Marker(markers, "PlayerStart", 1f, index == 6 ? -0.8f : 0.1f);
-            float exitX = index == 7 ? 20.1f : index == 6 ? 17.7f : index == 4 ? 10.5f : 11.0f;
-            float exitY = index == 5 ? 5.2f : index == 6 ? 5.05f : index == 7 ? 2.6f : 0.2f;
-            Transform exit = Bed(markers, exitX, exitY, index == 4 ? -0.2f : 0);
+            Transform start = Marker(markers, "PlayerStart", 1f, index == 6 ? -0.9f : 0.1f);
+            float exitX = index == 1 ? 25.5f : index == 2 ? 30.5f : index == 3 ? 27.5f :
+                index == 4 ? 23.5f : index == 5 ? 38.5f : index == 6 ? 40f : 42f;
+            float exitY = index == 1 || index == 2 || index == 3 ? 2f :
+                index == 4 ? 1f : index == 5 ? 2f : index == 6 ? 5f : 5f;
+            Transform exit = Bed(markers, exitX, exitY, 0);
             root.AddComponent<SleepwalkingLevelDefinition>().Configure(index, DreamStyle.Meat, start, exit);
+            SleepwalkingTileCollisionBuilder.Shape(root);
 
             string path = Prefabs + "/L" + index.ToString("00") + "_DreamGeometry.prefab";
             PrefabUtility.SaveAsPrefabAsset(root, path);
@@ -135,6 +130,12 @@ namespace Sleepwalking.Levels.Editor
             GameObject obj = new GameObject(name);
             obj.transform.SetParent(parent, false);
             return obj.transform;
+        }
+
+        private static float LevelEnd(int index)
+        {
+            return index == 1 ? 27f : index == 2 ? 32f : index == 3 ? 29f :
+                index == 4 ? 25f : index == 5 ? 41f : index == 6 ? 42f : 44f;
         }
 
         private static GameObject Cube(Transform parent, string name, float x, float y, float width, float height, Material material, bool trigger = false)
@@ -165,26 +166,135 @@ namespace Sleepwalking.Levels.Editor
             return obj;
         }
 
-        private static void Platform(Transform parent, string name, float left, float right, float top, float height = 0.7f, bool oneWay = false)
+        private static void Platform(Transform parent, string name, float left, float right, float top, float height = 1f)
         {
             GameObject block = Cube(parent, name, (left + right) / 2, top - height / 2, right - left, height, floorMaterial);
-            if (oneWay) MakeOneWay(block);
             block.AddComponent<SleepwalkingTileSurface>();
-            VisualCube(readability, name + "_SafeEdge", new Vector3((left + right) / 2, top - 0.015f, -0.55f),
-                new Vector3(right - left, 0.04f, 0.05f), safeEdgeMaterial);
-            if (name == "WallGrabLedge")
-                VisualCube(readability, "WallGrip_Cue", new Vector3(left + 0.05f, top - height / 2, -0.58f),
-                    new Vector3(0.1f, height, 0.05f), safeEdgeMaterial);
         }
 
-        private static void MakeOneWay(GameObject block)
+        private static void CaveBlock(Transform parent, string name, float left, float right, float bottom, float top)
         {
-            // Верхняя опора сохраняется, а боковая грань не должна давать короткий путь к следующей ступени.
-            block.GetComponent<BoxCollider2D>().usedByEffector = true;
-            PlatformEffector2D effector = block.AddComponent<PlatformEffector2D>();
-            effector.useOneWay = true;
-            effector.surfaceArc = 90f;
-            effector.sideArc = 0f;
+            GameObject block = Cube(parent, name, (left + right) / 2, (bottom + top) / 2,
+                right - left, top - bottom, floorMaterial);
+            block.AddComponent<SleepwalkingTileSurface>().IsShell = true;
+        }
+
+        private static void VisiblePit(Transform cave, Transform hazards, string id,
+            float left, float right, float top)
+        {
+            CaveBlock(cave, "Cave_" + id + "Foundation", left, right, -4f, top);
+            Spikes(hazards, id, left, right, top, Mathf.RoundToInt((right - left) * 2f));
+        }
+
+        private static void CaveShell(Transform geometry, Transform hazards, int index)
+        {
+            // Вся область вне игрового коридора заполнена твёрдыми тайлами.
+            // Шипованные карманы лежат над дном пещеры, а потолок оставляет место для прыжка и рывка.
+            const float floor = -4f;
+            const float roof = 28f;
+            Transform cave = Group(geometry, "CaveShell");
+            float end = LevelEnd(index);
+            float[] edges;
+            float[] heights;
+            switch (index)
+            {
+                case 5:
+                    edges = new[] { 0f, 3f, 6f, 9f, 13f, 18f, 23f, 26f, 29f, end };
+                    heights = new[] { 5f, 7f, 9f, 7f, 7f, 5f, 7f, 9f, 8f };
+                    break;
+                case 6:
+                    edges = new[] { 0f, 3f, 16f, 20f, 23f, end };
+                    heights = new[] { 3f, 5f, 6f, 8f, 9f };
+                    break;
+                case 7:
+                    edges = new[] { 0f, 3f, 22f, 32f, end };
+                    heights = new[] { 5f, 8f, 10f, 10f };
+                    break;
+                default:
+                    edges = index == 4 ? new[] { 0f, end } : new[] { 0f, 13f, end };
+                    heights = index == 4 ? new[] { 5f } : new[] { 5f, 7f };
+                    break;
+            }
+
+            CaveBlock(cave, "Cave_Bedrock", -8f, end + 8f, -20f, floor);
+            CaveBlock(cave, "Cave_LeftWall", -8f, 0f, floor, heights[0]);
+            CaveBlock(cave, "Cave_RightWall", end, end + 8f, floor, heights[heights.Length - 1]);
+            CaveBlock(cave, "Cave_LeftRoof", -8f, 0f, heights[0], roof);
+            for (int q = 0; q < heights.Length; q++)
+                CaveBlock(cave, "Cave_Roof_" + q, edges[q], edges[q + 1], heights[q], roof);
+            CaveBlock(cave, "Cave_RightRoof", end, end + 8f, heights[heights.Length - 1], roof);
+
+            switch (index)
+            {
+                case 1:
+                    CaveBlock(cave, "Cave_StartFoundation", 0f, 4f, floor, -1f);
+                    CaveBlock(cave, "Cave_LandingFoundation", 5f, 9f, floor, -1f);
+                    CaveBlock(cave, "Cave_ExitFoundation", 10f, 13f, floor, 0f);
+                    CaveBlock(cave, "Cave_RiseFoundation", 14f, 17f, floor, 1f);
+                    CaveBlock(cave, "Cave_ShelfFoundation", 19f, 21f, floor, 0f);
+                    CaveBlock(cave, "Cave_FinalFoundation", 23f, 27f, floor, 1f);
+                    VisiblePit(cave, hazards, "L01_GapA", 4f, 5f, -1f);
+                    VisiblePit(cave, hazards, "L01_GapB", 9f, 10f, -1f);
+                    VisiblePit(cave, hazards, "L01_GapC", 13f, 14f, -1f);
+                    VisiblePit(cave, hazards, "L01_GapD", 17f, 19f, -1f);
+                    VisiblePit(cave, hazards, "L01_GapE", 21f, 23f, -1f);
+                    break;
+                case 2:
+                    CaveBlock(cave, "Cave_StartFoundation", 0f, 4f, floor, -1f);
+                    CaveBlock(cave, "Cave_PitSpikeFoundation", 4f, 5f, floor, -1f);
+                    CaveBlock(cave, "Cave_LandingFoundation", 5f, 9f, floor, -1f);
+                    CaveBlock(cave, "Cave_ExitFoundation", 10f, 13f, floor, 0f);
+                    CaveBlock(cave, "Cave_SecondPitFoundation", 13f, 14f, floor, 0f);
+                    CaveBlock(cave, "Cave_BridgeFoundation", 14f, 21f, floor, 0f);
+                    CaveBlock(cave, "Cave_RecoveryFoundation", 23f, 26f, floor, 1f);
+                    CaveBlock(cave, "Cave_FinalFoundation", 28f, 32f, floor, 1f);
+                    VisiblePit(cave, hazards, "L02_GapA", 9f, 10f, -1f);
+                    VisiblePit(cave, hazards, "L02_GapB", 21f, 23f, -1f);
+                    VisiblePit(cave, hazards, "L02_GapC", 26f, 28f, -1f);
+                    break;
+                case 3:
+                    CaveBlock(cave, "Cave_StartFoundation", 0f, 4f, floor, -1f);
+                    CaveBlock(cave, "Cave_LandingFoundation", 5f, 9f, floor, -1f);
+                    CaveBlock(cave, "Cave_ExitFoundation", 10f, 13f, floor, 0f);
+                    CaveBlock(cave, "Cave_SecondSawFoundation", 14f, 19f, floor, 0f);
+                    CaveBlock(cave, "Cave_UpperFoundation", 21f, 24f, floor, 1f);
+                    CaveBlock(cave, "Cave_FinalFoundation", 26f, 29f, floor, 1f);
+                    VisiblePit(cave, hazards, "L03_GapA", 4f, 5f, -1f);
+                    VisiblePit(cave, hazards, "L03_GapB", 9f, 10f, -1f);
+                    VisiblePit(cave, hazards, "L03_GapC", 13f, 14f, -1f);
+                    VisiblePit(cave, hazards, "L03_GapD", 19f, 21f, -1f);
+                    VisiblePit(cave, hazards, "L03_GapE", 24f, 26f, -1f);
+                    break;
+                case 4:
+                    CaveBlock(cave, "Cave_FloorFoundation", 0f, 13f, floor, -1f);
+                    CaveBlock(cave, "Cave_SecondFloorFoundation", 14f, 25f, floor, 0f);
+                    VisiblePit(cave, hazards, "L04_GapA", 13f, 14f, -1f);
+                    break;
+                case 5:
+                    CaveBlock(cave, "Cave_StartFoundation", 0f, 3f, floor, -1f);
+                    CaveBlock(cave, "Cave_PitSpikeFoundation", 3f, 19f, floor, -1f);
+                    CaveBlock(cave, "Cave_ExitFoundation", 19f, 23f, floor, -1f);
+                    CaveBlock(cave, "Cave_SecondPitFoundation", 23f, 35f, floor, -1f);
+                    CaveBlock(cave, "Cave_FinalFoundation", 35f, 41f, floor, 1f);
+                    break;
+                case 6:
+                    CaveBlock(cave, "Cave_StartFoundation", 0f, 3f, floor, -2f);
+                    CaveBlock(cave, "Cave_FinalFoundation", 37f, 42f, floor, 4f);
+                    VisiblePit(cave, hazards, "L06_FloorSpikes", 3f, 37f, -2f);
+                    break;
+                case 7:
+                    CaveBlock(cave, "Cave_StartFoundation", 0f, 3f, floor, -1f);
+                    CaveBlock(cave, "Cave_WallFoundation", 4f, 6f, floor, 0f);
+                    CaveBlock(cave, "Cave_RunFoundation", 6f, 11f, floor, 2f);
+                    CaveBlock(cave, "Cave_PitSpikeFoundation", 11f, 17f, floor, -1f);
+                    CaveBlock(cave, "Cave_ExitFoundation", 17f, 21f, floor, 2f);
+                    CaveBlock(cave, "Cave_SecondLaserFoundation", 22f, 31f, floor, 4f);
+                    CaveBlock(cave, "Cave_SecondPitFoundation", 31f, 37f, floor, -1f);
+                    CaveBlock(cave, "Cave_FinalFoundation", 37f, 44f, floor, 4f);
+                    VisiblePit(cave, hazards, "L07_GapA", 3f, 4f, -1f);
+                    VisiblePit(cave, hazards, "L07_GapB", 21f, 22f, -1f);
+                    break;
+            }
         }
 
         private static GameObject Triangle(Transform parent, string name, float x, float bottom, float width, float height)
@@ -208,22 +318,23 @@ namespace Sleepwalking.Levels.Editor
             return obj;
         }
 
-        private static void Spikes(Transform parent, string id, float left, float top, int count)
+        private static void Spikes(Transform parent, string id, float left, float right, float top, int count)
         {
+            float width = (right - left) / count;
             for (int q = 0; q < count; q++)
             {
-                GameObject spike = Triangle(parent, id + "_" + (q + 1), left + q * 0.45f + 0.225f, top, 0.45f, 0.48f);
+                GameObject spike = Triangle(parent, id + "_" + (q + 1), left + (q + 0.5f) * width, top, width, 0.27f);
                 spike.AddComponent<SleepwalkingLevelFeature>().Configure(LevelFeatureKind.Spikes, id);
             }
         }
 
-        private static void Saw(Transform parent, string id, float x, float y)
+        private static void Saw(Transform parent, string id, float x, float y, float diameter = 0.75f)
         {
             GameObject obj = GameObject.CreatePrimitive(PrimitiveType.Sphere);
             obj.name = id;
             obj.transform.SetParent(parent, false);
             obj.transform.localPosition = new Vector3(x, y, 0);
-            obj.transform.localScale = new Vector3(0.75f, 0.75f, Depth);
+            obj.transform.localScale = new Vector3(diameter, diameter, Depth);
             obj.GetComponent<MeshRenderer>().sharedMaterial = hazardMaterial;
             Object.DestroyImmediate(obj.GetComponent<SphereCollider>());
             obj.AddComponent<CircleCollider2D>().isTrigger = true;
@@ -246,20 +357,18 @@ namespace Sleepwalking.Levels.Editor
             beam.AddComponent<SleepwalkingLevelVisualState>();
         }
 
-        private static void Timed(Transform parent, string id, float x, float top, float phase, bool oneWay = false)
+        private static void Timed(Transform parent, string id, float x, float top, float phase)
         {
-            GameObject obj = Cube(parent, id, x, top - 0.15f, 1.3f, 0.3f, mechanismMaterial);
-            if (oneWay) MakeOneWay(obj);
+            GameObject obj = Cube(parent, id, x, top - 0.5f, 2f, 1f, mechanismMaterial);
             obj.AddComponent<SleepwalkingTileSurface>();
-            obj.AddComponent<SleepwalkingLevelFeature>().Configure(LevelFeatureKind.TimedPlatform, id, duration: 2.8f, cycle: 4, phase: phase);
+            obj.AddComponent<SleepwalkingLevelFeature>().Configure(LevelFeatureKind.TimedPlatform, id, duration: 5.5f, cycle: 7, phase: phase);
             MechanismCues(obj.transform, true);
             obj.AddComponent<SleepwalkingLevelVisualState>();
         }
 
-        private static void Moving(Transform parent, string id, float x, float top, Vector2 offset, float cycle, bool oneWay = false)
+        private static void Moving(Transform parent, string id, float x, float top, Vector2 offset, float cycle)
         {
-            GameObject obj = Cube(parent, id, x, top - 0.15f, 1.6f, 0.3f, mechanismMaterial);
-            if (oneWay) MakeOneWay(obj);
+            GameObject obj = Cube(parent, id, x, top - 0.5f, 2f, 1f, mechanismMaterial);
             obj.AddComponent<SleepwalkingTileSurface>();
             obj.AddComponent<SleepwalkingLevelFeature>().Configure(LevelFeatureKind.MovingPlatform, id, movement: offset, cycle: cycle);
             MechanismCues(obj.transform, false);
@@ -360,68 +469,97 @@ namespace Sleepwalking.Levels.Editor
 
         private static void Layout1(Transform g, Transform h, Transform m)
         {
-            Platform(g, "Start", 0, 3.8f, 0);
-            Platform(g, "JumpLanding", 5.2f, 8.4f, 0);
-            Platform(g, "ExitRun", 9.5f, 12, 0.2f);
+            Platform(g, "Start", 0, 4, 0);
+            Platform(g, "JumpLanding", 5, 9, 0);
+            Platform(g, "ExitRun", 10, 13, 1);
+            Platform(g, "RiseA", 14, 17, 2);
+            Platform(g, "GapShelf", 19, 21, 1);
+            Platform(g, "FinalRun", 23, 27, 2);
         }
 
         private static void Layout2(Transform g, Transform h, Transform m)
         {
-            Platform(g, "Start", 0, 3.5f, 0);
-            Platform(g, "SpikeLanding", 4.7f, 8.2f, 0);
-            Platform(g, "ExitRun", 9.3f, 12, 0.2f);
-            Spikes(h, "L02_PitSpikes", 3.65f, -0.8f, 2);
-            Spikes(h, "L02_FloorSpikes", 6.15f, 0, 2);
+            Platform(g, "Start", 0, 4, 0);
+            Platform(g, "SpikeLanding", 5, 9, 0);
+            Platform(g, "ExitRun", 10, 13, 1);
+            Spikes(h, "L02_PitSpikes", 4f, 5f, -1f, 2);
+            Spikes(h, "L02_FloorSpikes", 6.5f, 7.4f, 0f, 2);
+            Platform(g, "SpikeBridge", 14, 21, 1);
+            Platform(g, "HighRecovery", 23, 26, 2);
+            Platform(g, "FinalRun", 28, 32, 2);
+            Spikes(h, "L02_SecondPitSpikes", 13f, 14f, 0f, 2);
+            Spikes(h, "L02_BridgeSpikes", 18f, 19f, 1f, 2);
         }
 
         private static void Layout3(Transform g, Transform h, Transform m)
         {
-            Platform(g, "Start", 0, 3.6f, 0);
-            Platform(g, "SawRun", 4.8f, 8.4f, 0);
-            Platform(g, "ExitRun", 9.5f, 12, 0.2f);
-            Saw(h, "L03_Saw", 6.45f, 0.39f);
+            Platform(g, "Start", 0, 4, 0);
+            Platform(g, "SawRun", 5, 9, 0);
+            Platform(g, "ExitRun", 10, 13, 1);
+            Saw(h, "L03_Saw", 7f, 0f);
+            Platform(g, "SecondSawRun", 14, 19, 1);
+            Platform(g, "UpperLanding", 21, 24, 2);
+            Platform(g, "FinalRun", 26, 29, 2);
+            Saw(h, "L03_SecondSaw", 16.5f, 1f);
         }
 
         private static void Layout4(Transform g, Transform h, Transform m)
         {
-            Platform(g, "LaserRun", 0, 11.6f, 0);
-            Platform(g, "LaserCeiling", 5.5f, 6.5f, 3.2f, 0.3f);
-            Button(m, "L04_ButtonLaser", "L04_Laser", 3.1f, 0, 7);
-            Laser(h, "L04_Laser", 6, 0, 2.9f);
+            Platform(g, "LaserRun", 0, 13, 0);
+            Platform(g, "LaserCeiling", 7, 8, 4);
+            Button(m, "L04_ButtonLaser", "L04_Laser", 3, 0, 7);
+            Laser(h, "L04_Laser", 7.5f, 0, 3f);
+            Platform(g, "SecondLaserRun", 14, 25, 1);
+            Platform(g, "SecondLaserCeiling", 20, 22, 5, 1);
+            Button(m, "L04_ButtonSecond", "L04_SecondLaser", 15.5f, 1f, 7);
+            Laser(h, "L04_SecondLaser", 21f, 1f, 4f);
         }
 
         private static void Layout5(Transform g, Transform h, Transform m)
         {
-            Platform(g, "Start", 0, 3.2f, 0);
-            Timed(m, "L05_TimedA", 4.0f, 1.3f, 0, true);
-            Timed(m, "L05_TimedB", 5.65f, 2.6f, 0.3f, true);
-            Timed(m, "L05_TimedC", 7.3f, 3.9f, 0, true);
-            Platform(g, "ExitRun", 8.5f, 12, 5.2f, oneWay: true);
-            Spikes(h, "L05_PitSpikes", 3.25f, -1.2f, 11);
+            Platform(g, "Start", 0, 3, 0);
+            Timed(m, "L05_TimedA", 5, 2, 0);
+            Timed(m, "L05_TimedB", 8, 4, 0.3f);
+            Timed(m, "L05_TimedC", 16, 2, 0);
+            Platform(g, "ExitRun", 19, 23, 0);
+            Spikes(h, "L05_PitSpikes", 3f, 19f, -1f, 32);
+            Timed(m, "L05_TimedD", 25, 2, 0.3f);
+            Timed(m, "L05_TimedE", 28, 4, 0f);
+            Platform(g, "FinalRun", 35, 41, 2);
+            Spikes(h, "L05_SecondPitSpikes", 23f, 35f, -1f, 24);
         }
 
         private static void Layout6(Transform g, Transform h, Transform m)
         {
-            Platform(g, "Start", 0, 3, -0.9f);
+            Platform(g, "Start", 0, 3, -1);
             MoverWaitCue();
-            Moving(m, "L06_Horizontal", 4.4f, 0.4f, new Vector2(8.8f, 0), 8, true);
-            Platform(g, "LiftLanding", 14.5f, 15.9f, 2.35f, oneWay: true);
-            Moving(m, "L06_Vertical", 16.15f, 2.5f, new Vector2(0, 1.5f), 4, true);
-            Platform(g, "HighExit", 17, 18.5f, 5.05f, oneWay: true);
+            Moving(m, "L06_Horizontal", 5, 1, new Vector2(9, 0), 8);
+            Platform(g, "LiftLanding", 16, 18, 0);
+            Moving(m, "L06_Vertical", 19, 0, new Vector2(0, 2), 4);
+            Platform(g, "HighExit", 21, 23, 4);
+            Moving(m, "L06_FinalBridge", 25, 3, new Vector2(10, 0), 6);
+            Platform(g, "FinalRun", 37, 42, 5);
         }
 
         private static void Layout7(Transform g, Transform h, Transform m)
         {
-            Platform(g, "Start", 0, 3.1f, 0);
-            Platform(g, "WallGrabLedge", 3.7f, 5.3f, 2.45f, 2.45f);
-            Platform(g, "LaserRun", 5.3f, 9.7f, 2.45f);
-            Platform(g, "DashLanding", 18.5f, 21.1f, 2.6f);
-            Platform(g, "LaserCeiling", 6.9f, 7.9f, 5.4f, 0.3f);
-            Button(m, "L07_ButtonA", "L07_Laser", 4.7f, 2.45f, 8);
-            Laser(h, "L07_Laser", 7.4f, 2.45f, 5.1f);
-            Button(m, "L07_ButtonB", "L07_Saw", 9.0f, 2.45f, 8);
-            Saw(h, "L07_Saw", 19.0f, 3.0f);
-            Spikes(h, "L07_PitSpikes", 9.9f, -0.8f, 20);
+            Platform(g, "Start", 0, 3, 0);
+            Platform(g, "WallGrabLedge", 4, 6, 3, 3);
+            Platform(g, "LaserRun", 6, 11, 3);
+            Platform(g, "DashLanding", 17, 21, 3);
+            Platform(g, "SawRoof", 18, 20, 6, 1);
+            Platform(g, "LaserCeiling", 8, 9, 6);
+            Button(m, "L07_ButtonA", "L07_Laser", 5, 3, 8);
+            Laser(h, "L07_Laser", 8.5f, 3, 5f);
+            Button(m, "L07_ButtonB", "L07_Saw", 10, 3, 8);
+            Saw(h, "L07_Saw", 19f, 3f, 2f);
+            Spikes(h, "L07_PitSpikes", 11f, 17f, -1f, 12);
+            Platform(g, "SecondLaserRun", 22, 31, 5);
+            Platform(g, "SecondLaserCeiling", 27, 29, 10, 1);
+            Button(m, "L07_ButtonC", "L07_SecondLaser", 23.5f, 5f, 8);
+            Laser(h, "L07_SecondLaser", 28f, 5f, 9f);
+            Platform(g, "FinalRun", 37, 44, 5);
+            Spikes(h, "L07_SecondPitSpikes", 31f, 37f, -1f, 12);
         }
     }
 }

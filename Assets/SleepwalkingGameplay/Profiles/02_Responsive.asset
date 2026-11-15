@@ -13,12 +13,11 @@ MonoBehaviour:
   m_Name: 02_Responsive
   m_EditorClassIdentifier: Assembly-CSharp::Sleepwalking.SleepwalkingMovementProfile
   Description: Default movement after L01-L07 PlayMode calibration.
-  RunSpeed: 8.5
+  RunSpeed: 5
   GroundAcceleration: 65
-  AirAcceleration: 38
   JumpSpeed: 12
   GravityScale: 3.2
-  DashSpeed: 18
+  DashDistance: 2.7
   DashSeconds: 0.18
   WallSlideSpeed: 2
   CoyoteSeconds: 0.11

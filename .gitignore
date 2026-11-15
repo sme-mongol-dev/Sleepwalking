@@ -8,6 +8,11 @@
 /[Bb]uilds/
 /[Mm]emoryCaptures/
 /[Rr]ecordings/
+/Assets/InitTestScene*.unity
+/Assets/InitTestScene*.unity.meta
+/Docs/QA/**/*.log
+/Docs/QA/*.log
+/Docs/Integration/*.log
 
 # IDE caches and generated project files
 /.vs/

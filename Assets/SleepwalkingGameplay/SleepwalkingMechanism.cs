@@ -19,6 +19,7 @@ namespace Sleepwalking
         Vector3 initialPosition;
         float elapsed;
         float disabledUntil;
+        float pressedUntil;
         bool initialEnabled;
         Vector2 movementVelocity;
         SleepwalkingPlayer rider;
@@ -74,6 +75,13 @@ namespace Sleepwalking
             disabledUntil = Mathf.Max(disabledUntil, Time.time + Mathf.Max(.1f, seconds));
         }
 
+        public bool IsPressed => Kind == "Button" && Time.time < pressedUntil;
+
+        public void MarkPressed()
+        {
+            if (Kind == "Button") pressedUntil = Time.time + .18f;
+        }
+
         public void ResetMechanism()
         {
             if (rider != null) rider.ClearPlatformVelocity(this);
@@ -82,6 +90,7 @@ namespace Sleepwalking
             movementVelocity = Vector2.zero;
             elapsed = Kind == "MovingPlatform" ? 0f : PhaseSeconds;
             disabledUntil = 0f;
+            pressedUntil = 0f;
             transform.localPosition = initialPosition;
             if (Kind == "MovingPlatform")
             {
@@ -118,7 +127,8 @@ namespace Sleepwalking
             if (Kind != "MovingPlatform" || shape == null ||
                 !collision.gameObject.TryGetComponent(out SleepwalkingPlayer player)) return;
             Collider2D playerShape = player.GetComponent<Collider2D>();
-            if (playerShape == null || Mathf.Abs(playerShape.bounds.min.y - shape.bounds.max.y) > .22f)
+            if (playerShape == null ||
+                Mathf.Abs(playerShape.bounds.min.y - shape.bounds.max.y) > .22f * player.WorldUnitsPerCell)
             {
                 if (rider == player)
                 {
@@ -137,7 +147,7 @@ namespace Sleepwalking
         }
 
         public bool IsHazard() => Kind == "Spikes" || Kind == "Saw" || Kind == "LaserBase" ||
-            Kind == "LaserBeam" || Kind == "FallReset";
+            Kind == "LaserBeam";
 
         void OnTriggerEnter2D(Collider2D other) { Touch(other); }
         void OnTriggerExit2D(Collider2D other)

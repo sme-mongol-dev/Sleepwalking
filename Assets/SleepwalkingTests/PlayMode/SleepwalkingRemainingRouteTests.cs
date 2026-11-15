@@ -22,9 +22,14 @@ namespace Sleepwalking.Tests.PlayMode
             this.odradek = odradek;
         }
 
+        const float Unit = 32f;
+        const float Margin = .15f * Unit;
+        static float C(float cells) => cells * Unit;
+
         sealed class Route
         {
             public int Level;
+            public int ProfileIndex = 1;
             public string Profile;
             public MonoBehaviour Game;
             public MonoBehaviour Player;
@@ -45,66 +50,70 @@ namespace Sleepwalking.Tests.PlayMode
         }
 
         [UnityTest]
-        public IEnumerator L01BothGapsAndBed()
+        public IEnumerator L01BothGapsReachExitRun()
         {
             Route route = new Route { Level = 1 };
             yield return Start(route);
-            if (route.Failure == null) yield return RunTo(route, "Start", 2.45f, 120);
-            if (route.Failure == null) yield return JumpTo(route, "JumpLanding", 6.1f, 5.625f, 7.975f, 110);
-            if (route.Failure == null) yield return RunTo(route, "JumpLanding", 7.9f, 120);
-            if (route.Failure == null) yield return JumpTo(route, "ExitRun", 10.1f, 9.925f, 11.575f, 110);
-            if (route.Failure == null) yield return WalkToBed(route, 120);
+            if (route.Failure == null) yield return RunTo(route, "Start", C(2.6f), 120);
+            if (route.Failure == null) yield return JumpTo(route, "JumpLanding", C(6.2f), C(5.425f), C(8.575f), 110);
+            if (route.Failure == null) yield return RunTo(route, "JumpLanding", C(8.45f), 120);
+            if (route.Failure == null) yield return JumpTo(route, "ExitRun", C(10.8f), C(10.425f), C(12.575f), 110);
             Finish(route);
         }
 
         [UnityTest]
-        public IEnumerator L02PitAndFloorSpikesThenBed()
+        public IEnumerator L02PitAndFloorSpikesReachExitRun()
         {
             Route route = new Route { Level = 2 };
             yield return Start(route);
-            if (route.Failure == null) yield return RunTo(route, "Start", 2.95f, 120);
-            if (route.Failure == null) yield return JumpTo(route, "SpikeLanding", 5.4f, 5.125f, 5.725f, 120,
+            if (route.Failure == null) yield return RunTo(route, "Start", C(2.6f), 120);
+            if (route.Failure == null) yield return JumpTo(route, "SpikeLanding", C(5.6f), C(5.425f), C(6.2f), 120,
                 "L02_PitSpikes");
-            if (route.Failure == null) yield return JumpTo(route, "SpikeLanding", 7.6f, 7.475f, 7.775f, 120,
-                "L02_FloorSpikes", .48f);
-            if (route.Failure == null) yield return RunTo(route, "SpikeLanding", 7.9f, 80);
-            if (route.Failure == null) yield return JumpTo(route, "ExitRun", 10.0f, 9.725f, 11.575f, 120);
-            if (route.Failure == null) yield return WalkToBed(route, 120);
+            if (route.Failure == null) yield return JumpTo(route, "SpikeLanding", C(8.1f), C(7.825f), C(8.575f), 120,
+                "L02_FloorSpikes", C(.48f));
+            if (route.Failure == null) yield return RunTo(route, "SpikeLanding", C(8.45f), 80);
+            if (route.Failure == null) yield return JumpTo(route, "ExitRun", C(10.8f), C(10.425f), C(12.575f), 120);
             Finish(route);
         }
 
         [UnityTest]
-        public IEnumerator L03SawHopThenBed()
+        public IEnumerator L03SawHopReachesExitRun()
         {
             Route route = new Route { Level = 3 };
             yield return Start(route);
-            if (route.Failure == null) yield return RunTo(route, "Start", 3.0f, 120);
-            if (route.Failure == null) yield return JumpTo(route, "SawRun", 5.4f, 5.225f, 5.650f, 120);
-            if (route.Failure == null) yield return JumpTo(route, "SawRun", 7.55f, 7.250f, 7.975f, 120,
-                "L03_Saw", .765f);
-            if (route.Failure == null) yield return RunTo(route, "SawRun", 8.05f, 80);
-            if (route.Failure == null) yield return JumpTo(route, "ExitRun", 10.1f, 9.925f, 11.575f, 120);
-            if (route.Failure == null) yield return WalkToBed(route, 120);
+            if (route.Failure == null) yield return RunTo(route, "Start", C(2.6f), 120);
+            if (route.Failure == null) yield return JumpTo(route, "SawRun", C(5.6f), C(5.425f), C(6.3f), 120);
+            if (route.Failure == null) yield return JumpTo(route, "SawRun", C(8.1f), C(7.675f), C(8.575f), 120,
+                "L03_Saw", C(.765f));
+            if (route.Failure == null) yield return RunTo(route, "SawRun", C(8.45f), 80);
+            if (route.Failure == null) yield return JumpTo(route, "ExitRun", C(10.8f), C(10.425f), C(12.575f), 120);
             Finish(route);
         }
 
         [UnityTest]
-        public IEnumerator L04RealButtonLaserAndBed()
+        public IEnumerator L04RealButtonLaserReachesLaserRun()
         {
             Route route = new Route { Level = 4 };
             yield return Start(route);
             if (route.Failure == null) yield return CrossLaser(route);
-            if (route.Failure == null) yield return WalkToBed(route, 120);
             Finish(route);
         }
 
         [UnityTest]
-        public IEnumerator L07WallButtonsDashSawAndBed()
+        public IEnumerator L07WallButtonsDashSawReachDashLanding()
         {
             Route route = new Route { Level = 7 };
             yield return Start(route);
             if (route.Failure == null) yield return CrossL07(route);
-            if (route.Failure == null) yield return WalkToBed(route, 120);
+            Finish(route);
+        }
+
+        [UnityTest]
+        public IEnumerator L07ControlledProfileReachesDashLanding()
+        {
+            Route route = new Route { Level = 7, ProfileIndex = 0 };
+            yield return Start(route);
+            if (route.Failure == null) yield return CrossL07(route);
             Finish(route);
         }
 
@@ -147,6 +156,11 @@ namespace Sleepwalking.Tests.PlayMode
 
             bool firstJump = false;
             bool wallJump = false;
+            bool ledgeDash = false;
+            bool laserBaseJump = false;
+            bool laserBaseDash = false;
+            bool laserRecovered = false;
+            bool laserStaged = false;
             bool pitJump = false;
             bool dash = false;
             bool wallContact = false;
@@ -169,13 +183,13 @@ namespace Sleepwalking.Tests.PlayMode
                 float horizontal = 1f;
                 if (stage == 0)
                 {
-                    if (!firstJump && position.x >= 2.8f)
+                    if (!firstJump && position.x >= C(2.7f))
                     {
                         firstJump = jumpNow = true;
                         route.Events.Add("firstJump X=" + position.x.ToString("F3"));
                     }
-                    if (firstJump && !wallJump && position.x >= 3.35f &&
-                        position.y < 3.1f && route.Body.linearVelocity.y <= .1f)
+                    if (firstJump && !wallJump && position.x >= C(3.65f) &&
+                        position.y < C(4f) && route.Body.linearVelocity.y <= C(.1f))
                     {
                         if ((int)wallProbe.GetValue(route.Player) == 0 ||
                             (bool)grounded.GetValue(route.Player))
@@ -186,22 +200,62 @@ namespace Sleepwalking.Tests.PlayMode
                         wallJump = jumpNow = true;
                         route.Events.Add("wallJump X=" + position.x.ToString("F3"));
                     }
-                    horizontal = position.x < 4.1f ? 1f : position.x > 4.7f ? -1f : 0f;
+                    horizontal = position.x < C(4.6f) ? 1f : position.x > C(5.2f) ? -1f : 0f;
+                    if (wallJump && !ledgeDash && route.Body.linearVelocity.x >= C(.6f) &&
+                        route.Shape.bounds.min.y >= ledge.bounds.max.y + C(.1f))
+                    {
+                        ledgeDash = dashNow = true;
+                        route.Events.Add("ledgeDash X=" + position.x.ToString("F3"));
+                    }
                 }
                 else
                 {
-                    if (!pitJump && position.x >= 9.25f)
+                    if (!laserBaseJump && position.x >= C(7.35f))
+                    {
+                        if (!laserDisabled)
+                        {
+                            route.Failure = "ButtonA did not disable the beam before laser base";
+                            yield break;
+                        }
+                        laserBaseJump = jumpNow = true;
+                        route.Events.Add("laserBaseJump X=" + position.x.ToString("F3"));
+                    }
+                    if (laserBaseJump && !laserBaseDash && position.x >= C(7.75f))
+                    {
+                        laserBaseDash = dashNow = true;
+                        route.Events.Add("laserBaseDash X=" + position.x.ToString("F3"));
+                    }
+                    if (laserBaseDash && !laserRecovered)
+                    {
+                        horizontal = -1f;
+                        if ((bool)grounded.GetValue(route.Player) &&
+                            (float)dashRemaining.GetValue(route.Player) <= 0f)
+                        {
+                            laserRecovered = true;
+                            route.Events.Add("laserRecovered X=" + position.x.ToString("F3"));
+                        }
+                    }
+                    if (laserRecovered && !laserStaged && position.x <= C(9.5f))
+                    {
+                        laserStaged = true;
+                        route.Events.Add("laserStaged X=" + position.x.ToString("F3"));
+                    }
+                    if (laserRecovered && !pitJump)
+                        horizontal = laserStaged ? 1f : -1f;
+                    if (laserStaged && !pitJump && position.x >= C(10.55f) &&
+                        route.Body.linearVelocity.x >= C(4f) &&
+                        (bool)grounded.GetValue(route.Player))
                     {
                         pitJump = jumpNow = true;
                         route.Events.Add("pitJump X=" + position.x.ToString("F3"));
                     }
-                    if (pitJump && !dash && position.x >= 12.5f)
+                    if (pitJump && !dash && position.x >= C(13.5f))
                     {
                         dash = dashNow = true;
                         route.Events.Add("dash X=" + position.x.ToString("F3"));
                     }
-                    if (position.x >= 18.5f)
-                        horizontal = position.x < 19.25f ? 1f : position.x > 19.7f ? -1f : 0f;
+                    if (position.x >= C(19f))
+                        horizontal = position.x < C(20.1f) ? 1f : position.x > C(20.7f) ? -1f : 0f;
                 }
                 route.Input.Invoke(route.Player, new object[] { horizontal, jumpNow, dashNow });
                 yield return new WaitForFixedUpdate();
@@ -209,32 +263,39 @@ namespace Sleepwalking.Tests.PlayMode
                 position = route.Body.position;
                 // Update may consume the simulated press after this fixed step.
                 if (stage == 0 && wallJump)
-                    wallJumpActivated |= route.Body.linearVelocity.y > beforeY + 2f &&
-                        route.Body.linearVelocity.y > 5f;
-                if (dashNow)
+                    wallJumpActivated |= route.Body.linearVelocity.y > beforeY + C(2f) &&
+                        route.Body.linearVelocity.y > C(5f);
+                if (dashNow && stage == 1)
                     dashActivated = (float)dashRemaining.GetValue(route.Player) > 0f &&
                         (int)dashCharges.GetValue(route.Player) == 0 &&
-                        route.Body.linearVelocity.x > 10f;
+                        route.Body.linearVelocity.x > C(10f);
                 if (stage == 0 && (int)wallProbe.GetValue(route.Player) != 0 &&
                     !(bool)grounded.GetValue(route.Player)) wallContact = true;
                 buttonAContact |= route.Shape.IsTouching(buttonA);
                 buttonBContact |= route.Shape.IsTouching(buttonB);
-                laserDisabled |= !beam.enabled && !laserBase.enabled;
+                laserDisabled |= !beam.enabled && laserBase.enabled;
                 sawDisabled |= !saw.enabled;
-                if (float.IsNaN(laserReserve) && position.x >= 8.225f)
+                if (float.IsNaN(laserReserve) && position.x >= C(9.325f))
                     laserReserve = (float)laserUntil.GetValue(laserMechanism) - Time.time;
                 Collider2D target = stage == 0 ? ledge : landing;
                 bool contact = Supported(route, target, out float margin);
-                bool safe = stage == 0 ? position.x >= 4.125f && position.x <= 4.875f :
-                    position.x >= 18.925f && position.x <= 20.675f;
-                stable = contact && safe && margin >= .15f ? stable + 1 : 0;
-                bool hazardContact = (beam.enabled && route.Shape.IsTouching(beam)) ||
-                    (laserBase.enabled && route.Shape.IsTouching(laserBase)) ||
-                    (saw.enabled && route.Shape.IsTouching(saw));
+                bool safe = stage == 0 ? position.x >= C(4.425f) && position.x <= C(5.575f) :
+                    position.x >= C(17.425f) && position.x <= C(20.575f);
+                stable = contact && safe && margin >= Margin ? stable + 1 : 0;
+                bool beamContact = beam.enabled && route.Shape.IsTouching(beam);
+                bool baseContact = laserBase.enabled && route.Shape.IsTouching(laserBase);
+                bool sawContact = saw.enabled && route.Shape.IsTouching(saw);
+                bool hazardContact = beamContact || baseContact || sawContact;
                 Record(route, stage == 0 ? "WallLedge" : "LaserDashSaw", q, horizontal,
                     jumpNow, dashNow, target, contact, stable, margin, hazardContact);
                 if (hazardContact || Dying(route))
                 {
+                    route.Events.Add("hazard X=" + position.x.ToString("F3") +
+                        " beamTouch=" + beamContact + " baseTouch=" + baseContact +
+                        " sawTouch=" + sawContact + " beamOverlap=" +
+                        beam.bounds.Intersects(route.Shape.bounds) + " baseOverlap=" +
+                        laserBase.bounds.Intersects(route.Shape.bounds) + " buttonA=" +
+                        buttonAContact + " beamDisabled=" + laserDisabled);
                     route.Failure = "L07 hazard/death after " + route.LastSupport;
                     yield break;
                 }
@@ -259,7 +320,7 @@ namespace Sleepwalking.Tests.PlayMode
                         " margin=" + margin.ToString("F3") +
                         " sawReserve=" + sawReserve.ToString("F3"));
                     if (!pitJump || !dash || !dashActivated || !buttonAContact || !buttonBContact ||
-                        !laserDisabled || !sawDisabled || beam.enabled || laserBase.enabled ||
+                        !laserDisabled || !sawDisabled || beam.enabled || !laserBase.enabled ||
                         saw.enabled || laserReserve < 1f || sawReserve < 1f)
                         route.Failure = "L07 landing lacked jump/dash/button contact or 1 s reserve; " +
                             "A=" + buttonAContact + " B=" + buttonBContact +
@@ -273,7 +334,7 @@ namespace Sleepwalking.Tests.PlayMode
                     route.Failure = "L07 exit transition before DashLanding";
                     yield break;
                 }
-                if (position.y < -3f || position.x > 21.5f)
+                if (position.y < C(-3f) || position.x > C(23f))
                 {
                     route.Failure = "L07 left route bounds after " + route.LastSupport;
                     yield break;
@@ -294,12 +355,14 @@ namespace Sleepwalking.Tests.PlayMode
             Type gameType = route.Game.GetType();
             gameType.GetField("odradek", BindingFlags.Instance | BindingFlags.NonPublic).SetValue(route.Game, odradek);
             Array profiles = (Array)gameType.GetField("MovementProfiles").GetValue(route.Game);
-            ScriptableObject profile = (ScriptableObject)profiles.GetValue(1);
+            ScriptableObject profile = (ScriptableObject)profiles.GetValue(route.ProfileIndex);
             Assert.That(profile, Is.Not.Null);
             route.Profile = profile.name;
             gameType.GetField("MovementProfile").SetValue(route.Game, profile);
             gameType.GetField("completedDreams", BindingFlags.Instance | BindingFlags.NonPublic)
                 .SetValue(route.Game, route.Level - 1);
+            gameType.GetField("tutorialStage", BindingFlags.Instance | BindingFlags.NonPublic)
+                ?.SetValue(route.Game, 2);
             route.Dying = gameType.GetField("dying", BindingFlags.Instance | BindingFlags.NonPublic);
             route.Transitioning = gameType.GetField("transitioning", BindingFlags.Instance | BindingFlags.NonPublic);
             route.InDream = gameType.GetProperty("InDream");
@@ -377,8 +440,9 @@ namespace Sleepwalking.Tests.PlayMode
             bool jumped = false;
             for (int q = 0; q < limit; q++)
             {
-                float error = aimX - route.Body.position.x;
-                float horizontal = Mathf.Clamp(error * 2.4f - route.Body.linearVelocity.x * .55f, -1f, 1f);
+                float error = (aimX - route.Body.position.x) / Unit;
+                float horizontal = Mathf.Clamp(error * 2.4f -
+                    route.Body.linearVelocity.x / Unit * .55f, -1f, 1f);
                 bool jump = !jumped;
                 jumped = true;
                 route.Input.Invoke(route.Player, new object[] { horizontal, jump, false });
@@ -386,7 +450,7 @@ namespace Sleepwalking.Tests.PlayMode
                 if (route.Body == null) { route.Failure = "Player destroyed before " + targetName; yield break; }
                 bool contact = Supported(route, target, out float margin);
                 bool safe = route.Body.position.x >= safeMin && route.Body.position.x <= safeMax;
-                stable = contact && safe && margin >= .15f ? stable + 1 : 0;
+                stable = contact && safe && margin >= Margin ? stable + 1 : 0;
                 bool hazardContact = false;
                 foreach (Collider2D hazard in hazards)
                 {
@@ -394,7 +458,7 @@ namespace Sleepwalking.Tests.PlayMode
                     if (!float.IsNaN(clearanceTop) &&
                         route.Shape.bounds.max.x > hazard.bounds.min.x &&
                         route.Shape.bounds.min.x < hazard.bounds.max.x &&
-                        route.Shape.bounds.min.y <= clearanceTop + .02f)
+                        route.Shape.bounds.min.y <= clearanceTop + C(.02f))
                         hazardContact = true;
                 }
                 Record(route, "JumpTo_" + targetName + "_" + safeMin.ToString("F2", CultureInfo.InvariantCulture),
@@ -437,24 +501,35 @@ namespace Sleepwalking.Tests.PlayMode
             Assert.That(disabledUntil, Is.Not.Null);
             bool buttonTouched = false;
             bool disabledSeen = false;
+            bool laserBaseJump = false;
             float reserve = float.NaN;
             for (int q = 0; q < 180; q++)
             {
-                route.Input.Invoke(route.Player, new object[] { 1f, false, false });
+                bool jump = !laserBaseJump && route.Body.position.x >= C(6.4f);
+                if (jump)
+                {
+                    if (!disabledSeen)
+                    {
+                        route.Failure = "Button did not disable the beam before laser base";
+                        yield break;
+                    }
+                    laserBaseJump = true;
+                }
+                route.Input.Invoke(route.Player, new object[] { 1f, jump, false });
                 yield return new WaitForFixedUpdate();
                 if (route.Body == null) { route.Failure = "Player destroyed at laser"; yield break; }
                 buttonTouched |= route.Shape.IsTouching(button);
-                disabledSeen |= !beam.enabled && !laserBase.enabled;
+                disabledSeen |= !beam.enabled && laserBase.enabled;
                 bool hazardContact = (beam.enabled && route.Shape.IsTouching(beam)) ||
                     (laserBase.enabled && route.Shape.IsTouching(laserBase));
                 bool contact = Supported(route, floor, out float margin);
-                Record(route, "ButtonLaser", q, 1f, false, false, floor, contact,
+                Record(route, "ButtonLaser", q, 1f, jump, false, floor, contact,
                     contact ? 1 : 0, margin, hazardContact);
                 if (hazardContact || Dying(route)) { route.Failure = "Died/collided at live laser"; yield break; }
-                if (route.Body.position.x >= 6.825f)
+                if (route.Body.position.x >= C(8.325f))
                 {
                     reserve = (float)disabledUntil.GetValue(mechanism) - Time.time;
-                    if (!buttonTouched || !disabledSeen || beam.enabled || laserBase.enabled ||
+                    if (!buttonTouched || !disabledSeen || beam.enabled || !laserBase.enabled ||
                         reserve < 1f)
                         route.Failure = "Laser crossing lacked button contact, disabled colliders, or 1 s reserve; " +
                             "button=" + buttonTouched + ", disabled=" + disabledSeen +
@@ -464,7 +539,7 @@ namespace Sleepwalking.Tests.PlayMode
                     yield break;
                 }
             }
-            route.Failure = "Laser crossing did not reach X=6.825";
+            route.Failure = "Laser crossing did not reach cell X=8.325";
             route.Clear.Invoke(route.Player, null);
         }
 
@@ -500,7 +575,8 @@ namespace Sleepwalking.Tests.PlayMode
             Bounds surface = target.bounds;
             margin = Mathf.Min(player.min.x - surface.min.x, surface.max.x - player.max.x);
             return target.enabled && route.Shape.IsTouching(target) &&
-                Mathf.Abs(player.min.y - surface.max.y) < .12f && route.Body.linearVelocity.y <= .15f;
+                Mathf.Abs(player.min.y - surface.max.y) < C(.12f) &&
+                route.Body.linearVelocity.y <= C(.15f);
         }
 
         static void Record(Route route, string stage, int step, float horizontal, bool jump, bool dash,
@@ -518,13 +594,23 @@ namespace Sleepwalking.Tests.PlayMode
 
         void Finish(Route route)
         {
+            route.Clear?.Invoke(route.Player, null);
             string root = Path.GetFullPath(Path.Combine(Application.dataPath, ".."));
             string folder = Path.Combine(root, "Builds", "QA");
             Directory.CreateDirectory(folder);
             string path = Path.Combine(folder, "traversal-remaining-L" +
-                route.Level.ToString("00") + "-odradek-" + odradek + ".csv");
+                route.Level.ToString("00") + "-odradek-" + odradek +
+                (route.ProfileIndex == 0 ? "-controlled" : "") + ".csv");
             File.WriteAllLines(path, route.Trace);
             File.WriteAllLines(Path.ChangeExtension(path, ".events.txt"), route.Events);
+            if (odradek == 1)
+            {
+                string legacyPath = Path.Combine(root, "Docs", "QA", "traversal-remaining-L" +
+                    route.Level.ToString("00") +
+                    (route.ProfileIndex == 0 ? "-controlled" : "") + ".csv");
+                File.WriteAllLines(legacyPath, route.Trace);
+                File.WriteAllLines(Path.ChangeExtension(legacyPath, ".events.txt"), route.Events);
+            }
             Assert.That(route.Failure, Is.Null, route.Failure + "; last support " + route.LastSupport +
                 "; see " + path);
             LogAssert.NoUnexpectedReceived();

@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="5" result="Passed" total="5" passed="5" failed="0" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-11-14 16:16:59Z" end-time="2026-11-14 16:17:16Z" duration="17,4715918">
+  <test-suite type="TestSuite" id="1063" name="Sleepwalking" fullname="Sleepwalking" runstate="Runnable" testcasecount="41" result="Passed" start-time="2026-11-14 16:16:59Z" end-time="2026-11-14 16:17:16Z" duration="17.471592" total="5" passed="5" failed="0" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="PlayMode" />
+    </properties>
+    <test-suite type="Assembly" id="1056" name="Sleepwalking.PlayMode.Tests.dll" fullname="T:/Sleepwalking/Library/ScriptAssemblies/Sleepwalking.PlayMode.Tests.dll" runstate="Runnable" testcasecount="41" result="Passed" start-time="2026-11-14 16:16:59Z" end-time="2026-11-14 16:17:16Z" duration="17.462654" total="5" passed="5" failed="0" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="419616" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="PlayMode" />
+        <property name="EditorOnly" value="False" />
+      </properties>
+      <test-suite type="TestSuite" id="1057" name="Sleepwalking" fullname="Sleepwalking" runstate="Runnable" testcasecount="41" result="Passed" start-time="2026-11-14 16:16:59Z" end-time="2026-11-14 16:17:16Z" duration="17.461549" total="5" passed="5" failed="0" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <test-suite type="TestSuite" id="1058" name="Tests" fullname="Sleepwalking.Tests" runstate="Runnable" testcasecount="41" result="Passed" start-time="2026-11-14 16:16:59Z" end-time="2026-11-14 16:17:16Z" duration="17.460879" total="5" passed="5" failed="0" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <test-suite type="TestSuite" id="1059" name="PlayMode" fullname="Sleepwalking.Tests.PlayMode" runstate="Runnable" testcasecount="41" result="Passed" start-time="2026-11-14 16:16:59Z" end-time="2026-11-14 16:17:16Z" duration="17.460335" total="5" passed="5" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-suite type="TestFixture" id="1001" name="GridPhysicsTests" fullname="Sleepwalking.Tests.PlayMode.GridPhysicsTests" classname="Sleepwalking.Tests.PlayMode.GridPhysicsTests" runstate="Runnable" testcasecount="5" result="Passed" start-time="2026-11-14 16:16:59Z" end-time="2026-11-14 16:17:16Z" duration="17.458425" total="5" passed="5" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1006" name="L04GridPlayerMovesAndCameraStaysFixed" fullname="Sleepwalking.Tests.PlayMode.GridPhysicsTests.L04GridPlayerMovesAndCameraStaysFixed" methodname="L04GridPlayerMovesAndCameraStaysFixed" classname="Sleepwalking.Tests.PlayMode.GridPhysicsTests" runstate="Runnable" seed="1075408573" result="Passed" start-time="2026-11-14 16:16:59Z" end-time="2026-11-14 16:17:01Z" duration="2.265735" asserts="0">
+                <properties>
+                  <property name="_JOINTYPE" value="UnityCombinatorial" />
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1003" name="L05ControlledJumpClearsTwoCellRise" fullname="Sleepwalking.Tests.PlayMode.GridPhysicsTests.L05ControlledJumpClearsTwoCellRise" methodname="L05ControlledJumpClearsTwoCellRise" classname="Sleepwalking.Tests.PlayMode.GridPhysicsTests" runstate="Runnable" seed="192614746" result="Passed" start-time="2026-11-14 16:17:01Z" end-time="2026-11-14 16:17:03Z" duration="2.158893" asserts="0">
+                <properties>
+                  <property name="_JOINTYPE" value="UnityCombinatorial" />
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[SW_GRID Controlled apexFeet=2,160 cells
+]]></output>
+              </test-case>
+              <test-case id="1002" name="L05TimedPlatformsHaveSevenSecondCycle" fullname="Sleepwalking.Tests.PlayMode.GridPhysicsTests.L05TimedPlatformsHaveSevenSecondCycle" methodname="L05TimedPlatformsHaveSevenSecondCycle" classname="Sleepwalking.Tests.PlayMode.GridPhysicsTests" runstate="Runnable" seed="78755232" result="Passed" start-time="2026-11-14 16:17:03Z" end-time="2026-11-14 16:17:11Z" duration="8.325147" asserts="0">
+                <properties>
+                  <property name="_JOINTYPE" value="UnityCombinatorial" />
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1005" name="L05TwoCellStepHasPhysicalLanding" fullname="Sleepwalking.Tests.PlayMode.GridPhysicsTests.L05TwoCellStepHasPhysicalLanding" methodname="L05TwoCellStepHasPhysicalLanding" classname="Sleepwalking.Tests.PlayMode.GridPhysicsTests" runstate="Runnable" seed="2059277325" result="Passed" start-time="2026-11-14 16:17:11Z" end-time="2026-11-14 16:17:13Z" duration="1.764809" asserts="0">
+                <properties>
+                  <property name="_JOINTYPE" value="UnityCombinatorial" />
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[SW_GRID L05 A apexFeet=2,175 landingX=4,704 stable=3
+]]></output>
+              </test-case>
+              <test-case id="1004" name="L07WallJumpAndDashReachLanding" fullname="Sleepwalking.Tests.PlayMode.GridPhysicsTests.L07WallJumpAndDashReachLanding" methodname="L07WallJumpAndDashReachLanding" classname="Sleepwalking.Tests.PlayMode.GridPhysicsTests" runstate="Runnable" seed="1746217909" result="Passed" start-time="2026-11-14 16:17:13Z" end-time="2026-11-14 16:17:16Z" duration="2.929998" asserts="0">
+                <properties>
+                  <property name="_JOINTYPE" value="UnityCombinatorial" />
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[SW_GRID L07 dash=True maxX=20,443 finalX=20,443 stable=3
+Saving results to: C:/Users/TIMBUHTUK/AppData/LocalLow/DefaultCompany/Sleepwalking\TestResults.xml
+]]></output>
+              </test-case>
+            </test-suite>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="1" result="Failed(Child)" total="1" passed="0" failed="1" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-11-14 22:16:47Z" end-time="2026-11-14 22:16:56Z" duration="9,0916933">
+  <test-suite type="TestSuite" id="1133" name="Sleepwalking" fullname="Sleepwalking" runstate="Runnable" testcasecount="93" result="Failed" site="Child" start-time="2026-11-14 22:16:47Z" end-time="2026-11-14 22:16:56Z" duration="9.091693" total="1" passed="0" failed="1" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="PlayMode" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="Assembly" id="1126" name="Sleepwalking.PlayMode.Tests.dll" fullname="T:/Sleepwalking/Library/ScriptAssemblies/Sleepwalking.PlayMode.Tests.dll" runstate="Runnable" testcasecount="93" result="Failed" site="Child" start-time="2026-11-14 22:16:47Z" end-time="2026-11-14 22:16:56Z" duration="9.084652" total="1" passed="0" failed="1" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="1063620" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="PlayMode" />
+        <property name="EditorOnly" value="False" />
+      </properties>
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="1127" name="Sleepwalking" fullname="Sleepwalking" runstate="Runnable" testcasecount="93" result="Failed" site="Child" start-time="2026-11-14 22:16:47Z" end-time="2026-11-14 22:16:56Z" duration="9.083504" total="1" passed="0" failed="1" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestSuite" id="1128" name="Tests" fullname="Sleepwalking.Tests" runstate="Runnable" testcasecount="93" result="Failed" site="Child" start-time="2026-11-14 22:16:47Z" end-time="2026-11-14 22:16:56Z" duration="9.082611" total="1" passed="0" failed="1" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="TestSuite" id="1129" name="PlayMode" fullname="Sleepwalking.Tests.PlayMode" runstate="Runnable" testcasecount="93" result="Failed" site="Child" start-time="2026-11-14 22:16:47Z" end-time="2026-11-14 22:16:56Z" duration="9.081622" total="1" passed="0" failed="1" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-suite type="TestFixture" id="1029" name="SleepwalkingCeilingBypassTests" fullname="Sleepwalking.Tests.PlayMode.SleepwalkingCeilingBypassTests" classname="Sleepwalking.Tests.PlayMode.SleepwalkingCeilingBypassTests" runstate="Runnable" testcasecount="1" result="Failed" site="Child" start-time="2026-11-14 22:16:47Z" end-time="2026-11-14 22:16:56Z" duration="9.079006" total="1" passed="0" failed="1" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="1030" name="AirTurnCannotBypassFirstLaserOrSawButtons" fullname="Sleepwalking.Tests.PlayMode.SleepwalkingCeilingBypassTests.AirTurnCannotBypassFirstLaserOrSawButtons" methodname="AirTurnCannotBypassFirstLaserOrSawButtons" classname="Sleepwalking.Tests.PlayMode.SleepwalkingCeilingBypassTests" runstate="Runnable" seed="701646529" result="Failed" start-time="2026-11-14 22:16:47Z" end-time="2026-11-14 22:16:56Z" duration="9.068893" asserts="0">
+                <properties>
+                  <property name="_JOINTYPE" value="UnityCombinatorial" />
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Ceiling probes did not exercise wall-jump, reversal and dash: L04_FirstLaser wallJump=False reversed=False dash=False; see T:\Sleepwalking\Builds\QA\air-control-ceiling-bypass.csv
+  Expected: <empty>
+  But was:  < "L04_FirstLaser wallJump=False reversed=False dash=False" >
+]]></message>
+                  <stack-trace><![CDATA[at Sleepwalking.Tests.PlayMode.SleepwalkingCeilingBypassTests+<AirTurnCannotBypassFirstLaserOrSawButtons>d__5.MoveNext () [0x0043f] in T:\Sleepwalking\Assets\SleepwalkingTests\PlayMode\SleepwalkingCeilingBypassTests.cs:80
+at UnityEngine.TestTools.TestEnumerator+<Execute>d__7.MoveNext () [0x0003a] in .\Library\PackageCache\com.unity.test-framework@bd7f943e9647\UnityEngine.TestRunner\NUnitExtensions\Attributes\TestEnumerator.cs:44
+]]></stack-trace>
+                </failure>
+                <output><![CDATA[Saving results to: C:/Users/TIMBUHTUK/AppData/LocalLow/DefaultCompany/Sleepwalking\TestResults.xml
+]]></output>
+              </test-case>
+            </test-suite>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

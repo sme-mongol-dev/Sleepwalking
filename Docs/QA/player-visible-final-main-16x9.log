@@ -22,7 +22,7 @@ Direct3D:
     App VRAM Budget: 7188 MB
     Driver:          32.0.16.1088
 Begin MonoManager ReloadAssembly
-- Loaded All Assemblies, in  0.087 seconds
+- Loaded All Assemblies, in  1.406 seconds
 - Finished resetting the current domain, in  0.002 seconds
 [Physics::Module] Selected backend.
 [Physics::Module] Name: PhysX
@@ -32,4 +32,4 @@ Begin MonoManager ReloadAssembly
 [Physics::Module] Threading Mode: Multi-Threaded
 <RI> Initializing input.
 Using Windows.Gaming.Input
-UnloadTime: 0.513200 ms
+UnloadTime: 5.264000 ms

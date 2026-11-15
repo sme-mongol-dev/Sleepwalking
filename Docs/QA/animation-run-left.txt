@@ -1,0 +1,1 @@
+S_PizdukRun_5 FlipX=True Bounds=Center: (50.94, 16.02, -0.05), Extents: (14.96, 16.00, 0.10) Camera=(208.00, 56.00, -20.00) Player=(50.94, 16.02, -0.05) PlayerViewport=(0.24, 0.38, 19.95)

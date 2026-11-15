@@ -1,7 +1,9 @@
 const fs = require('fs');
 const path = require('path');
+const { shapePrefabNodes } = require('./tile-collider-shape.cjs');
 
 const root = path.resolve(__dirname, '..');
+const prefabsOnly = process.argv.includes('--prefabs-only');
 const prefabDir = path.join(root, 'Prefabs');
 const materialDir = path.join(root, 'Materials');
 fs.mkdirSync(prefabDir, { recursive: true });
@@ -23,12 +25,15 @@ const materialGuids = {
 };
 
 function save(file, content) { fs.writeFileSync(file, content.replace(/\r\n/g, '\n'), 'utf8'); }
+function levelEnd(index) { return index === 1 ? 27 : index === 2 ? 32 : index === 3 ? 29 :
+  index === 4 ? 25 : index === 5 ? 41 : index === 6 ? 42 : 44; }
 function meta(file, guid, importer = 'DefaultImporter') {
   save(file + '.meta', `fileFormatVersion: 2\nguid: ${guid}\n${importer}:\n  externalObjects: {}\n  userData:\n  assetBundleName:\n  assetBundleVariant:\n`);
 }
 function folderMeta(folder, guid) {
   save(folder + '.meta', `fileFormatVersion: 2\nguid: ${guid}\nfolderAsset: yes\nDefaultImporter:\n  externalObjects: {}\n  userData:\n  assetBundleName:\n  assetBundleVariant:\n`);
 }
+if (!prefabsOnly) {
 folderMeta(prefabDir, 'a68406f74b1a44a1b746f071cd0d8b11');
 folderMeta(materialDir, '39703ac3bce54efb9a040b25ff8d2862');
 
@@ -89,10 +94,11 @@ f 3 1 4 6
 `;
 save(path.join(root, 'TrianglePrism.obj'), obj);
 meta(path.join(root, 'TrianglePrism.obj'), meshGuid, 'ModelImporter');
+}
 
-function num(x) { return Number.isInteger(x) ? String(x) : String(+x.toFixed(5)); }
+function num(x, precision = 5) { return Number.isInteger(x) ? String(x) : String(+x.toFixed(precision)); }
 function vec2(x, y) { return `{x: ${num(x)}, y: ${num(y)}}`; }
-function vec3(x, y, z) { return `{x: ${num(x)}, y: ${num(y)}, z: ${num(z)}}`; }
+function vec3(x, y, z, precision = 5) { return `{x: ${num(x, precision)}, y: ${num(y, precision)}, z: ${num(z, precision)}}`; }
 function ref(id) { return `{fileID: ${id}}`; }
 
 class Prefab {
@@ -102,6 +108,7 @@ class Prefab {
     this.nodes = [];
     this.blocks = [];
     this.root = this.node(`L${String(index).padStart(2, '0')}_DreamGeometry`);
+    this.root.sx = this.root.sy = 32;
     this.geometry = this.node('Geometry', this.root);
     this.hazards = this.node('Hazards', this.root);
     this.mechanisms = this.node('Mechanisms', this.root);
@@ -141,12 +148,13 @@ class Prefab {
   m_Name:
   m_EditorClassIdentifier: Assembly-CSharp::Sleepwalking.Levels.SleepwalkingLevelVisualState`);
   }
-  tileSurface(n) {
+  tileSurface(n, shell = false) {
     this.component(n, 114, 'MonoBehaviour', `  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ${tileSurfaceGuid}, type: 3}
   m_Name:
-  m_EditorClassIdentifier: Assembly-CSharp::Sleepwalking.Levels.SleepwalkingTileSurface`);
+  m_EditorClassIdentifier: Assembly-CSharp::Sleepwalking.Levels.SleepwalkingTileSurface
+  IsShell: ${shell ? 1 : 0}`);
   }
   triangle(parent, name, x, bottom, width, height, feature) {
     const n = this.node(name, parent, x, bottom + height / 2, 0, width, height, 0.8);
@@ -164,8 +172,8 @@ class Prefab {
     this.visualState(n);
     return n;
   }
-  saw(parent, name, x, y) {
-    const n = this.node(name, parent, x, y, 0, 0.75, 0.75, 0.8);
+  saw(parent, name, x, y, diameter = 0.75) {
+    const n = this.node(name, parent, x, y, 0, diameter, diameter, 0.8);
     this.component(n, 33, 'MeshFilter', `  m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}`);
     this.renderer(n, 'Hazard');
     const collision3D = this.node('Collision3D', n);
@@ -252,22 +260,6 @@ ${extra}`;
     const collision3D = this.node('Collision3D', n);
     this.component(collision3D, 65, 'BoxCollider', this.collider3d(trigger));
   }
-  oneWay(n) {
-    const collider = n.components.find(x => x.type === 'BoxCollider2D');
-    collider.data = collider.data.replace('m_UsedByEffector: 0', 'm_UsedByEffector: 1');
-    this.component(n, 251, 'PlatformEffector2D', `  m_Enabled: 1
-  m_UseColliderMask: 1
-  m_ColliderMask:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_RotationalOffset: 0
-  m_UseOneWay: 1
-  m_UseOneWayGrouping: 0
-  m_SurfaceArc: 90
-  m_UseSideFriction: 0
-  m_UseSideBounce: 0
-  m_SideArc: 0`);
-  }
   feature(n, f) {
     this.component(n, 114, 'MonoBehaviour', `  m_Enabled: 1
   m_EditorHideFlags: 0
@@ -276,26 +268,123 @@ ${extra}`;
   m_EditorClassIdentifier: Assembly-CSharp::Sleepwalking.Levels.SleepwalkingLevelFeature
   kind: ${f.kind}
   featureId: ${f.id}
-  linkedFeatureId: ${f.link || ''}
+  linkedFeatureId:${f.link ? ' ' + f.link : ''}
   activeSeconds: ${num(f.duration || 0)}
   moveOffset: ${vec2(...(f.move || [0, 0]))}
   cycleSeconds: ${num(f.cycle || 0)}
   phaseSeconds: ${num(f.phase || 0)}
   beamPixelWidth: ${num(f.beamPixels || 0)}`);
   }
-  platform(name, left, right, top, height = 0.7, oneWay = false) {
+  platform(name, left, right, top, height = 1) {
     const block = this.cube(this.geometry, name, (left + right) / 2, top - height / 2, right - left, height, 'Floor');
-    if (oneWay) this.oneWay(block);
     this.tileSurface(block);
-    this.visualCube(this.readability, `${name}_SafeEdge`, (left + right) / 2, top - 0.015,
-      -0.55, right - left, 0.04, 0.05, 'SafeEdge');
-    if (name === 'WallGrabLedge')
-      this.visualCube(this.readability, 'WallGrip_Cue', left + 0.05, top - height / 2,
-        -0.58, 0.1, height, 0.05, 'SafeEdge');
   }
-  spikes(id, left, top, count) {
-    for (let q = 0; q < count; q++)
-      this.triangle(this.hazards, `${id}_${q + 1}`, left + q * 0.45 + 0.225, top, 0.45, 0.48, { kind: 0, id });
+  caveBlock(name, left, right, bottom, top) {
+    const block = this.cube(this.cave, name, (left + right) / 2, (bottom + top) / 2,
+      right - left, top - bottom, 'Floor');
+    this.tileSurface(block, true);
+  }
+  visiblePit(id, left, right, top) {
+    this.caveBlock(`Cave_${id}Foundation`, left, right, -4, top);
+    this.spikes(id, left, right, top, Math.round((right - left) * 2));
+  }
+  caveShell() {
+    const floor = -4;
+    const roof = 28;
+    this.cave = this.node('CaveShell', this.geometry);
+    const end = levelEnd(this.index);
+    let edges = this.index === 4 ? [0, end] : [0, 13, end];
+    let heights = this.index === 4 ? [5] : [5, 7];
+    if (this.index === 5) {
+      edges = [0, 3, 6, 9, 13, 18, 23, 26, 29, end];
+      heights = [5, 7, 9, 7, 7, 5, 7, 9, 8];
+    } else if (this.index === 6) {
+      edges = [0, 3, 16, 20, 23, end];
+      heights = [3, 5, 6, 8, 9];
+    } else if (this.index === 7) {
+      edges = [0, 3, 22, 32, end];
+      heights = [5, 8, 10, 10];
+    }
+
+    this.caveBlock('Cave_Bedrock', -8, end + 8, -20, floor);
+    this.caveBlock('Cave_LeftWall', -8, 0, floor, heights[0]);
+    this.caveBlock('Cave_RightWall', end, end + 8, floor, heights.at(-1));
+    this.caveBlock('Cave_LeftRoof', -8, 0, heights[0], roof);
+    for (let q = 0; q < heights.length; q++)
+      this.caveBlock(`Cave_Roof_${q}`, edges[q], edges[q + 1], heights[q], roof);
+    this.caveBlock('Cave_RightRoof', end, end + 8, heights.at(-1), roof);
+
+    if (this.index === 1) {
+      this.caveBlock('Cave_StartFoundation', 0, 4, floor, -1);
+      this.caveBlock('Cave_LandingFoundation', 5, 9, floor, -1);
+      this.caveBlock('Cave_ExitFoundation', 10, 13, floor, 0);
+      this.caveBlock('Cave_RiseFoundation', 14, 17, floor, 1);
+      this.caveBlock('Cave_ShelfFoundation', 19, 21, floor, 0);
+      this.caveBlock('Cave_FinalFoundation', 23, 27, floor, 1);
+      this.visiblePit('L01_GapA', 4, 5, -1);
+      this.visiblePit('L01_GapB', 9, 10, -1);
+      this.visiblePit('L01_GapC', 13, 14, -1);
+      this.visiblePit('L01_GapD', 17, 19, -1);
+      this.visiblePit('L01_GapE', 21, 23, -1);
+    } else if (this.index === 2) {
+      this.caveBlock('Cave_StartFoundation', 0, 4, floor, -1);
+      this.caveBlock('Cave_PitSpikeFoundation', 4, 5, floor, -1);
+      this.caveBlock('Cave_LandingFoundation', 5, 9, floor, -1);
+      this.caveBlock('Cave_ExitFoundation', 10, 13, floor, 0);
+      this.caveBlock('Cave_SecondPitFoundation', 13, 14, floor, 0);
+      this.caveBlock('Cave_BridgeFoundation', 14, 21, floor, 0);
+      this.caveBlock('Cave_RecoveryFoundation', 23, 26, floor, 1);
+      this.caveBlock('Cave_FinalFoundation', 28, 32, floor, 1);
+      this.visiblePit('L02_GapA', 9, 10, -1);
+      this.visiblePit('L02_GapB', 21, 23, -1);
+      this.visiblePit('L02_GapC', 26, 28, -1);
+    } else if (this.index === 3) {
+      this.caveBlock('Cave_StartFoundation', 0, 4, floor, -1);
+      this.caveBlock('Cave_LandingFoundation', 5, 9, floor, -1);
+      this.caveBlock('Cave_ExitFoundation', 10, 13, floor, 0);
+      this.caveBlock('Cave_SecondSawFoundation', 14, 19, floor, 0);
+      this.caveBlock('Cave_UpperFoundation', 21, 24, floor, 1);
+      this.caveBlock('Cave_FinalFoundation', 26, 29, floor, 1);
+      this.visiblePit('L03_GapA', 4, 5, -1);
+      this.visiblePit('L03_GapB', 9, 10, -1);
+      this.visiblePit('L03_GapC', 13, 14, -1);
+      this.visiblePit('L03_GapD', 19, 21, -1);
+      this.visiblePit('L03_GapE', 24, 26, -1);
+    } else if (this.index === 4) {
+      this.caveBlock('Cave_FloorFoundation', 0, 13, floor, -1);
+      this.caveBlock('Cave_SecondFloorFoundation', 14, 25, floor, 0);
+      this.visiblePit('L04_GapA', 13, 14, -1);
+    } else if (this.index === 5) {
+      this.caveBlock('Cave_StartFoundation', 0, 3, floor, -1);
+      this.caveBlock('Cave_PitSpikeFoundation', 3, 19, floor, -1);
+      this.caveBlock('Cave_ExitFoundation', 19, 23, floor, -1);
+      this.caveBlock('Cave_SecondPitFoundation', 23, 35, floor, -1);
+      this.caveBlock('Cave_FinalFoundation', 35, 41, floor, 1);
+    } else if (this.index === 6) {
+      this.caveBlock('Cave_StartFoundation', 0, 3, floor, -2);
+      this.caveBlock('Cave_FinalFoundation', 37, 42, floor, 4);
+      this.visiblePit('L06_FloorSpikes', 3, 37, -2);
+    } else {
+      this.caveBlock('Cave_StartFoundation', 0, 3, floor, -1);
+      this.caveBlock('Cave_WallFoundation', 4, 6, floor, 0);
+      this.caveBlock('Cave_RunFoundation', 6, 11, floor, 2);
+      this.caveBlock('Cave_PitSpikeFoundation', 11, 17, floor, -1);
+      this.caveBlock('Cave_ExitFoundation', 17, 21, floor, 2);
+      this.caveBlock('Cave_SecondLaserFoundation', 22, 31, floor, 4);
+      this.caveBlock('Cave_SecondPitFoundation', 31, 37, floor, -1);
+      this.caveBlock('Cave_FinalFoundation', 37, 44, floor, 4);
+      this.visiblePit('L07_GapA', 3, 4, -1);
+      this.visiblePit('L07_GapB', 21, 22, -1);
+    }
+  }
+  spikes(id, left, right, top, count) {
+    const width = Math.fround((right - left) / count);
+    for (let q = 0; q < count; q++) {
+      const x = Math.fround(left + Math.fround((q + 0.5) * width));
+      const spike = this.triangle(this.hazards, `${id}_${q + 1}`, x, top, width, 0.27, { kind: 0, id });
+      spike.precisePosition = true;
+      spike.preciseScale = true;
+    }
   }
   laser(id, x, bottom, top) {
     this.triangle(this.hazards, `${id}_Base`, x, bottom, 0.8, 0.65, { kind: 2, id });
@@ -329,18 +418,16 @@ ${extra}`;
     this.visualCube(this.readability, 'L06_MoverWait_ChevronBottomOuter', 2.60, -0.79,
       -0.8, 0.14, 0.14, 0.06, 'SafeEdge');
   }
-  timed(id, x, top, phase, oneWay = false) {
-    const platform = this.cube(this.mechanisms, id, x, top - 0.15, 1.3, 0.3, 'Mechanism', false,
-      { kind: 4, id, duration: 2.8, cycle: 4, phase });
-    if (oneWay) this.oneWay(platform);
+  timed(id, x, top, phase) {
+    const platform = this.cube(this.mechanisms, id, x, top - 0.5, 2, 1, 'Mechanism', false,
+      { kind: 4, id, duration: 5.5, cycle: 7, phase });
     this.tileSurface(platform);
     this.mechanismCues(platform, true);
     this.visualState(platform);
   }
-  moving(id, x, top, move, cycle, oneWay = false) {
-    const platform = this.cube(this.mechanisms, id, x, top - 0.15, 1.6, 0.3, 'Mechanism', false,
+  moving(id, x, top, move, cycle) {
+    const platform = this.cube(this.mechanisms, id, x, top - 0.5, 2, 1, 'Mechanism', false,
       { kind: 5, id, move, cycle });
-    if (oneWay) this.oneWay(platform);
     this.tileSurface(platform);
     this.mechanismCues(platform, false);
   }
@@ -422,8 +509,8 @@ Transform:
   m_GameObject: ${ref(n.go)}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: ${vec3(n.x, n.y, n.z)}
-  m_LocalScale: ${vec3(n.sx, n.sy, n.sz)}
+  m_LocalPosition: ${vec3(n.x, n.y, n.z, n.precisePosition ? 7 : 5)}
+  m_LocalScale: ${vec3(n.sx, n.sy, n.sz, n.preciseScale ? 8 : 5)}
   m_ConstrainProportionsScale: 0
   m_Children: [${n.children.map(x => ref(x.transform)).join(', ')}]
   m_Father: ${ref(n.parent ? n.parent.transform : 0)}
@@ -449,39 +536,53 @@ ${c.data}`);
 function build(index) {
   const p = new Prefab(index);
   if (index === 1) {
-    p.platform('Start', 0, 3.8, 0); p.platform('JumpLanding', 5.2, 8.4, 0); p.platform('ExitRun', 9.5, 12, 0.2);
+    p.platform('Start', 0, 4, 0); p.platform('JumpLanding', 5, 9, 0); p.platform('ExitRun', 10, 13, 1);
+    p.platform('RiseA', 14, 17, 2); p.platform('GapShelf', 19, 21, 1); p.platform('FinalRun', 23, 27, 2);
   } else if (index === 2) {
-    p.platform('Start', 0, 3.5, 0); p.platform('SpikeLanding', 4.7, 8.2, 0); p.platform('ExitRun', 9.3, 12, 0.2);
-    p.spikes('L02_PitSpikes', 3.65, -0.8, 2); p.spikes('L02_FloorSpikes', 6.15, 0, 2);
+    p.platform('Start', 0, 4, 0); p.platform('SpikeLanding', 5, 9, 0); p.platform('ExitRun', 10, 13, 1);
+    p.spikes('L02_PitSpikes', 4, 5, -1, 2); p.spikes('L02_FloorSpikes', 6.5, 7.4, 0, 2);
+    p.platform('SpikeBridge', 14, 21, 1); p.platform('HighRecovery', 23, 26, 2); p.platform('FinalRun', 28, 32, 2);
+    p.spikes('L02_SecondPitSpikes', 13, 14, 0, 2); p.spikes('L02_BridgeSpikes', 18, 19, 1, 2);
   } else if (index === 3) {
-    p.platform('Start', 0, 3.6, 0); p.platform('SawRun', 4.8, 8.4, 0); p.platform('ExitRun', 9.5, 12, 0.2);
-    p.saw(p.hazards, 'L03_Saw', 6.45, 0.39);
+    p.platform('Start', 0, 4, 0); p.platform('SawRun', 5, 9, 0); p.platform('ExitRun', 10, 13, 1);
+    p.saw(p.hazards, 'L03_Saw', 7, 0);
+    p.platform('SecondSawRun', 14, 19, 1); p.platform('UpperLanding', 21, 24, 2); p.platform('FinalRun', 26, 29, 2);
+    p.saw(p.hazards, 'L03_SecondSaw', 16.5, 1);
   } else if (index === 4) {
-    p.platform('LaserRun', 0, 11.6, 0); p.platform('LaserCeiling', 5.5, 6.5, 3.2, 0.3);
-    p.button('L04_ButtonLaser', 'L04_Laser', 3.1, 0, 7); p.laser('L04_Laser', 6, 0, 2.9);
+    p.platform('LaserRun', 0, 13, 0); p.platform('LaserCeiling', 7, 8, 4);
+    p.button('L04_ButtonLaser', 'L04_Laser', 3, 0, 7); p.laser('L04_Laser', 7.5, 0, 3);
+    p.platform('SecondLaserRun', 14, 25, 1); p.platform('SecondLaserCeiling', 20, 22, 5);
+    p.button('L04_ButtonSecond', 'L04_SecondLaser', 15.5, 1, 7); p.laser('L04_SecondLaser', 21, 1, 4);
   } else if (index === 5) {
-    p.platform('Start', 0, 3.2, 0); p.timed('L05_TimedA', 4, 1.3, 0, true); p.timed('L05_TimedB', 5.65, 2.6, 0.3, true);
-    p.timed('L05_TimedC', 7.3, 3.9, 0, true); p.platform('ExitRun', 8.5, 12, 5.2, 0.7, true); p.spikes('L05_PitSpikes', 3.25, -1.2, 11);
+    p.platform('Start', 0, 3, 0); p.timed('L05_TimedA', 5, 2, 0); p.timed('L05_TimedB', 8, 4, 0.3);
+    p.timed('L05_TimedC', 16, 2, 0); p.platform('ExitRun', 19, 23, 0); p.spikes('L05_PitSpikes', 3, 19, -1, 32);
+    p.timed('L05_TimedD', 25, 2, 0.3); p.timed('L05_TimedE', 28, 4, 0);
+    p.platform('FinalRun', 35, 41, 2); p.spikes('L05_SecondPitSpikes', 23, 35, -1, 24);
   } else if (index === 6) {
-    p.platform('Start', 0, 3, -0.9); p.moverWaitCue(); p.moving('L06_Horizontal', 4.4, 0.4, [8.8, 0], 8, true);
-    p.platform('LiftLanding', 14.5, 15.9, 2.35, 0.7, true); p.moving('L06_Vertical', 16.15, 2.5, [0, 1.5], 4, true);
-    p.platform('HighExit', 17, 18.5, 5.05, 0.7, true);
+    p.platform('Start', 0, 3, -1); p.moverWaitCue(); p.moving('L06_Horizontal', 5, 1, [9, 0], 8);
+    p.platform('LiftLanding', 16, 18, 0); p.moving('L06_Vertical', 19, 0, [0, 2], 4);
+    p.platform('HighExit', 21, 23, 4);
+    p.moving('L06_FinalBridge', 25, 3, [10, 0], 6); p.platform('FinalRun', 37, 42, 5);
   } else {
-    p.platform('Start', 0, 3.1, 0); p.platform('WallGrabLedge', 3.7, 5.3, 2.45, 2.45);
-    p.platform('LaserRun', 5.3, 9.7, 2.45); p.platform('DashLanding', 18.5, 21.1, 2.6);
-    p.platform('LaserCeiling', 6.9, 7.9, 5.4, 0.3);
-    p.button('L07_ButtonA', 'L07_Laser', 4.7, 2.45, 8); p.laser('L07_Laser', 7.4, 2.45, 5.1);
-    p.button('L07_ButtonB', 'L07_Saw', 9, 2.45, 8); p.saw(p.hazards, 'L07_Saw', 19, 3);
-    p.spikes('L07_PitSpikes', 9.9, -0.8, 20);
+    p.platform('Start', 0, 3, 0); p.platform('WallGrabLedge', 4, 6, 3, 3);
+    p.platform('LaserRun', 6, 11, 3); p.platform('DashLanding', 17, 21, 3);
+    p.platform('SawRoof', 18, 20, 6, 1);
+    p.platform('LaserCeiling', 8, 9, 6);
+    p.button('L07_ButtonA', 'L07_Laser', 5, 3, 8); p.laser('L07_Laser', 8.5, 3, 5);
+    p.button('L07_ButtonB', 'L07_Saw', 10, 3, 8); p.saw(p.hazards, 'L07_Saw', 19, 3, 2);
+    p.spikes('L07_PitSpikes', 11, 17, -1, 12);
+    p.platform('SecondLaserRun', 22, 31, 5); p.platform('SecondLaserCeiling', 27, 29, 10);
+    p.button('L07_ButtonC', 'L07_SecondLaser', 23.5, 5, 8); p.laser('L07_SecondLaser', 28, 5, 9);
+    p.platform('FinalRun', 37, 44, 5); p.spikes('L07_SecondPitSpikes', 31, 37, -1, 12);
   }
-  const width = index === 6 || index === 7 ? 23 : 13;
-  const reset = p.node('FallReset', p.hazards, width / 2, -3.2, 0, width, 0.3, 0.8);
-  p.boxColliders(reset, true);
-  p.feature(reset, { kind: 8, id: 'FallReset' });
-  const start = p.marker('PlayerStart', 1, index === 6 ? -0.8 : 0.1);
-  const exitX = index === 7 ? 20.1 : index === 6 ? 17.7 : index === 4 ? 10.5 : 11;
-  const exitY = index === 5 ? 5.2 : index === 6 ? 5.05 : index === 7 ? 2.6 : 0.2;
-  p.definition(start, p.bed(exitX, exitY, index === 4 ? -0.2 : 0));
+  p.caveShell();
+  const start = p.marker('PlayerStart', 1, index === 6 ? -0.9 : 0.1);
+  const exitX = index === 1 ? 25.5 : index === 2 ? 30.5 : index === 3 ? 27.5 :
+    index === 4 ? 23.5 : index === 5 ? 38.5 : index === 6 ? 40 : 42;
+  const exitY = index === 1 || index === 2 || index === 3 ? 2 :
+    index === 4 ? 1 : index === 5 ? 2 : index === 6 ? 5 : 5;
+  p.definition(start, p.bed(exitX, exitY));
+  shapePrefabNodes(p);
   p.write();
 }
 

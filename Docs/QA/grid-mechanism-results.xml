@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="4" result="Skipped:Ignored" total="4" passed="3" failed="0" inconclusive="0" skipped="1" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-11-14 15:38:10Z" end-time="2026-11-14 15:38:46Z" duration="35,1698585">
+  <test-suite type="TestSuite" id="1054" name="Sleepwalking" fullname="Sleepwalking" runstate="Runnable" testcasecount="34" result="Skipped" label="Ignored" start-time="2026-11-14 15:38:10Z" end-time="2026-11-14 15:38:46Z" duration="35.169859" total="4" passed="3" failed="0" inconclusive="0" skipped="1" asserts="0">
+    <properties>
+      <property name="platform" value="PlayMode" />
+    </properties>
+    <reason>
+      <message><![CDATA[One or more child tests were ignored]]></message>
+    </reason>
+    <test-suite type="Assembly" id="1047" name="Sleepwalking.PlayMode.Tests.dll" fullname="T:/Sleepwalking/Library/ScriptAssemblies/Sleepwalking.PlayMode.Tests.dll" runstate="Runnable" testcasecount="34" result="Skipped" label="Ignored" start-time="2026-11-14 15:38:10Z" end-time="2026-11-14 15:38:46Z" duration="35.161010" total="4" passed="3" failed="0" inconclusive="0" skipped="1" asserts="0">
+      <properties>
+        <property name="_PID" value="326356" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="PlayMode" />
+        <property name="EditorOnly" value="False" />
+      </properties>
+      <reason>
+        <message><![CDATA[One or more child tests were ignored]]></message>
+      </reason>
+      <test-suite type="TestSuite" id="1048" name="Sleepwalking" fullname="Sleepwalking" runstate="Runnable" testcasecount="34" result="Skipped" label="Ignored" start-time="2026-11-14 15:38:10Z" end-time="2026-11-14 15:38:46Z" duration="35.159156" total="4" passed="3" failed="0" inconclusive="0" skipped="1" asserts="0">
+        <properties />
+        <reason>
+          <message><![CDATA[One or more child tests were ignored]]></message>
+        </reason>
+        <test-suite type="TestSuite" id="1049" name="Tests" fullname="Sleepwalking.Tests" runstate="Runnable" testcasecount="34" result="Skipped" label="Ignored" start-time="2026-11-14 15:38:10Z" end-time="2026-11-14 15:38:46Z" duration="35.158529" total="4" passed="3" failed="0" inconclusive="0" skipped="1" asserts="0">
+          <properties />
+          <reason>
+            <message><![CDATA[One or more child tests were ignored]]></message>
+          </reason>
+          <test-suite type="TestSuite" id="1050" name="PlayMode" fullname="Sleepwalking.Tests.PlayMode" runstate="Runnable" testcasecount="34" result="Skipped" label="Ignored" start-time="2026-11-14 15:38:10Z" end-time="2026-11-14 15:38:46Z" duration="35.157975" total="4" passed="3" failed="0" inconclusive="0" skipped="1" asserts="0">
+            <properties />
+            <reason>
+              <message><![CDATA[One or more child tests were ignored]]></message>
+            </reason>
+            <test-suite type="TestFixture" id="1014" name="SleepwalkingMechanismPhysicsTests" fullname="Sleepwalking.Tests.PlayMode.SleepwalkingMechanismPhysicsTests" classname="Sleepwalking.Tests.PlayMode.SleepwalkingMechanismPhysicsTests" runstate="Runnable" testcasecount="4" result="Skipped" label="Ignored" start-time="2026-11-14 15:38:10Z" end-time="2026-11-14 15:38:46Z" duration="35.156159" total="4" passed="3" failed="0" inconclusive="0" skipped="1" asserts="0">
+              <properties />
+              <reason>
+                <message><![CDATA[One or more child tests were ignored]]></message>
+              </reason>
+              <test-case id="1018" name="BeamWidthMatchesThreeToFourPixelsAtBothRenderHeights" fullname="Sleepwalking.Tests.PlayMode.SleepwalkingMechanismPhysicsTests.BeamWidthMatchesThreeToFourPixelsAtBothRenderHeights" methodname="BeamWidthMatchesThreeToFourPixelsAtBothRenderHeights" classname="Sleepwalking.Tests.PlayMode.SleepwalkingMechanismPhysicsTests" runstate="Runnable" seed="1849372038" result="Passed" start-time="2026-11-14 15:38:10Z" end-time="2026-11-14 15:38:11Z" duration="0.944384" asserts="0">
+                <properties>
+                  <property name="_JOINTYPE" value="UnityCombinatorial" />
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1015" name="L05TimedPlatformAlternatesCollision" fullname="Sleepwalking.Tests.PlayMode.SleepwalkingMechanismPhysicsTests.L05TimedPlatformAlternatesCollision" methodname="L05TimedPlatformAlternatesCollision" classname="Sleepwalking.Tests.PlayMode.SleepwalkingMechanismPhysicsTests" runstate="Runnable" seed="23275251" result="Passed" start-time="2026-11-14 15:38:11Z" end-time="2026-11-14 15:38:23Z" duration="11.813060" asserts="0">
+                <properties>
+                  <property name="_JOINTYPE" value="UnityCombinatorial" />
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1016" name="L06MovingPlatformsCarryPlayerAndReset" fullname="Sleepwalking.Tests.PlayMode.SleepwalkingMechanismPhysicsTests.L06MovingPlatformsCarryPlayerAndReset" methodname="L06MovingPlatformsCarryPlayerAndReset" classname="Sleepwalking.Tests.PlayMode.SleepwalkingMechanismPhysicsTests" runstate="Runnable" seed="951818279" result="Passed" start-time="2026-11-14 15:38:23Z" end-time="2026-11-14 15:38:35Z" duration="11.630830" asserts="0">
+                <properties>
+                  <property name="_JOINTYPE" value="UnityCombinatorial" />
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1017" name="L07MovingPlatformCarriesPlayerIfAuthored" fullname="Sleepwalking.Tests.PlayMode.SleepwalkingMechanismPhysicsTests.L07MovingPlatformCarriesPlayerIfAuthored" methodname="L07MovingPlatformCarriesPlayerIfAuthored" classname="Sleepwalking.Tests.PlayMode.SleepwalkingMechanismPhysicsTests" runstate="Runnable" seed="1861204562" result="Skipped" label="Ignored" start-time="2026-11-14 15:38:35Z" end-time="2026-11-14 15:38:46Z" duration="10.754871" asserts="0">
+                <properties>
+                  <property name="_JOINTYPE" value="UnityCombinatorial" />
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <reason>
+                  <message><![CDATA[L07 has no authored MovingPlatform in the current prefab; rider contract is not applicable.]]></message>
+                </reason>
+                <output><![CDATA[Saving results to: C:/Users/TIMBUHTUK/AppData/LocalLow/DefaultCompany/Sleepwalking\TestResults.xml
+]]></output>
+              </test-case>
+            </test-suite>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

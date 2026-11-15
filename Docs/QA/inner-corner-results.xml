@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="3" result="Passed" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-11-14 18:20:39Z" end-time="2026-11-14 18:20:39Z" duration="0,0627023">
+  <test-suite type="TestSuite" id="1075" name="Sleepwalking" fullname="Sleepwalking" runstate="Runnable" testcasecount="49" result="Passed" start-time="2026-11-14 18:20:39Z" end-time="2026-11-14 18:20:39Z" duration="0.062702" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="PlayMode" />
+    </properties>
+    <test-suite type="Assembly" id="1068" name="Sleepwalking.PlayMode.Tests.dll" fullname="T:/Sleepwalking/Library/ScriptAssemblies/Sleepwalking.PlayMode.Tests.dll" runstate="Runnable" testcasecount="49" result="Passed" start-time="2026-11-14 18:20:39Z" end-time="2026-11-14 18:20:39Z" duration="0.051907" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="519096" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="PlayMode" />
+        <property name="EditorOnly" value="False" />
+      </properties>
+      <test-suite type="TestSuite" id="1069" name="Sleepwalking" fullname="Sleepwalking" runstate="Runnable" testcasecount="49" result="Passed" start-time="2026-11-14 18:20:39Z" end-time="2026-11-14 18:20:39Z" duration="0.050405" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <test-suite type="TestSuite" id="1070" name="Tests" fullname="Sleepwalking.Tests" runstate="Runnable" testcasecount="49" result="Passed" start-time="2026-11-14 18:20:39Z" end-time="2026-11-14 18:20:39Z" duration="0.049407" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <test-suite type="TestSuite" id="1071" name="PlayMode" fullname="Sleepwalking.Tests.PlayMode" runstate="Runnable" testcasecount="49" result="Passed" start-time="2026-11-14 18:20:39Z" end-time="2026-11-14 18:20:39Z" duration="0.048032" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-suite type="TestFixture" id="1030" name="SleepwalkingInnerCornerTests" fullname="Sleepwalking.Tests.PlayMode.SleepwalkingInnerCornerTests" classname="Sleepwalking.Tests.PlayMode.SleepwalkingInnerCornerTests" runstate="Runnable" testcasecount="3" result="Passed" start-time="2026-11-14 18:20:39Z" end-time="2026-11-14 18:20:39Z" duration="0.045231" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1032" name="FullAndAmbiguousDiagonalSurroundingsKeepTile5" fullname="Sleepwalking.Tests.PlayMode.SleepwalkingInnerCornerTests.FullAndAmbiguousDiagonalSurroundingsKeepTile5" methodname="FullAndAmbiguousDiagonalSurroundingsKeepTile5" classname="Sleepwalking.Tests.PlayMode.SleepwalkingInnerCornerTests" runstate="Runnable" seed="1746266184" result="Passed" start-time="2026-11-14 18:20:39Z" end-time="2026-11-14 18:20:39Z" duration="0.028615" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1033" name="MissingOrthogonalNeighborKeepsTheExistingTileChoice" fullname="Sleepwalking.Tests.PlayMode.SleepwalkingInnerCornerTests.MissingOrthogonalNeighborKeepsTheExistingTileChoice" methodname="MissingOrthogonalNeighborKeepsTheExistingTileChoice" classname="Sleepwalking.Tests.PlayMode.SleepwalkingInnerCornerTests" runstate="Runnable" seed="1372410015" result="Passed" start-time="2026-11-14 18:20:39Z" end-time="2026-11-14 18:20:39Z" duration="0.000467" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1031" name="Tile17RotatesTowardTheOnlyMissingDiagonal" fullname="Sleepwalking.Tests.PlayMode.SleepwalkingInnerCornerTests.Tile17RotatesTowardTheOnlyMissingDiagonal" methodname="Tile17RotatesTowardTheOnlyMissingDiagonal" classname="Sleepwalking.Tests.PlayMode.SleepwalkingInnerCornerTests" runstate="Runnable" seed="439759602" result="Passed" start-time="2026-11-14 18:20:39Z" end-time="2026-11-14 18:20:39Z" duration="0.000884" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[Saving results to: C:/Users/TIMBUHTUK/AppData/LocalLow/DefaultCompany/Sleepwalking\TestResults.xml
+]]></output>
+              </test-case>
+            </test-suite>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

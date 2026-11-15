@@ -192,6 +192,7 @@ namespace Sleepwalking.Tests.PlayMode
         IEnumerator OpenLevel(int level, ScriptableObject profile)
         {
             gameType.GetField("MovementProfile").SetValue(game, profile);
+            gameType.GetField("tutorialStage", BindingFlags.Instance | BindingFlags.NonPublic).SetValue(game, 2);
             completedDreams.SetValue(game, level - 1);
             startDream.Invoke(game, null);
             float deadline = Time.realtimeSinceStartup + 10f;

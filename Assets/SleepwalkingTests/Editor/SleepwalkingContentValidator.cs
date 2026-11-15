@@ -130,9 +130,10 @@ namespace Sleepwalking.Tests.Editor
         private static void ValidatePlatform(string path, Transform platform, List<string> errors)
         {
             SleepwalkingTileSurface surface = platform.GetComponent<SleepwalkingTileSurface>();
-            BoxCollider2D shape = surface != null ? surface.Solid : null;
-            if (shape == null || !shape.enabled || shape.isTrigger || shape.size.x <= 0 || shape.size.y <= 0)
-                errors.Add(path + ": platform " + platform.name + " needs an enabled solid BoxCollider2D and a tile surface");
+            Collider2D shape = surface != null ? surface.Solid : null;
+            if (shape == null || !shape.enabled || shape.isTrigger ||
+                shape.bounds.size.x <= 0 || shape.bounds.size.y <= 0)
+                errors.Add(path + ": platform " + platform.name + " needs an enabled solid Collider2D and a tile surface");
         }
 
         private static void ValidateButton(string path, SleepwalkingLevelFeature button,

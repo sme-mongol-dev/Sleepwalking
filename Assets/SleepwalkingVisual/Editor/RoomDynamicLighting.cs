@@ -38,6 +38,13 @@ namespace Sleepwalking.Visual.Editor
 
             foreach (MeshRenderer renderer in room.GetComponentsInChildren<MeshRenderer>(true))
             {
+                if (renderer.sharedMaterial != null &&
+                    renderer.sharedMaterial.name.StartsWith("MenuDecor_", StringComparison.Ordinal))
+                {
+                    renderer.shadowCastingMode = ShadowCastingMode.Off;
+                    renderer.receiveShadows = false;
+                    continue;
+                }
                 if (renderer.transform == window || renderer.transform.IsChildOf(window))
                 {
                     renderer.shadowCastingMode = ShadowCastingMode.Off;

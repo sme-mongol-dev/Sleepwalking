@@ -3,10 +3,11 @@ using UnityEngine;
 namespace Sleepwalking.Levels
 {
     [DisallowMultipleComponent]
-    [RequireComponent(typeof(BoxCollider2D))]
     public sealed class SleepwalkingTileSurface : MonoBehaviour
     {
-        // Коллайдер задаёт границы игрового блока; тайлы меняют только его вид.
-        public BoxCollider2D Solid => GetComponent<BoxCollider2D>();
+        public bool IsShell;
+
+        // Физический контур задаётся общим шаблоном тайла для всех четырёх тем.
+        public Collider2D Solid => GetComponent<Collider2D>();
     }
 }
