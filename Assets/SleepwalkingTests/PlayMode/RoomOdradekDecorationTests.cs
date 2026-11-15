@@ -13,6 +13,39 @@ namespace Sleepwalking.Tests.PlayMode
     public sealed class RoomOdradekDecorationTests
     {
         [UnityTest]
+        public IEnumerator ClockSnapsToCurrentOdradekWhenRoomReappears()
+        {
+            yield return SceneManager.LoadSceneAsync("Assets/Scenes/Sleepwalking.unity");
+            yield return null;
+
+            GameObject room = GameObject.Find("Waking room");
+            MonoBehaviour environment = FindComponent(room, "Sleepwalking.Visual.RoomEnvironment");
+            MonoBehaviour game = FindComponent(GameObject.Find("Sleepwalking Game"), "Sleepwalking.SleepwalkingGame");
+            FieldInfo odradek = game.GetType().GetField("odradek", BindingFlags.Instance | BindingFlags.NonPublic);
+            FieldInfo progress = environment.GetType().GetField("clockProgress", BindingFlags.Instance | BindingFlags.NonPublic);
+            Transform hands = (Transform)environment.GetType().GetField("ClockHand").GetValue(environment);
+
+            room.SetActive(false);
+            odradek.SetValue(game, 80);
+            room.SetActive(true);
+            float target = 79f / 99f;
+            Assert.That((float)progress.GetValue(environment), Is.EqualTo(target).Within(.0001f));
+            Assert.That(Quaternion.Angle(hands.Find("Big Hand Pivot").localRotation,
+                Quaternion.Euler(0f, 0f, -4320f * target)), Is.LessThan(.01f));
+            Assert.That(Quaternion.Angle(hands.Find("Small Hand Pivot").localRotation,
+                Quaternion.Euler(0f, 0f, -360f * target)), Is.LessThan(.01f));
+
+            room.SetActive(false);
+            odradek.SetValue(game, 1);
+            room.SetActive(true);
+            Assert.That((float)progress.GetValue(environment), Is.Zero);
+            Assert.That(Quaternion.Angle(hands.Find("Big Hand Pivot").localRotation,
+                Quaternion.identity), Is.LessThan(.01f));
+            Assert.That(Quaternion.Angle(hands.Find("Small Hand Pivot").localRotation,
+                Quaternion.identity), Is.LessThan(.01f));
+        }
+
+        [UnityTest]
         public IEnumerator DecorationsFollowOdradekAndHotspotsStayAvailable()
         {
             AsyncOperation loading = SceneManager.LoadSceneAsync("Assets/Scenes/Sleepwalking.unity");

@@ -20,7 +20,7 @@ namespace Sleepwalking
 
         void ResetOdradek()
         {
-            odradek = Random.Range(20, 36);
+            odradek = 1;
             dreamElapsedSeconds = 0f;
             dreamDeaths = 0;
             LastOdradekGain = 0;
@@ -38,8 +38,10 @@ namespace Sleepwalking
             float parSeconds = OdradekParSeconds[Mathf.Min(index, OdradekParSeconds.Length - 1)];
             int gain = CalculateOdradekGain(dreamElapsedSeconds, dreamDeaths, parSeconds);
             int previous = Odradek;
-            odradek = Mathf.Clamp(previous + gain, 1, 100);
-            LastOdradekGain = odradek - previous;
+            // После сотни цикл начинается заново, без переноса остатка очков.
+            bool wrapped = previous + gain > 100;
+            odradek = wrapped ? 1 : previous + gain;
+            LastOdradekGain = wrapped ? 0 : gain;
         }
 
         static int CalculateOdradekGain(float seconds, int deaths, float parSeconds)

@@ -36,7 +36,7 @@ namespace Sleepwalking.Tests.PlayMode
             for (int i = 0; i < 100; i++)
             {
                 roll.Invoke(game, null);
-                Assert.That(Read<int>("Odradek"), Is.InRange(20, 35));
+                Assert.That(Read<int>("Odradek"), Is.EqualTo(1));
             }
 
             Set("odradek", 20);
@@ -110,17 +110,37 @@ namespace Sleepwalking.Tests.PlayMode
             float disabledUntil = (float)beam.GetType().GetField("disabledUntil", PrivateInstance).GetValue(beam);
             Assert.That(disabledUntil - Time.time, Is.EqualTo(duration * .9f).Within(.001f));
 
-            Set("odradek", 99);
+            Set("odradek", 94);
             Set("dreamElapsedSeconds", 0f);
             Set("dreamDeaths", 0);
             gameType.GetMethod("CompleteDream").Invoke(game, null);
             yield return WaitForTransition();
             Assert.That(Read<int>("Odradek"), Is.EqualTo(100));
-            Assert.That(Read<int>("LastOdradekGain"), Is.EqualTo(1));
+            Assert.That(Read<int>("LastOdradekGain"), Is.EqualTo(6));
             gameType.GetMethod("ReturnToRoom").Invoke(game, null);
-            Assert.That(Read<int>("Odradek"), Is.InRange(20, 35));
+            Assert.That(Read<int>("Odradek"), Is.EqualTo(1));
             Assert.That(Read<int>("LastOdradekGain"), Is.Zero);
             LogAssert.NoUnexpectedReceived();
+        }
+
+        [UnityTest]
+        public IEnumerator OdradekWrapsOnlyAfterExceedingHundred()
+        {
+            yield return LoadGame();
+            MethodInfo reward = gameType.GetMethod("RewardDreamPerformance", PrivateInstance);
+
+            Set("odradek", 100);
+            Set("dreamElapsedSeconds", 100f);
+            Set("dreamDeaths", 3);
+            reward.Invoke(game, null);
+            Assert.That(Read<int>("Odradek"), Is.EqualTo(100));
+
+            Set("odradek", 99);
+            Set("dreamElapsedSeconds", 6f);
+            Set("dreamDeaths", 0);
+            reward.Invoke(game, null);
+            Assert.That(Read<int>("Odradek"), Is.EqualTo(1));
+            Assert.That(Read<int>("LastOdradekGain"), Is.Zero);
         }
 
         IEnumerator LoadGame()
@@ -131,7 +151,7 @@ namespace Sleepwalking.Tests.PlayMode
             Assert.That(game, Is.Not.Null);
             gameType = game.GetType();
             Set("tutorialStage", 2);
-            Assert.That(Read<int>("Odradek"), Is.InRange(20, 35));
+            Assert.That(Read<int>("Odradek"), Is.EqualTo(1));
         }
 
         IEnumerator StartDream()

@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="9" result="Passed" total="9" passed="9" failed="0" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-11-15 13:10:20Z" end-time="2026-11-15 13:10:28Z" duration="7,6158286">
+  <test-suite type="TestSuite" id="1166" name="Sleepwalking" fullname="Sleepwalking" runstate="Runnable" testcasecount="113" result="Passed" start-time="2026-11-15 13:10:20Z" end-time="2026-11-15 13:10:28Z" duration="7.615829" total="9" passed="9" failed="0" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="PlayMode" />
+    </properties>
+    <test-suite type="Assembly" id="1159" name="Sleepwalking.PlayMode.Tests.dll" fullname="T:/Sleepwalking/Library/ScriptAssemblies/Sleepwalking.PlayMode.Tests.dll" runstate="Runnable" testcasecount="113" result="Passed" start-time="2026-11-15 13:10:20Z" end-time="2026-11-15 13:10:28Z" duration="7.608433" total="9" passed="9" failed="0" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="576300" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="PlayMode" />
+        <property name="EditorOnly" value="False" />
+      </properties>
+      <test-suite type="TestSuite" id="1160" name="Sleepwalking" fullname="Sleepwalking" runstate="Runnable" testcasecount="113" result="Passed" start-time="2026-11-15 13:10:20Z" end-time="2026-11-15 13:10:28Z" duration="7.606792" total="9" passed="9" failed="0" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <test-suite type="TestSuite" id="1161" name="Tests" fullname="Sleepwalking.Tests" runstate="Runnable" testcasecount="113" result="Passed" start-time="2026-11-15 13:10:20Z" end-time="2026-11-15 13:10:28Z" duration="7.605393" total="9" passed="9" failed="0" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <test-suite type="TestSuite" id="1162" name="PlayMode" fullname="Sleepwalking.Tests.PlayMode" runstate="Runnable" testcasecount="113" result="Passed" start-time="2026-11-15 13:10:20Z" end-time="2026-11-15 13:10:28Z" duration="7.603972" total="9" passed="9" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-suite type="TestFixture" id="1098" name="SleepwalkingOdradekTests" fullname="Sleepwalking.Tests.PlayMode.SleepwalkingOdradekTests" classname="Sleepwalking.Tests.PlayMode.SleepwalkingOdradekTests" runstate="Runnable" testcasecount="9" result="Passed" start-time="2026-11-15 13:10:20Z" end-time="2026-11-15 13:10:28Z" duration="7.601213" total="9" passed="9" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1107" name="MaximumOnlyMildlyReducesMovementAndTrapDisableTime" fullname="Sleepwalking.Tests.PlayMode.SleepwalkingOdradekTests.MaximumOnlyMildlyReducesMovementAndTrapDisableTime" methodname="MaximumOnlyMildlyReducesMovementAndTrapDisableTime" classname="Sleepwalking.Tests.PlayMode.SleepwalkingOdradekTests" runstate="Runnable" seed="1694266990" result="Passed" start-time="2026-11-15 13:10:20Z" end-time="2026-11-15 13:10:22Z" duration="2.171244" asserts="0">
+                <properties>
+                  <property name="_JOINTYPE" value="UnityCombinatorial" />
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1108" name="OdradekWrapsOnlyAfterExceedingHundred" fullname="Sleepwalking.Tests.PlayMode.SleepwalkingOdradekTests.OdradekWrapsOnlyAfterExceedingHundred" methodname="OdradekWrapsOnlyAfterExceedingHundred" classname="Sleepwalking.Tests.PlayMode.SleepwalkingOdradekTests" runstate="Runnable" seed="919422769" result="Passed" start-time="2026-11-15 13:10:22Z" end-time="2026-11-15 13:10:23Z" duration="0.406659" asserts="0">
+                <properties>
+                  <property name="_JOINTYPE" value="UnityCombinatorial" />
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-suite type="ParameterizedMethod" id="1105" name="RewardDependsOnTimeAndDeaths" fullname="Sleepwalking.Tests.PlayMode.SleepwalkingOdradekTests.RewardDependsOnTimeAndDeaths" classname="Sleepwalking.Tests.PlayMode.SleepwalkingOdradekTests" runstate="Runnable" testcasecount="6" result="Passed" start-time="2026-11-15 13:10:23Z" end-time="2026-11-15 13:10:23Z" duration="0.004677" total="6" passed="6" failed="0" inconclusive="0" skipped="0" asserts="0">
+                <properties />
+                <test-case id="1099" name="RewardDependsOnTimeAndDeaths(6.0f,0,6)" fullname="Sleepwalking.Tests.PlayMode.SleepwalkingOdradekTests.RewardDependsOnTimeAndDeaths(6.0f,0,6)" methodname="RewardDependsOnTimeAndDeaths" classname="Sleepwalking.Tests.PlayMode.SleepwalkingOdradekTests" runstate="Runnable" seed="978085422" result="Passed" start-time="2026-11-15 13:10:23Z" end-time="2026-11-15 13:10:23Z" duration="0.001794" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1100" name="RewardDependsOnTimeAndDeaths(6.0f,1,5)" fullname="Sleepwalking.Tests.PlayMode.SleepwalkingOdradekTests.RewardDependsOnTimeAndDeaths(6.0f,1,5)" methodname="RewardDependsOnTimeAndDeaths" classname="Sleepwalking.Tests.PlayMode.SleepwalkingOdradekTests" runstate="Runnable" seed="2108323083" result="Passed" start-time="2026-11-15 13:10:23Z" end-time="2026-11-15 13:10:23Z" duration="0.000144" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1101" name="RewardDependsOnTimeAndDeaths(6.0f,2,4)" fullname="Sleepwalking.Tests.PlayMode.SleepwalkingOdradekTests.RewardDependsOnTimeAndDeaths(6.0f,2,4)" methodname="RewardDependsOnTimeAndDeaths" classname="Sleepwalking.Tests.PlayMode.SleepwalkingOdradekTests" runstate="Runnable" seed="1719273570" result="Passed" start-time="2026-11-15 13:10:23Z" end-time="2026-11-15 13:10:23Z" duration="0.000078" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1102" name="RewardDependsOnTimeAndDeaths(6.0f,5,3)" fullname="Sleepwalking.Tests.PlayMode.SleepwalkingOdradekTests.RewardDependsOnTimeAndDeaths(6.0f,5,3)" methodname="RewardDependsOnTimeAndDeaths" classname="Sleepwalking.Tests.PlayMode.SleepwalkingOdradekTests" runstate="Runnable" seed="1202253639" result="Passed" start-time="2026-11-15 13:10:23Z" end-time="2026-11-15 13:10:23Z" duration="0.000061" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1103" name="RewardDependsOnTimeAndDeaths(20.0f,0,3)" fullname="Sleepwalking.Tests.PlayMode.SleepwalkingOdradekTests.RewardDependsOnTimeAndDeaths(20.0f,0,3)" methodname="RewardDependsOnTimeAndDeaths" classname="Sleepwalking.Tests.PlayMode.SleepwalkingOdradekTests" runstate="Runnable" seed="52544018" result="Passed" start-time="2026-11-15 13:10:23Z" end-time="2026-11-15 13:10:23Z" duration="0.000050" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1104" name="RewardDependsOnTimeAndDeaths(20.0f,3,0)" fullname="Sleepwalking.Tests.PlayMode.SleepwalkingOdradekTests.RewardDependsOnTimeAndDeaths(20.0f,3,0)" methodname="RewardDependsOnTimeAndDeaths" classname="Sleepwalking.Tests.PlayMode.SleepwalkingOdradekTests" runstate="Runnable" seed="277455704" result="Passed" start-time="2026-11-15 13:10:23Z" end-time="2026-11-15 13:10:23Z" duration="0.000047" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+              </test-suite>
+              <test-case id="1106" name="TracksActiveTimeDeathsAndAwardsEachLevelOnce" fullname="Sleepwalking.Tests.PlayMode.SleepwalkingOdradekTests.TracksActiveTimeDeathsAndAwardsEachLevelOnce" methodname="TracksActiveTimeDeathsAndAwardsEachLevelOnce" classname="Sleepwalking.Tests.PlayMode.SleepwalkingOdradekTests" runstate="Runnable" seed="1698934579" result="Passed" start-time="2026-11-15 13:10:23Z" end-time="2026-11-15 13:10:28Z" duration="5.008647" asserts="0">
+                <properties>
+                  <property name="_JOINTYPE" value="UnityCombinatorial" />
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[Saving results to: C:/Users/TIMBUHTUK/AppData/LocalLow/DefaultCompany/Sleepwalking\TestResults.xml
+]]></output>
+              </test-case>
+            </test-suite>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

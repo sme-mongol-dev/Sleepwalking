@@ -94,7 +94,11 @@ namespace Sleepwalking.Visual
         void OnEnable()
         {
             if (decorationsPrepared)
+            {
+                // Пока комната скрыта, стрелки могли остаться на значении прошлого сна.
+                clockProgress = -1f;
                 SetOdradek(SleepwalkingGame.Instance != null ? SleepwalkingGame.Instance.Odradek : 1);
+            }
         }
 
         void Update()
