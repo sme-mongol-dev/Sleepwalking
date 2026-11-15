@@ -178,17 +178,23 @@ namespace Sleepwalking.Visual
             float right = bounds.max.x / GridPitch;
             float bottom = bounds.min.y / GridPitch;
             float top = bounds.max.y / GridPitch;
+            // Сдвиг в редакторе часто оставляет долю клетки. Раньше такой блок
+            // выпадал из матрицы целиком, а его куб прятался — платформа становилась прозрачной.
             int x0 = Mathf.RoundToInt(left);
             int x1 = Mathf.RoundToInt(right);
             int y0 = Mathf.RoundToInt(bottom);
             int y1 = Mathf.RoundToInt(top);
-
-            // Матрица и коллайдеры должны иметь одну границу клетки.
-            if (Mathf.Abs(left - x0) > .001f || Mathf.Abs(right - x1) > .001f ||
-                Mathf.Abs(bottom - y0) > .001f || Mathf.Abs(top - y1) > .001f)
+            if (x1 <= x0)
             {
-                Debug.LogError("Collider is off the 32-unit tile grid: " + shape.name, shape);
-                return cells;
+                int cell = Mathf.FloorToInt((left + right) * .5f);
+                x0 = cell;
+                x1 = cell + 1;
+            }
+            if (y1 <= y0)
+            {
+                int cell = Mathf.FloorToInt((bottom + top) * .5f);
+                y0 = cell;
+                y1 = cell + 1;
             }
 
             for (int y = y0; y < y1; y++)

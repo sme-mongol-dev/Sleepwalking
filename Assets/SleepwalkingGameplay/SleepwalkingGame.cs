@@ -9,7 +9,7 @@ namespace Sleepwalking
     {
         public static SleepwalkingGame Instance { get; private set; }
         public GameObject[] TutorialPrefabs = new GameObject[2];
-        public const int AuthoredDreamCount = 8;
+        public const int AuthoredDreamCount = 9;
         public GameObject[] LevelPrefabs = new GameObject[AuthoredDreamCount];
         public GameObject[] ThemePrefabs = new GameObject[4];
         public SleepwalkingMovementProfile[] MovementProfiles = new SleepwalkingMovementProfile[3];
