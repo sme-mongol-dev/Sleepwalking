@@ -490,7 +490,7 @@ Transform:
   m_GameObject: {fileID: 1138669809002223905}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.26, y: 2.5, z: 0.554}
+  m_LocalPosition: {x: -3.56, y: 1.06, z: 0.554}
   m_LocalScale: {x: 1.92, y: 1.92, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1165,7 +1165,7 @@ MonoBehaviour:
     RoomObject: {fileID: 7656796662345625138}
     Prefab: {fileID: 0}
     Parent: {fileID: 0}
-    LocalPosition: {x: -3.56, y: 1.06, z: 0.35}
+    LocalPosition: {x: 0.26, y: 2.5, z: 0.35}
     LocalEulerAngles: {x: -0, y: 0, z: 0}
     LocalScale: {x: 2.2997057, y: 2.2997057, z: 2.1137}
     SortingOrder: 1
@@ -1315,7 +1315,7 @@ MonoBehaviour:
     RoomObject: {fileID: 3637396417369837857}
     Prefab: {fileID: 0}
     Parent: {fileID: 0}
-    LocalPosition: {x: -3.56, y: 1.06, z: 0.43}
+    LocalPosition: {x: 0.26, y: 2.5, z: 0.43}
     LocalEulerAngles: {x: -0, y: 0, z: 303.88168}
     LocalScale: {x: 0.57600003, y: 0.57600003, z: 0.3}
     SortingOrder: 0
@@ -1330,7 +1330,7 @@ MonoBehaviour:
     RoomObject: {fileID: 3637396417369837857}
     Prefab: {fileID: 0}
     Parent: {fileID: 0}
-    LocalPosition: {x: -3.56, y: 1.06, z: 0.43}
+    LocalPosition: {x: 0.26, y: 2.5, z: 0.43}
     LocalEulerAngles: {x: -0, y: 0, z: 303.88168}
     LocalScale: {x: 1.1520001, y: 1.1520001, z: 0.6}
     SortingOrder: 0
@@ -1345,7 +1345,7 @@ MonoBehaviour:
     RoomObject: {fileID: 3637396417369837857}
     Prefab: {fileID: 0}
     Parent: {fileID: 0}
-    LocalPosition: {x: -3.56, y: 1.06, z: 0.43}
+    LocalPosition: {x: 0.26, y: 2.5, z: 0.43}
     LocalEulerAngles: {x: -0, y: 0, z: 303.88168}
     LocalScale: {x: 1.92, y: 1.92, z: 1}
     SortingOrder: 0
@@ -1360,7 +1360,7 @@ MonoBehaviour:
     RoomObject: {fileID: 1138669809002223905}
     Prefab: {fileID: 0}
     Parent: {fileID: 0}
-    LocalPosition: {x: 0.26, y: 2.5, z: 0.554}
+    LocalPosition: {x: -3.56, y: 1.06, z: 0.554}
     LocalEulerAngles: {x: -0, y: 0, z: 0}
     LocalScale: {x: 0.57600003, y: 0.57600003, z: 0.3}
     SortingOrder: 0
@@ -1375,7 +1375,7 @@ MonoBehaviour:
     RoomObject: {fileID: 1138669809002223905}
     Prefab: {fileID: 0}
     Parent: {fileID: 0}
-    LocalPosition: {x: 0.26, y: 2.5, z: 0.554}
+    LocalPosition: {x: -3.56, y: 1.06, z: 0.554}
     LocalEulerAngles: {x: -0, y: 0, z: 0}
     LocalScale: {x: 1.1520001, y: 1.1520001, z: 0.6}
     SortingOrder: 0
@@ -1390,7 +1390,7 @@ MonoBehaviour:
     RoomObject: {fileID: 1138669809002223905}
     Prefab: {fileID: 0}
     Parent: {fileID: 0}
-    LocalPosition: {x: 0.26, y: 2.5, z: 0.554}
+    LocalPosition: {x: -3.56, y: 1.06, z: 0.554}
     LocalEulerAngles: {x: -0, y: 0, z: 0}
     LocalScale: {x: 1.92, y: 1.92, z: 1}
     SortingOrder: 0
@@ -1451,7 +1451,7 @@ Transform:
   m_GameObject: {fileID: 3637396417369837857}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0.47038293, w: 0.8824624}
-  m_LocalPosition: {x: -3.56, y: 1.06, z: 0.43}
+  m_LocalPosition: {x: 0.26, y: 2.5, z: 0.43}
   m_LocalScale: {x: 1.92, y: 1.92, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2396,7 +2396,7 @@ Transform:
   m_GameObject: {fileID: 7656796662345625138}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -3.56, y: 1.06, z: 0.35}
+  m_LocalPosition: {x: 0.26, y: 2.5, z: 0.35}
   m_LocalScale: {x: 2.2997057, y: 2.2997057, z: 2.1137}
   m_ConstrainProportionsScale: 0
   m_Children:
