@@ -182,7 +182,7 @@ namespace Sleepwalking.Tests.PlayMode
                 deadline = Time.realtimeSinceStartup + 5f;
                 while ((bool)gameType.GetField("transitioning", Private).GetValue(game) && Time.realtimeSinceStartup < deadline)
                     yield return null;
-                Assert.That(GameObject.Find("Dream L01"), Is.Not.Null, "L08 must wrap to a new cycle.");
+                Assert.That(GameObject.Find("Dream L09"), Is.Not.Null, "L08 must lead to L09.");
                 LogAssert.NoUnexpectedReceived();
             }
             finally

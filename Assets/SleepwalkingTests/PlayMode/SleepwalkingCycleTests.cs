@@ -206,7 +206,7 @@ namespace Sleepwalking.Tests.PlayMode
         }
 
         [UnityTest]
-        public IEnumerator FullCycleIncludesEighthLevelAndWrapsToFirst()
+        public IEnumerator FullCycleIncludesNinthLevelAndWrapsToFirst()
         {
             AsyncOperation loading = SceneManager.LoadSceneAsync("Assets/Scenes/Sleepwalking.unity");
             Assert.That(loading, Is.Not.Null, "The integrated Sleepwalking scene must load.");
@@ -261,7 +261,7 @@ namespace Sleepwalking.Tests.PlayMode
 
             GameObject[] prefabs = (GameObject[])levelPrefabs.GetValue(game);
             type.GetField("tutorialStage", BindingFlags.Instance | BindingFlags.NonPublic).SetValue(game, 2);
-            Assert.That(prefabs, Has.Length.EqualTo(8));
+            Assert.That(prefabs, Has.Length.EqualTo(9));
             foreach (GameObject prefab in prefabs)
                 Assert.That(prefab, Is.Not.Null, "All authored levels must be assigned.");
 

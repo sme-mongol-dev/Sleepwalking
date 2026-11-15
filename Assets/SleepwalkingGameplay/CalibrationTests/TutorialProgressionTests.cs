@@ -30,7 +30,7 @@ namespace Sleepwalking.Tests.PlayMode
             Assert.That(tutorials.GetValue(1), Is.Not.Null);
             Array mainLevels = (Array)gameType.GetField("LevelPrefabs").GetValue(game);
             int[] firstStyles = { 3, 2, 1, 0, 3, 2, 1, 0, 3, 2 };
-            Assert.That(mainLevels, Has.Length.EqualTo(8));
+            Assert.That(mainLevels, Has.Length.EqualTo(9));
             for (int q = 0; q < firstStyles.Length; q++)
             {
                 GameObject prefab = (GameObject)(q < 2 ? tutorials.GetValue(q) : mainLevels.GetValue(q - 2));
@@ -105,6 +105,12 @@ namespace Sleepwalking.Tests.PlayMode
             complete.Invoke(game, null);
             yield return WaitForState(game, false);
             Assert.That((int)gameType.GetProperty("CompletedDreams").GetValue(game), Is.EqualTo(8));
+            start.Invoke(game, null);
+            yield return WaitForState(game, true);
+            Assert.That(GameObject.Find("Dream L09"), Is.Not.Null);
+            complete.Invoke(game, null);
+            yield return WaitForState(game, false);
+            Assert.That((int)gameType.GetProperty("CompletedDreams").GetValue(game), Is.EqualTo(9));
             start.Invoke(game, null);
             yield return WaitForState(game, true);
             Assert.That(GameObject.Find("Dream L01"), Is.Not.Null);

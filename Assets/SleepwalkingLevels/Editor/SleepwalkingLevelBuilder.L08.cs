@@ -52,18 +52,18 @@ namespace Sleepwalking.Levels.Editor
                 // The sketch reads left to right: start, saw switch, shuttle,
                 // lower recovery pads, raised laser switch, and the exit wall.
                 Platform(geometry, "Start", 0f, 3f, 0f, 4f);
-                Platform(geometry, "SawSwitchLedge", 3f, 8f, 4f, 2f);
+                Platform(geometry, "SawSwitchLedge", 3f, 8f, 3f, 2f);
                 Platform(geometry, "LowerRecoveryA", 14f, 16f, 1f);
                 Platform(geometry, "LowerRecoveryB", 18f, 20f, 0f);
                 Platform(geometry, "LaserSwitchLedge", 16f, 20f, 5f, 2f);
                 Platform(geometry, "FinalRun", 22f, 26f, 7f, 9f);
 
                 Moving(mechanisms, "L08_Shuttle", 9f, 3f, new Vector2(6f, 0f), 8f);
-                Button(mechanisms, "L08_SawButton", "L08_Saws", 4.5f, 4f, 32f);
+                Button(mechanisms, "L08_SawButton", "L08_Saws", 4.5f, 3f, 32f);
                 ButtonGlyph(mechanisms.Find("L08_SawButton"), true);
                 Button(mechanisms, "L08_LaserButton", "L08_Laser", 18f, 5f, 18f);
                 ButtonGlyph(mechanisms.Find("L08_LaserButton"), false);
-                Laser(hazards, "L08_Laser", 6.3f, 4f, 5.5f);
+                Laser(hazards, "L08_Laser", 6.3f, 3f, 4.5f);
                 Saw(hazards, "L08_Saws_Entrance", .6f, 8.9f, .8f);
                 Saw(hazards, "L08_Saws_Exit", 21.2f, 7.3f, 1.1f);
 
