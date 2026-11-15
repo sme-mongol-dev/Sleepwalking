@@ -578,7 +578,9 @@ namespace Sleepwalking
                 if (value is int number) return Mathf.Abs(number) % backgrounds.Length;
                 if (value is Enum selected) return Convert.ToInt32(selected) % backgrounds.Length;
             }
-            return completedDreams % backgrounds.Length;
+            int step = activeTutorial ? tutorialStage : completedDreams + 2;
+            int[] order = { 3, 2, 1, 0 };
+            return order[step % order.Length];
         }
 
         void ApplyStyle()

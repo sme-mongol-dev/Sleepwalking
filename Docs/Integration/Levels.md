@@ -4,6 +4,8 @@
 
 The eight prefabs at `Assets/SleepwalkingLevels/Prefabs/L##_DreamGeometry.prefab` are ordered L01–L08 dreams. Instantiate one at world origin without additional scaling. The root XY scale is `(32,32)`, Z is `1`: one local cell occupies 32×32 Unity world units. The world grid begins at `(0,0)`. Local interval `[a,b)` covers cells `a` through `b-1`. Theme changes preserve the same geometry and colliders; distant backgrounds have no collider. The L08 layout and mechanism links are described in [L08.md](../Levels/L08.md).
 
+First-playthrough style order advances after every level: Tutorial1 Heaven, Tutorial2 DeepWater, L01 PostApocalypse, L02 Meat, L03 Heaven, L04 DeepWater, L05 PostApocalypse, L06 Meat, L07 Heaven, L08 DeepWater. Each prefab saves this value in `SleepwalkingLevelDefinition.FirstCycleStyle`. Subsequent main cycles choose a random style for each unchanged geometry.
+
 ## Tutorial contract
 
 Two editable prefabs precede the eight main dreams: `Assets/SleepwalkingLevels/Prefabs/Tutorial01_DreamGeometry.prefab` and `Tutorial02_DreamGeometry.prefab`. Their `SleepwalkingLevelDefinition.LevelIndex` values are `-2` and `-1`. They use the same 32-unit root scale, `PlayerStart`, `BedExit`, and `Geometry/Hazards/Mechanisms/Markers/Readability` structure as the main dreams. Place world-space instruction signs under `Readability/TutorialHints`; the game leaves their authored sprite colors intact when applying a dream style.

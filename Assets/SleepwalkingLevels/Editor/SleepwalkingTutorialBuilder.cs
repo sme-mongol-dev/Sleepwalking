@@ -61,7 +61,8 @@ namespace Sleepwalking.Levels.Editor
                 Transform bed = CloneBed(markers, tutorial == 1 ? 16.5f : 18.5f, tutorial == 1 ? 3f : 0f);
                 SleepwalkingLevelDefinition definition = root.GetComponent<SleepwalkingLevelDefinition>();
                 if (definition == null) definition = root.AddComponent<SleepwalkingLevelDefinition>();
-                definition.Configure(tutorial == 1 ? -2 : -1, DreamStyle.Meat, start, bed);
+                definition.Configure(tutorial == 1 ? -2 : -1,
+                    tutorial == 1 ? DreamStyle.Heaven : DreamStyle.DeepWater, start, bed);
 
                 SleepwalkingTileCollisionBuilder.Shape(root);
                 PrefabUtility.SaveAsPrefabAsset(root, path);

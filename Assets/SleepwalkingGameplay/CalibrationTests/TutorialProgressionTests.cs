@@ -28,6 +28,14 @@ namespace Sleepwalking.Tests.PlayMode
             Assert.That(tutorials, Has.Length.EqualTo(2));
             Assert.That(tutorials.GetValue(0), Is.Not.Null);
             Assert.That(tutorials.GetValue(1), Is.Not.Null);
+            Array mainLevels = (Array)gameType.GetField("LevelPrefabs").GetValue(game);
+            int[] firstStyles = { 3, 2, 1, 0, 3, 2, 1, 0, 3, 2 };
+            Assert.That(mainLevels, Has.Length.EqualTo(8));
+            for (int q = 0; q < firstStyles.Length; q++)
+            {
+                GameObject prefab = (GameObject)(q < 2 ? tutorials.GetValue(q) : mainLevels.GetValue(q - 2));
+                AssertDefinitionStyle(prefab, firstStyles[q]);
+            }
             MethodInfo start = gameType.GetMethod("StartDream");
             MethodInfo complete = gameType.GetMethod("CompleteDream");
 
@@ -37,6 +45,7 @@ namespace Sleepwalking.Tests.PlayMode
             Assert.That((int)gameType.GetProperty("TutorialStage").GetValue(game), Is.Zero);
             Assert.That((int)gameType.GetProperty("CompletedDreams").GetValue(game), Is.Zero);
             AssertDefinitionIndex(GameObject.Find("Tutorial 1"), -2);
+            AssertStyle(game, 3);
             MonoBehaviour player = FindPlayer();
             Assert.That((bool)player.GetType().GetField("DashEnabled").GetValue(player), Is.False);
             player.GetType().GetMethod("SetSimulatedInput").Invoke(player, new object[] { 1f, false, true });
@@ -57,6 +66,7 @@ namespace Sleepwalking.Tests.PlayMode
             yield return WaitForState(game, true);
             Assert.That(GameObject.Find("Tutorial 2"), Is.Not.Null);
             AssertDefinitionIndex(GameObject.Find("Tutorial 2"), -1);
+            AssertStyle(game, 2);
             player = FindPlayer();
             Assert.That((bool)player.GetType().GetField("DashEnabled").GetValue(player), Is.True);
             player.GetType().GetMethod("SetSimulatedInput").Invoke(player, new object[] { 1f, false, true });
@@ -75,6 +85,7 @@ namespace Sleepwalking.Tests.PlayMode
             start.Invoke(game, null);
             yield return WaitForState(game, true);
             Assert.That(GameObject.Find("Dream L01"), Is.Not.Null);
+            AssertStyle(game, 1);
             complete.Invoke(game, null);
             yield return WaitForState(game, false);
             Assert.That((int)gameType.GetProperty("CompletedDreams").GetValue(game), Is.EqualTo(1));
@@ -83,12 +94,14 @@ namespace Sleepwalking.Tests.PlayMode
             start.Invoke(game, null);
             yield return WaitForState(game, true);
             Assert.That(GameObject.Find("Dream L07"), Is.Not.Null);
+            AssertStyle(game, 3);
             complete.Invoke(game, null);
             yield return WaitForState(game, false);
             Assert.That((int)gameType.GetProperty("CompletedDreams").GetValue(game), Is.EqualTo(7));
             start.Invoke(game, null);
             yield return WaitForState(game, true);
             Assert.That(GameObject.Find("Dream L08"), Is.Not.Null);
+            AssertStyle(game, 2);
             complete.Invoke(game, null);
             yield return WaitForState(game, false);
             Assert.That((int)gameType.GetProperty("CompletedDreams").GetValue(game), Is.EqualTo(8));
@@ -96,6 +109,8 @@ namespace Sleepwalking.Tests.PlayMode
             yield return WaitForState(game, true);
             Assert.That(GameObject.Find("Dream L01"), Is.Not.Null);
             Assert.That(GameObject.Find("Tutorial 1"), Is.Null);
+            Assert.That((int)gameType.GetField("style", BindingFlags.Instance | BindingFlags.NonPublic).GetValue(game),
+                Is.InRange(0, 3), "Styles after the first cycle must still use a valid random theme.");
 
             gameType.GetMethod("ReturnToRoom").Invoke(game, null);
             yield return null;
@@ -104,6 +119,7 @@ namespace Sleepwalking.Tests.PlayMode
             start.Invoke(game, null);
             yield return WaitForState(game, true);
             Assert.That(GameObject.Find("Tutorial 1"), Is.Not.Null);
+            AssertStyle(game, 3);
         }
 
         static IEnumerator WaitForState(MonoBehaviour game, bool dream)
@@ -138,6 +154,36 @@ namespace Sleepwalking.Tests.PlayMode
                     return;
                 }
             Assert.Fail(level.name + " has no SleepwalkingLevelDefinition.");
+        }
+
+        static void AssertDefinitionStyle(GameObject level, int expected)
+        {
+            Assert.That(level, Is.Not.Null);
+            foreach (MonoBehaviour component in level.GetComponents<MonoBehaviour>())
+                if (component != null && component.GetType().Name == "SleepwalkingLevelDefinition")
+                {
+                    int style = Convert.ToInt32(component.GetType().GetProperty("FirstCycleStyle").GetValue(component));
+                    Assert.That(style, Is.EqualTo(expected), level.name + " first-cycle theme");
+                    return;
+                }
+            Assert.Fail(level.name + " has no SleepwalkingLevelDefinition.");
+        }
+
+        static void AssertStyle(MonoBehaviour game, int expected)
+        {
+            Type type = game.GetType();
+            int style = (int)type.GetField("style", BindingFlags.Instance | BindingFlags.NonPublic).GetValue(game);
+            Assert.That(style, Is.EqualTo(expected), "Wrong gameplay theme index.");
+            GameObject theme = GameObject.Find("Dream style");
+            Assert.That(theme, Is.Not.Null);
+            foreach (MonoBehaviour component in theme.GetComponents<MonoBehaviour>())
+                if (component != null && component.GetType().Name == "DreamTheme")
+                {
+                    int id = Convert.ToInt32(component.GetType().GetField("Id").GetValue(component));
+                    Assert.That(id, Is.EqualTo(expected), "The visible theme differs from gameplay selection.");
+                    return;
+                }
+            Assert.Fail("Dream style has no DreamTheme component.");
         }
     }
 }

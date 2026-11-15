@@ -159,12 +159,20 @@ namespace Sleepwalking.Levels.Editor
             float exitY = index == 1 || index == 2 || index == 3 ? 2f :
                 index == 4 ? 1f : index == 5 ? 2f : index == 6 ? 5f : 5f;
             Transform exit = Bed(markers, exitX, exitY, 0);
-            root.AddComponent<SleepwalkingLevelDefinition>().Configure(index, DreamStyle.Meat, start, exit);
+            root.AddComponent<SleepwalkingLevelDefinition>().Configure(index, FirstCycleStyleForMainLevel(index), start, exit);
             SleepwalkingTileCollisionBuilder.Shape(root);
 
             string path = Prefabs + "/L" + index.ToString("00") + "_DreamGeometry.prefab";
             PrefabUtility.SaveAsPrefabAsset(root, path);
             Object.DestroyImmediate(root);
+        }
+
+        private static DreamStyle FirstCycleStyleForMainLevel(int index)
+        {
+            DreamStyle[] order = { DreamStyle.Heaven, DreamStyle.DeepWater,
+                DreamStyle.PostApocalypse, DreamStyle.Meat };
+            // Два обучающих сна занимают первые две позиции общей последовательности.
+            return order[(index + 1) % order.Length];
         }
 
         private static Transform Group(Transform parent, string name)

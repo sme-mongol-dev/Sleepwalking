@@ -80,7 +80,7 @@ namespace Sleepwalking.Levels.Editor
 
                 Transform start = Marker(markers, "PlayerStart", 1.7f, .1f);
                 Transform exit = Bed(markers, 24.2f, 7f, 0f);
-                root.AddComponent<SleepwalkingLevelDefinition>().Configure(8, DreamStyle.Meat, start, exit);
+                root.AddComponent<SleepwalkingLevelDefinition>().Configure(8, FirstCycleStyleForMainLevel(8), start, exit);
                 SleepwalkingTileCollisionBuilder.Shape(root);
                 PrefabUtility.SaveAsPrefabAsset(root, EighthPrefabPath);
             }

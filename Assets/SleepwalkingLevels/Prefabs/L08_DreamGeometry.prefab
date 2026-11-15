@@ -12457,7 +12457,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Sleepwalking.Levels.SleepwalkingLevelDefinition
   levelIndex: 8
-  firstCycleStyle: 0
+  firstCycleStyle: 2
   playerStart: {fileID: 8069313624762460136}
   bedExit: {fileID: 7830842864674821250}
 --- !u!1 &7618497857387143418
