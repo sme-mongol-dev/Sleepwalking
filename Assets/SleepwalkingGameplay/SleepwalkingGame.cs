@@ -9,7 +9,7 @@ namespace Sleepwalking
     {
         public static SleepwalkingGame Instance { get; private set; }
         public GameObject[] TutorialPrefabs = new GameObject[2];
-        public const int AuthoredDreamCount = 9;
+        public const int AuthoredDreamCount = 7;
         public GameObject[] LevelPrefabs = new GameObject[AuthoredDreamCount];
         public GameObject[] ThemePrefabs = new GameObject[4];
         public SleepwalkingMovementProfile[] MovementProfiles = new SleepwalkingMovementProfile[3];
@@ -223,17 +223,7 @@ namespace Sleepwalking
 
         void OnGUI()
         {
-            if (inDream)
-            {
-                string dreamLabel = activeTutorial ? "TUTORIAL " + (tutorialStage + 1) + "/2" :
-                    "DREAM " + (completedDreams % DreamCount + 1) + "/" + DreamCount +
-                    "   CYCLE " + (completedDreams / DreamCount + 1);
-                GUI.Label(new Rect(16, 12, 650, 32), dreamLabel);
-                GUI.Label(new Rect(16, 38, 650, 32), activeTutorial && tutorialStage == 0 ?
-                    "A/D move   SPACE jump / wall jump   ESC pause" :
-                    "A/D move   SPACE jump   SHIFT dash   ESC pause");
-            }
-            else if (UI == null || !uiEventsBound)
+            if (!inDream && (UI == null || !uiEventsBound))
                 GUI.Label(new Rect(16, 12, 650, 32), "Click the bed or press E to enter the next dream");
             if (transitioning)
             {

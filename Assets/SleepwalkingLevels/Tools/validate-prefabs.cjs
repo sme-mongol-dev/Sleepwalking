@@ -11,16 +11,14 @@ const expected = [
   { buttons: 0, lasers: 0, timed: 5, moving: 0, platforms: 3 },
   { buttons: 0, lasers: 0, timed: 0, moving: 3, platforms: 4 },
   { buttons: 3, lasers: 4, timed: 0, moving: 0, platforms: 9 },
-  { buttons: 2, lasers: 2, timed: 0, moving: 1, platforms: 7 },
 ];
-const caveBlocks = [18, 18, 18, 9, 19, 13, 19, 7];
-const ends = [27, 32, 29, 25, 41, 42, 44, 26];
+const caveBlocks = [18, 18, 18, 9, 19, 13, 19];
+const ends = [27, 32, 29, 25, 41, 42, 44];
 const visibleGapIds = [
   ['L01_GapA', 'L01_GapB', 'L01_GapC', 'L01_GapD', 'L01_GapE'],
   ['L02_GapA', 'L02_GapB', 'L02_GapC'],
   ['L03_GapA', 'L03_GapB', 'L03_GapC', 'L03_GapD', 'L03_GapE'],
   ['L04_GapA'], [], ['L06_FloorSpikes'], ['L07_GapA', 'L07_GapB'],
-  [],
 ];
 
 function check(ok, message) { if (!ok) throw new Error(message); }
@@ -43,7 +41,7 @@ for (let q = 1; q <= expected.length; q++) {
   check(count(text, /^  m_Name: Cave_[^\r\n]+$/gm) === caveBlocks[q - 1], `${file}: cave fill blocks`);
   check(count(text, /^  m_Name: Cave_Bedrock$/gm) === 1, `${file}: bottom tile mass`);
   check(count(text, /^  m_Name: Cave_(?:Left|Right)Wall$/gm) === 2, `${file}: side walls`);
-  check(count(text, /^  m_Name: Cave_(?:Left|Right)Roof$/gm) === (q === 8 ? 0 : 2), `${file}: side roofs`);
+  check(count(text, /^  m_Name: Cave_(?:Left|Right)Roof$/gm) === 2, `${file}: side roofs`);
   check(count(text, /^  levelIndex: /gm) === 1, `${file}: level definition`);
   check(text.includes(`levelIndex: ${q}\n`), `${file}: incorrect index`);
   check(count(text, /^  kind: 8$/gm) === 0, `${file}: invisible fall reset feature`);
@@ -147,7 +145,7 @@ for (let q = 1; q <= expected.length; q++) {
       `${file}: solid tile must have a shaped 2D collider: ${names.get(owner)}`);
   }
   for (let x = 0; x < ends[q - 1]; x++) {
-    const floorRows = q === 8 ? [-4, -3, -2] : [-3];
+    const floorRows = [-3];
     check(floorRows.some(y => staticCells.has(`${x},${y}`)),
       `${file}: open shaft at x=${x} reaches hidden bedrock`);
   }
@@ -163,7 +161,7 @@ for (let q = 1; q <= expected.length; q++) {
       check(types.has('PolygonCollider2D') && types.has('MonoBehaviour'),
         `${file}: cave fill must have a solid 2D collider and tile marker`);
   }
-  if (q === 4 || q === 7 || q === 8) {
+  if (q === 4 || q === 7) {
     check(text.includes('beamPixelWidth: 3.5'), `${file}: beam pixel setting`);
     check(text.includes('m_LocalScale: {x: 0.2,'), `${file}: beam preview width`);
     check(text.includes('m_Convex: 1'), `${file}: triangular base collider`);
