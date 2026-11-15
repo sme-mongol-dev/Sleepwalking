@@ -12,7 +12,7 @@ namespace Sleepwalking.Tests.PlayMode
     public sealed class StaticCameraRenderTests
     {
         [UnityTest]
-        public IEnumerator SevenDreamBackdropsCoverFollowFramesInBothAspects()
+        public IEnumerator AllDreamBackdropsCoverFollowFramesInBothAspects()
         {
             AsyncOperation loading = SceneManager.LoadSceneAsync("Assets/Scenes/Sleepwalking.unity");
             while (!loading.isDone) yield return null;
@@ -32,7 +32,8 @@ namespace Sleepwalking.Tests.PlayMode
             MethodInfo returnToRoom = type.GetMethod("ReturnToRoom");
             MethodInfo restartDream = type.GetMethod("RestartDream");
 
-            for (int levelIndex = 1; levelIndex <= 7; levelIndex++)
+            int count = ((Array)type.GetField("LevelPrefabs").GetValue(game)).Length;
+            for (int levelIndex = 1; levelIndex <= count; levelIndex++)
             {
                 type.GetField("tutorialStage", BindingFlags.Instance | BindingFlags.NonPublic).SetValue(game, 2);
                 completed.SetValue(game, levelIndex - 1);

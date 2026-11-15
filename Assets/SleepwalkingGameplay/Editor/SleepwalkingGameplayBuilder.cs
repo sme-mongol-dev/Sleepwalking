@@ -64,7 +64,7 @@ public static class SleepwalkingGameplayBuilder
         for (int q = 0; q < 2; q++)
             game.TutorialPrefabs[q] = AssetDatabase.LoadAssetAtPath<GameObject>(
                 "Assets/SleepwalkingLevels/Prefabs/Tutorial" + (q + 1).ToString("00") + "_DreamGeometry.prefab");
-        for (int q = 0; q < 7; q++)
+        for (int q = 0; q < game.LevelPrefabs.Length; q++)
             game.LevelPrefabs[q] = AssetDatabase.LoadAssetAtPath<GameObject>(
                 "Assets/SleepwalkingLevels/Prefabs/L" + (q + 1).ToString("00") + "_DreamGeometry.prefab");
         game.RoomPrefab = AssetDatabase.LoadAssetAtPath<GameObject>(Sleepwalking.Visual.Editor.VisualAssetBuilder.MenuRoomPrefab);
@@ -95,7 +95,7 @@ public static class SleepwalkingGameplayBuilder
     public static void BuildWindows()
     {
         AssetDatabase.Refresh();
-        for (int q = 0; q < 7; q++)
+        for (int q = 0; q < SleepwalkingGame.AuthoredDreamCount; q++)
             if (AssetDatabase.LoadAssetAtPath<GameObject>(
                 "Assets/SleepwalkingLevels/Prefabs/L" + (q + 1).ToString("00") + "_DreamGeometry.prefab") == null)
                 throw new UnityException("Missing authored dream geometry L" + (q + 1).ToString("00"));

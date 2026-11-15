@@ -183,7 +183,7 @@ namespace Sleepwalking.Tests.PlayMode
         }
 
         [UnityTest]
-        public IEnumerator EightDreamsReuseSevenAuthoredLevels()
+        public IEnumerator FullCycleIncludesEighthLevelAndWrapsToFirst()
         {
             AsyncOperation loading = SceneManager.LoadSceneAsync("Assets/Scenes/Sleepwalking.unity");
             Assert.That(loading, Is.Not.Null, "The integrated Sleepwalking scene must load.");
@@ -237,9 +237,10 @@ namespace Sleepwalking.Tests.PlayMode
             Assert.That(closeOverlay, Is.Not.Null);
 
             GameObject[] prefabs = (GameObject[])levelPrefabs.GetValue(game);
-            Assert.That(prefabs, Has.Length.EqualTo(7));
+            type.GetField("tutorialStage", BindingFlags.Instance | BindingFlags.NonPublic).SetValue(game, 2);
+            Assert.That(prefabs, Has.Length.EqualTo(8));
             foreach (GameObject prefab in prefabs)
-                Assert.That(prefab, Is.Not.Null, "All seven authored levels must be assigned.");
+                Assert.That(prefab, Is.Not.Null, "All authored levels must be assigned.");
 
             Assert.That((bool)inDream.GetValue(game), Is.False);
             Assert.That((int)completedDreams.GetValue(game), Is.Zero);
@@ -271,8 +272,8 @@ namespace Sleepwalking.Tests.PlayMode
             }
             Assert.That(dreamHotspot, Is.Not.Null, "The waking room must have a Dream hotspot on the bed.");
 
-            // Восьмой вход проверяет возврат к первой геометрии после полного цикла.
-            for (int q = 0; q < 8; q++)
+            // Дополнительный вход проверяет возврат к первой геометрии после полного цикла.
+            for (int q = 0; q <= prefabs.Length; q++)
             {
                 if (q == 0) activateRoomTarget.Invoke(ui, new object[] { dreamHotspot });
                 else startDream.Invoke(game, null);
@@ -284,7 +285,7 @@ namespace Sleepwalking.Tests.PlayMode
                 Assert.That((bool)transitioning.GetValue(game), Is.False, "Dream " + (q + 1) + " transition did not finish.");
                 Assert.That((int)completedDreams.GetValue(game), Is.EqualTo(q));
                 Assert.That(room.activeSelf, Is.False, "The waking room must be hidden during a dream.");
-                GameObject level = GameObject.Find("Dream L" + (q % 7 + 1).ToString("00"));
+                GameObject level = GameObject.Find("Dream L" + (q % prefabs.Length + 1).ToString("00"));
                 Assert.That(level, Is.Not.Null,
                     "Dream " + (q + 1) + " must instantiate its authored level, not fallback geometry.");
                 AssertTilesMatchColliders(level);
@@ -339,9 +340,8 @@ namespace Sleepwalking.Tests.PlayMode
                 Assert.That((bool)transitioning.GetValue(game), Is.False, "Wake " + (q + 1) + " transition did not finish.");
                 Assert.That((int)completedDreams.GetValue(game), Is.EqualTo(q + 1));
                 Assert.That(room.activeSelf, Is.True, "The waking room must return after dream " + (q + 1) + ".");
-                poster.GetPropertyBlock(posterProperties);
-                Assert.That(posterProperties.GetTexture("_MainTex"), Is.SameAs(initialPoster));
-                Assert.That(GameObject.Find("Dream L" + (q % 7 + 1).ToString("00")), Is.Null,
+                AssertPosterMatchesOdradek(environment, poster);
+                Assert.That(GameObject.Find("Dream L" + (q % prefabs.Length + 1).ToString("00")), Is.Null,
                     "The completed dream level must be removed.");
                 if (q == 0)
                 {
@@ -354,13 +354,41 @@ namespace Sleepwalking.Tests.PlayMode
             LogAssert.NoUnexpectedReceived();
         }
 
+        static void AssertPosterMatchesOdradek(MonoBehaviour environment, Renderer poster)
+        {
+            int value = (int)environment.GetType().GetProperty("CurrentOdradek").GetValue(environment);
+            IList decorations = (IList)environment.GetType().GetField("Decorations").GetValue(environment);
+            Texture expected = null;
+            int selected = 0;
+            foreach (object row in decorations)
+            {
+                Type type = row.GetType();
+                if ((string)type.GetField("Group").GetValue(row) != "poster") continue;
+                int minimum = (int)type.GetField("MinOdradek").GetValue(row);
+                int maximum = (int)type.GetField("MaxOdradek").GetValue(row);
+                if (value < minimum || value > maximum) continue;
+                expected = (Texture)type.GetField("Texture").GetValue(row);
+                selected++;
+            }
+            Assert.That(selected, Is.EqualTo(1), "One poster must be selected at Odradek " + value);
+            var properties = new MaterialPropertyBlock();
+            poster.GetPropertyBlock(properties);
+            Assert.That(properties.GetTexture("_MainTex"), Is.SameAs(expected));
+            Assert.That(properties.GetTexture("_BaseMap"), Is.SameAs(expected));
+        }
+
         static void AssertTilesMatchColliders(GameObject level)
         {
-            int tiledPlatforms = 0;
+            Transform matrix = level.transform.Find("Dream Tile Matrix");
+            Assert.That(matrix, Is.Not.Null, level.name + " static tile matrix");
+            MeshFilter staticMesh = matrix.GetComponent<MeshFilter>();
+            MeshRenderer staticArt = matrix.GetComponent<MeshRenderer>();
+            Assert.That(staticMesh?.sharedMesh, Is.Not.Null, level.name + " static tile mesh");
+            Assert.That(staticMesh.sharedMesh.vertexCount, Is.GreaterThan(0), level.name + " static tiles");
+            Assert.That(staticArt, Is.Not.Null, level.name + " static tile art");
             foreach (Transform child in level.GetComponentsInChildren<Transform>(true))
             {
                 if (child.name != "Dream Tiles") continue;
-                tiledPlatforms++;
                 Collider2D collider = child.parent.GetComponent<Collider2D>();
                 string platform = level.name + "/" + child.parent.name;
                 Assert.That(collider, Is.Not.Null, platform);
@@ -397,7 +425,6 @@ namespace Sleepwalking.Tests.PlayMode
                 Assert.That(visual.size.x, Is.EqualTo(size.x).Within(.001f), platform);
                 Assert.That(visual.size.y, Is.EqualTo(size.y).Within(.001f), platform);
             }
-            Assert.That(tiledPlatforms, Is.GreaterThan(0), level.name);
         }
     }
 }

@@ -18,7 +18,7 @@ namespace Sleepwalking.Tests.PlayMode
         [UnityTest]
         public IEnumerator EveryLethalColliderHasVisibleArt()
         {
-            for (int levelIndex = 1; levelIndex <= 7; levelIndex++)
+            for (int levelIndex = 1; levelIndex <= 8; levelIndex++)
             {
                 AsyncOperation loading = SceneManager.LoadSceneAsync("Assets/Scenes/Sleepwalking.unity");
                 Assert.That(loading, Is.Not.Null);

@@ -88,6 +88,12 @@ namespace Sleepwalking.Tests.PlayMode
             Assert.That((int)gameType.GetProperty("CompletedDreams").GetValue(game), Is.EqualTo(7));
             start.Invoke(game, null);
             yield return WaitForState(game, true);
+            Assert.That(GameObject.Find("Dream L08"), Is.Not.Null);
+            complete.Invoke(game, null);
+            yield return WaitForState(game, false);
+            Assert.That((int)gameType.GetProperty("CompletedDreams").GetValue(game), Is.EqualTo(8));
+            start.Invoke(game, null);
+            yield return WaitForState(game, true);
             Assert.That(GameObject.Find("Dream L01"), Is.Not.Null);
             Assert.That(GameObject.Find("Tutorial 1"), Is.Null);
 

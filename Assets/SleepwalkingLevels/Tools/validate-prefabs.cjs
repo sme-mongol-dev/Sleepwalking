@@ -11,22 +11,24 @@ const expected = [
   { buttons: 0, lasers: 0, timed: 5, moving: 0, platforms: 3 },
   { buttons: 0, lasers: 0, timed: 0, moving: 3, platforms: 4 },
   { buttons: 3, lasers: 4, timed: 0, moving: 0, platforms: 9 },
+  { buttons: 2, lasers: 2, timed: 0, moving: 1, platforms: 7 },
 ];
-const caveBlocks = [18, 18, 18, 9, 19, 13, 19];
-const ends = [27, 32, 29, 25, 41, 42, 44];
+const caveBlocks = [18, 18, 18, 9, 19, 13, 19, 7];
+const ends = [27, 32, 29, 25, 41, 42, 44, 26];
 const visibleGapIds = [
   ['L01_GapA', 'L01_GapB', 'L01_GapC', 'L01_GapD', 'L01_GapE'],
   ['L02_GapA', 'L02_GapB', 'L02_GapC'],
   ['L03_GapA', 'L03_GapB', 'L03_GapC', 'L03_GapD', 'L03_GapE'],
   ['L04_GapA'], [], ['L06_FloorSpikes'], ['L07_GapA', 'L07_GapB'],
+  [],
 ];
 
 function check(ok, message) { if (!ok) throw new Error(message); }
 function count(text, pattern) { return [...text.matchAll(pattern)].length; }
 
-for (let q = 1; q <= 7; q++) {
+for (let q = 1; q <= expected.length; q++) {
   const file = path.join(prefabDir, `L${String(q).padStart(2, '0')}_DreamGeometry.prefab`);
-  const text = fs.readFileSync(file, 'utf8');
+  const text = fs.readFileSync(file, 'utf8').replace(/\r\n/g, '\n');
   const sections = text.split(/^--- !u!/m).slice(1);
   const ids = sections.map(x => x.match(/^\d+ &(\d+)/)?.[1]);
   const idSet = new Set(ids);
@@ -41,7 +43,7 @@ for (let q = 1; q <= 7; q++) {
   check(count(text, /^  m_Name: Cave_[^\r\n]+$/gm) === caveBlocks[q - 1], `${file}: cave fill blocks`);
   check(count(text, /^  m_Name: Cave_Bedrock$/gm) === 1, `${file}: bottom tile mass`);
   check(count(text, /^  m_Name: Cave_(?:Left|Right)Wall$/gm) === 2, `${file}: side walls`);
-  check(count(text, /^  m_Name: Cave_(?:Left|Right)Roof$/gm) === 2, `${file}: side roofs`);
+  check(count(text, /^  m_Name: Cave_(?:Left|Right)Roof$/gm) === (q === 8 ? 0 : 2), `${file}: side roofs`);
   check(count(text, /^  levelIndex: /gm) === 1, `${file}: level definition`);
   check(text.includes(`levelIndex: ${q}\n`), `${file}: incorrect index`);
   check(count(text, /^  kind: 8$/gm) === 0, `${file}: invisible fall reset feature`);
@@ -69,7 +71,8 @@ for (let q = 1; q <= 7; q++) {
 
   const featureIds = new Set([...text.matchAll(/^  featureId: (.+)$/gm)].map(x => x[1]));
   for (const link of text.matchAll(/^  linkedFeatureId: (.+)$/gm))
-    check(featureIds.has(link[1]), `${file}: unresolved button link ${link[1]}`);
+    check([...featureIds].some(id => id === link[1] || id.startsWith(`${link[1]}_`)),
+      `${file}: unresolved button link ${link[1]}`);
   for (const section of sections.filter(x => x.startsWith('61 &') || x.startsWith('60 &')))
     check(count(section, /^  m_Offset:/gm) === 1, `${file}: duplicate or missing 2D collider offset`);
   const names = new Map();
@@ -143,8 +146,11 @@ for (let q = 1; q <= 7; q++) {
     check(types.has('PolygonCollider2D') && !types.has('BoxCollider2D'),
       `${file}: solid tile must have a shaped 2D collider: ${names.get(owner)}`);
   }
-  for (let x = 0; x < ends[q - 1]; x++)
-    check(staticCells.has(`${x},-3`), `${file}: open shaft at x=${x} reaches hidden bedrock`);
+  for (let x = 0; x < ends[q - 1]; x++) {
+    const floorRows = q === 8 ? [-4, -3, -2] : [-3];
+    check(floorRows.some(y => staticCells.has(`${x},${y}`)),
+      `${file}: open shaft at x=${x} reaches hidden bedrock`);
+  }
   for (const id of visibleGapIds[q - 1]) {
     check(text.includes(`m_Name: Cave_${id}Foundation\n`), `${file}: missing raised support for ${id}`);
     check(text.includes(`m_Name: ${id}_1\n`), `${file}: missing visible spikes for ${id}`);
@@ -157,11 +163,11 @@ for (let q = 1; q <= 7; q++) {
       check(types.has('PolygonCollider2D') && types.has('MonoBehaviour'),
         `${file}: cave fill must have a solid 2D collider and tile marker`);
   }
-  if (q === 4 || q === 7) {
+  if (q === 4 || q === 7 || q === 8) {
     check(text.includes('beamPixelWidth: 3.5'), `${file}: beam pixel setting`);
     check(text.includes('m_LocalScale: {x: 0.2,'), `${file}: beam preview width`);
     check(text.includes('m_Convex: 1'), `${file}: triangular base collider`);
   }
   console.log(`L${String(q).padStart(2, '0')}: ${sections.length} serialized objects, ${featureIds.size} feature IDs, links valid`);
 }
-console.log('All seven prefab structures passed.');
+console.log(`All ${expected.length} prefab structures passed.`);

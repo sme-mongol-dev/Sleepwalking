@@ -11,7 +11,7 @@ namespace Sleepwalking.Tests.PlayMode
     public sealed class DreamCameraTests
     {
         [UnityTest]
-        public IEnumerator SevenDreamsFollowPlayerWithinHorizontalBoundsAtBothAspects()
+        public IEnumerator AllDreamsFollowPlayerWithinHorizontalBoundsAtBothAspects()
         {
             AsyncOperation loading = SceneManager.LoadSceneAsync("Assets/Scenes/Sleepwalking.unity");
             while (!loading.isDone) yield return null;
@@ -32,7 +32,8 @@ namespace Sleepwalking.Tests.PlayMode
             MethodInfo restartDream = type.GetMethod("RestartDream");
             type.GetField("tutorialStage", privateInstance).SetValue(game, 2);
 
-            for (int levelIndex = 1; levelIndex <= 7; levelIndex++)
+            int count = ((Array)type.GetField("LevelPrefabs").GetValue(game)).Length;
+            for (int levelIndex = 1; levelIndex <= count; levelIndex++)
             {
                 startDream.Invoke(game, null);
                 float deadline = Time.realtimeSinceStartup + 10f;
@@ -74,6 +75,10 @@ namespace Sleepwalking.Tests.PlayMode
                         "Camera zoom ignored the vertical limit in " + aspect + " L" + levelIndex);
                     Assert.That(camera.WorldToViewportPoint(start.position).x, Is.InRange(0f, 1f),
                         $"L{levelIndex} {aspect}: start={start.position.x}, camera={cameraStart.x}, bounds={minX}..{maxX}, halfWidth={halfWidth}");
+                    Assert.That(camera.WorldToViewportPoint(start.position).y, Is.InRange(0f, 1f),
+                        "Start height outside " + aspect + " L" + levelIndex);
+                    Assert.That(camera.WorldToViewportPoint(exit.transform.position + Vector3.up * unit).y,
+                        Is.InRange(0f, 1f), "Exit height outside " + aspect + " L" + levelIndex);
                     if (maxX - minX > halfWidth * 2f)
                         Assert.That(cameraStart.x - halfWidth, Is.GreaterThanOrEqualTo(minX - .02f * unit),
                             "Camera exceeded the left level edge in " + aspect + " L" + levelIndex);

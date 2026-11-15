@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="1" result="Passed" total="1" passed="1" failed="0" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-11-15 03:26:41Z" end-time="2026-11-15 03:26:50Z" duration="9,3461734">
+  <test-suite type="TestSuite" id="1163" name="Sleepwalking" fullname="Sleepwalking" runstate="Runnable" testcasecount="110" result="Passed" start-time="2026-11-15 03:26:41Z" end-time="2026-11-15 03:26:50Z" duration="9.346173" total="1" passed="1" failed="0" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="PlayMode" />
+    </properties>
+    <test-suite type="Assembly" id="1156" name="Sleepwalking.PlayMode.Tests.dll" fullname="T:/Sleepwalking/Library/ScriptAssemblies/Sleepwalking.PlayMode.Tests.dll" runstate="Runnable" testcasecount="110" result="Passed" start-time="2026-11-15 03:26:41Z" end-time="2026-11-15 03:26:50Z" duration="9.339366" total="1" passed="1" failed="0" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="285756" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="PlayMode" />
+        <property name="EditorOnly" value="False" />
+      </properties>
+      <test-suite type="TestSuite" id="1157" name="Sleepwalking" fullname="Sleepwalking" runstate="Runnable" testcasecount="110" result="Passed" start-time="2026-11-15 03:26:41Z" end-time="2026-11-15 03:26:50Z" duration="9.337782" total="1" passed="1" failed="0" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <test-suite type="TestSuite" id="1158" name="Tests" fullname="Sleepwalking.Tests" runstate="Runnable" testcasecount="110" result="Passed" start-time="2026-11-15 03:26:41Z" end-time="2026-11-15 03:26:50Z" duration="9.336420" total="1" passed="1" failed="0" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <test-suite type="TestSuite" id="1159" name="PlayMode" fullname="Sleepwalking.Tests.PlayMode" runstate="Runnable" testcasecount="110" result="Passed" start-time="2026-11-15 03:26:41Z" end-time="2026-11-15 03:26:50Z" duration="9.335102" total="1" passed="1" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-suite type="TestFixture" id="1079" name="SleepwalkingGridHazardRetryTests" fullname="Sleepwalking.Tests.PlayMode.SleepwalkingGridHazardRetryTests" classname="Sleepwalking.Tests.PlayMode.SleepwalkingGridHazardRetryTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-11-15 03:26:41Z" end-time="2026-11-15 03:26:50Z" duration="9.331998" total="1" passed="1" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1080" name="EveryLethalColliderHasVisibleArt" fullname="Sleepwalking.Tests.PlayMode.SleepwalkingGridHazardRetryTests.EveryLethalColliderHasVisibleArt" methodname="EveryLethalColliderHasVisibleArt" classname="Sleepwalking.Tests.PlayMode.SleepwalkingGridHazardRetryTests" runstate="Runnable" seed="1028487649" result="Passed" start-time="2026-11-15 03:26:41Z" end-time="2026-11-15 03:26:50Z" duration="9.322565" asserts="0">
+                <properties>
+                  <property name="_JOINTYPE" value="UnityCombinatorial" />
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[Saving results to: C:/Users/TIMBUHTUK/AppData/LocalLow/DefaultCompany/Sleepwalking\TestResults.xml
+]]></output>
+              </test-case>
+            </test-suite>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

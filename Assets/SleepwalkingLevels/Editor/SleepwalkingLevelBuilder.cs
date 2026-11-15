@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace Sleepwalking.Levels.Editor
 {
-    public static class SleepwalkingLevelBuilder
+    public static partial class SleepwalkingLevelBuilder
     {
         private const string Root = "Assets/SleepwalkingLevels";
         private const string Prefabs = Root + "/Prefabs";
@@ -30,6 +30,18 @@ namespace Sleepwalking.Levels.Editor
             Directory.CreateDirectory(Path.Combine(Application.dataPath, "SleepwalkingLevels/Materials"));
             AssetDatabase.Refresh();
 
+            PrepareMaterials();
+
+            for (int q = 1; q <= 7; q++)
+                Build(q);
+
+            AssetDatabase.SaveAssets();
+            AssetDatabase.Refresh();
+            Debug.Log("Sleepwalking: seven editable level prefabs built.");
+        }
+
+        private static void PrepareMaterials()
+        {
             floorMaterial = Material("Floor", new Color32(34, 32, 54, 255));
             hazardMaterial = Material("Hazard", new Color32(224, 64, 32, 255));
             mechanismMaterial = Material("Mechanism", new Color32(140, 80, 80, 255));
@@ -39,12 +51,6 @@ namespace Sleepwalking.Levels.Editor
             buttonMaterial = Material("Button", new Color32(34, 158, 222, 255));
             triangleMesh = TriangleMesh();
 
-            for (int q = 1; q <= 7; q++)
-                Build(q);
-
-            AssetDatabase.SaveAssets();
-            AssetDatabase.Refresh();
-            Debug.Log("Sleepwalking: seven editable level prefabs built.");
         }
 
         public static void BuildFromCommandLine()
