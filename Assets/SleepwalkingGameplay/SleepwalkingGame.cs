@@ -225,7 +225,6 @@ namespace Sleepwalking
         {
             if (inDream)
             {
-                GUI.Label(new Rect(Screen.width - 220, 12, 204, 32), "ODRADEK " + Odradek + "/100");
                 string dreamLabel = activeTutorial ? "TUTORIAL " + (tutorialStage + 1) + "/2" :
                     "DREAM " + (completedDreams % DreamCount + 1) + "/" + DreamCount +
                     "   CYCLE " + (completedDreams / DreamCount + 1);
