@@ -385,15 +385,73 @@ namespace Sleepwalking.Visual.Editor
                 MeshRenderer eyeball = MenuDecorArtwork(root, "Eyeball", "Eyeball",
                     new Vector3(2.5f, 2.75f, .32f), .017f);
 
-                AddOdradekDecoration(environment, "Window", window.gameObject, 1);
-                AddOdradekDecoration(environment, "Nightstand", nightstand.gameObject, 1);
-                AddOdradekDecoration(environment, "Calendar", calendar.gameObject, 25);
-                AddOdradekDecoration(environment, "Poster", environment.Poster.gameObject, 1);
-                AddOdradekDecoration(environment, "Big Clock Arrow", bigPivot, 1);
-                AddOdradekDecoration(environment, "Small Clock Arrow", smallPivot, 1);
-                AddOdradekDecoration(environment, "Slippers", slippers.gameObject, 35);
-                AddOdradekDecoration(environment, "Eye", eye.gameObject, 55, 1);
-                AddOdradekDecoration(environment, "Eyeball", eyeball.gameObject, 75, 2);
+                AddOdradekDecoration(environment, "Window", window.gameObject, 1,
+                    id: "window", group: "props", asset: "menu.window");
+                AddOdradekDecoration(environment, "Nightstand", nightstand.gameObject, 1,
+                    id: "nightstand", group: "props", asset: "menu.nightstand");
+                AddOdradekDecoration(environment, "Calendar", calendar.gameObject, 25,
+                    id: "calendar.1", group: "calendar", maxOdradek: 49, asset: "calendar.1",
+                    mode: RoomDecorationMode.Variant);
+                AddOdradekDecoration(environment, "Calendar 2", calendar.gameObject, 50,
+                    id: "calendar.2", group: "calendar", maxOdradek: 74, asset: "calendar.2",
+                    mode: RoomDecorationMode.Variant,
+                    texture: LoadMenuTexture(Root + "/Textures/MenuDecor/Calendar2.png"));
+                AddOdradekDecoration(environment, "Calendar 3", calendar.gameObject, 75,
+                    id: "calendar.3", group: "calendar", asset: "calendar.3",
+                    mode: RoomDecorationMode.Variant,
+                    texture: LoadMenuTexture(Root + "/Textures/MenuDecor/Calendar3.png"));
+
+                for (int q = 0; q < environment.Posters.Length; q++)
+                {
+                    int minimum = q < 10 ? q * 8 + 1 : q == 10 ? 81 : 91;
+                    int maximum = q < 10 ? (q + 1) * 8 : q == 10 ? 90 : 100;
+                    string id = "poster." + (q + 1).ToString("00");
+                    string name = q == 0 ? "Poster" : "Poster " + (q + 1).ToString("00");
+                    AddOdradekDecoration(environment, name, environment.Poster.gameObject, minimum,
+                        id: id, group: "poster", maxOdradek: maximum, asset: id,
+                        mode: RoomDecorationMode.Variant, texture: environment.Posters[q]);
+                }
+
+                AddOdradekDecoration(environment, "Big Clock Arrow", bigPivot, 1,
+                    id: "clock.big", group: "props", asset: "clock.big");
+                AddOdradekDecoration(environment, "Small Clock Arrow", smallPivot, 1,
+                    id: "clock.small", group: "props", asset: "clock.small");
+                AddOdradekDecoration(environment, "Slippers", slippers.gameObject, 35,
+                    id: "slippers", group: "props", asset: "slippers");
+                AddOdradekDecoration(environment, "Eye", eye.gameObject, 55, 1,
+                    id: "eye", group: "props", asset: "eye");
+                AddOdradekDecoration(environment, "Eyeball", eyeball.gameObject, 75, 2,
+                    id: "eyeball", group: "props", asset: "eyeball");
+
+                AddOdradekDecoration(environment, "Bed", bed.gameObject, 1,
+                    id: "bed.base", group: "bed", maxOdradek: 12, asset: "bed.base",
+                    mode: RoomDecorationMode.Variant);
+                for (int q = 1; q <= 8; q++)
+                {
+                    string number = q.ToString("00");
+                    int minimum = q == 1 ? 13 : q * 11 + 2;
+                    int maximum = q == 8 ? 100 : (q + 1) * 11 + 1;
+                    AddOdradekDecoration(environment, "Bed Look " + number, bed.gameObject, minimum,
+                        id: "bed.look." + q, group: "bed", maxOdradek: maximum,
+                        asset: "bed.look." + q, mode: RoomDecorationMode.Variant,
+                        texture: LoadMenuTexture(Root + "/Textures/MenuDecor/BedLook" + number + ".png"));
+                }
+
+                Vector3[] crackPositions =
+                {
+                    new Vector3(-6.2f, 4.25f, 1.2f), new Vector3(-3.1f, 4.55f, 1.2f),
+                    new Vector3(1.65f, 4.45f, 1.2f), new Vector3(4.75f, 4.35f, 1.2f),
+                    new Vector3(6.5f, 4.75f, 1.2f)
+                };
+                for (int q = 0; q < crackPositions.Length; q++)
+                {
+                    int number = q + 1;
+                    MeshRenderer crack = MenuDecorArtwork(root, "Crack " + number, "Crack" + number,
+                        crackPositions[q], .03f);
+                    string id = "crack." + number;
+                    AddOdradekDecoration(environment, "Crack " + number, crack.gameObject,
+                        35 + q * 15, id: id, group: "cracks", asset: id);
+                }
                 RestoreMenuDecorations(environment, previousDecorations);
                 RoomDynamicLighting.Apply(room);
 
@@ -443,13 +501,23 @@ namespace Sleepwalking.Visual.Editor
         }
 
         static void AddOdradekDecoration(RoomEnvironment environment, string name, GameObject roomObject,
-            int minOdradek, int sortingOrder = 0)
+            int minOdradek, int sortingOrder = 0, string id = null, string group = "props",
+            int maxOdradek = 100, string asset = null, RoomDecorationMode mode = RoomDecorationMode.Visibility,
+            Texture2D texture = null)
         {
             Transform item = roomObject.transform;
+            if (texture == null)
+                texture = roomObject.GetComponentInChildren<MeshRenderer>(true)?.sharedMaterial.mainTexture as Texture2D;
             environment.Decorations.Add(new RoomOdradekDecoration
             {
                 Name = name,
+                Id = id,
+                Group = group,
                 MinOdradek = minOdradek,
+                MaxOdradek = maxOdradek,
+                Asset = asset,
+                Texture = texture,
+                Mode = mode,
                 RoomObject = roomObject,
                 LocalPosition = item.localPosition,
                 LocalEulerAngles = item.localEulerAngles,
@@ -471,7 +539,13 @@ namespace Sleepwalking.Visual.Editor
                 result.Add(new RoomOdradekDecoration
                 {
                     Name = row.Name,
+                    Id = row.Id,
+                    Group = row.Group,
                     MinOdradek = row.MinOdradek,
+                    MaxOdradek = row.MaxOdradek,
+                    Asset = row.Asset,
+                    Texture = row.Texture,
+                    Mode = row.Mode,
                     Prefab = row.Prefab,
                     LocalPosition = row.LocalPosition,
                     LocalEulerAngles = row.LocalEulerAngles,
@@ -494,6 +568,13 @@ namespace Sleepwalking.Visual.Editor
                 }
 
                 current.MinOdradek = row.MinOdradek;
+                if (!string.IsNullOrEmpty(row.Id))
+                {
+                    current.MaxOdradek = row.MaxOdradek;
+                    current.Asset = row.Asset;
+                    current.Texture = row.Texture;
+                    current.Mode = row.Mode;
+                }
                 current.LocalPosition = row.LocalPosition;
                 current.LocalEulerAngles = row.LocalEulerAngles;
                 current.LocalScale = row.LocalScale;

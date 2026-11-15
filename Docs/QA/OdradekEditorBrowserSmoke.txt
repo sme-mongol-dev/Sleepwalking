@@ -1,0 +1,2 @@
+{"importRows":36,"validationErrors":[],"calendarWarning":"calendar: нет календаря при 1–59 (допустимо).","saveDisabled":false,"fileName":"SleepwalkingMenuDecor.json","exportRows":3,"exportIds":["calendar.1","calendar.2","calendar.3"]}
+{"enabledInitially":true,"topAndBottomSaves":[{"name":"SleepwalkingMenuDecor.json","rows":0},{"name":"SleepwalkingMenuDecor.json","rows":0}],"bothDisabledOnOverlap":true}

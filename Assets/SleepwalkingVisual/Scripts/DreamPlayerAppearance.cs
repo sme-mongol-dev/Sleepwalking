@@ -7,17 +7,19 @@ namespace Sleepwalking.Visual
         public Sprite TemporarySprite;
 
         const int FrameSize = 64;
-        const int FrameCount = 9;
         static readonly string[] SheetNames =
         {
             "Character/S_PizdukIdle",
             "Character/S_PizdukRun",
             "Character/S_Pizduk_Jump",
-            "Character/S_Pizduk_Climb"
+            "Character/S_Pizduk_Climb",
+            "Character/S_Pizduk_Dash",
+            "Character/S_Pizduk_Death"
         };
-        static readonly float[] FrameSeconds = { .12f, .075f, .085f, .10f };
+        static readonly int[] FrameCounts = { 9, 9, 9, 9, 14, 9 };
+        static readonly float[] FrameSeconds = { .12f, .075f, .085f, .10f, .013f, .08f };
 
-        enum Motion { Idle, Run, Jump, Climb }
+        enum Motion { Idle, Run, Jump, Climb, Dash, Death }
 
         static Sprite[][] frames;
         static bool framesLoaded;
@@ -44,19 +46,22 @@ namespace Sleepwalking.Visual
             }
             else
             {
-                elapsed += Time.deltaTime;
+                elapsed += motion == Motion.Death ? Time.unscaledDeltaTime : Time.deltaTime;
                 float interval = FrameSeconds[(int)motion];
                 while (elapsed >= interval)
                 {
                     elapsed -= interval;
-                    frame = motion == Motion.Jump ? Mathf.Min(frame + 1, FrameCount - 1) : (frame + 1) % FrameCount;
+                    int count = FrameCounts[(int)motion];
+                    frame = motion == Motion.Jump || motion == Motion.Dash || motion == Motion.Death ?
+                        Mathf.Min(frame + 1, count - 1) : (frame + 1) % count;
                 }
             }
 
             Sprite[] sequence = frames[(int)motion];
             visual.sprite = sequence != null ? sequence[frame] : TemporarySprite;
             visual.flipX = original.flipX;
-            visual.color = !player.ControlsEnabled && original.color.g < .4f
+            visual.color = player.IsReturning ? new Color(1f, 1f, 1f, .65f) :
+                motion != Motion.Death && !player.ControlsEnabled && original.color.g < .4f
                 ? new Color(1f, .25f, .25f)
                 : Color.white;
         }
@@ -89,6 +94,9 @@ namespace Sleepwalking.Visual
 
         Motion CurrentMotion()
         {
+            if (player.IsImpact) return Motion.Death;
+            if (player.IsReturning) return Motion.Idle;
+            if (player.IsDashing) return Motion.Dash;
             if (!player.ControlsEnabled) return Motion.Idle;
             Vector2 velocity = body.linearVelocity;
             float unit = player.WorldUnitsPerCell;
@@ -118,14 +126,15 @@ namespace Sleepwalking.Visual
             for (int q = 0; q < SheetNames.Length; q++)
             {
                 Texture2D sheet = Resources.Load<Texture2D>(SheetNames[q]);
-                if (sheet == null || sheet.width != FrameSize * FrameCount || sheet.height != FrameSize)
+                int count = FrameCounts[q];
+                if (sheet == null || sheet.width != FrameSize * count || sheet.height != FrameSize)
                 {
                     Debug.LogError("Dreamer animation sheet is missing or has the wrong size: " + SheetNames[q]);
                     continue;
                 }
 
-                frames[q] = new Sprite[FrameCount];
-                for (int e = 0; e < FrameCount; e++)
+                frames[q] = new Sprite[count];
+                for (int e = 0; e < count; e++)
                 {
                     Rect area = new Rect(e * FrameSize, 0f, FrameSize, FrameSize);
                     frames[q][e] = Sprite.Create(sheet, area, new Vector2(.5f, .5f), FrameSize, 0,

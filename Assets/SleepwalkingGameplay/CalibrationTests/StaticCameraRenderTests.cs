@@ -12,7 +12,7 @@ namespace Sleepwalking.Tests.PlayMode
     public sealed class StaticCameraRenderTests
     {
         [UnityTest]
-        public IEnumerator SevenDreamBackdropsCoverStaticFramesInBothAspects()
+        public IEnumerator SevenDreamBackdropsCoverFollowFramesInBothAspects()
         {
             AsyncOperation loading = SceneManager.LoadSceneAsync("Assets/Scenes/Sleepwalking.unity");
             while (!loading.isDone) yield return null;
@@ -30,6 +30,7 @@ namespace Sleepwalking.Tests.PlayMode
             FieldInfo transitioning = type.GetField("transitioning", BindingFlags.Instance | BindingFlags.NonPublic);
             MethodInfo startDream = type.GetMethod("StartDream");
             MethodInfo returnToRoom = type.GetMethod("ReturnToRoom");
+            MethodInfo restartDream = type.GetMethod("RestartDream");
 
             for (int levelIndex = 1; levelIndex <= 7; levelIndex++)
             {
@@ -47,7 +48,10 @@ namespace Sleepwalking.Tests.PlayMode
                 Assert.That(theme, Is.Not.Null);
                 Renderer backdrop = theme.Find("Distant Background Left")?.GetComponent<Renderer>();
                 Assert.That(backdrop, Is.Not.Null);
-                GameObject.Find("Dreamer").GetComponent<Rigidbody2D>().simulated = false;
+                GameObject dreamer = GameObject.Find("Dreamer");
+                Rigidbody2D body = dreamer.GetComponent<Rigidbody2D>();
+                Transform exit = GameObject.Find("BedExit").transform;
+                float unit = Mathf.Abs(level.transform.lossyScale.x);
 
                 for (int aspectIndex = 0; aspectIndex < 2; aspectIndex++)
                 {
@@ -56,21 +60,18 @@ namespace Sleepwalking.Tests.PlayMode
                     RenderTexture target = new RenderTexture(width, height, 24);
                     target.Create();
                     camera.targetTexture = target;
+                    restartDream.Invoke(game, null);
+                    body.simulated = false;
                     yield return null;
 
-                    float halfWidth = camera.orthographicSize * width / height;
-                    float halfHeight = camera.orthographicSize;
-                    Vector3 center = camera.transform.position;
-                    Assert.That(backdrop.bounds.min.x, Is.LessThanOrEqualTo(center.x - halfWidth),
-                        "L" + levelIndex + " backdrop left edge");
-                    Assert.That(backdrop.bounds.max.x, Is.GreaterThanOrEqualTo(center.x + halfWidth),
-                        "L" + levelIndex + " backdrop right edge");
-                    Assert.That(backdrop.bounds.min.y, Is.LessThanOrEqualTo(center.y - halfHeight),
-                        "L" + levelIndex + " backdrop bottom edge");
-                    Assert.That(backdrop.bounds.max.y, Is.GreaterThanOrEqualTo(center.y + halfHeight),
-                        "L" + levelIndex + " backdrop top edge");
-                    Capture(camera, "static-camera-L" + levelIndex.ToString("00") +
-                        (aspectIndex == 0 ? "-16x9" : "-4x3"));
+                    AssertCover(backdrop, camera, width, height, levelIndex);
+                    string suffix = aspectIndex == 0 ? "-16x9" : "-4x3";
+                    Capture(camera, "follow-camera-L" + levelIndex.ToString("00") + suffix + "-start");
+
+                    dreamer.transform.position = exit.position + Vector3.up * (.5f * unit);
+                    yield return new WaitForSeconds(.8f);
+                    AssertCover(backdrop, camera, width, height, levelIndex);
+                    Capture(camera, "follow-camera-L" + levelIndex.ToString("00") + suffix + "-end");
                     camera.targetTexture = null;
                     target.Release();
                     UnityEngine.Object.Destroy(target);
@@ -79,6 +80,21 @@ namespace Sleepwalking.Tests.PlayMode
                 returnToRoom.Invoke(game, null);
                 yield return null;
             }
+        }
+
+        static void AssertCover(Renderer backdrop, Camera camera, int width, int height, int levelIndex)
+        {
+            float halfWidth = camera.orthographicSize * width / height;
+            float halfHeight = camera.orthographicSize;
+            Vector3 center = camera.transform.position;
+            Assert.That(backdrop.bounds.min.x, Is.LessThanOrEqualTo(center.x - halfWidth),
+                "L" + levelIndex + " backdrop left edge");
+            Assert.That(backdrop.bounds.max.x, Is.GreaterThanOrEqualTo(center.x + halfWidth),
+                "L" + levelIndex + " backdrop right edge");
+            Assert.That(backdrop.bounds.min.y, Is.LessThanOrEqualTo(center.y - halfHeight),
+                "L" + levelIndex + " backdrop bottom edge");
+            Assert.That(backdrop.bounds.max.y, Is.GreaterThanOrEqualTo(center.y + halfHeight),
+                "L" + levelIndex + " backdrop top edge");
         }
 
         static void Capture(Camera camera, string name)

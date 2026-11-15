@@ -11,7 +11,7 @@ namespace Sleepwalking.Tests.PlayMode
     public sealed class DreamCameraTests
     {
         [UnityTest]
-        public IEnumerator SevenDreamsFitInStaticFrameAtBothAspects()
+        public IEnumerator SevenDreamsFollowPlayerWithinHorizontalBoundsAtBothAspects()
         {
             AsyncOperation loading = SceneManager.LoadSceneAsync("Assets/Scenes/Sleepwalking.unity");
             while (!loading.isDone) yield return null;
@@ -69,19 +69,25 @@ namespace Sleepwalking.Tests.PlayMode
                     Vector3 cameraStart = camera.transform.position;
                     float sizeStart = camera.orthographicSize;
                     float halfWidth = sizeStart * (float)width / height;
-                    Assert.That(cameraStart.x - halfWidth, Is.LessThanOrEqualTo(minX - .1f * unit),
-                        "Left edge outside " + aspect + " L" + levelIndex);
-                    Assert.That(cameraStart.x + halfWidth, Is.GreaterThanOrEqualTo(maxX + .1f * unit),
-                        "Right edge outside " + aspect + " L" + levelIndex);
-                    Assert.That(camera.WorldToViewportPoint(start.position).x, Is.InRange(0f, 1f));
-                    Assert.That(camera.WorldToViewportPoint(exit.transform.position).x, Is.InRange(0f, 1f));
+                    float verticalLimit = (float)type.GetField("dreamCameraVerticalSize", privateInstance).GetValue(game);
+                    Assert.That(sizeStart, Is.EqualTo(verticalLimit).Within(.01f),
+                        "Camera zoom ignored the vertical limit in " + aspect + " L" + levelIndex);
+                    Assert.That(camera.WorldToViewportPoint(start.position).x, Is.InRange(0f, 1f),
+                        $"L{levelIndex} {aspect}: start={start.position.x}, camera={cameraStart.x}, bounds={minX}..{maxX}, halfWidth={halfWidth}");
+                    if (maxX - minX > halfWidth * 2f)
+                        Assert.That(cameraStart.x - halfWidth, Is.GreaterThanOrEqualTo(minX - .02f * unit),
+                            "Camera exceeded the left level edge in " + aspect + " L" + levelIndex);
 
                     body.simulated = false;
                     dreamer.transform.position = exit.transform.position + Vector3.up * (.5f * unit);
-                    yield return new WaitForSeconds(.4f);
+                    yield return new WaitForSeconds(.8f);
                     Assert.That((bool)type.GetProperty("InDream").GetValue(game), Is.True);
-                    Assert.That(camera.transform.position.x, Is.EqualTo(cameraStart.x).Within(.01f),
-                        "Camera moved horizontally in " + aspect + " L" + levelIndex);
+                    if (maxX - minX > halfWidth * 2f + unit)
+                        Assert.That(camera.transform.position.x, Is.GreaterThan(cameraStart.x + .4f * unit),
+                            "Camera did not follow the player in " + aspect + " L" + levelIndex);
+                    if (maxX - minX > halfWidth * 2f)
+                        Assert.That(camera.transform.position.x + halfWidth, Is.LessThanOrEqualTo(maxX + .02f * unit),
+                            "Camera exceeded the right level edge in " + aspect + " L" + levelIndex);
                     Assert.That(camera.transform.position.y, Is.EqualTo(cameraStart.y).Within(.01f));
                     Assert.That(camera.orthographicSize, Is.EqualTo(sizeStart).Within(.01f));
 

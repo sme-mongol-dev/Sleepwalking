@@ -37,9 +37,15 @@ namespace Sleepwalking.Visual
             {
                 layer.GetPropertyBlock(properties);
                 properties.SetFloat(Highlight, highlighted ? .14f : 0f);
+                if (layer.sharedMaterial.HasProperty("_BaseColor"))
+                {
+                    Color color = layer.sharedMaterial.GetColor("_BaseColor");
+                    properties.SetColor("_BaseColor", highlighted ?
+                        new Color(color.r * 1.25f, color.g * 1.25f, color.b * 1.25f, color.a) : color);
+                }
                 if (layer.sharedMaterial.HasProperty("_EmissionColor"))
                     properties.SetColor("_EmissionColor", layer.sharedMaterial.GetColor("_EmissionColor") +
-                        (highlighted ? new Color(.14f, .13f, .12f, 0f) : Color.clear));
+                        (highlighted ? new Color(.14f, .14f, .14f, 0f) : Color.clear));
                 layer.SetPropertyBlock(properties);
             }
         }

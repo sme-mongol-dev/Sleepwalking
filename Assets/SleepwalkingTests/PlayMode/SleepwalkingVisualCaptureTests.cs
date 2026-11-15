@@ -65,7 +65,6 @@ namespace Sleepwalking.Tests.PlayMode
                         ratio == 0 ? 720 : 768, 24);
                     target.Create();
                     camera.targetTexture = target;
-                    Vector3 backgroundPosition = Vector3.zero;
                     float lastX = float.NegativeInfinity;
                     for (int edge = 0; edge < 3; edge++)
                     {
@@ -79,10 +78,13 @@ namespace Sleepwalking.Tests.PlayMode
                         Assert.That(background, Is.Not.Null);
                         Renderer art = background.GetComponent<Renderer>();
                         Assert.That(art.sharedMaterial.GetColor("_Tint").r, Is.LessThan(1f));
-                        if (edge == 0) backgroundPosition = background.position;
-                        else Assert.That(Vector3.Distance(background.position, backgroundPosition), Is.LessThan(.001f));
+                        Assert.That(background.position.x, Is.EqualTo(camera.transform.position.x).Within(.01f));
+                        Assert.That(background.position.y, Is.EqualTo(camera.transform.position.y).Within(.01f));
                         if (edge > 0) Assert.That(camera.transform.position.x, Is.GreaterThan(lastX + 32f));
                         lastX = camera.transform.position.x;
+                        Texture image = art.sharedMaterial.mainTexture;
+                        Assert.That(art.bounds.size.x / art.bounds.size.y,
+                            Is.EqualTo((float)image.width / image.height).Within(.01f));
                         float halfWidth = camera.orthographicSize * camera.aspect;
                         Assert.That(art.bounds.min.x, Is.LessThanOrEqualTo(camera.transform.position.x - halfWidth));
                         Assert.That(art.bounds.max.x, Is.GreaterThanOrEqualTo(camera.transform.position.x + halfWidth));

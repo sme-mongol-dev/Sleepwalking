@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Sleepwalking — Odradek room editor</title>
+  <style>
+    @font-face { font-family: "Cormorant"; src: url("../../Assets/SleepwalkingUI/Resources/SleepwalkingFonts/CormorantGaramond-Italic.ttf") format("truetype"); }
+    @font-face { font-family: "Space Mono"; src: url("../../Assets/SleepwalkingUI/Resources/SleepwalkingFonts/SpaceMono-Regular.ttf") format("truetype"); }
+    @font-face { font-family: "Space Mono"; src: url("../../Assets/SleepwalkingUI/Resources/SleepwalkingFonts/SpaceMono-Bold.ttf") format("truetype"); font-weight: 700; }
+    :root { color-scheme: dark; --bg:#161318; --panel:#222036; --edge:#8c5050; --shadow:#3c2030; --text:#f8d4b8; --muted:#b4b8d4; --accent:#b4202a; --hover:#e04020; --blue:#229ede; }
+    * { box-sizing:border-box; }
+    body { margin:0; background:var(--bg); color:var(--text); font:14px/1.45 "Space Mono",Consolas,monospace; }
+    button,input,select { font:inherit; }
+    button { cursor:pointer; border:1px solid var(--edge); border-radius:0; background:var(--bg); color:var(--text); padding:10px 14px; }
+    button:hover,button:focus-visible { border-color:var(--hover); outline:1px solid var(--hover); }
+    button:disabled { opacity:.4; cursor:not-allowed; }
+    button.primary { background:var(--accent); border-color:var(--accent); font-weight:700; }
+    button.primary:hover,button.primary:focus-visible { background:var(--hover); border-color:var(--hover); color:var(--bg); }
+    input,select { background:var(--bg); color:var(--text); border:1px solid var(--edge); border-radius:0; min-height:34px; padding:5px 8px; }
+    input:focus,select:focus { outline:1px solid var(--blue); border-color:var(--blue); }
+    input[type="number"] { width:78px; }
+    input[type="search"] { min-width:210px; width:100%; }
+    input[type="range"] { accent-color:var(--hover); min-height:0; padding:0; }
+    .shell { max-width:1600px; margin:auto; padding:26px clamp(15px,3vw,42px) 52px; }
+    header { display:flex; align-items:end; justify-content:space-between; gap:22px; border-bottom:4px solid var(--edge); padding-bottom:17px; }
+    .eyebrow { color:var(--muted); letter-spacing:.16em; font-size:11px; text-transform:uppercase; }
+    h1 { font:italic clamp(42px,5vw,74px)/.9 "Cormorant",Georgia,serif; margin:5px 0 0; font-weight:500; }
+    .intro { max-width:600px; color:var(--muted); margin:0; }
+    .path { color:var(--text); word-break:break-all; }
+    .toolbar { display:flex; flex-wrap:wrap; gap:10px; align-items:center; margin:20px 0; }
+    .toolbar .grow { flex:1 1 240px; }
+    .toolbar .value { display:flex; align-items:center; gap:10px; color:var(--muted); }
+    .toolbar .value strong { color:var(--text); min-width:3ch; }
+    .status { min-height:26px; color:var(--muted); margin:8px 0 15px; }
+    .status.dirty { color:var(--hover); }
+    .status.good { color:var(--text); }
+    .overview { display:grid; grid-template-columns:minmax(0,1.3fr) minmax(270px,.7fr); gap:14px; margin-bottom:20px; }
+    .panel { border:1px solid var(--edge); background:var(--panel); box-shadow:8px 8px 0 var(--shadow); padding:15px; }
+    .panel h2 { font-size:14px; margin:0 0 12px; letter-spacing:.06em; }
+    .summary-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(180px,1fr)); gap:9px; }
+    .group-card { background:var(--bg); border-left:3px solid var(--edge); padding:9px 10px; min-height:68px; }
+    .group-card.error { border-color:var(--hover); }
+    .group-card small { display:block; color:var(--muted); margin-top:3px; }
+    .group-card .bad { color:var(--hover); }
+    .issues { margin:0; padding-left:20px; max-height:180px; overflow:auto; color:var(--muted); }
+    .issues li { margin:4px 0; }
+    .issues li.error { color:var(--hover); }
+    .table-tools { display:flex; flex-wrap:wrap; align-items:center; gap:10px; margin:24px 0 10px; }
+    .table-tools h2 { font-size:15px; margin:0 auto 0 0; }
+    .table-wrap { overflow:auto; border:1px solid var(--edge); max-height:min(65vh,850px); background:var(--panel); }
+    table { border-collapse:collapse; min-width:1040px; width:100%; }
+    th { position:sticky; top:0; z-index:2; background:var(--shadow); color:var(--muted); font-weight:700; text-align:left; font-size:12px; letter-spacing:.08em; text-transform:uppercase; padding:10px; border-bottom:2px solid var(--edge); }
+    td { padding:8px 10px; border-bottom:1px solid #3c2030; vertical-align:middle; }
+    tr:hover { background:#2c263a; }
+    tr.active-now { box-shadow:inset 3px 0 0 var(--blue); }
+    tr.invalid { box-shadow:inset 3px 0 0 var(--hover); }
+    .asset-name { font-weight:700; line-height:1.25; }
+    .asset-id { display:block; font-size:11px; color:var(--muted); word-break:break-all; }
+    .preview { width:72px; height:72px; display:grid; place-items:center; background:repeating-conic-gradient(#6b6174 0 25%,#51495e 0 50%) 50% / 16px 16px; border:1px solid var(--edge); overflow:hidden; }
+    .preview img { width:100%; height:100%; object-fit:contain; image-rendering:pixelated; }
+    .preview .bed-frame { width:72px; height:72px; background-image:url("OdradekAssets/BoyAndBedLooks.png"); background-size:576px 72px; background-repeat:no-repeat; image-rendering:pixelated; }
+    .preview .missing { color:var(--muted); font-size:11px; text-align:center; padding:4px; }
+    .field-wide { width:150px; max-width:100%; }
+    .asset-field { width:190px; max-width:100%; }
+    .mode { min-width:136px; }
+    .row-status { display:block; min-width:100px; font-size:11px; color:var(--muted); }
+    .row-status.bad { color:var(--hover); }
+    .remove { padding:5px 9px; color:var(--muted); }
+    .small-note { color:var(--muted); font-size:12px; margin:10px 0 0; }
+    .footer-actions { display:flex; flex-wrap:wrap; gap:10px; align-items:center; margin-top:20px; }
+    .footer-actions .spacer { flex:1; }
+    .sr-only { position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0; }
+    @media(max-width:950px) { header { align-items:start; flex-direction:column; } .overview { grid-template-columns:1fr; } }
+  </style>
+</head>
+<body>
+  <main class="shell">
+    <header>
+      <div><div class="eyebrow">Sleepwalking / room state editor</div><h1>Odradek</h1></div>
+      <p class="intro">Настройте, что видно при каждом значении Odradek от 1 до 100. Границы диапазонов включены. Сохраните экспорт в <span class="path">Assets/StreamingAssets/SleepwalkingMenuDecor.json</span> (в установленной игре — рядом с Sleepwalking.exe).</p>
+    </header>
+    <div class="toolbar">
+      <button id="importButton" type="button">Загрузить JSON</button>
+      <input id="importFile" type="file" accept=".json,application/json" hidden>
+      <button id="saveDraft" type="button">Скачать черновик</button>
+      <button id="resetDefaults" type="button">Начать заново</button>
+      <button id="saveUnityTop" class="primary" type="button">Сохранить JSON для Unity</button>
+      <div class="grow"></div>
+      <label class="value" for="odradekValue">Проверка при Odradek <strong id="odradekNumber">1</strong></label>
+      <input id="odradekValue" type="range" min="1" max="100" value="1">
+    </div>
+    <div id="saveStatus" class="status" role="status" aria-live="polite"></div>
+    <div class="overview">
+      <section class="panel" aria-labelledby="groupsTitle"><h2 id="groupsTitle">Покрытие групп 1–100</h2><div id="groupSummary" class="summary-grid"></div></section>
+      <section class="panel" aria-labelledby="issuesTitle"><h2 id="issuesTitle">Проверка данных</h2><ul id="issues" class="issues"></ul></section>
+    </div>
+    <div class="table-tools">
+      <h2>Декор и варианты</h2>
+      <label><span class="sr-only">Поиск по названию и ID</span><input id="search" type="search" placeholder="Поиск по названию или ID"></label>
+      <label><span class="sr-only">Фильтр группы</span><select id="groupFilter"><option value="">Все группы</option></select></label>
+      <button id="addRow" type="button">+ Добавить строку</button>
+      <span id="rowCount" class="small-note"></span>
+    </div>
+    <div class="table-wrap">
+      <table aria-label="Диапазоны декора Odradek">
+        <thead><tr><th>Превью</th><th>Вариант / ID</th><th>Группа</th><th>Режим</th><th>Min</th><th>Max</th><th>Asset</th><th>При Odradek</th><th></th></tr></thead>
+        <tbody id="rows"></tbody>
+      </table>
+    </div>
+    <p class="small-note">Poster и bed: ровно один вариант при каждом значении 1–100. Calendar: не более одного, пустые диапазоны допустимы. Cracks и props: варианты накапливаются. Режим определяется группой и не записывается в JSON; asset выбирается из той же группы. В экспорт входят только строки с изменениями; остальные значения остаются из префаба. Новый ID или asset нужно сначала зарегистрировать в Unity.</p>
+    <div class="footer-actions">
+      <button id="autoPartition" type="button">Разбить заменяющую группу поровну</button>
+      <label><span class="sr-only">Группа для разбиения</span><select id="partitionGroup"></select></label>
+      <div class="spacer"></div>
+      <button id="saveUnity" class="primary" type="button">Сохранить JSON для Unity</button>
+    </div>
+  </main>
+  <script src="OdradekEditor.js"></script>
+</body>
+</html>

@@ -35,6 +35,8 @@ namespace Sleepwalking
         float dreamCameraY;
         float dreamCameraSize;
         float dreamCameraVerticalSize;
+        float dreamCameraVelocityX;
+        bool retryReturning;
         Vector3 roomCameraPosition = new Vector3(0f, 1f, -20f);
         Quaternion roomCameraRotation = Quaternion.identity;
         bool roomOrthographic = true;
@@ -126,7 +128,14 @@ namespace Sleepwalking
             if (transitioning) return;
             if (inDream)
             {
-                ResetDreamCamera();
+                if (!retryReturning && player != null)
+                {
+                    float targetX = ClampDreamCameraX(player.transform.position.x);
+                    dreamCameraPosition.x = Mathf.SmoothDamp(dreamCameraPosition.x, targetX,
+                        ref dreamCameraVelocityX, .28f);
+                    dreamCameraPosition.x = ClampDreamCameraX(dreamCameraPosition.x);
+                    GameCamera.transform.position = dreamCameraPosition;
+                }
                 GameCamera.transform.rotation = Quaternion.identity;
                 activeTheme?.FrameBackdrop(GameCamera);
                 return;
@@ -141,6 +150,15 @@ namespace Sleepwalking
             RenderTexture target = GameCamera.targetTexture;
             return target != null ? (float)target.width / Mathf.Max(1, target.height) :
                 (float)Mathf.Max(1, Screen.width) / Mathf.Max(1, Screen.height);
+        }
+
+        float ClampDreamCameraX(float position)
+        {
+            float halfWidth = dreamCameraSize * DreamCameraAspect();
+            float min = dreamCameraMinX + halfWidth;
+            float max = dreamCameraMaxX - halfWidth;
+            return min >= max ? (dreamCameraMinX + dreamCameraMaxX) * .5f :
+                Mathf.Clamp(position, min, max);
         }
 
         void FrameDreamCamera()
@@ -183,11 +201,12 @@ namespace Sleepwalking
 
         void ResetDreamCamera()
         {
-            float halfWidth = (dreamCameraMaxX - dreamCameraMinX + LevelUnit) * .5f;
-            dreamCameraSize = Mathf.Max(dreamCameraVerticalSize,
-                halfWidth / Mathf.Max(.01f, DreamCameraAspect()));
+            dreamCameraSize = dreamCameraVerticalSize;
             GameCamera.orthographicSize = dreamCameraSize;
-            dreamCameraPosition = new Vector3((dreamCameraMinX + dreamCameraMaxX) * .5f,
+            dreamCameraVelocityX = 0f;
+            float playerX = player != null ? player.transform.position.x :
+                (dreamCameraMinX + dreamCameraMaxX) * .5f;
+            dreamCameraPosition = new Vector3(ClampDreamCameraX(playerX),
                 dreamCameraY, -20f);
             GameCamera.transform.position = dreamCameraPosition;
         }
@@ -206,8 +225,12 @@ namespace Sleepwalking
             GUI.Label(new Rect(Screen.width - 220, 12, 204, 32), odradekLabel);
             if (inDream)
             {
-                GUI.Label(new Rect(16, 12, 650, 32), "DREAM " + (completedDreams % 7 + 1) + "/7   CYCLE " + (completedDreams / 7 + 1));
-                GUI.Label(new Rect(16, 38, 650, 32), "A/D move   SPACE jump   SHIFT dash   ESC pause");
+                string dreamLabel = activeTutorial ? "TUTORIAL " + (tutorialStage + 1) + "/2" :
+                    "DREAM " + (completedDreams % 7 + 1) + "/7   CYCLE " + (completedDreams / 7 + 1);
+                GUI.Label(new Rect(16, 12, 650, 32), dreamLabel);
+                GUI.Label(new Rect(16, 38, 650, 32), activeTutorial && tutorialStage == 0 ?
+                    "A/D move   SPACE jump / wall jump   ESC pause" :
+                    "A/D move   SPACE jump   SHIFT dash   ESC pause");
             }
             else if (UI == null || !uiEventsBound)
                 GUI.Label(new Rect(16, 12, 650, 32), "Click the bed or press E to enter the next dream");
@@ -340,7 +363,7 @@ namespace Sleepwalking
 
         public void RestartDream()
         {
-            if (!inDream || transitioning) return;
+            if (!inDream || transitioning || dying) return;
             RestartAttempt();
         }
 
@@ -348,6 +371,7 @@ namespace Sleepwalking
         {
             StopAllCoroutines();
             transitioning = dying = inDream = false;
+            retryReturning = false;
             fade = 0f;
             completedDreams = tutorialStage = roomChange = 0;
             activeTutorial = false;
@@ -408,28 +432,43 @@ namespace Sleepwalking
             player.SetImpact();
             if (surface != null) PaintAt(point, normal, surface);
             PlayCue("Impact");
-            for (float elapsed = 0f; elapsed < .28f; elapsed += Time.unscaledDeltaTime)
+            yield return new WaitForSecondsRealtime(.72f);
+
+            Vector3 from = player.transform.position;
+            Vector3 destination = start.position + Vector3.up * (.5f * LevelUnit);
+            Vector3 cameraFrom = GameCamera.transform.position;
+            Vector3 cameraTo = new Vector3(ClampDreamCameraX(destination.x), dreamCameraY, -20f);
+            float returnSeconds = Mathf.Clamp(Vector3.Distance(from, destination) /
+                (18f * LevelUnit), .6f, 1.4f);
+            player.BeginReturn();
+            retryReturning = true;
+            for (float elapsed = 0f; elapsed < returnSeconds; elapsed += Time.unscaledDeltaTime)
             {
-                float fraction = elapsed / .28f;
-                float unit = LevelUnit;
-                player.transform.localScale = new Vector3(.55f * unit * (1f + fraction * .7f),
-                    unit * (1f - fraction * .65f), 1f);
-                player.transform.rotation = Quaternion.Euler(0, 0, fraction * 45f);
+                float fraction = Mathf.SmoothStep(0f, 1f, elapsed / returnSeconds);
+                player.transform.position = Vector3.Lerp(from, destination, fraction);
+                dreamCameraPosition = Vector3.Lerp(cameraFrom, cameraTo, fraction);
+                GameCamera.transform.position = dreamCameraPosition;
                 yield return null;
             }
-            player.transform.localScale = new Vector3(.55f * LevelUnit, LevelUnit, 1f);
-            player.transform.rotation = Quaternion.identity;
-            RestartAttempt();
-            yield return new WaitForSecondsRealtime(.25f);
+
+            player.transform.position = destination;
+            dreamCameraPosition = cameraTo;
+            GameCamera.transform.position = cameraTo;
+            dreamCameraVelocityX = 0f;
+            RestartAttempt(false);
+            player.ControlsEnabled = false;
+            yield return new WaitForSecondsRealtime(.15f);
+            player.ControlsEnabled = true;
+            retryReturning = false;
             dying = false;
         }
 
-        void RestartAttempt()
+        void RestartAttempt(bool resetCamera = true)
         {
             if (level == null || player == null || start == null) return;
             foreach (SleepwalkingMechanism mechanism in level.GetComponentsInChildren<SleepwalkingMechanism>()) mechanism.ResetMechanism();
             player.ResetAt(start.position + Vector3.up * (.5f * LevelUnit));
-            ResetDreamCamera();
+            if (resetCamera) ResetDreamCamera();
         }
 
         public void PressButton(SleepwalkingMechanism button)

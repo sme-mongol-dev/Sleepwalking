@@ -207,7 +207,13 @@ namespace Sleepwalking
 
         void OnDestroy()
         {
+            HighlightRoomTarget(null);
             if (paused) Time.timeScale = previousTimeScale;
+        }
+
+        void OnDisable()
+        {
+            HighlightRoomTarget(null);
         }
 
         void Update()

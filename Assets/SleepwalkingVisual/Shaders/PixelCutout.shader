@@ -51,7 +51,7 @@ Shader "Sleepwalking/PixelCutout"
             {
                 half4 color = SAMPLE_TEXTURE2D(_MainTex, sampler_MainTex, input.uv);
                 clip(color.a - 0.5h);
-                color.rgb = lerp(color.rgb, half3(1, 0.9, 0.8), _Highlight);
+                color.rgb = lerp(color.rgb, half3(1, 1, 1), _Highlight);
                 return color;
             }
             ENDHLSL

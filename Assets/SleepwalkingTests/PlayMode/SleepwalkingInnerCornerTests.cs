@@ -20,10 +20,25 @@ namespace Sleepwalking.Tests.PlayMode
         }
 
         [Test]
+        public void Tile18FacesTwoAdjacentMissingDiagonals()
+        {
+            Vector2Int[][] missing =
+            {
+                new[] { new Vector2Int(-1, -1), new Vector2Int(1, -1) },
+                new[] { new Vector2Int(-1, 1), new Vector2Int(-1, -1) },
+                new[] { new Vector2Int(-1, 1), new Vector2Int(1, 1) },
+                new[] { new Vector2Int(1, 1), new Vector2Int(1, -1) }
+            };
+            for (int q = 0; q < missing.Length; q++)
+                CheckUv(CenterUv(Matrix(missing[q])), 18, q);
+        }
+
+        [Test]
         public void FullAndAmbiguousDiagonalSurroundingsKeepTile5()
         {
             CheckUv(CenterUv(Matrix()), 5, 0);
             CheckUv(CenterUv(Matrix(new Vector2Int(-1, 1), new Vector2Int(1, -1))), 5, 0);
+            CheckUv(CenterUv(Matrix(new Vector2Int(1, 1), new Vector2Int(-1, -1))), 5, 0);
         }
 
         [Test]

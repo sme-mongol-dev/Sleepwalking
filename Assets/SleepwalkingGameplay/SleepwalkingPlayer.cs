@@ -42,6 +42,8 @@ namespace Sleepwalking
         float preDashVelocityX;
         float dashReady;
         bool restoreDashMomentum;
+        bool impactActive;
+        bool returning;
         int dashCharges = 1;
         int facing = 1;
         int dashDirection = 1;
@@ -58,6 +60,9 @@ namespace Sleepwalking
         bool simulatedDash;
 
         public bool IsGrounded => grounded;
+        public bool IsDashing => dashRemaining > 0f;
+        public bool IsImpact => impactActive;
+        public bool IsReturning => returning;
         public bool CanUseExit(float bedX)
         {
             if (!grounded || body == null || shape == null || Mathf.Abs(body.linearVelocity.y) >= .3f * WorldUnitsPerCell)
@@ -191,12 +196,15 @@ namespace Sleepwalking
         public void ResetAt(Vector2 position)
         {
             body.simulated = true;
+            transform.position = position;
             body.position = position;
             body.linearVelocity = Vector2.zero;
             body.gravityScale = GravityScale;
             dashRemaining = dashDistanceRemaining = dashReady = jumpBuffer = coyote = 0f;
             preDashVelocityX = 0f;
             restoreDashMomentum = false;
+            impactActive = false;
+            returning = false;
             dashCharges = 1;
             facing = dashDirection = 1;
             simulatedHorizontal = 0f;
@@ -209,11 +217,19 @@ namespace Sleepwalking
 
         public void SetImpact()
         {
+            impactActive = true;
+            returning = false;
             ControlsEnabled = false;
             body.linearVelocity = Vector2.zero;
             body.simulated = false;
             if (standingPlatform != null) ClearPlatformVelocity(standingPlatform);
             if (sprite != null) sprite.color = new Color(1f, .25f, .25f);
+        }
+
+        public void BeginReturn()
+        {
+            impactActive = false;
+            returning = true;
         }
 
         public void SetPlatformVelocity(SleepwalkingMechanism platform, Vector2 velocity)

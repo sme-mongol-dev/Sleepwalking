@@ -30,11 +30,6 @@ namespace Sleepwalking.Visual
         readonly List<Renderer> tileBackings = new List<Renderer>();
         readonly List<Renderer> bedBackings = new List<Renderer>();
         readonly List<SpriteRenderer> bedSprites = new List<SpriteRenderer>();
-        float backdropLeft;
-        float backdropRight;
-        float backdropCenterY;
-        bool hasBackdropBounds;
-
         public void FrameBackdrop(Camera camera)
         {
             if (camera == null) return;
@@ -48,19 +43,10 @@ namespace Sleepwalking.Visual
             float viewHeight = camera.orthographicSize * 2f + .1f;
             float viewWidth = viewHeight * camera.aspect;
             float imageAspect = (float)texture.width / texture.height;
-            float left = camera.transform.position.x - viewWidth / 2f;
-            float right = camera.transform.position.x + viewWidth / 2f;
-            float centerY = camera.transform.position.y;
-            if (hasBackdropBounds)
-            {
-                left = backdropLeft;
-                right = backdropRight;
-                centerY = backdropCenterY;
-            }
-            // Плоскость закреплена за всем уровнем; запас по краям покрывает крайние положения камеры.
-            float width = Mathf.Max(right - left + viewWidth, viewHeight * imageAspect);
+            float width = Mathf.Max(viewWidth, viewHeight * imageAspect);
             float height = width / imageAspect;
-            background.position = new Vector3((left + right) / 2f, centerY, background.position.z);
+            background.position = new Vector3(camera.transform.position.x,
+                camera.transform.position.y, background.position.z);
             Vector3 parentScale = background.parent != null ? background.parent.lossyScale : Vector3.one;
             background.localScale = new Vector3(width / Mathf.Max(.001f, Mathf.Abs(parentScale.x)),
                 height / Mathf.Max(.001f, Mathf.Abs(parentScale.y)), 1f);
@@ -77,7 +63,6 @@ namespace Sleepwalking.Visual
         public void ApplyTo(Transform geometryRoot)
         {
             if (geometryRoot == null) return;
-            CacheBackdropBounds(geometryRoot);
             tileBackings.Clear();
             bedBackings.Clear();
             bedSprites.Clear();
@@ -108,29 +93,6 @@ namespace Sleepwalking.Visual
             }
             foreach (SleepwalkingTileSurface surface in geometryRoot.parent.GetComponentsInChildren<SleepwalkingTileSurface>(true))
                 ApplyTiles(surface, surface.transform.IsChildOf(geometryRoot));
-        }
-
-        void CacheBackdropBounds(Transform geometryRoot)
-        {
-            float left = float.PositiveInfinity;
-            float right = float.NegativeInfinity;
-            float bottom = float.PositiveInfinity;
-            float top = float.NegativeInfinity;
-            foreach (SleepwalkingTileSurface surface in geometryRoot.GetComponentsInChildren<SleepwalkingTileSurface>(true))
-            {
-                Collider2D shape = surface.Solid;
-                if (shape == null) continue;
-                Bounds bounds = shape.bounds;
-                left = Mathf.Min(left, bounds.min.x);
-                right = Mathf.Max(right, bounds.max.x);
-                bottom = Mathf.Min(bottom, bounds.min.y);
-                top = Mathf.Max(top, bounds.max.y);
-            }
-            hasBackdropBounds = left < right && bottom < top;
-            if (!hasBackdropBounds) return;
-            backdropLeft = left;
-            backdropRight = right;
-            backdropCenterY = (bottom + top) / 2f;
         }
 
         void ApplyGridTiles(Transform geometryRoot)
@@ -273,6 +235,14 @@ namespace Sleepwalking.Visual
                         // Фактурный угол тайла 17 находится на юго-востоке и смотрит в пустую диагональ.
                         tile = 16;
                         rotation = !southEast ? 0 : !southWest ? 1 : !northWest ? 2 : 3;
+                    }
+                    else if (diagonals == 2)
+                    {
+                        // У тайла 18 открыты юго-западная и юго-восточная диагонали.
+                        if (!southWest && !southEast) { tile = 17; rotation = 0; }
+                        else if (!northWest && !southWest) { tile = 17; rotation = 1; }
+                        else if (!northWest && !northEast) { tile = 17; rotation = 2; }
+                        else if (!northEast && !southEast) { tile = 17; rotation = 3; }
                     }
                 }
                 int column = tile % 3;

@@ -44,16 +44,28 @@ for (let level = 1; level <= 7; level++) {
   }
 
   const count = { NW: 0, NE: 0, SE: 0, SW: 0 };
+  const doubleCount = { 'SW+SE': 0, 'NW+SW': 0, 'NW+NE': 0, 'NE+SE': 0 };
   const hits = [];
+  const doubleHits = [];
   for (const key of cells) {
     const [x, y] = key.split(',').map(Number);
     if (![[0, 1], [1, 0], [0, -1], [-1, 0]].every(([dx, dy]) => cells.has(`${x + dx},${y + dy}`)))
       continue;
     const missing = diagonals.filter(([, dx, dy]) => !cells.has(`${x + dx},${y + dy}`));
-    if (missing.length !== 1) continue;
-    const corner = missing[0][0];
-    count[corner]++;
-    hits.push(`${key}:${corner}`);
+    if (missing.length === 1) {
+      const corner = missing[0][0];
+      count[corner]++;
+      hits.push(`${key}:${corner}`);
+    }
+    else if (missing.length === 2) {
+      const pair = missing.map(([corner]) => corner);
+      const corner = Object.keys(doubleCount).find(item =>
+        item.split('+').every(part => pair.includes(part)));
+      if (!corner) continue;
+      doubleCount[corner]++;
+      doubleHits.push(`${key}:${corner}`);
+    }
   }
   console.log(`${name}: ${cells.size} static cells; tile17 NW=${count.NW} NE=${count.NE} SE=${count.SE} SW=${count.SW}; ${hits.join(' ')}`);
+  console.log(`${name}: tile18 SW+SE=${doubleCount['SW+SE']} NW+SW=${doubleCount['NW+SW']} NW+NE=${doubleCount['NW+NE']} NE+SE=${doubleCount['NE+SE']}; ${doubleHits.join(' ')}`);
 }

@@ -8,6 +8,8 @@ The room prefab belongs to Visual Director. Its bed/hero, clock, bookshelf, and 
 
 For an orthographic room camera, the UI widens its view only as needed to keep every active room hotspot inside the frame when the window becomes narrow. It keeps the camera's original orthographic size as the minimum and recalculates on aspect changes or `EnterRoom`. Call `EnterRoom` after the room prefab and its hotspots exist, including after every wake transition. The sleep transition can still animate the camera after the room selection.
 
+The UI turns on the selected RoomHotspot artwork highlight and clears the previous one on pointer leave, screen change, or UI teardown. The Visual module owns its subtle white material response; the UI leaves the room background untouched.
+
 ## Game Mechanics API
 
 ```csharp

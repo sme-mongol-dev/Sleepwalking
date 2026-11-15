@@ -1,1 +1,1 @@
-Camera=(960.27, 120.00, -20.00) Size=208 Player=(1232.00, 19.20, 0.00) PlayerViewport=(0.87, 0.26, 20.00) Target=1280x720 Style=0 Direct=False ForcedCamera=False PositionedActor=True TimeScale=1
+Camera=(960.49, 9.60, -20.00) Size=208 Player=(1232.00, 19.20, 0.00) PlayerViewport=(0.87, 0.52, 20.00) Target=1280x720 Style=0 Direct=False ForcedCamera=False PositionedActor=True TimeScale=1
