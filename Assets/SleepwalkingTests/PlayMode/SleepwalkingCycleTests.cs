@@ -183,7 +183,7 @@ namespace Sleepwalking.Tests.PlayMode
         }
 
         [UnityTest]
-        public IEnumerator EightDreamsReuseSevenAuthoredLevels()
+        public IEnumerator FullCycleIncludesEighthLevelAndWrapsToFirst()
         {
             AsyncOperation loading = SceneManager.LoadSceneAsync("Assets/Scenes/Sleepwalking.unity");
             Assert.That(loading, Is.Not.Null, "The integrated Sleepwalking scene must load.");
@@ -237,9 +237,10 @@ namespace Sleepwalking.Tests.PlayMode
             Assert.That(closeOverlay, Is.Not.Null);
 
             GameObject[] prefabs = (GameObject[])levelPrefabs.GetValue(game);
-            Assert.That(prefabs, Has.Length.EqualTo(7));
+            type.GetField("tutorialStage", BindingFlags.Instance | BindingFlags.NonPublic).SetValue(game, 2);
+            Assert.That(prefabs, Has.Length.EqualTo(8));
             foreach (GameObject prefab in prefabs)
-                Assert.That(prefab, Is.Not.Null, "All seven authored levels must be assigned.");
+                Assert.That(prefab, Is.Not.Null, "All authored levels must be assigned.");
 
             Assert.That((bool)inDream.GetValue(game), Is.False);
             Assert.That((int)completedDreams.GetValue(game), Is.Zero);
@@ -271,8 +272,8 @@ namespace Sleepwalking.Tests.PlayMode
             }
             Assert.That(dreamHotspot, Is.Not.Null, "The waking room must have a Dream hotspot on the bed.");
 
-            // Восьмой вход проверяет возврат к первой геометрии после полного цикла.
-            for (int q = 0; q < 8; q++)
+            // Дополнительный вход проверяет возврат к первой геометрии после полного цикла.
+            for (int q = 0; q <= prefabs.Length; q++)
             {
                 if (q == 0) activateRoomTarget.Invoke(ui, new object[] { dreamHotspot });
                 else startDream.Invoke(game, null);
@@ -284,7 +285,7 @@ namespace Sleepwalking.Tests.PlayMode
                 Assert.That((bool)transitioning.GetValue(game), Is.False, "Dream " + (q + 1) + " transition did not finish.");
                 Assert.That((int)completedDreams.GetValue(game), Is.EqualTo(q));
                 Assert.That(room.activeSelf, Is.False, "The waking room must be hidden during a dream.");
-                GameObject level = GameObject.Find("Dream L" + (q % 7 + 1).ToString("00"));
+                GameObject level = GameObject.Find("Dream L" + (q % prefabs.Length + 1).ToString("00"));
                 Assert.That(level, Is.Not.Null,
                     "Dream " + (q + 1) + " must instantiate its authored level, not fallback geometry.");
                 AssertTilesMatchColliders(level);
@@ -341,7 +342,7 @@ namespace Sleepwalking.Tests.PlayMode
                 Assert.That(room.activeSelf, Is.True, "The waking room must return after dream " + (q + 1) + ".");
                 poster.GetPropertyBlock(posterProperties);
                 Assert.That(posterProperties.GetTexture("_MainTex"), Is.SameAs(initialPoster));
-                Assert.That(GameObject.Find("Dream L" + (q % 7 + 1).ToString("00")), Is.Null,
+                Assert.That(GameObject.Find("Dream L" + (q % prefabs.Length + 1).ToString("00")), Is.Null,
                     "The completed dream level must be removed.");
                 if (q == 0)
                 {

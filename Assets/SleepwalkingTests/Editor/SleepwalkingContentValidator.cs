@@ -10,7 +10,7 @@ namespace Sleepwalking.Tests.Editor
     {
         private const string PrefabRoot = "Assets/SleepwalkingLevels/Prefabs";
 
-        [MenuItem("Sleepwalking/QA/Validate Seven Level Prefabs")]
+        [MenuItem("Sleepwalking/QA/Validate Level Prefabs")]
         public static void ValidateFromMenu()
         {
             List<string> errors = ValidateSevenLevelPrefabs();
@@ -18,7 +18,7 @@ namespace Sleepwalking.Tests.Editor
                 Debug.LogError("Sleepwalking QA: " + error);
 
             if (errors.Count == 0)
-                Debug.Log("Sleepwalking QA: seven level prefab contracts passed. Gameplay and presentation remain untested.");
+                Debug.Log("Sleepwalking QA: all level prefab contracts passed.");
         }
 
         // Вызывается через Unity -batchmode -executeMethod; ошибка должна завершить проверку неуспешно.
@@ -31,7 +31,7 @@ namespace Sleepwalking.Tests.Editor
             if (errors.Count > 0)
                 throw new InvalidOperationException("Sleepwalking QA: " + errors.Count + " level prefab contract errors.");
 
-            Debug.Log("Sleepwalking QA: seven level prefab contracts passed. Gameplay and presentation remain untested.");
+            Debug.Log("Sleepwalking QA: all level prefab contracts passed.");
         }
 
         public static List<string> ValidateSevenLevelPrefabs()
@@ -47,7 +47,9 @@ namespace Sleepwalking.Tests.Editor
                 new[] { LevelFeatureKind.TimedPlatform },
                 new[] { LevelFeatureKind.MovingPlatform },
                 new[] { LevelFeatureKind.Spikes, LevelFeatureKind.Saw, LevelFeatureKind.LaserBase,
-                    LevelFeatureKind.LaserBeam, LevelFeatureKind.Button }
+                    LevelFeatureKind.LaserBeam, LevelFeatureKind.Button },
+                new[] { LevelFeatureKind.Saw, LevelFeatureKind.LaserBase, LevelFeatureKind.LaserBeam,
+                    LevelFeatureKind.Button, LevelFeatureKind.MovingPlatform }
             };
 
             string[] prefabIds = AssetDatabase.FindAssets("t:Prefab", new[] { PrefabRoot });
@@ -55,12 +57,13 @@ namespace Sleepwalking.Tests.Editor
             foreach (string id in prefabIds)
             {
                 string assetPath = AssetDatabase.GUIDToAssetPath(id);
-                if (assetPath.EndsWith("_DreamGeometry.prefab", StringComparison.Ordinal)) geometryCount++;
+                if (assetPath.EndsWith("_DreamGeometry.prefab", StringComparison.Ordinal) &&
+                    !assetPath.Contains("/Tutorial")) geometryCount++;
             }
-            if (geometryCount != 7)
-                errors.Add("Found " + geometryCount + " dream geometry prefabs; expected exactly 7");
+            if (geometryCount != SleepwalkingGame.AuthoredDreamCount)
+                errors.Add("Found " + geometryCount + " dream geometry prefabs; expected " + SleepwalkingGame.AuthoredDreamCount);
 
-            for (int q = 1; q <= 7; q++)
+            for (int q = 1; q <= SleepwalkingGame.AuthoredDreamCount; q++)
             {
                 string path = PrefabRoot + "/L" + q.ToString("00") + "_DreamGeometry.prefab";
                 GameObject prefab = AssetDatabase.LoadAssetAtPath<GameObject>(path);
@@ -88,8 +91,8 @@ namespace Sleepwalking.Tests.Editor
                 if (geometry == null || geometry.childCount == 0)
                     errors.Add(path + ": platform geometry is missing");
                 else
-                    foreach (Transform platform in geometry)
-                        ValidatePlatform(path, platform, errors);
+                    foreach (SleepwalkingTileSurface platform in geometry.GetComponentsInChildren<SleepwalkingTileSurface>())
+                        ValidatePlatform(path, platform.transform, errors);
 
                 SleepwalkingLevelFeature[] features = prefab.GetComponentsInChildren<SleepwalkingLevelFeature>(true);
                 bool hasExit = false;
@@ -122,8 +125,8 @@ namespace Sleepwalking.Tests.Editor
                 }
             }
 
-            if (indices.Count != 7)
-                errors.Add("Only " + indices.Count + " unique level indices found; expected 7");
+            if (indices.Count != SleepwalkingGame.AuthoredDreamCount)
+                errors.Add("Only " + indices.Count + " unique level indices found; expected " + SleepwalkingGame.AuthoredDreamCount);
             return errors;
         }
 
@@ -131,8 +134,27 @@ namespace Sleepwalking.Tests.Editor
         {
             SleepwalkingTileSurface surface = platform.GetComponent<SleepwalkingTileSurface>();
             Collider2D shape = surface != null ? surface.Solid : null;
+            // Persistent prefab assets have empty physics bounds until instantiated.
+            // Validate their serialized collision geometry instead.
+            bool hasArea = shape is BoxCollider2D box && box.size.x > 0f && box.size.y > 0f;
+            if (shape is PolygonCollider2D polygon)
+            {
+                float area = 0f;
+                for (int pathIndex = 0; pathIndex < polygon.pathCount; pathIndex++)
+                {
+                    Vector2[] points = polygon.GetPath(pathIndex);
+                    float twiceArea = 0f;
+                    for (int i = 0; i < points.Length; i++)
+                    {
+                        Vector2 next = points[(i + 1) % points.Length];
+                        twiceArea += points[i].x * next.y - next.x * points[i].y;
+                    }
+                    area += Mathf.Abs(twiceArea);
+                }
+                hasArea = area > .0001f;
+            }
             if (shape == null || !shape.enabled || shape.isTrigger ||
-                shape.bounds.size.x <= 0 || shape.bounds.size.y <= 0)
+                !hasArea || Mathf.Abs(platform.lossyScale.x * platform.lossyScale.y) < .0001f)
                 errors.Add(path + ": platform " + platform.name + " needs an enabled solid Collider2D and a tile surface");
         }
 

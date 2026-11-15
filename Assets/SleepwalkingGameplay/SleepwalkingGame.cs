@@ -9,7 +9,8 @@ namespace Sleepwalking
     {
         public static SleepwalkingGame Instance { get; private set; }
         public GameObject[] TutorialPrefabs = new GameObject[2];
-        public GameObject[] LevelPrefabs = new GameObject[7];
+        public const int AuthoredDreamCount = 8;
+        public GameObject[] LevelPrefabs = new GameObject[AuthoredDreamCount];
         public GameObject[] ThemePrefabs = new GameObject[4];
         public SleepwalkingMovementProfile[] MovementProfiles = new SleepwalkingMovementProfile[3];
         public SleepwalkingMovementProfile MovementProfile;
@@ -17,6 +18,7 @@ namespace Sleepwalking
         public SleepwalkingUI UI;
         public Camera GameCamera;
         public int CompletedDreams => completedDreams;
+        public int DreamCount => LevelPrefabs != null && LevelPrefabs.Length > 0 ? LevelPrefabs.Length : AuthoredDreamCount;
         public int TutorialStage => tutorialStage;
         public bool InDream => inDream;
 
@@ -163,7 +165,7 @@ namespace Sleepwalking
             float minX = left.bounds.max.x - .6f * unit;
             float maxX = right.bounds.min.x + .6f * unit;
             float maxY = start.position.y + 2f * unit;
-            foreach (BoxCollider2D roof in shell.GetComponentsInChildren<BoxCollider2D>())
+            foreach (Collider2D roof in shell.GetComponentsInChildren<Collider2D>())
                 if (roof.name.StartsWith("Cave_Roof_")) maxY = Mathf.Max(maxY, roof.bounds.min.y);
 
             float minY = start.position.y - 1.5f * unit;
@@ -206,7 +208,7 @@ namespace Sleepwalking
             GUI.Label(new Rect(Screen.width - 220, 12, 204, 32), odradekLabel);
             if (inDream)
             {
-                GUI.Label(new Rect(16, 12, 650, 32), "DREAM " + (completedDreams % 7 + 1) + "/7   CYCLE " + (completedDreams / 7 + 1));
+                GUI.Label(new Rect(16, 12, 650, 32), "DREAM " + (completedDreams % DreamCount + 1) + "/" + DreamCount + "   CYCLE " + (completedDreams / DreamCount + 1));
                 GUI.Label(new Rect(16, 38, 650, 32), "A/D move   SPACE jump   SHIFT dash   ESC pause");
             }
             else if (UI == null || !uiEventsBound)
@@ -449,7 +451,7 @@ namespace Sleepwalking
             activeTutorial = completedDreams == 0 && tutorialStage < 2 &&
                 TutorialPrefabs != null && tutorialStage < TutorialPrefabs.Length &&
                 TutorialPrefabs[tutorialStage] != null;
-            int index = completedDreams % 7;
+            int index = completedDreams % DreamCount;
             if (activeTutorial)
             {
                 level = Instantiate(TutorialPrefabs[tutorialStage]);
@@ -463,7 +465,7 @@ namespace Sleepwalking
                 ConnectAuthoredLevel();
             }
             else BuildFallbackLevel(index);
-            style = completedDreams < 7 ? FirstStyle(level) : UnityEngine.Random.Range(0, backgrounds.Length);
+            style = completedDreams < DreamCount ? FirstStyle(level) : UnityEngine.Random.Range(0, backgrounds.Length);
             ApplyStyle();
             paint = new GameObject("Paint marks (current dream)");
             paint.transform.SetParent(level.transform);

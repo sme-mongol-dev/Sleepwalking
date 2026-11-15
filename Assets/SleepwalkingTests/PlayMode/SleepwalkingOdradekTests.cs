@@ -93,12 +93,13 @@ namespace Sleepwalking.Tests.PlayMode
 
             Component player = GameObject.Find("Dreamer").GetComponent("SleepwalkingPlayer");
             Type playerType = player.GetType();
+            float unit = (float)playerType.GetField("WorldUnitsPerCell").GetValue(player);
             playerType.GetMethod("ApplyProfile").Invoke(player, null);
             playerType.GetMethod("ApplyProfile").Invoke(player, null);
             Assert.That((float)playerType.GetProperty("EffectiveRunSpeed").GetValue(player),
-                Is.EqualTo(run * .95f).Within(.001f));
+                Is.EqualTo(run * unit * .95f).Within(.001f));
             Assert.That((float)playerType.GetProperty("EffectiveJumpSpeed").GetValue(player),
-                Is.EqualTo(jump * .99f).Within(.001f));
+                Is.EqualTo(jump * unit * .99f).Within(.001f));
             Assert.That((float)profile.GetType().GetField("RunSpeed").GetValue(profile), Is.EqualTo(run));
             Assert.That((float)profile.GetType().GetField("JumpSpeed").GetValue(profile), Is.EqualTo(jump));
 
@@ -129,6 +130,7 @@ namespace Sleepwalking.Tests.PlayMode
             game = GameObject.Find("Sleepwalking Game").GetComponent("SleepwalkingGame");
             Assert.That(game, Is.Not.Null);
             gameType = game.GetType();
+            Set("tutorialStage", 2);
             Assert.That(Read<int>("Odradek"), Is.InRange(20, 35));
         }
 

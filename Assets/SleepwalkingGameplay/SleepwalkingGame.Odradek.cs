@@ -5,7 +5,7 @@ namespace Sleepwalking
     public sealed partial class SleepwalkingGame
     {
         [SerializeField, Range(1, 100)] int odradek = 1;
-        static readonly float[] OdradekParSeconds = { 12f, 14f, 16f, 18f, 28f, 35f, 32f };
+        static readonly float[] OdradekParSeconds = { 12f, 14f, 16f, 18f, 28f, 35f, 32f, 40f };
 
         float dreamElapsedSeconds;
         int dreamDeaths;
@@ -34,7 +34,8 @@ namespace Sleepwalking
 
         void RewardDreamPerformance()
         {
-            float parSeconds = OdradekParSeconds[completedDreams % OdradekParSeconds.Length];
+            int index = completedDreams % DreamCount;
+            float parSeconds = OdradekParSeconds[Mathf.Min(index, OdradekParSeconds.Length - 1)];
             int gain = CalculateOdradekGain(dreamElapsedSeconds, dreamDeaths, parSeconds);
             int previous = Odradek;
             odradek = Mathf.Clamp(previous + gain, 1, 100);

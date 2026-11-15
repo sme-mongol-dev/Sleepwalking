@@ -11,7 +11,7 @@ namespace Sleepwalking.Tests.PlayMode
     public sealed class DreamCameraTests
     {
         [UnityTest]
-        public IEnumerator SevenDreamsFitInStaticFrameAtBothAspects()
+        public IEnumerator AllDreamsFitInStaticFrameAtBothAspects()
         {
             AsyncOperation loading = SceneManager.LoadSceneAsync("Assets/Scenes/Sleepwalking.unity");
             while (!loading.isDone) yield return null;
@@ -32,7 +32,8 @@ namespace Sleepwalking.Tests.PlayMode
             MethodInfo restartDream = type.GetMethod("RestartDream");
             type.GetField("tutorialStage", privateInstance).SetValue(game, 2);
 
-            for (int levelIndex = 1; levelIndex <= 7; levelIndex++)
+            int count = ((Array)type.GetField("LevelPrefabs").GetValue(game)).Length;
+            for (int levelIndex = 1; levelIndex <= count; levelIndex++)
             {
                 startDream.Invoke(game, null);
                 float deadline = Time.realtimeSinceStartup + 10f;
@@ -75,6 +76,8 @@ namespace Sleepwalking.Tests.PlayMode
                         "Right edge outside " + aspect + " L" + levelIndex);
                     Assert.That(camera.WorldToViewportPoint(start.position).x, Is.InRange(0f, 1f));
                     Assert.That(camera.WorldToViewportPoint(exit.transform.position).x, Is.InRange(0f, 1f));
+                    Assert.That(camera.WorldToViewportPoint(start.position).y, Is.InRange(0f, 1f));
+                    Assert.That(camera.WorldToViewportPoint(exit.transform.position + Vector3.up * unit).y, Is.InRange(0f, 1f));
 
                     body.simulated = false;
                     dreamer.transform.position = exit.transform.position + Vector3.up * (.5f * unit);
