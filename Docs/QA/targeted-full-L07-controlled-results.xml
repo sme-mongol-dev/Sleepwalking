@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="1" result="Failed(Child)" total="1" passed="0" failed="1" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-11-15 00:59:17Z" end-time="2026-11-15 00:59:26Z" duration="9,261601">
+  <test-suite type="TestSuite" id="1145" name="Sleepwalking" fullname="Sleepwalking" runstate="Runnable" testcasecount="101" result="Failed" site="Child" start-time="2026-11-15 00:59:17Z" end-time="2026-11-15 00:59:26Z" duration="9.261601" total="1" passed="0" failed="1" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="PlayMode" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="Assembly" id="1138" name="Sleepwalking.PlayMode.Tests.dll" fullname="T:/Sleepwalking/Library/ScriptAssemblies/Sleepwalking.PlayMode.Tests.dll" runstate="Runnable" testcasecount="101" result="Failed" site="Child" start-time="2026-11-15 00:59:17Z" end-time="2026-11-15 00:59:26Z" duration="9.254205" total="1" passed="0" failed="1" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="41080" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="PlayMode" />
+        <property name="EditorOnly" value="False" />
+      </properties>
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="1139" name="Sleepwalking" fullname="Sleepwalking" runstate="Runnable" testcasecount="101" result="Failed" site="Child" start-time="2026-11-15 00:59:17Z" end-time="2026-11-15 00:59:26Z" duration="9.252835" total="1" passed="0" failed="1" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestSuite" id="1140" name="Tests" fullname="Sleepwalking.Tests" runstate="Runnable" testcasecount="101" result="Failed" site="Child" start-time="2026-11-15 00:59:17Z" end-time="2026-11-15 00:59:26Z" duration="9.251469" total="1" passed="0" failed="1" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="TestSuite" id="1141" name="PlayMode" fullname="Sleepwalking.Tests.PlayMode" runstate="Runnable" testcasecount="101" result="Failed" site="Child" start-time="2026-11-15 00:59:17Z" end-time="2026-11-15 00:59:26Z" duration="9.250191" total="1" passed="0" failed="1" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-suite type="TestFixture" id="1047" name="SleepwalkingExtendedRouteTests" fullname="Sleepwalking.Tests.PlayMode.SleepwalkingExtendedRouteTests" classname="Sleepwalking.Tests.PlayMode.SleepwalkingExtendedRouteTests" runstate="Runnable" testcasecount="14" result="Failed" site="Child" start-time="2026-11-15 00:59:17Z" end-time="2026-11-15 00:59:26Z" duration="9.246787" total="1" passed="0" failed="1" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="1060" name="L07Controlled" fullname="Sleepwalking.Tests.PlayMode.SleepwalkingExtendedRouteTests.L07Controlled" methodname="L07Controlled" classname="Sleepwalking.Tests.PlayMode.SleepwalkingExtendedRouteTests" runstate="Runnable" seed="195980717" result="Failed" start-time="2026-11-15 00:59:17Z" end-time="2026-11-15 00:59:26Z" duration="9.235990" asserts="0">
+                <properties>
+                  <property name="_JOINTYPE" value="UnityCombinatorial" />
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Crossed L07_SecondLaser without button/disabled contact; see T:\Sleepwalking\Docs\QA\extended-L07-controlled.csv
+  Expected: null
+  But was:  "Crossed L07_SecondLaser without button/disabled contact"
+]]></message>
+                  <stack-trace><![CDATA[at Sleepwalking.Tests.PlayMode.SleepwalkingExtendedRouteTests+<Run>d__18.MoveNext () [0x002f6] in T:\Sleepwalking\Assets\SleepwalkingTests\PlayMode\SleepwalkingExtendedRouteTests.cs:85
+at UnityEngine.TestTools.TestEnumerator+<Execute>d__7.MoveNext () [0x0003a] in .\Library\PackageCache\com.unity.test-framework@bd7f943e9647\UnityEngine.TestRunner\NUnitExtensions\Attributes\TestEnumerator.cs:44
+]]></stack-trace>
+                </failure>
+                <output><![CDATA[Saving results to: C:/Users/TIMBUHTUK/AppData/LocalLow/DefaultCompany/Sleepwalking\TestResults.xml
+]]></output>
+              </test-case>
+            </test-suite>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

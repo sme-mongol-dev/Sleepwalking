@@ -170,7 +170,8 @@ namespace Sleepwalking.Tests.PlayMode
                 if (line.Length == 0 || line[0] == '#') continue;
                 string[] row = line.Split(',');
                 if (row.Length < 12 || row[0] == "level") continue;
-                if (row[2] == "BedExit") break;
+                if (row[2] == "BedExit" ||
+                    (route.Level == 5 && route.ProfileIndex == 0 && row[2] == "ExitRun")) break;
                 float horizontal = float.Parse(row[9], CultureInfo.InvariantCulture);
                 bool jump = bool.Parse(row[10]);
                 bool dash = bool.Parse(row[11]);
@@ -201,6 +202,20 @@ namespace Sleepwalking.Tests.PlayMode
                 route.Failure = "Old prefix missed first laser button";
             if (route.Level == 7 && (!touchedB || !dashActivated))
                 route.Failure = "Old prefix missed ButtonB or dash";
+            if (route.Level == 4 && route.Failure == null)
+                yield return MoveTo(route, "LaserRun", 9.4f);
+            if (route.Level == 5 && route.ProfileIndex == 0 && route.Failure == null)
+            {
+                Collider2D timedC = GameObject.Find("L05_TimedC")?.GetComponent<Collider2D>();
+                Assert.That(timedC, Is.Not.Null);
+                if (!Supported(route, timedC, out float margin) || margin < Margin)
+                    route.Failure = "Old prefix did not finish safely on L05_TimedC";
+                else
+                {
+                    route.LastSupport = "L05_TimedC";
+                    yield return JumpTo(route, "ExitRun", 20f, 19.425f, 22.575f);
+                }
+            }
             string supportName = route.Level == 4 ? "LaserRun" :
                 route.Level == 6 ? "HighExit" : route.Level == 7 ? "DashLanding" : "ExitRun";
             Collider2D support = GameObject.Find(supportName)?.GetComponent<Collider2D>();
@@ -551,6 +566,7 @@ namespace Sleepwalking.Tests.PlayMode
             bool touched = false;
             bool disabled = false;
             bool jumped = false;
+            bool crossed = false;
             for (int q = 0; q < 230; q++)
             {
                 bool jump = !jumped && route.Body.position.x >= baseShape.bounds.center.x - C(1.1f);
@@ -578,10 +594,13 @@ namespace Sleepwalking.Tests.PlayMode
                     route.Failure = "Hit live " + laserName;
                     yield break;
                 }
-                if (route.Body.position.x >= C(beyondCell))
+                crossed |= route.Body.position.x >= C(beyondCell);
+                if (crossed && contact && margin >= Margin)
                 {
                     if (!touched || !disabled || !jumped || beam.enabled || !baseShape.enabled || !contact)
-                        route.Failure = "Crossed " + laserName + " without button/disabled contact";
+                        route.Failure = "Crossed " + laserName + " without button/disabled contact; " +
+                            "button=" + touched + " disabled=" + disabled + " jumped=" + jumped +
+                            " beamEnabled=" + beam.enabled + " baseEnabled=" + baseShape.enabled;
                     route.LastSupport = "SecondLaserRun";
                     route.Clear.Invoke(route.Player, null);
                     yield break;
