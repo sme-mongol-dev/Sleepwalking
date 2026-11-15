@@ -426,16 +426,25 @@ namespace Sleepwalking.Visual.Editor
                 AddOdradekDecoration(environment, "Bed", bed.gameObject, 1,
                     id: "bed.base", group: "bed", maxOdradek: 12, asset: "bed.base",
                     mode: RoomDecorationMode.Variant);
+                Texture2D[] bedFrames = new Texture2D[8];
                 for (int q = 1; q <= 8; q++)
                 {
                     string number = q.ToString("00");
                     int minimum = q == 1 ? 13 : q * 11 + 2;
                     int maximum = q == 8 ? 100 : (q + 1) * 11 + 1;
+                    Texture2D frame = LoadMenuTexture(Root + "/Textures/MenuDecor/BedLook" + number + ".png");
+                    bedFrames[q - 1] = frame;
                     AddOdradekDecoration(environment, "Bed Look " + number, bed.gameObject, minimum,
                         id: "bed.look." + q, group: "bed", maxOdradek: maximum,
                         asset: "bed.look." + q, mode: RoomDecorationMode.Variant,
-                        texture: LoadMenuTexture(Root + "/Textures/MenuDecor/BedLook" + number + ".png"));
+                        texture: frame);
                 }
+                RoomBedAwakeAnimation bedAnimation = bed.gameObject.AddComponent<RoomBedAwakeAnimation>();
+                bedAnimation.Artwork = bed;
+                bedAnimation.Frames = bedFrames;
+                // Последний кадр спит; проигрываем пробуждение назад, затем повторяем открытые глаза.
+                bedAnimation.LoopStartFrame = 2;
+                bedAnimation.LoopEndFrame = 6;
 
                 Vector3[] crackPositions =
                 {

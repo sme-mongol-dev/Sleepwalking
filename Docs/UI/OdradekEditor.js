@@ -24,9 +24,9 @@ for (let q = 1; q <= 12; q++) {
         "poster", q <= 10 ? (q - 1) * 8 + 1 : q === 11 ? 81 : 91,
         q <= 10 ? q * 8 : q === 11 ? 90 : 100);
 }
-add("bed.base", "Кровать / герой — исходный", "BoyAndBed.png", "bed", 1, 12);
+add("bed.base", "Кровать / герой — резервный кадр", "BoyAndBed.png", "bed", 1, 12);
 for (let q = 1; q <= 8; q++)
-    add("bed.look." + q, "Кровать / герой — фаза сна " + q, "bedframe:" + (q - 1),
+    add("bed.look." + q, "Кровать / герой — резервный кадр " + q, "bedframe:" + (q - 1),
         "bed", q === 1 ? 13 : q * 11 + 2, q === 8 ? 100 : (q + 1) * 11 + 1);
 for (let q = 1; q <= 5; q++)
     add("crack." + q, "Трещина " + q, "Crack" + q + ".png", "cracks", 35 + (q - 1) * 15, 100);

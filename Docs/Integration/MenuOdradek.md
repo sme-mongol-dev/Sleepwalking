@@ -6,6 +6,8 @@ The active room is `Assets/SleepwalkingVisual/Prefabs/SleepwalkingMenuRoom.prefa
 
 Original supplied PNGs are preserved in `Assets/SleepwalkingVisual/Textures/Source/MenuDecor/`. Point-filtered palette copies, including eight sliced 256×256 bed frames, are in `Assets/SleepwalkingVisual/Textures/MenuDecor/`. `Tools/Visual/import_menu_decor.ps1` reproduces them.
 
+The bed uses `RoomBedAwakeAnimation` while the room is active. Each entry to the room begins with supplied frame 8 (eyes closed), plays backward through frame 1 once, then loops frames 3–7 (eyes open and looking around) using unscaled time. Leaving and returning to the room restarts the waking sequence. The `bed` Odradek rows remain valid as static fallback textures in the room catalog, but the animation controls the visible bed texture while the menu is running. This does not replace the bed hotspot or its white hover highlight.
+
 Each of the 12 posters has its own alpha mask in `Assets/SleepwalkingVisual/Textures/Posters/Masks/` and a ready-to-use image in `Posters/Masked/`. `Tools/Visual/apply_poster_masks.ps1` reapplies the masks. Every processed poster is 40×80 or 80×160; poster 09 was normalized to 80×160 with nearest-neighbor scaling.
 
 `RoomOdradekDecorationTests` checks Odradek 1/50/75/100, the four menu hotspots, variant textures, accumulation, and JSON overrides. It writes 1280×720 room captures into `Docs/QA/VisualLogs/MenuOdradek1.png`, `MenuOdradek50.png`, `MenuOdradek75.png`, and `MenuOdradek100.png` when run with a graphics device.

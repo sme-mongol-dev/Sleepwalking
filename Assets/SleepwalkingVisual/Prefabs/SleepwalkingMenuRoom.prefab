@@ -1016,7 +1016,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 640705f3a38853c4291356cc6a96acce, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Sleepwalking.Visual.RoomEnvironment
   ClockHand: {fileID: 3195865579706706447}
   Picture: {fileID: 727404541621394943}
@@ -1679,6 +1679,7 @@ GameObject:
   - component: {fileID: 9115170531280796317}
   - component: {fileID: 4954561451186108599}
   - component: {fileID: 3534644545752735122}
+  - component: {fileID: 1287347530909606980}
   - component: {fileID: 8778054785006365404}
   - component: {fileID: 4776950531811612517}
   m_Layer: 0
@@ -1760,6 +1761,32 @@ MeshRenderer:
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &1287347530909606980
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4821882618303380656}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c6fc550e4a1fa574893bff954b5580e0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Sleepwalking.Visual.RoomBedAwakeAnimation
+  Artwork: {fileID: 3534644545752735122}
+  Frames:
+  - {fileID: 2800000, guid: 650b47401f6547a1aea52c323745ed72, type: 3}
+  - {fileID: 2800000, guid: c6744d6cff0841ce92488d08f9812ad3, type: 3}
+  - {fileID: 2800000, guid: 837cef1e7829451c8e11e3cef86ab50f, type: 3}
+  - {fileID: 2800000, guid: aca41e048c4843828133f648df027d6a, type: 3}
+  - {fileID: 2800000, guid: 2a4d9568d0304f80b9f30d2805b18097, type: 3}
+  - {fileID: 2800000, guid: 711908d0d92742b0b3a4663328116a3c, type: 3}
+  - {fileID: 2800000, guid: a9eebd99d3334570bca03d01ad20550b, type: 3}
+  - {fileID: 2800000, guid: c01c8993f5e1432389b3920d1295f9e5, type: 3}
+  IntroFrameSeconds: 0.22
+  LoopFrameSeconds: 0.32
+  LoopStartFrame: 2
+  LoopEndFrame: 6
 --- !u!65 &8778054785006365404
 BoxCollider:
   m_ObjectHideFlags: 0

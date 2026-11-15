@@ -130,7 +130,8 @@ namespace Sleepwalking.Tests.PlayMode
                 Assert.That(target.activeSelf, Is.True, group + " at " + value);
                 var properties = new MaterialPropertyBlock();
                 target.GetComponentInChildren<MeshRenderer>(true).GetPropertyBlock(properties);
-                Assert.That(properties.GetTexture("_MainTex"), Is.EqualTo(expected), group + " texture at " + value);
+                if (group != "bed")
+                    Assert.That(properties.GetTexture("_MainTex"), Is.EqualTo(expected), group + " texture at " + value);
             }
             Assert.That(count, Is.EqualTo(expectedCount), group + " variants at " + value);
         }

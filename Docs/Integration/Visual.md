@@ -39,6 +39,8 @@ This document records the module API. Integration and end-to-end testing belong 
 
 The editable source of menu rows is `Assets/SleepwalkingVisual/Prefabs/SleepwalkingMenuRoom.prefab` (`RoomEnvironment.Decorations`). The HTML editor can export a UTF-8 file named `SleepwalkingMenuDecor.json` with this schema:
 
+The bed's `RoomBedAwakeAnimation` plays the eight supplied frames backward from closed eyes to awake once on each room entry, then loops frames 3–7 with open eyes. This animation controls the visible bed texture while the menu is active; Odradek `bed` rows remain static fallback values. The existing bed hotspot and hover highlight work during animation.
+
 ```json
 {
   "version": 1,
