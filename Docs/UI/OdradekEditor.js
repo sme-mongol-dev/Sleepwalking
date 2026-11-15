@@ -13,7 +13,6 @@ add("nightstand", "Тумба", "Tymba.png", "props", 1, 100, "menu.nightstand")
 add("clock.big", "Большая стрелка часов", "ClockArrowBig.png", "props", 1, 100);
 add("clock.small", "Малая стрелка часов", "ClockArrowSmall.png", "props", 1, 100);
 add("slippers", "Тапочки", "Slippers.png", "props", 35, 100);
-add("eye", "Глаз со зрачком", "Eye.png", "props", 55, 100);
 add("calendar.1", "Календарь 1", "Calendar.png", "calendar", 25, 49);
 add("calendar.2", "Календарь 2", "Calendar2.png", "calendar", 50, 74);
 add("calendar.3", "Календарь 3", "Calendar3.png", "calendar", 75, 100);
@@ -32,8 +31,9 @@ for (const crack of [{number:4, steps:[80,85,90]}, {number:5, steps:[95,97,99]}]
         add("crack." + crack.number + ".stage" + (q + 1),
             "Трещина " + crack.number + " — " + ["30%", "60%", "100%"][q],
             "Crack" + crack.number + ".png", "crack." + crack.number,
-            crack.steps[q], q === 2 ? 100 : crack.steps[q + 1] - 1,
+            crack.steps[q], q === 2 ? (crack.number === 4 ? 94 : 100) : crack.steps[q + 1] - 1,
             "crack." + crack.number);
+add("eye", "Трещина 4 — стадия 4: глаз со зрачком", "Eye.png", "crack.4", 95, 100, "eye");
 
 const retiredIds = new Set(["eyeball", "crack.1", "crack.2", "crack.3", "crack.4", "crack.5"]);
 
@@ -370,11 +370,16 @@ function importDocument(input) {
         if (!row || typeof row !== "object" || Array.isArray(row))
             throw new Error("Каждая строка decorations должна быть объектом.");
         if (retiredIds.has(row.id)) continue;
+        if (row.id === "eye" && row.group === "props") continue;
         if (seen.has(row.id)) { full.decorations.push(row); continue; }
         seen.add(row.id);
         const index = full.decorations.findIndex(item => item.id === row.id);
         if (index < 0) full.decorations.push(row);
         else full.decorations[index] = row;
+    }
+    if (input.decorations.some(row => row && row.id === "eye" && row.group === "props")) {
+        const stage3 = full.decorations.find(row => row.id === "crack.4.stage3");
+        if (stage3) stage3.max = 94;
     }
     return full;
 }

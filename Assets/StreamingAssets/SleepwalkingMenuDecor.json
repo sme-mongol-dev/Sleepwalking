@@ -21,7 +21,7 @@
     { "id": "clock.big", "group": "props", "min": 1, "max": 100, "asset": "clock.big" },
     { "id": "clock.small", "group": "props", "min": 1, "max": 100, "asset": "clock.small" },
     { "id": "slippers", "group": "props", "min": 35, "max": 100, "asset": "slippers" },
-    { "id": "eye", "group": "props", "min": 55, "max": 100, "asset": "eye" },
+    { "id": "eye", "group": "crack.4", "min": 95, "max": 100, "asset": "eye" },
     { "id": "bed.base", "group": "bed", "min": 1, "max": 12, "asset": "bed.base" },
     { "id": "bed.look.1", "group": "bed", "min": 13, "max": 23, "asset": "bed.look.1" },
     { "id": "bed.look.2", "group": "bed", "min": 24, "max": 34, "asset": "bed.look.2" },
@@ -33,7 +33,7 @@
     { "id": "bed.look.8", "group": "bed", "min": 90, "max": 100, "asset": "bed.look.8" },
     { "id": "crack.4.stage1", "group": "crack.4", "min": 80, "max": 84, "asset": "crack.4" },
     { "id": "crack.4.stage2", "group": "crack.4", "min": 85, "max": 89, "asset": "crack.4" },
-    { "id": "crack.4.stage3", "group": "crack.4", "min": 90, "max": 100, "asset": "crack.4" },
+    { "id": "crack.4.stage3", "group": "crack.4", "min": 90, "max": 94, "asset": "crack.4" },
     { "id": "crack.5.stage1", "group": "crack.5", "min": 95, "max": 96, "asset": "crack.5" },
     { "id": "crack.5.stage2", "group": "crack.5", "min": 97, "max": 98, "asset": "crack.5" },
     { "id": "crack.5.stage3", "group": "crack.5", "min": 99, "max": 100, "asset": "crack.5" }

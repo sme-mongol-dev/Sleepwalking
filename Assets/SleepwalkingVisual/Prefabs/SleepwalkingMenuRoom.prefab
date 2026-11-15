@@ -677,7 +677,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fd308d4c2c32cca48b4f345297899c7e, type: 3}
-  m_Name: 
+  m_Name:
   m_EditorClassIdentifier: Assembly-CSharp::Sleepwalking.Visual.RoomHotspot
   Action: 1
   Label: Settings
@@ -832,7 +832,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 640705f3a38853c4291356cc6a96acce, type: 3}
-  m_Name: 
+  m_Name:
   m_EditorClassIdentifier: Assembly-CSharp::Sleepwalking.Visual.RoomEnvironment
   ClockHand: {fileID: 3195865579706706447}
   Picture: {fileID: 727404541621394943}
@@ -1156,16 +1156,16 @@ MonoBehaviour:
     SortingOrder: 0
   - Name: Eye
     Id: eye
-    Group: props
-    MinOdradek: 55
+    Group: crack.4
+    MinOdradek: 95
     MaxOdradek: 100
     Asset: eye
     Texture: {fileID: 2800000, guid: 595c622c9c2e41fba53548fd242ce343, type: 3}
-    Mode: 0
+    Mode: 1
     RoomObject: {fileID: 7656796662345625138}
     Prefab: {fileID: 0}
     Parent: {fileID: 0}
-    LocalPosition: {x: 0.205, y: 2.493, z: 0.35}
+    LocalPosition: {x: -3.56, y: 1.06, z: 0.35}
     LocalEulerAngles: {x: -0, y: 0, z: 0}
     LocalScale: {x: 2.2997057, y: 2.2997057, z: 2.1137}
     SortingOrder: 1
@@ -1338,7 +1338,7 @@ MonoBehaviour:
     Id: crack.4.stage3
     Group: crack.4
     MinOdradek: 90
-    MaxOdradek: 100
+    MaxOdradek: 94
     Asset: crack.4
     Texture: {fileID: 2800000, guid: 29646616179c47a9af7f597e16ff6007, type: 3}
     Mode: 1
@@ -1587,7 +1587,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c6fc550e4a1fa574893bff954b5580e0, type: 3}
-  m_Name: 
+  m_Name:
   m_EditorClassIdentifier: Assembly-CSharp::Sleepwalking.Visual.RoomBedAwakeAnimation
   Artwork: {fileID: 3534644545752735122}
   Frames:
@@ -1641,7 +1641,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fd308d4c2c32cca48b4f345297899c7e, type: 3}
-  m_Name: 
+  m_Name:
   m_EditorClassIdentifier: Assembly-CSharp::Sleepwalking.Visual.RoomHotspot
   Action: 0
   Label: New Game
@@ -2114,7 +2114,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 474bcb49853aa07438625e644c072ee6, type: 3}
-  m_Name: 
+  m_Name:
   m_EditorClassIdentifier: Unity.RenderPipelines.Universal.Runtime::UnityEngine.Rendering.Universal.UniversalAdditionalLightData
   m_UsePipelineSettings: 0
   m_AdditionalLightsShadowResolutionTier: 2
@@ -2366,7 +2366,7 @@ Transform:
   m_GameObject: {fileID: 7656796662345625138}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.205, y: 2.493, z: 0.35}
+  m_LocalPosition: {x: -3.56, y: 1.06, z: 0.35}
   m_LocalScale: {x: 2.2997057, y: 2.2997057, z: 2.1137}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -2657,7 +2657,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fd308d4c2c32cca48b4f345297899c7e, type: 3}
-  m_Name: 
+  m_Name:
   m_EditorClassIdentifier: Assembly-CSharp::Sleepwalking.Visual.RoomHotspot
   Action: 2
   Label: Credits

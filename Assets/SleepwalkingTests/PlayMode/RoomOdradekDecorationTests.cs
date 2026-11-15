@@ -93,7 +93,7 @@ namespace Sleepwalking.Tests.PlayMode
             }
 
             foreach (var growth in new[] { (80, .3f, "Crack 4"), (85, .6f, "Crack 4"),
-                (90, 1f, "Crack 4"), (95, .3f, "Crack 5"), (97, .6f, "Crack 5"),
+                (90, 1f, "Crack 4"), (94, 1f, "Crack 4"), (95, .3f, "Crack 5"), (97, .6f, "Crack 5"),
                 (99, 1f, "Crack 5") })
             {
                 odradek.SetValue(game, growth.Item1);
@@ -104,6 +104,11 @@ namespace Sleepwalking.Tests.PlayMode
             }
             odradek.SetValue(game, 100);
             yield return null;
+            Transform crack4 = room.transform.Find("Crack 4");
+            Assert.That(crack4.gameObject.activeSelf, Is.False, "The eye replaces crack 4 in its fourth stage.");
+            Assert.That(eye.gameObject.activeSelf, Is.True);
+            Assert.That(eye.localPosition.x, Is.EqualTo(crack4.localPosition.x).Within(.001f));
+            Assert.That(eye.localPosition.y, Is.EqualTo(crack4.localPosition.y).Within(.001f));
             Vector3 pupilStart = pupil.localPosition;
             MethodInfo look = tracker.GetType().GetMethod("LookAtWorld");
             for (int q = 0; q < 12; q++) look.Invoke(tracker, new object[] { (Vector2)(eye.position + Vector3.right * 10f) });
@@ -115,6 +120,19 @@ namespace Sleepwalking.Tests.PlayMode
             object[] invalid = { "{\"version\":1,\"decorations\":[{\"id\":\"bed.base\",\"group\":\"bed\",\"min\":1,\"max\":12,\"asset\":\"crack.1\"}]}", null };
             Assert.That((bool)applyJson.Invoke(environment, invalid), Is.False);
             Assert.That((string)invalid[1], Does.Contain("asset"));
+
+            object[] eyeThreshold = { "{\"version\":1,\"decorations\":[" +
+                "{\"id\":\"crack.4.stage3\",\"group\":\"crack.4\",\"min\":90,\"max\":95,\"asset\":\"crack.4\"}," +
+                "{\"id\":\"eye\",\"group\":\"crack.4\",\"min\":96,\"max\":100,\"asset\":\"eye\"}]}", null };
+            Assert.That((bool)applyJson.Invoke(environment, eyeThreshold), Is.True, eyeThreshold[1]?.ToString());
+            odradek.SetValue(game, 95);
+            yield return null;
+            Assert.That(crack4.gameObject.activeSelf, Is.True);
+            Assert.That(eye.gameObject.activeSelf, Is.False);
+            odradek.SetValue(game, 96);
+            yield return null;
+            Assert.That(crack4.gameObject.activeSelf, Is.False);
+            Assert.That(eye.gameObject.activeSelf, Is.True);
 
             object[] update = { "{\"version\":1,\"decorations\":[{\"id\":\"crack.4.stage1\",\"group\":\"crack.4\",\"min\":81,\"max\":84,\"asset\":\"crack.4\"}]}", null };
             Assert.That((bool)applyJson.Invoke(environment, update), Is.True, update[1]?.ToString());

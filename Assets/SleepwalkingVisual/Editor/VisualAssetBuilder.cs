@@ -441,9 +441,9 @@ namespace Sleepwalking.Visual.Editor
                 MeshRenderer slippers = MenuDecorArtwork(root, "Slippers", "Slippers",
                     new Vector3(-4.9f, -2.1f, -.5f), .024f);
                 MeshRenderer eye = MenuDecorArtwork(root, "Eye", "Eye",
-                    new Vector3(2.5f, 2.75f, .35f), .017f);
+                    new Vector3(4.75f, 4.35f, .35f), .017f);
                 MeshRenderer eyeball = MenuDecorArtwork(root, "Eyeball", "Eyeball",
-                    new Vector3(2.5f, 2.75f, .32f), .017f);
+                    new Vector3(4.75f, 4.35f, .32f), .017f);
                 eyeball.transform.SetParent(eye.transform, true);
                 eye.gameObject.AddComponent<RoomEyeTracker>().Pupil = eyeball.transform;
 
@@ -480,8 +480,8 @@ namespace Sleepwalking.Visual.Editor
                     id: "clock.small", group: "props", asset: "clock.small");
                 AddOdradekDecoration(environment, "Slippers", slippers.gameObject, 35,
                     id: "slippers", group: "props", asset: "slippers");
-                AddOdradekDecoration(environment, "Eye", eye.gameObject, 55, 1,
-                    id: "eye", group: "props", asset: "eye");
+                AddOdradekDecoration(environment, "Eye", eye.gameObject, 95, 1,
+                    id: "eye", group: "crack.4", asset: "eye", mode: RoomDecorationMode.Variant);
 
                 AddOdradekDecoration(environment, "Bed", bed.gameObject, 1,
                     id: "bed.base", group: "bed", maxOdradek: 12, asset: "bed.base",
@@ -519,7 +519,8 @@ namespace Sleepwalking.Visual.Editor
                     {
                         AddOdradekDecoration(environment, "Crack " + number + " Stage " + (stage + 1),
                             crack.gameObject, minimums[stage], id: "crack." + number + ".stage" + (stage + 1),
-                            group: "crack." + number, maxOdradek: stage == 2 ? 100 : minimums[stage + 1] - 1,
+                            group: "crack." + number, maxOdradek: stage == 2 ?
+                                (number == 4 ? 94 : 100) : minimums[stage + 1] - 1,
                             asset: "crack." + number, mode: RoomDecorationMode.Variant);
                         environment.Decorations[environment.Decorations.Count - 1].LocalScale =
                             fullScale * scaleFactors[stage];

@@ -165,27 +165,30 @@ namespace Sleepwalking.Visual
                     groups.Add(row.Group);
             foreach (string group in groups)
             {
-                GameObject target = null;
+                var targets = new HashSet<GameObject>();
                 RoomOdradekDecoration selected = null;
                 foreach (RoomOdradekDecoration row in Decorations)
                 {
                     if (row == null || row.Mode != RoomDecorationMode.Variant || row.Group != group) continue;
-                    if (target == null) target = row.Instance;
+                    if (row.Instance != null) targets.Add(row.Instance);
                     if (CurrentOdradek >= row.MinOdradek && CurrentOdradek <= row.MaxOdradek)
                         selected = row;
                 }
-                if (target == null) continue;
-                bool interactive = target.GetComponentInChildren<RoomHotspot>(true) != null;
-                target.SetActive(interactive || selected != null);
-                if (selected != null)
+                foreach (GameObject target in targets)
                 {
-                    Transform item = target.transform;
+                    bool interactive = target.GetComponentInChildren<RoomHotspot>(true) != null;
+                    target.SetActive(interactive || selected != null && selected.Instance == target);
+                }
+                GameObject active = selected?.Instance;
+                if (active != null)
+                {
+                    Transform item = active.transform;
                     item.localPosition = selected.LocalPosition;
                     item.localEulerAngles = selected.LocalEulerAngles;
                     item.localScale = selected.LocalScale;
-                    foreach (Renderer renderer in target.GetComponentsInChildren<Renderer>(true))
+                    foreach (Renderer renderer in active.GetComponentsInChildren<Renderer>(true))
                         renderer.sortingOrder = selected.SortingOrder;
-                    ApplyTexture(target, selected.Asset);
+                    ApplyTexture(active, selected.Asset);
                 }
             }
         }
